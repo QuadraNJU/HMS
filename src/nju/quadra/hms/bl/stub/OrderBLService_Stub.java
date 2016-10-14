@@ -50,12 +50,17 @@ public class OrderBLService_Stub implements OrderBLService {
     }
 
     @Override
-    public ResultMessage undoExcepted(OrderVO vo, boolean returnAllCredit) {
+    public ResultMessage undoDelayed(OrderVO vo, boolean returnAllCredit) {
         return new ResultMessage(ResultMessage.RESULT_SUCCESS);
     }
 
     @Override
     public ResultMessage undoUnfinished(OrderVO vo) {
+        return new ResultMessage(ResultMessage.RESULT_SUCCESS);
+    }
+
+    @Override
+    public ResultMessage finish(OrderVO vo) {
         return new ResultMessage(ResultMessage.RESULT_SUCCESS);
     }
 

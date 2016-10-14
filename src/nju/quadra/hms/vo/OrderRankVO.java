@@ -5,6 +5,10 @@ package nju.quadra.hms.vo;
  */
 public class OrderRankVO {
     /**
+     * 订单ID
+     */
+    public int orderId;
+    /**
      * 评分
      */
     public int rank;
@@ -13,7 +17,8 @@ public class OrderRankVO {
      */
     public String comment;
 
-    public OrderRankVO(int rank, String comment) {
+    public OrderRankVO(int orderId, int rank, String comment) {
+        this.orderId = orderId;
         this.rank = rank;
         this.comment = comment;
     }

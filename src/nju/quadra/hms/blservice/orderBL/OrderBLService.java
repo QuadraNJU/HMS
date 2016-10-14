@@ -12,19 +12,21 @@ import java.util.ArrayList;
  * Created by adn55 on 16/10/15.
  */
 public interface OrderBLService {
-    public PriceVO getPrice(OrderVO vo);
+    PriceVO getPrice(OrderVO vo);
 
-    public ResultMessage add(OrderVO vo);
+    ResultMessage add(OrderVO vo);
 
-    public ArrayList<OrderVO> getByCustomer(String username);
+    ArrayList<OrderVO> getByCustomer(String username);
 
-    public ArrayList<OrderVO> getByHotel(int hotelId);
+    ArrayList<OrderVO> getByHotel(int hotelId);
 
-    public ArrayList<OrderVO> getByState(OrderState state);
+    ArrayList<OrderVO> getByState(OrderState state);
 
-    public ResultMessage undoExcepted(OrderVO vo, boolean returnAllCredit);
+    ResultMessage undoDelayed(OrderVO vo, boolean returnAllCredit);
 
-    public ResultMessage undoUnfinished(OrderVO vo);
+    ResultMessage undoUnfinished(OrderVO vo);
 
-    public ResultMessage addRank(OrderRankVO vo);
+    ResultMessage finish(OrderVO vo);
+
+    ResultMessage addRank(OrderRankVO vo);
 }
