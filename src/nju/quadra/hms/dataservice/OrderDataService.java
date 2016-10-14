@@ -1,5 +1,6 @@
 package nju.quadra.hms.dataservice;
 
+import nju.quadra.hms.model.OrderState;
 import nju.quadra.hms.po.OrderPO;
 
 import java.util.ArrayList;
@@ -11,6 +12,8 @@ public interface OrderDataService {
     ArrayList<OrderPO> selectByCustomer(String username);
 
     ArrayList<OrderPO> selectByHotel(int hotelId);
+
+    ArrayList<OrderPO> selectByState(OrderState state);
 
     void insert(OrderPO po);
 

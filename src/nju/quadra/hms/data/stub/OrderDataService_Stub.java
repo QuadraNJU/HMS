@@ -1,6 +1,7 @@
 package nju.quadra.hms.data.stub;
 
 import nju.quadra.hms.dataservice.OrderDataService;
+import nju.quadra.hms.model.OrderState;
 import nju.quadra.hms.po.OrderPO;
 
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ public class OrderDataService_Stub implements OrderDataService {
     public OrderDataService_Stub() {
         list = new ArrayList<>();
         po = new OrderPO(1, "quadra2", 1, new Date(2016, 11, 11), new Date(2016, 11, 12), 1, 1, 2,
-                new ArrayList<>(), false, 99.9, 5, "是个休闲的好去处");
+                new ArrayList<>(), false, 99.9, OrderState.RANKED, 5, "是个休闲的好去处");
         list.add(po);
     }
 
@@ -27,6 +28,11 @@ public class OrderDataService_Stub implements OrderDataService {
 
     @Override
     public ArrayList<OrderPO> selectByHotel(int hotelId) {
+        return list;
+    }
+
+    @Override
+    public ArrayList<OrderPO> selectByState(OrderState state) {
         return list;
     }
 

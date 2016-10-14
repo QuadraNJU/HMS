@@ -1,5 +1,7 @@
 package nju.quadra.hms.po;
 
+import nju.quadra.hms.model.OrderState;
+
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -52,6 +54,10 @@ public class OrderPO {
      */
     private double price;
     /**
+     * 订单状态
+     */
+    private OrderState state;
+    /**
      * 评分
      */
     private int rank;
@@ -60,7 +66,7 @@ public class OrderPO {
      */
     private String comment;
 
-    public OrderPO(int id, String username, int hotelId, Date startDate, Date endDate, int roomId, int roomCount, int personCount, ArrayList<String> persons, boolean hasChildren, double price, int rank, String comment) {
+    public OrderPO(int id, String username, int hotelId, Date startDate, Date endDate, int roomId, int roomCount, int personCount, ArrayList<String> persons, boolean hasChildren, double price, OrderState state, int rank, String comment) {
         this.id = id;
         this.username = username;
         this.hotelId = hotelId;
@@ -72,6 +78,7 @@ public class OrderPO {
         this.persons = persons;
         this.hasChildren = hasChildren;
         this.price = price;
+        this.state = state;
         this.rank = rank;
         this.comment = comment;
     }
@@ -162,6 +169,14 @@ public class OrderPO {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public OrderState getState() {
+        return state;
+    }
+
+    public void setState(OrderState state) {
+        this.state = state;
     }
 
     public int getRank() {
