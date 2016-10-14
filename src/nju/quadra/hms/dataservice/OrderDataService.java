@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public interface OrderDataService {
     ArrayList<OrderPO> selectByCustomer(String username);
 
-    ArrayList<OrderPO> selectByCustomer(int hotelId);
+    ArrayList<OrderPO> selectByHotel(int hotelId);
 
     void insert(OrderPO po);
 
