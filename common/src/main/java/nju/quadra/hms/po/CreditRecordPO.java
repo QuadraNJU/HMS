@@ -27,7 +27,7 @@ public class CreditRecordPO {
      */
     private CreditAction action;
     /**
-     * 信用度变化
+     * 信用度变化hhh
      */
     private double diff;
 
