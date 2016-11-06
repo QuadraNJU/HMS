@@ -31,6 +31,10 @@ public class MockOrderBL implements OrderBLService {
 
     @Override
     public ResultMessage add(OrderVO vo) {
+        for(OrderVO currOrder: list) {
+            if(currOrder.id == vo.id) return new ResultMessage(ResultMessage.RESULT_ERROR);
+        }
+
         return new ResultMessage(ResultMessage.RESULT_SUCCESS);
     }
 

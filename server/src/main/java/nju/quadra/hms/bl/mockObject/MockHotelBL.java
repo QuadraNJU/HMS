@@ -37,6 +37,9 @@ public class MockHotelBL implements HotelBLService {
 
     @Override
     public ResultMessage add(HotelVO vo) {
+        for(HotelVO currHotel: list) {
+            if(currHotel.id == vo.id) return new ResultMessage(ResultMessage.RESULT_ERROR);
+        }
         return new ResultMessage(ResultMessage.RESULT_SUCCESS);
     }
 

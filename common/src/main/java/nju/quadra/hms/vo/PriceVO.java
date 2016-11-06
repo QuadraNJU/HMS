@@ -24,4 +24,17 @@ public class PriceVO {
         this.hotelPromotion = hotelPromotion;
         this.websitePromotion = websitePromotion;
     }
+
+//    @Override
+//    public boolean equals(Object obj) {
+//        if(obj instanceof PriceVO) {
+//            PriceVO pvo = (PriceVO)obj;
+//            if(originalPrice == pvo.originalPrice && finalPrice == pvo.finalPrice
+//                    && hotelPromotion.equals(pvo.hotelPromotion)
+//                    && websitePromotion.equals(pvo.websitePromotion)) {
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
 }

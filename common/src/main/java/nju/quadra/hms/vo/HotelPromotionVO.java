@@ -52,4 +52,18 @@ public class HotelPromotionVO {
         this.promotion = promotion;
         this.cooperation = cooperation;
     }
+
+//    @Override
+//    public boolean equals(Object obj) {
+//        if(obj instanceof HotelPromotionVO) {
+//            HotelPromotionVO hpvo = (HotelPromotionVO) obj;
+//            if(id == hpvo.id && hotelId == hpvo.id && name.equals(hpvo.name)
+//                    && type.equals(hpvo.type) && startTime.equals(hpvo.startTime)
+//                    && endTime.equals(hpvo.endTime) && promotion == hpvo.promotion
+//                    && cooperation.equals(hpvo.cooperation)) {
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
 }
