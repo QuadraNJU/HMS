@@ -11,7 +11,7 @@ import static org.junit.Assert.*;
 /**
  * Created by admin on 2016/11/6.
  */
-public class HotelRoomBL {
+public class HotelRoomBLTest {
     HotelRoomBLService hotelRoomBL;
     @Before
     public void init() {
