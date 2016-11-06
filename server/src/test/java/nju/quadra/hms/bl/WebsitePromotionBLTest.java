@@ -30,13 +30,13 @@ public class WebsitePromotionBLTest {
     public void testAdd() {
         WebsitePromotionVO vo = new WebsitePromotionVO(1, "11.11优惠", WebsitePromotionType.TIME_PROMOTION,
                 new Date(2016, 11, 10), new Date(2016, 11, 12), -11.11, -1, null);
-        assertEquals(ResultMessage.RESULT_SUCCESS, websitePromotionBL.add(vo));
+        assertEquals(ResultMessage.RESULT_SUCCESS, websitePromotionBL.add(vo).result);
     }
 
     @Test
     public void testDelete() {
         int promotionId = 1;
-        assertEquals(ResultMessage.RESULT_SUCCESS, websitePromotionBL.delete(promotionId));
+        assertEquals(ResultMessage.RESULT_SUCCESS, websitePromotionBL.delete(promotionId).result);
     }
 
     @Test

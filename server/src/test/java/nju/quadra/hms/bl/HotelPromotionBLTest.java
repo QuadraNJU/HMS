@@ -42,7 +42,7 @@ public class HotelPromotionBLTest {
     }
 
     @Test
-    public void modify() {
+    public void testModify() {
         int promotionId = 1;
         HotelPromotionVO vo = new HotelPromotionVO(1, 1, "其实是12.12优惠啦", HotelPromotionType.TIME_PROMOTION,
                 new Date(2016, 12, 10), new Date(2016, 12, 12), -11.11, null);
