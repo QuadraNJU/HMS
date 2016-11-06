@@ -22,12 +22,12 @@ public class HotelBLTest {
 
     @Test
     public void testSearch() {
-        assertNotNull(hotelBL.search(0));
+        assertEquals(true, hotelBL.search(0).size() > 0);
     }
 
     @Test
     public void testGetAll() {
-        assertNotNull(hotelBL.getAll());
+        assertEquals(true, hotelBL.getAll().size() > 0);
     }
 
     @Test
@@ -36,9 +36,16 @@ public class HotelBLTest {
     }
 
     @Test
-    public void testAdd() {
+    public void testAddDuplicate() {
         HotelVO vo = new HotelVO(1, "南京抵抗军会议大酒店", 1, 1, "玄武区中山陵四方城2号",
                 "城中山林花园酒店", "各类客房, 大小会议室", "quadra");
+        assertEquals(ResultMessage.RESULT_SUCCESS, hotelBL.add(vo).result);
+    }
+
+    @Test
+    public void testAddNormal() {
+        HotelVO vo = new HotelVO(2, "布达佩斯大饭店", 2, 2, "二战时候的布达佩斯（大概？）",
+                "这是一个坐落于布达佩斯的大饭店", "我不知道这里有什么设施", "quadra");
         assertEquals(ResultMessage.RESULT_SUCCESS, hotelBL.add(vo).result);
     }
 
