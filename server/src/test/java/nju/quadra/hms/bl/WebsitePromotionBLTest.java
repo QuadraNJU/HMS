@@ -40,7 +40,7 @@ public class WebsitePromotionBLTest {
     }
 
     @Test
-    public void modify() {
+    public void testModify() {
         int promotionId = 1;
         WebsitePromotionVO vo = new WebsitePromotionVO(1, "其实是12.12优惠啦", WebsitePromotionType.TIME_PROMOTION,
                 new Date(2016, 12, 10), new Date(2016, 12, 12), -11.11, -1, null);
