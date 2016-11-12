@@ -4,11 +4,10 @@ import nju.quadra.hms.bl.mockObject.MockCustomerBL;
 import nju.quadra.hms.blservice.customerBL.CustomerBLService;
 import nju.quadra.hms.model.MemberType;
 import nju.quadra.hms.model.ResultMessage;
-import nju.quadra.hms.model.UserType;
 import nju.quadra.hms.vo.MemberVO;
-import nju.quadra.hms.vo.UserVO;
 import org.junit.Before;
 import org.junit.Test;
+
 
 import java.util.Date;
 

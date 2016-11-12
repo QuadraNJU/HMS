@@ -4,6 +4,7 @@ import nju.quadra.hms.model.MemberType;
 
 import java.util.Date;
 
+
 /**
  * Created by adn55 on 16/10/15.
  */

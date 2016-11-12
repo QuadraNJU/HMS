@@ -6,7 +6,6 @@ import nju.quadra.hms.model.OrderState;
 import nju.quadra.hms.model.ResultMessage;
 import nju.quadra.hms.vo.OrderRankVO;
 import nju.quadra.hms.vo.OrderVO;
-import nju.quadra.hms.vo.PriceVO;
 import org.junit.Before;
 import org.junit.Test;
 

@@ -5,6 +5,7 @@ import nju.quadra.hms.model.UserType;
 
 import java.util.Date;
 
+
 /**
  * Created by adn55 on 16/10/15.
  */

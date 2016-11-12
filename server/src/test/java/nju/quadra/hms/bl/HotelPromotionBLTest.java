@@ -1,16 +1,16 @@
 package nju.quadra.hms.bl;
 
 import nju.quadra.hms.bl.mockObject.MockHotelPromotionBL;
-import nju.quadra.hms.blservice.hotelBL.HotelBLService;
 import nju.quadra.hms.blservice.promotionBL.HotelPromotionBLService;
 import nju.quadra.hms.model.HotelPromotionType;
 import nju.quadra.hms.model.ResultMessage;
 import nju.quadra.hms.vo.HotelPromotionVO;
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
-import java.util.ArrayList;
+
 import java.util.Date;
+
+import static org.junit.Assert.*;
 
 /**
  * Created by admin on 2016/11/6.

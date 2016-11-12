@@ -8,8 +8,9 @@ import nju.quadra.hms.vo.WebsitePromotionVO;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
 import java.util.Date;
+
+import static org.junit.Assert.*;
 
 /**
  * Created by admin on 2016/11/6.

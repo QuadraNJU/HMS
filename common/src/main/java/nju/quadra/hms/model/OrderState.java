@@ -4,27 +4,24 @@ package nju.quadra.hms.model;
  * Created by adn55 on 16/10/15.
  */
 public enum OrderState {
-    UNCOMPLETED,
-    FINISHED,
-    DELAYED,
-    UNDO,
-    RANKED;
+    UNCOMPLETED("未执行"),
+    FINISHED("已完成"),
+    DELAYED("异常(逾期)"),
+    UNDO("已撤销"),
+    RANKED("已完成并评价");
+
+    String showname;
+
+    OrderState(String showname) {
+        this.showname = showname;
+    }
 
     @Override
     public String toString() {
-        switch (this) {
-            case UNCOMPLETED:
-                return "未执行";
-            case FINISHED:
-                return "已完成";
-            case DELAYED:
-                return "异常(逾期)";
-            case UNDO:
-                return "已撤销";
-            case RANKED:
-                return "已完成并评价";
-            default:
-                return null;
-        }
+        return showname;
+    }
+
+    public static OrderState getById(int id) {
+        return OrderState.values()[id];
     }
 }
