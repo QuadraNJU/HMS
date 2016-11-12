@@ -20,7 +20,7 @@ public class UserDataService {
 
     public static ResultMessage insert(UserPO po) {
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
             String url = "jdbc:mysql://localhost/hmsdatabase";
             conn = DriverManager.getConnection(url, adminUsername, adminPassword);
             st = conn.createStatement();
@@ -35,7 +35,11 @@ public class UserDataService {
             e.printStackTrace();
             return new ResultMessage(ResultMessage.RESULT_ERROR, "SQL语句错误，请检查(ClassNotFoundExecption)。");
 
-        }finally{
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } finally{
             //释放资源
             if(st != null){
                 try {
@@ -59,9 +63,9 @@ public class UserDataService {
     }
 
     public static ResultMessage update(String username, UserPO po) {
-        Boolean isSucc;
+        Boolean isSucc = true;
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
             String url = "jdbc:mysql://localhost/hmsdatabase";
             conn = DriverManager.getConnection(url, adminUsername, adminPassword);
             st = conn.createStatement();
@@ -75,7 +79,11 @@ public class UserDataService {
             e.printStackTrace();
             return new ResultMessage(ResultMessage.RESULT_ERROR, "SQL语句错误，请检查(ClassNotFoundExecption)。");
 
-        }finally{
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } finally{
             //释放资源
             if(st != null){
                 try {
@@ -106,7 +114,7 @@ public class UserDataService {
         ArrayList<UserPO> result = new ArrayList<UserPO>();
         ResultSet rs = null;
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
             String url = "jdbc:mysql://localhost/hmsdatabase";
             conn = DriverManager.getConnection(url, adminUsername, adminPassword);
             st = conn.createStatement();
@@ -129,7 +137,11 @@ public class UserDataService {
             e.printStackTrace();
         } catch (SQLException e) {
             e.printStackTrace();
-        }finally{
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } finally{
             //释放资源
             if(rs != null){
                 try {
