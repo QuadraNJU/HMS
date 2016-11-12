@@ -21,7 +21,7 @@ public class UserDataService {
     public static ResultMessage insert(UserPO po) {
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            String url = "jdbc:mysql://localhost/hmsdatabase";
+            String url = "jdbc:mysql://172.26.52.214/hmsdatabase";
             conn = DriverManager.getConnection(url, adminUsername, adminPassword);
             st = conn.createStatement();
             String sql = "insert into user(username, password, name, contact, type, membertype, birthday, companyname) " +
@@ -66,7 +66,7 @@ public class UserDataService {
         Boolean isSucc = true;
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            String url = "jdbc:mysql://localhost/hmsdatabase";
+            String url = "jdbc:mysql://172.26.52.214/hmsdatabase";
             conn = DriverManager.getConnection(url, adminUsername, adminPassword);
             st = conn.createStatement();
             String sql = "UPDATE user SET username = '" + po.getUsername() + "', password = '" + po.getPassword() + "', name = '" + po.getName() + "', contact = '" + po.getContact() + "', type = '" + po.getType() + "', membertype = '" + po.getMemberType() + "', birthday = '" + po.getBirthday() + "', companyname = '" + po.getCompanyName() + "'" +
@@ -115,7 +115,7 @@ public class UserDataService {
         ResultSet rs = null;
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            String url = "jdbc:mysql://localhost/hmsdatabase";
+            String url = "jdbc:mysql://172.26.52.214/hmsdatabase";
             conn = DriverManager.getConnection(url, adminUsername, adminPassword);
             st = conn.createStatement();
             String sql = "select * from user";
