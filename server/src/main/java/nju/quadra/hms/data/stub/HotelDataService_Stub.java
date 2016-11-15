@@ -25,12 +25,12 @@ public class HotelDataService_Stub implements HotelDataService {
     }
 
     @Override
-    public HotelPO selectById(int id) {
+    public HotelPO getById(int id) {
         return po;
     }
 
     @Override
-    public ArrayList<HotelPO> selectByArea(int areaId) {
+    public ArrayList<HotelPO> getByArea(int areaId) {
         return list;
     }
 

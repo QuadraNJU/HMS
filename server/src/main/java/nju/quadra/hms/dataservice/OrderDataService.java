@@ -9,11 +9,11 @@ import java.util.ArrayList;
  * Created by adn55 on 16/10/15.
  */
 public interface OrderDataService {
-    ArrayList<OrderPO> selectByCustomer(String username);
+    ArrayList<OrderPO> getByCustomer(String username);
 
-    ArrayList<OrderPO> selectByHotel(int hotelId);
+    ArrayList<OrderPO> getByHotel(int hotelId);
 
-    ArrayList<OrderPO> selectByState(OrderState state);
+    ArrayList<OrderPO> getByState(OrderState state);
 
     void insert(OrderPO po);
 

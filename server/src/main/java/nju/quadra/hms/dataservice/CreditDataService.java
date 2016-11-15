@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * Created by adn55 on 16/10/15.
  */
 public interface CreditDataService {
-    ArrayList<CreditRecordPO> select(String username);
+    ArrayList<CreditRecordPO> get(String username);
 
     void insert(CreditRecordPO po);
 }

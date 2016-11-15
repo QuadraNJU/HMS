@@ -1,4 +1,4 @@
-package nju.quadra.hms.dataservice;
+package nju.quadra.hms.util;
 
 import nju.quadra.hms.model.ResultMessage;
 import nju.quadra.hms.po.UserPO;
@@ -6,9 +6,9 @@ import nju.quadra.hms.po.UserPO;
 import java.util.ArrayList;
 
 /**
- * Created by adn55 on 16/10/15.
+ * Created by admin on 2016/11/14.
  */
-public interface UserDataService {
+public interface UserDAO {
     ArrayList<UserPO> getAll();
 
     ArrayList<UserPO> get(String username);
@@ -18,4 +18,5 @@ public interface UserDataService {
     ResultMessage delete(UserPO po);
 
     ResultMessage update(UserPO po);
+
 }

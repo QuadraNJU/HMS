@@ -10,7 +10,7 @@ import java.util.ArrayList;
  */
 public class HotelRoomDataService_Stub implements HotelRoomDataService {
     @Override
-    public ArrayList<HotelRoomPO> select(int hotelId) {
+    public ArrayList<HotelRoomPO> get(int hotelId) {
         ArrayList<HotelRoomPO> list = new ArrayList<>();
         HotelRoomPO po = new HotelRoomPO(1, 1, "大床房", 69, 129.9);
         list.add(po);

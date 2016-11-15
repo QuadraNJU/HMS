@@ -10,9 +10,9 @@ import java.util.ArrayList;
 public interface HotelDataService {
     ArrayList<HotelPO> getAll();
 
-    HotelPO selectById(int id);
+    HotelPO getById(int id);
 
-    ArrayList<HotelPO> selectByArea(int areaId);
+    ArrayList<HotelPO> getByArea(int areaId);
 
     void insert(HotelPO po);
 

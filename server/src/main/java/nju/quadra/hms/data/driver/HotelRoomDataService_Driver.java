@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class HotelRoomDataService_Driver {
     public void drive(HotelRoomDataService hotelRoomDataService) {
         try {
-            ArrayList<HotelRoomPO> list = hotelRoomDataService.select(1);
+            ArrayList<HotelRoomPO> list = hotelRoomDataService.get(1);
             hotelRoomDataService.delete(list.get(0));
             hotelRoomDataService.insert(list.get(0));
             hotelRoomDataService.update(list.get(0));

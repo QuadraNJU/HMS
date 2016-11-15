@@ -13,9 +13,9 @@ import java.util.Date;
 public class OrderDataService_Driver {
     public void drive(OrderDataService orderDataService) {
         try {
-            ArrayList<OrderPO> list = orderDataService.selectByHotel(1);
-            orderDataService.selectByCustomer("quadra2");
-            orderDataService.selectByState(OrderState.UNCOMPLETED);
+            ArrayList<OrderPO> list = orderDataService.getByHotel(1);
+            orderDataService.getByCustomer("quadra2");
+            orderDataService.getByState(OrderState.UNCOMPLETED);
             orderDataService.insert(new OrderPO(1, "quadra2", 1, new Date(2016, 11, 11), new Date(2016, 11, 12), 1, 1, 2,
                     new ArrayList<>(), false, 99.9, OrderState.RANKED, 5, "是个休闲的好去处"));
             orderDataService.update(list.get(0));

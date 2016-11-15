@@ -12,7 +12,7 @@ import java.util.Date;
  */
 public class HotelPromotionDataService_Stub implements HotelPromotionDataService {
     @Override
-    public ArrayList<HotelPromotionPO> select(int hotelId) {
+    public ArrayList<HotelPromotionPO> get(int hotelId) {
         ArrayList<HotelPromotionPO> list = new ArrayList<>();
         HotelPromotionPO po = new HotelPromotionPO(1, 1, "11.11优惠", HotelPromotionType.TIME_PROMOTION,
                 new Date(2016, 11, 10), new Date(2016, 11, 12), -11.11, null);

@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * Created by adn55 on 16/10/15.
  */
 public interface HotelPromotionDataService {
-    ArrayList<HotelPromotionPO> select(int hotelId);
+    ArrayList<HotelPromotionPO> get(int hotelId);
 
     void insert(HotelPromotionPO po);
 

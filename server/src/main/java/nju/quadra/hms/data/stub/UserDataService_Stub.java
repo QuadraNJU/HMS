@@ -1,6 +1,7 @@
 package nju.quadra.hms.data.stub;
 
 import nju.quadra.hms.dataservice.UserDataService;
+import nju.quadra.hms.model.ResultMessage;
 import nju.quadra.hms.model.UserType;
 import nju.quadra.hms.po.UserPO;
 
@@ -26,22 +27,22 @@ public class UserDataService_Stub implements UserDataService {
     }
 
     @Override
-    public UserPO select(String username) {
-        return po;
+    public ArrayList<UserPO> get(String username) {
+        return list;
     }
 
     @Override
-    public void insert(UserPO po) {
-        System.out.println("Insert UserPO success");
+    public ResultMessage insert(UserPO po) {
+        return new ResultMessage(ResultMessage.RESULT_SUCCESS);
     }
 
     @Override
-    public void delete(UserPO po) {
-        System.out.println("Delete UserPO success");
+    public ResultMessage delete(UserPO po) {
+        return new ResultMessage(ResultMessage.RESULT_SUCCESS);
     }
 
     @Override
-    public void update(UserPO po) {
-        System.out.println("Update UserPO success");
+    public ResultMessage update(UserPO po) {
+        return new ResultMessage(ResultMessage.RESULT_SUCCESS);
     }
 }

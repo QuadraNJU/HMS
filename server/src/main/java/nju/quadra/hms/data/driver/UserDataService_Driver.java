@@ -12,10 +12,10 @@ public class UserDataService_Driver {
     public void drive(UserDataService userDataService) {
         try {
             ArrayList<UserPO> list = userDataService.getAll();
-            UserPO po = userDataService.select("quadra");
+            ArrayList<UserPO> po = userDataService.get("quadra");
             userDataService.delete(list.get(0));
             userDataService.insert(list.get(0));
-            userDataService.update(po);
+            userDataService.update(po.get(0));
         } catch (Exception e) {
             e.printStackTrace();
         }

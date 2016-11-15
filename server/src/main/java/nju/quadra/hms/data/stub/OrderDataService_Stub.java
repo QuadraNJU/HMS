@@ -22,17 +22,17 @@ public class OrderDataService_Stub implements OrderDataService {
     }
 
     @Override
-    public ArrayList<OrderPO> selectByCustomer(String username) {
+    public ArrayList<OrderPO> getByCustomer(String username) {
         return list;
     }
 
     @Override
-    public ArrayList<OrderPO> selectByHotel(int hotelId) {
+    public ArrayList<OrderPO> getByHotel(int hotelId) {
         return list;
     }
 
     @Override
-    public ArrayList<OrderPO> selectByState(OrderState state) {
+    public ArrayList<OrderPO> getByState(OrderState state) {
         return list;
     }
 
