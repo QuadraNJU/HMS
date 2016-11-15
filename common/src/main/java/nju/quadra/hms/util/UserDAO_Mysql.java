@@ -1,10 +1,15 @@
 package nju.quadra.hms.util;
 
+import nju.quadra.hms.model.MemberType;
 import nju.quadra.hms.model.ResultMessage;
+import nju.quadra.hms.model.UserType;
 import nju.quadra.hms.po.UserPO;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by RaUkonn on 2016/11/7.
@@ -27,6 +32,7 @@ public class UserDAO_Mysql implements UserDAO {
         return template.operate(sql);
     }
 
+    @Override
     public ResultMessage update(UserPO po) {
 
         String sql = "UPDATE user SET password = '" + po.getPassword() + "', name = '" + po.getName() + "', contact = '" + po.getContact() + "', type = '" + po.getType().ordinal() + "', membertype = '" + po.getMemberType().ordinal() + "', birthday = '" + dateformat.format(po.getBirthday()) + "', companyname = '" + po.getCompanyName() + "' " +
@@ -34,32 +40,57 @@ public class UserDAO_Mysql implements UserDAO {
         return template.operate(sql);
     }
 
+    @Override
     public ArrayList<UserPO> getAll() {
-
         String sql = "select * from user";
-        ArrayList<Object> queryResult = template.query(sql);
-        ArrayList<UserPO> result = new ArrayList<>();
-        result.stream().filter(o -> o instanceof UserPO).forEach(o -> {
-            UserPO po = (UserPO)o;
-            result.add(po);
-        });
-        return result;
+        ResultSet rs = template.query(sql);
+        ArrayList<UserPO> arr = convertToArray(rs);
+        try {
+            rs.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return arr;
     }
 
     @Override
     public ArrayList<UserPO> get(String username) {
         String sql = "select * from user where username = '" + username + "'";
-        ArrayList<Object> queryResult = template.query(sql);
-        ArrayList<UserPO> result = new ArrayList<>();
-        result.stream().filter(o -> o instanceof UserPO).forEach(o -> {
-            UserPO po = (UserPO)o;
-            result.add(po);
-        });
-        return result;
+        ResultSet rs = template.query(sql);
+        ArrayList<UserPO> arr = convertToArray(rs);
+        try {
+            rs.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return arr;
     }
 
     public void cleanAll() {
         String sql = "delete from user";
         template.operate(sql);
+    }
+
+    private ArrayList<UserPO> convertToArray(ResultSet rs) {
+        ArrayList<UserPO> result = new ArrayList<>();
+        try {
+            while(rs.next()) {
+                String theUser = rs.getString("username");
+                String password = rs.getString("password");
+                String name = rs.getString("name");
+                String contact = rs.getString("contact");
+                UserType type = UserType.getById(rs.getInt("type"));
+                MemberType memberType = MemberType.getById(rs.getInt("membertype"));
+                Date birthday = rs.getDate("birthday");
+                String companyname = rs.getString("companyname");
+                UserPO po = new UserPO(theUser, password, name, contact, type, memberType, birthday, companyname);
+                result.add(po);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 }

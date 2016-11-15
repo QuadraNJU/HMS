@@ -70,14 +70,12 @@ public class TemplateDAO_Mysql {
     }
 
     public ResultSet query(String sql) {
-//        ArrayList<Object> result = new ArrayList<>();
         ResultSet rs = null;
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             String url = "jdbc:mysql://" + ipaddress + "/hmsdatabase";
             conn = DriverManager.getConnection(url, adminUsername, adminPassword);
             st = conn.createStatement();
-//            String sql = "select * from user";
             rs = st.executeQuery(sql);
 
         } catch (ClassNotFoundException e) {
@@ -88,30 +86,6 @@ public class TemplateDAO_Mysql {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
             e.printStackTrace();
-        } finally{
-            //释放资源
-            if(rs != null){
-                try {
-                    rs.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            if(st != null){
-                try {
-                    st.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if(conn != null){
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
         }
         return rs;
     }

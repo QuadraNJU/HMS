@@ -19,4 +19,6 @@ public interface UserDAO {
 
     ResultMessage update(UserPO po);
 
+    void cleanAll();
+
 }
