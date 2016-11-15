@@ -9,13 +9,13 @@ import java.util.ArrayList;
  * Created by adn55 on 16/10/15.
  */
 public interface OrderDataService {
-    ArrayList<OrderPO> getByCustomer(String username);
+    ArrayList<OrderPO> getByCustomer(String username) throws Exception;
 
-    ArrayList<OrderPO> getByHotel(int hotelId);
+    ArrayList<OrderPO> getByHotel(int hotelId) throws Exception;
 
-    ArrayList<OrderPO> getByState(OrderState state);
+    ArrayList<OrderPO> getByState(OrderState state) throws Exception;
 
-    void insert(OrderPO po);
+    void insert(OrderPO po) throws Exception;
 
-    void update(OrderPO po);
+    void update(OrderPO po) throws Exception;
 }

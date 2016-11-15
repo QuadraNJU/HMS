@@ -1,0 +1,104 @@
+package nju.quadra.hms.data.mysql;
+
+import nju.quadra.hms.dataservice.OrderDataService;
+import nju.quadra.hms.model.MemberType;
+import nju.quadra.hms.model.OrderState;
+import nju.quadra.hms.model.UserType;
+import nju.quadra.hms.po.OrderPO;
+import nju.quadra.hms.po.UserPO;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+
+/**
+ * Created by admin on 2016/11/16.
+ */
+public class OrderDataServiceImpl implements OrderDataService {
+    @Override
+    public ArrayList<OrderPO> getByCustomer(String username) throws Exception {
+        PreparedStatement pst = MySQLManager.getConnection()
+                .prepareStatement("SELECT * FROM `orders` WHERE `username` = ?");
+        pst.setString(1, username);
+        ResultSet rs = pst.executeQuery();
+        return convertToArray(rs);
+    }
+
+    @Override
+    public ArrayList<OrderPO> getByHotel(int hotelId) throws Exception{
+        PreparedStatement pst = MySQLManager.getConnection()
+                .prepareStatement("SELECT * FROM `orders` WHERE `hotelid` = ?");
+        pst.setInt(1, hotelId);
+        ResultSet rs = pst.executeQuery();
+        return convertToArray(rs);
+    }
+
+    @Override
+    public ArrayList<OrderPO> getByState(OrderState state) throws Exception{
+        PreparedStatement pst = MySQLManager.getConnection()
+                .prepareStatement("SELECT * FROM `orders` WHERE `state` = " + state.ordinal());
+        ResultSet rs = pst.executeQuery();
+        return convertToArray(rs);
+    }
+
+    @Override
+    public void insert(OrderPO po) throws Exception{
+        PreparedStatement pst = MySQLManager.getConnection()
+                .prepareStatement("insert into `orders`(`id`, `username`, `hotelid`, `startdate`, `enddate`, `roomid`, `roomcount`, `personcount`, `persons`, `haschildren`, `price`, `state`, `rank`, `comment`) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        pst.setInt(1, po.getId());
+        pst.setString(2, po.getUsername());
+        pst.setInt(3, po.getHotelId());
+        pst.setDate(4, new java.sql.Date(po.getStartDate().getTime()));
+        pst.setDate(5, new java.sql.Date(po.getEndDate().getTime()));
+        pst.setInt(6, po.getRoomId());
+        pst.setInt(7, po.getRoomCount());
+        pst.setInt(8, po.getPersonCount());
+        pst.setString(9, po.getPersons());
+        pst.setBoolean(10, po.isHasChildren());
+        pst.setDouble(11, po.getPrice());
+        pst.setInt(12, po.getState().ordinal());
+        pst.setInt(13, po.getRank());
+        pst.setString(14, po.getComment());
+        pst.executeUpdate();
+    }
+
+    private void delete(OrderPO po) throws Exception {
+        PreparedStatement pst = MySQLManager.getConnection()
+                .prepareStatement("DELETE FROM `orders` WHERE `id` = ?");
+        pst.setInt(1, po.getId());
+        int result = pst.executeUpdate();
+        if (result == 0) {
+            throw new Exception("User not found");
+        }
+    }
+
+    @Override
+    public void update(OrderPO po) throws Exception{
+        delete(po);
+        insert(po);
+    }
+
+    private ArrayList<OrderPO> convertToArray(ResultSet rs) throws Exception{
+        ArrayList<OrderPO> result = new ArrayList<>();
+        while (rs.next()) {
+            OrderPO po = new OrderPO(
+                    rs.getInt("id"),
+                    rs.getString("username"),
+                    rs.getInt("hotelid"),
+                    rs.getDate("startdate"),
+                    rs.getDate("enddate"),
+                    rs.getInt("roomid"),
+                    rs.getInt("roomcount"),
+                    rs.getInt("personcount"),
+                    rs.getString("persons"),
+                    rs.getBoolean("haschildren"),
+                    rs.getDouble("price"),
+                    OrderState.getById(rs.getInt("state")),
+                    rs.getInt("rank"),
+                    rs.getString("comment")
+            );
+            result.add(po);
+        }
+        return result;
+    }
+}
