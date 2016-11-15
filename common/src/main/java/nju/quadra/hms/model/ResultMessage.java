@@ -19,4 +19,9 @@ public class ResultMessage {
         this.result = result;
         this.message = message;
     }
+
+    public ResultMessage(Exception e) {
+        this.result = RESULT_ERROR;
+        this.message = e.getClass().getSimpleName() + ": " + e.getLocalizedMessage();
+    }
 }

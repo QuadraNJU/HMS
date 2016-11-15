@@ -9,13 +9,13 @@ import java.util.ArrayList;
  * Created by adn55 on 16/10/15.
  */
 public interface UserDataService {
-    ArrayList<UserPO> getAll();
+    ArrayList<UserPO> getAll() throws Exception;
 
-    ArrayList<UserPO> get(String username);
+    UserPO get(String username) throws Exception;
 
-    ResultMessage insert(UserPO po);
+    void insert(UserPO po) throws Exception;
 
-    ResultMessage delete(UserPO po);
+    void delete(UserPO po) throws Exception;
 
-    ResultMessage update(UserPO po);
+    void update(UserPO po) throws Exception;
 }
