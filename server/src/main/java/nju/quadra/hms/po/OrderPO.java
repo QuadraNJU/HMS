@@ -44,7 +44,7 @@ public class OrderPO {
     /**
      * 入住人员列表
      */
-    private ArrayList<String> persons;
+    private String persons;
     /**
      * 有无儿童
      */
@@ -66,7 +66,7 @@ public class OrderPO {
      */
     private String comment;
 
-    public OrderPO(int id, String username, int hotelId, Date startDate, Date endDate, int roomId, int roomCount, int personCount, ArrayList<String> persons, boolean hasChildren, double price, OrderState state, int rank, String comment) {
+    public OrderPO(int id, String username, int hotelId, Date startDate, Date endDate, int roomId, int roomCount, int personCount, String persons, boolean hasChildren, double price, OrderState state, int rank, String comment) {
         this.id = id;
         this.username = username;
         this.hotelId = hotelId;
@@ -147,11 +147,11 @@ public class OrderPO {
         this.personCount = personCount;
     }
 
-    public ArrayList<String> getPersons() {
+    public String getPersons() {
         return persons;
     }
 
-    public void setPersons(ArrayList<String> persons) {
+    public void setPersons(String persons) {
         this.persons = persons;
     }
 
