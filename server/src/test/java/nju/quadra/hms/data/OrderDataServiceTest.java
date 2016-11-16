@@ -9,6 +9,7 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -66,11 +67,10 @@ public class OrderDataServiceTest {
     public void test4_GetByCustomer() {
         try {
             ArrayList<OrderPO> result = orderDataService.getByCustomer("TEST|username");
-            assertEquals(2, result.size());
             assertEquals("TEST|username", result.get(0).getUsername());
             assertEquals("TEST|username", result.get(1).getUsername());
-            assertEquals("1996-11-21", result.get(0).getStartDate().toString());
-            assertEquals("1995-11-25", result.get(1).getEndDate().toString());
+            assertEquals("1996-11-21", new SimpleDateFormat("yyyy-MM-dd").format(result.get(0).getStartDate()));
+            assertEquals("1995-11-25", new SimpleDateFormat("yyyy-MM-dd").format(result.get(1).getEndDate()));
         } catch (Exception e) {
             e.printStackTrace();
             fail();
