@@ -2,6 +2,8 @@ package nju.quadra.hms.po;
 
 import nju.quadra.hms.model.CreditAction;
 
+import java.util.Date;
+
 /**
  * Created by adn55 on 16/10/15.
  */
@@ -17,7 +19,7 @@ public class CreditRecordPO {
     /**
      * 发生时间
      */
-    private long timestamp;
+    private Date timestamp;
     /**
      * 相关订单ID
      */
@@ -31,7 +33,7 @@ public class CreditRecordPO {
      */
     private double diff;
 
-    public CreditRecordPO(int id, String username, long timestamp, int orderId, CreditAction action, double diff) {
+    public CreditRecordPO(int id, String username, Date timestamp, int orderId, CreditAction action, double diff) {
         this.id = id;
         this.username = username;
         this.timestamp = timestamp;
@@ -56,7 +58,7 @@ public class CreditRecordPO {
         this.username = username;
     }
 
-    public long getTimestamp() {
+    public Date getTimestamp() {
         return timestamp;
     }
 

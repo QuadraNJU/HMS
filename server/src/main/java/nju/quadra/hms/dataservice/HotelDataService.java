@@ -8,15 +8,15 @@ import java.util.ArrayList;
  * Created by adn55 on 16/10/15.
  */
 public interface HotelDataService {
-    ArrayList<HotelPO> getAll();
+    ArrayList<HotelPO> getAll() throws Exception;
 
-    HotelPO getById(int id);
+    HotelPO getById(int id) throws Exception;
 
-    ArrayList<HotelPO> getByArea(int areaId);
+    ArrayList<HotelPO> getByArea(int areaId) throws Exception;
 
-    void insert(HotelPO po);
+    void insert(HotelPO po) throws Exception;
 
-    void delete(HotelPO po);
+    void delete(HotelPO po) throws Exception;
 
-    void update(HotelPO po);
+    void update(HotelPO po) throws Exception;
 }
