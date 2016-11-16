@@ -1,6 +1,5 @@
 package nju.quadra.hms.data;
 
-import nju.quadra.hms.data.mysql.OrderDataServiceGarbageCollector;
 import nju.quadra.hms.data.mysql.OrderDataServiceImpl;
 import nju.quadra.hms.dataservice.OrderDataService;
 import nju.quadra.hms.model.OrderState;
@@ -22,12 +21,10 @@ import static org.junit.Assert.fail;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class OrderDataServiceTest {
     private OrderDataService orderDataService;
-    private OrderDataServiceGarbageCollector gc;
 
     @Before
     public void init() {
         orderDataService = new OrderDataServiceImpl();
-        gc = new OrderDataServiceGarbageCollector();
     }
 
     @Test
@@ -122,7 +119,7 @@ public class OrderDataServiceTest {
         try {
             ArrayList<OrderPO> result = orderDataService.getByHotel(654321);
             for (OrderPO po : result)
-                gc.delete(po);
+                orderDataService.delete(po);
         } catch (Exception e) {
             e.printStackTrace();
             fail();

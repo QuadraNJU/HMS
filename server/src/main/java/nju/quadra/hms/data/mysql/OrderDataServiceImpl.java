@@ -64,6 +64,7 @@ public class OrderDataServiceImpl implements OrderDataService {
         pst.executeUpdate();
     }
 
+    @Override
     public void delete(OrderPO po) throws Exception {
         PreparedStatement pst = MySQLManager.getConnection()
                 .prepareStatement("DELETE FROM `orders` WHERE `id` = ?");
