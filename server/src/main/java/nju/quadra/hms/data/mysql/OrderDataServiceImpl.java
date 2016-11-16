@@ -7,6 +7,7 @@ import nju.quadra.hms.po.OrderPO;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Types;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 /**
@@ -16,7 +17,7 @@ public class OrderDataServiceImpl implements OrderDataService {
     @Override
     public ArrayList<OrderPO> getByCustomer(String username) throws Exception {
         PreparedStatement pst = MySQLManager.getConnection()
-                .prepareStatement("SELECT * FROM `orders` WHERE `username` = ?");
+                .prepareStatement("SELECT * FROM `orders` WHERE `username` = ? ORDER BY `startdate` DESC");
         pst.setString(1, username);
         ResultSet rs = pst.executeQuery();
         return convertToArrayList(rs);
@@ -25,7 +26,7 @@ public class OrderDataServiceImpl implements OrderDataService {
     @Override
     public ArrayList<OrderPO> getByHotel(int hotelId) throws Exception{
         PreparedStatement pst = MySQLManager.getConnection()
-                .prepareStatement("SELECT * FROM `orders` WHERE `hotelid` = ?");
+                .prepareStatement("SELECT * FROM `orders` WHERE `hotelid` = ? ORDER BY `startdate` DESC");
         pst.setInt(1, hotelId);
         ResultSet rs = pst.executeQuery();
         return convertToArrayList(rs);
@@ -34,7 +35,7 @@ public class OrderDataServiceImpl implements OrderDataService {
     @Override
     public ArrayList<OrderPO> getByState(OrderState state) throws Exception{
         PreparedStatement pst = MySQLManager.getConnection()
-                .prepareStatement("SELECT * FROM `orders` WHERE `state` = ?");
+                .prepareStatement("SELECT * FROM `orders` WHERE `state` = ? ORDER BY `startdate` DESC");
         pst.setInt(1, state.ordinal());
         ResultSet rs = pst.executeQuery();
         return convertToArrayList(rs);
@@ -50,8 +51,8 @@ public class OrderDataServiceImpl implements OrderDataService {
             pst.setNull(1, Types.INTEGER);
         pst.setString(2, po.getUsername());
         pst.setInt(3, po.getHotelId());
-        pst.setDate(4, new java.sql.Date(po.getStartDate().getTime()));
-        pst.setDate(5, new java.sql.Date(po.getEndDate().getTime()));
+        pst.setString(4, new SimpleDateFormat("yyyy-MM-dd").format(po.getStartDate()));
+        pst.setString(5, new SimpleDateFormat("yyyy-MM-dd").format(po.getEndDate()));
         pst.setInt(6, po.getRoomId());
         pst.setInt(7, po.getRoomCount());
         pst.setInt(8, po.getPersonCount());

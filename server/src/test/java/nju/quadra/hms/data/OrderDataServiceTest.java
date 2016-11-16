@@ -9,6 +9,7 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -29,7 +30,7 @@ public class OrderDataServiceTest {
 
     @Test
     public void test1_Insert() {
-        OrderPO po = new OrderPO(0, "TEST|username", 654321, new Date(1996-1900, 11-1, 21+1), new Date(1996-1900, 11-1, 25+1), 7890, 1, 2, "TEST|alpha&beta", false, 99.9, OrderState.RANKED, 5, "TEST|comment: blabla");
+        OrderPO po = new OrderPO(0, "TEST|username", 654321, new Date(1996-1900, 11-1, 21), new Date(1996-1900, 11-1, 25), 7890, 1, 2, "TEST|alpha&beta", false, 99.9, OrderState.RANKED, 5, "TEST|comment: blabla");
         try {
             orderDataService.insert(po);
         } catch (Exception e) {
@@ -53,7 +54,7 @@ public class OrderDataServiceTest {
 
     @Test
     public void test3_Insert() {
-        OrderPO po = new OrderPO(0, "TEST|username", 654321, new Date(1995-1900, 11-1, 21+1), new Date(1995-1900, 11-1, 25+1), 7890, 1, 2, "TEST|alpha&beta", false, 99.9, OrderState.DELAYED, -1, "");
+        OrderPO po = new OrderPO(0, "TEST|username", 654321, new Date(1995-1900, 11-1, 21), new Date(1995-1900, 11-1, 25), 7890, 1, 2, "TEST|alpha&beta", false, 99.9, OrderState.DELAYED, -1, "");
         try {
             orderDataService.insert(po);
         } catch (Exception e) {
@@ -66,11 +67,10 @@ public class OrderDataServiceTest {
     public void test4_GetByCustomer() {
         try {
             ArrayList<OrderPO> result = orderDataService.getByCustomer("TEST|username");
-            assertEquals(2, result.size());
             assertEquals("TEST|username", result.get(0).getUsername());
             assertEquals("TEST|username", result.get(1).getUsername());
-            assertEquals("1996-11-21", result.get(0).getStartDate().toString());
-            assertEquals("1995-11-25", result.get(1).getEndDate().toString());
+            assertEquals("1996-11-21", new SimpleDateFormat("yyyy-MM-dd").format(result.get(0).getStartDate()));
+            assertEquals("1995-11-25", new SimpleDateFormat("yyyy-MM-dd").format(result.get(1).getEndDate()));
         } catch (Exception e) {
             e.printStackTrace();
             fail();
