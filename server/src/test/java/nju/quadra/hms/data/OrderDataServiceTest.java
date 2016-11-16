@@ -29,7 +29,7 @@ public class OrderDataServiceTest {
 
     @Test
     public void test1_Insert() {
-        OrderPO po = new OrderPO(123456, "TEST|username", 654321, new Date(1996-1900, 11-1, 21), new Date(1996-1900, 11-1, 25), 7890, 1, 2, "TEST|alpha&beta", false, 99.9, OrderState.RANKED, 5, "TEST|comment: blabla");
+        OrderPO po = new OrderPO(0, "TEST|username", 654321, new Date(1996-1900, 11-1, 21), new Date(1996-1900, 11-1, 25), 7890, 1, 2, "TEST|alpha&beta", false, 99.9, OrderState.RANKED, 5, "TEST|comment: blabla");
         try {
             orderDataService.insert(po);
         } catch (Exception e) {
@@ -42,16 +42,18 @@ public class OrderDataServiceTest {
     public void test2_GetByState() {
         try {
             ArrayList<OrderPO> result = orderDataService.getByState(OrderState.RANKED);
-            assertEquals("TEST|username", result.get(0).getUsername());
+            for (OrderPO po : result)
+                if (po.getUsername().equals("TEST|username"))
+                    return;
         } catch (Exception e) {
             e.printStackTrace();
-            fail();
         }
+        fail();
     }
 
     @Test
     public void test3_Insert() {
-        OrderPO po = new OrderPO(123457, "TEST|username", 654321, new Date(1995-1900, 11-1, 21), new Date(1995-1900, 11-1, 25), 7890, 1, 2, "TEST|alpha&beta", false, 99.9, OrderState.DELAYED, -1, "");
+        OrderPO po = new OrderPO(0, "TEST|username", 654321, new Date(1995-1900, 11-1, 21), new Date(1995-1900, 11-1, 25), 7890, 1, 2, "TEST|alpha&beta", false, 99.9, OrderState.DELAYED, -1, "");
         try {
             orderDataService.insert(po);
         } catch (Exception e) {
@@ -89,7 +91,9 @@ public class OrderDataServiceTest {
     @Test
     public void test6_Update() {
         try {
-            OrderPO po = new OrderPO(123457, "TEST|username1", 654321, new Date(1995-1900, 11-1, 21), new Date(1995-1900, 11-1, 25), 7890, 1, 2, "TEST|gamma&delta", false, 99.9, OrderState.DELAYED, -1, "");
+            ArrayList<OrderPO> result = orderDataService.getByHotel(654321);
+            OrderPO po = result.get(0);
+            po.setUsername("TEST|username1");
             orderDataService.update(po);
         } catch (Exception e) {
             e.printStackTrace();
@@ -101,12 +105,23 @@ public class OrderDataServiceTest {
     public void test7_GetByCustomer() {
         try {
             ArrayList<OrderPO> result = orderDataService.getByCustomer("TEST|username1");
-            assertEquals("TEST|gamma&delta", result.get(0).getPersons());
+            assertEquals(654321, result.get(0).getHotelId());
         } catch (Exception e) {
             e.printStackTrace();
             fail();
         }
     }
 
+    @Test
+    public void test8_Delete() {
+        try {
+            ArrayList<OrderPO> result = orderDataService.getByHotel(654321);
+            for (OrderPO po : result)
+                orderDataService.delete(po);
+        } catch (Exception e) {
+            e.printStackTrace();
+            fail();
+        }
+    }
 
 }

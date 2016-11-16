@@ -1,14 +1,12 @@
 package nju.quadra.hms.data.mysql;
 
 import nju.quadra.hms.dataservice.OrderDataService;
-import nju.quadra.hms.model.MemberType;
 import nju.quadra.hms.model.OrderState;
-import nju.quadra.hms.model.UserType;
 import nju.quadra.hms.po.OrderPO;
-import nju.quadra.hms.po.UserPO;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Types;
 import java.util.ArrayList;
 
 /**
@@ -21,7 +19,7 @@ public class OrderDataServiceImpl implements OrderDataService {
                 .prepareStatement("SELECT * FROM `orders` WHERE `username` = ?");
         pst.setString(1, username);
         ResultSet rs = pst.executeQuery();
-        return convertToArray(rs);
+        return convertToArrayList(rs);
     }
 
     @Override
@@ -30,22 +28,26 @@ public class OrderDataServiceImpl implements OrderDataService {
                 .prepareStatement("SELECT * FROM `orders` WHERE `hotelid` = ?");
         pst.setInt(1, hotelId);
         ResultSet rs = pst.executeQuery();
-        return convertToArray(rs);
+        return convertToArrayList(rs);
     }
 
     @Override
     public ArrayList<OrderPO> getByState(OrderState state) throws Exception{
         PreparedStatement pst = MySQLManager.getConnection()
-                .prepareStatement("SELECT * FROM `orders` WHERE `state` = " + state.ordinal());
+                .prepareStatement("SELECT * FROM `orders` WHERE `state` = ?");
+        pst.setInt(1, state.ordinal());
         ResultSet rs = pst.executeQuery();
-        return convertToArray(rs);
+        return convertToArrayList(rs);
     }
 
     @Override
     public void insert(OrderPO po) throws Exception{
         PreparedStatement pst = MySQLManager.getConnection()
-                .prepareStatement("insert into `orders`(`id`, `username`, `hotelid`, `startdate`, `enddate`, `roomid`, `roomcount`, `personcount`, `persons`, `haschildren`, `price`, `state`, `rank`, `comment`) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-        pst.setInt(1, po.getId());
+                .prepareStatement("INSERT INTO `orders` (`id`, `username`, `hotelid`, `startdate`, `enddate`, `roomid`, `roomcount`, `personcount`, `persons`, `haschildren`, `price`, `state`, `rank`, `comment`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        if (po.getId() > 0)
+            pst.setInt(1, po.getId());
+        else
+            pst.setNull(1, Types.INTEGER);
         pst.setString(2, po.getUsername());
         pst.setInt(3, po.getHotelId());
         pst.setDate(4, new java.sql.Date(po.getStartDate().getTime()));
@@ -62,13 +64,13 @@ public class OrderDataServiceImpl implements OrderDataService {
         pst.executeUpdate();
     }
 
-    private void delete(OrderPO po) throws Exception {
+    public void delete(OrderPO po) throws Exception {
         PreparedStatement pst = MySQLManager.getConnection()
                 .prepareStatement("DELETE FROM `orders` WHERE `id` = ?");
         pst.setInt(1, po.getId());
         int result = pst.executeUpdate();
         if (result == 0) {
-            throw new Exception("User not found");
+            throw new Exception("Order not found");
         }
     }
 
@@ -78,7 +80,7 @@ public class OrderDataServiceImpl implements OrderDataService {
         insert(po);
     }
 
-    private ArrayList<OrderPO> convertToArray(ResultSet rs) throws Exception{
+    private ArrayList<OrderPO> convertToArrayList(ResultSet rs) throws Exception{
         ArrayList<OrderPO> result = new ArrayList<>();
         while (rs.next()) {
             OrderPO po = new OrderPO(

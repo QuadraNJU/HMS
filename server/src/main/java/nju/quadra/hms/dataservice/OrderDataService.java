@@ -18,4 +18,6 @@ public interface OrderDataService {
     void insert(OrderPO po) throws Exception;
 
     void update(OrderPO po) throws Exception;
+
+    void delete(OrderPO po) throws Exception;
 }
