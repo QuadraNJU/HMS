@@ -70,6 +70,7 @@ public class HotelRoomDataServiceTest {
         try {
             ArrayList<HotelRoomPO> result = hotelRoomDataService.get(0);
             assertEquals(12321, result.get(0).getTotal());
+            assertEquals(2.0, result.get(0).getPrice(), 2);
         } catch (Exception e) {
             e.printStackTrace();
             fail();
