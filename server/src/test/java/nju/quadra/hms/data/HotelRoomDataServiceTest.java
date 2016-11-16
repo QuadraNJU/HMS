@@ -77,17 +77,17 @@ public class HotelRoomDataServiceTest {
         }
     }
 	
-	 @Test
-	    public void test5_Delete() {
-	        try {
-	            ArrayList<HotelRoomPO> result =  hotelRoomDataService.get(0);
-	            for (HotelRoomPO po : result) {
-	            	hotelRoomDataService.delete(po);
-	            }
-	        } catch (Exception e) {
-	            e.printStackTrace();
-	            fail();
-	        }
-	    }
+    @Test
+    public void test5_Delete() {
+        try {
+            ArrayList<HotelRoomPO> result = hotelRoomDataService.get(0);
+            for (HotelRoomPO po : result) {
+                hotelRoomDataService.delete(po);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            fail();
+        }
+    }
 	
 }

@@ -12,7 +12,7 @@ import nju.quadra.hms.model.UserType;
 import nju.quadra.hms.po.HotelRoomPO;
 import nju.quadra.hms.po.UserPO;
 
-public class HotelRoomDataServiceImpl implements HotelRoomDataService{
+public class HotelRoomDataServiceImpl implements HotelRoomDataService {
 
 	@Override
 	public ArrayList<HotelRoomPO> get(int hotelId) throws Exception {

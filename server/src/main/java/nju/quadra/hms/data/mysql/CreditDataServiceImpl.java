@@ -18,7 +18,7 @@ public class CreditDataServiceImpl implements CreditDataService {
     @Override
     public ArrayList<CreditRecordPO> get(String username) throws Exception {
         PreparedStatement pst = MySQLManager.getConnection()
-                .prepareStatement("SELECT * FROM hmsdb.creditrecord WHERE username = ? ORDER BY `timestamp` DESC");
+                .prepareStatement("SELECT * FROM `creditrecord` WHERE username = ? ORDER BY `timestamp` DESC");
         pst.setString(1, username);
         ResultSet rs = pst.executeQuery();
         ArrayList<CreditRecordPO> result = convertToArrayList(rs);
