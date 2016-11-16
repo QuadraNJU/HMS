@@ -31,7 +31,7 @@ public class CreditDataServiceTest {
 
     @Test
     public void test1_Insert() {
-        CreditRecordPO po = new CreditRecordPO(0, "TEST|username", null, 123456, CreditAction.CREDIT_TOPUP, 99.9);
+        CreditRecordPO po = new CreditRecordPO(-1, "TEST|username", null, 123456, CreditAction.CREDIT_TOPUP, 99.9);
         try {
             creditDataService.insert(po);
         } catch (Exception e) {

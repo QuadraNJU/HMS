@@ -31,7 +31,7 @@ public class HotelRoomDataServiceTest {
 	
 	@Test
 	public void test1_Insert(){
-		HotelRoomPO po = new HotelRoomPO(0, 0 , "TEST|hotelroomname", 123456, 1.0);
+		HotelRoomPO po = new HotelRoomPO(0, 0, "TEST|hotelroomname", 123456, 1.0);
         try {
             hotelRoomDataService.insert(po);
         } catch (Exception e) {
@@ -50,12 +50,15 @@ public class HotelRoomDataServiceTest {
             fail();
         }
     }
-	
+
 	@Test
     public void test3_Update() {
-		HotelRoomPO po = new HotelRoomPO(0, 1 , "TEST|hotelroomname", 123456, 1.0);
         try {
-        	hotelRoomDataService.update(po);
+            ArrayList<HotelRoomPO> poarr = hotelRoomDataService.get(0);
+            HotelRoomPO po = poarr.get(0);
+            po.setPrice(2.0);
+            po.setTotal(12321);
+            hotelRoomDataService.update(po);
         } catch (Exception e) {
             e.printStackTrace();
             fail();
@@ -66,7 +69,7 @@ public class HotelRoomDataServiceTest {
     public void test4_Get() {
         try {
             ArrayList<HotelRoomPO> result = hotelRoomDataService.get(0);
-            assertEquals(1, result.get(0).getHotelId());
+            assertEquals(12321, result.get(0).getTotal());
         } catch (Exception e) {
             e.printStackTrace();
             fail();
