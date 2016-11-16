@@ -29,7 +29,7 @@ public class UserDataServiceTest {
 
     @Test
     public void test1_Insert() {
-        UserPO po = new UserPO("TEST|user", "TEST|pass", "JUnit", "123456", UserType.CUSTOMER, MemberType.PERSONAL, new Date(1996-1900,11-1,21), null);
+        UserPO po = new UserPO("TEST|user", "TEST|pass", "JUnit", "123456", UserType.CUSTOMER, MemberType.PERSONAL, new Date(1996-1900,11-1,21+1), null);
         try {
             userDataService.insert(po);
         } catch (Exception e) {
@@ -51,7 +51,7 @@ public class UserDataServiceTest {
 
     @Test
     public void test3_Update() {
-        UserPO po = new UserPO("TEST|user", "TEST|pass", "JUnitMod", "123456", UserType.CUSTOMER, MemberType.PERSONAL, new Date(1996-1900,11-1,21), null);
+        UserPO po = new UserPO("TEST|user", "TEST|pass", "JUnitMod", "123456", UserType.CUSTOMER, MemberType.PERSONAL, new Date(1996-1900,11-1,21+1), null);
         try {
             userDataService.update(po);
         } catch (Exception e) {

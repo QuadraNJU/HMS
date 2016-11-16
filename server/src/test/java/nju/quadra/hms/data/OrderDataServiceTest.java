@@ -1,5 +1,6 @@
 package nju.quadra.hms.data;
 
+import nju.quadra.hms.data.mysql.OrderDataServiceGarbageCollector;
 import nju.quadra.hms.data.mysql.OrderDataServiceImpl;
 import nju.quadra.hms.dataservice.OrderDataService;
 import nju.quadra.hms.model.OrderState;
@@ -21,15 +22,17 @@ import static org.junit.Assert.fail;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class OrderDataServiceTest {
     private OrderDataService orderDataService;
+    private OrderDataServiceGarbageCollector gc;
 
     @Before
     public void init() {
         orderDataService = new OrderDataServiceImpl();
+        gc = new OrderDataServiceGarbageCollector();
     }
 
     @Test
     public void test1_Insert() {
-        OrderPO po = new OrderPO(0, "TEST|username", 654321, new Date(1996-1900, 11-1, 21), new Date(1996-1900, 11-1, 25), 7890, 1, 2, "TEST|alpha&beta", false, 99.9, OrderState.RANKED, 5, "TEST|comment: blabla");
+        OrderPO po = new OrderPO(0, "TEST|username", 654321, new Date(1996-1900, 11-1, 21+1), new Date(1996-1900, 11-1, 25+1), 7890, 1, 2, "TEST|alpha&beta", false, 99.9, OrderState.RANKED, 5, "TEST|comment: blabla");
         try {
             orderDataService.insert(po);
         } catch (Exception e) {
@@ -53,7 +56,7 @@ public class OrderDataServiceTest {
 
     @Test
     public void test3_Insert() {
-        OrderPO po = new OrderPO(0, "TEST|username", 654321, new Date(1995-1900, 11-1, 21), new Date(1995-1900, 11-1, 25), 7890, 1, 2, "TEST|alpha&beta", false, 99.9, OrderState.DELAYED, -1, "");
+        OrderPO po = new OrderPO(0, "TEST|username", 654321, new Date(1995-1900, 11-1, 21+1), new Date(1995-1900, 11-1, 25+1), 7890, 1, 2, "TEST|alpha&beta", false, 99.9, OrderState.DELAYED, -1, "");
         try {
             orderDataService.insert(po);
         } catch (Exception e) {
@@ -69,6 +72,8 @@ public class OrderDataServiceTest {
             assertEquals(2, result.size());
             assertEquals("TEST|username", result.get(0).getUsername());
             assertEquals("TEST|username", result.get(1).getUsername());
+            assertEquals("1996-11-21", result.get(0).getStartDate().toString());
+            assertEquals("1995-11-25", result.get(1).getEndDate().toString());
         } catch (Exception e) {
             e.printStackTrace();
             fail();
@@ -117,7 +122,7 @@ public class OrderDataServiceTest {
         try {
             ArrayList<OrderPO> result = orderDataService.getByHotel(654321);
             for (OrderPO po : result)
-                orderDataService.delete(po);
+                gc.delete(po);
         } catch (Exception e) {
             e.printStackTrace();
             fail();
