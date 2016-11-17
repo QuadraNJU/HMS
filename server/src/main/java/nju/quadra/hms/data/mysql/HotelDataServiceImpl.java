@@ -37,14 +37,48 @@ public class HotelDataServiceImpl implements HotelDataService {
 
 	@Override
 	public HotelPO getById(int id) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		HotelPO po = null;
+		PreparedStatement pst = MySQLManager.getConnection()
+				.prepareStatement("SELECT * FROM `hotel` WHERE `id` = ?");
+		pst.setInt(1, id);
+		ResultSet rs = pst.executeQuery();
+		if (rs.next()) {
+			po = new HotelPO(
+					rs.getInt("id"),
+					rs.getString("name"),
+					rs.getInt("cityId"),
+					rs.getInt("areaId"),
+					rs.getString("address"),
+					rs.getString("description"),
+					rs.getString("facilities"),
+					rs.getString("staff")
+			);
+		}
+		return po;
+
 	}
 
 	@Override
 	public ArrayList<HotelPO> getByArea(int areaId) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<HotelPO> result = new ArrayList<>();
+		PreparedStatement pst = MySQLManager.getConnection()
+				.prepareStatement("SELECT * FROM `hotel` WHERE `areaid` = ?");
+		pst.setInt(1, areaId);
+		ResultSet rs = pst.executeQuery();
+		while (rs.next()) {
+			HotelPO po = new HotelPO(
+					rs.getInt("id"),
+					rs.getString("name"),
+					rs.getInt("cityId"),
+					rs.getInt("areaId"),
+					rs.getString("address"),
+					rs.getString("description"),
+					rs.getString("facilities"),
+					rs.getString("staff")
+			);
+			result.add(po);
+		}
+		return result;
 	}
 
 	@Override
@@ -59,9 +93,9 @@ public class HotelDataServiceImpl implements HotelDataService {
         pst.setInt(3, po.getCityId());
         pst.setInt(4, po.getAreaId());
         pst.setString(5, po.getAddress());
-        pst.setString(5, po.getDescription());
-        pst.setString(5, po.getFacilities());
-        pst.setString(5, po.getStaff());
+        pst.setString(6, po.getDescription());
+        pst.setString(7, po.getFacilities());
+        pst.setString(8, po.getStaff());
         
         pst.executeUpdate();
 	}
