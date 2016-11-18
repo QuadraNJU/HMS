@@ -28,7 +28,7 @@ public class HotelDataServiceTest {
     @Test
     public void test1_Insert() {
         HotelPO po = new HotelPO(0, "TEST|name", 12345, 67890, "TEST|address", "TEST|description", "TEST|facilities", "TEST|staff");
-        HotelPO po1 = new HotelPO(0, "TEST|name1", 12345, 233, "TEST|address1", "TEST|description1", "TEST|facilities1", "TEST|staff1");
+        HotelPO po1 = new HotelPO(0, "TEST|name1", 12345, 67890, "TEST|address1", "TEST|description1", "TEST|facilities1", "TEST|staff1");
         HotelPO po2 = new HotelPO(0, "TEST|name2", 455, 67890, "TEST|address2", "TEST|description2", "TEST|facilities2", "TEST|staff2");
 
         try {
