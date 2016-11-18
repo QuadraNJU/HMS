@@ -40,9 +40,9 @@ public class HotelPromotionPO {
     /**
      * 合作企业客户列表
      */
-    private ArrayList<String> cooperation;
+    private String cooperation;
 
-    public HotelPromotionPO(int id, int hotelId, String name, HotelPromotionType type, Date startTime, Date endTime, double promotion, ArrayList<String> cooperation) {
+    public HotelPromotionPO(int id, int hotelId, String name, HotelPromotionType type, Date startTime, Date endTime, double promotion, String cooperation) {
         this.id = id;
         this.hotelId = hotelId;
         this.name = name;
@@ -109,11 +109,11 @@ public class HotelPromotionPO {
         this.promotion = promotion;
     }
 
-    public ArrayList<String> getCooperation() {
+    public String getCooperation() {
         return cooperation;
     }
 
-    public void setCooperation(ArrayList<String> cooperation) {
+    public void setCooperation(String cooperation) {
         this.cooperation = cooperation;
     }
 }

@@ -8,11 +8,11 @@ import java.util.ArrayList;
  * Created by adn55 on 16/10/15.
  */
 public interface HotelPromotionDataService {
-    ArrayList<HotelPromotionPO> get(int hotelId);
+    ArrayList<HotelPromotionPO> get(int hotelId) throws Exception;
 
-    void insert(HotelPromotionPO po);
+    void insert(HotelPromotionPO po) throws Exception;
 
-    void delete(HotelPromotionPO po);
+    void delete(HotelPromotionPO po) throws Exception;
 
-    void update(HotelPromotionPO po);
+    void update(HotelPromotionPO po) throws Exception;
 }

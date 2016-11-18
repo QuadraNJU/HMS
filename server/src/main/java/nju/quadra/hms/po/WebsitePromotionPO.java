@@ -40,9 +40,9 @@ public class WebsitePromotionPO {
     /**
      * 会员等级规则
      */
-    private ArrayList<int[]> memberLevel;
+    private String memberLevel;
 
-    public WebsitePromotionPO(int id, String name, WebsitePromotionType type, Date startTime, Date endTime, double promotion, int areaId, ArrayList<int[]> memberLevel) {
+    public WebsitePromotionPO(int id, String name, WebsitePromotionType type, Date startTime, Date endTime, double promotion, int areaId, String memberLevel) {
         this.id = id;
         this.name = name;
         this.type = type;
@@ -109,11 +109,11 @@ public class WebsitePromotionPO {
         this.areaId = areaId;
     }
 
-    public ArrayList<int[]> getMemberLevel() {
+    public String getMemberLevel() {
         return memberLevel;
     }
 
-    public void setMemberLevel(ArrayList<int[]> memberLevel) {
+    public void setMemberLevel(String memberLevel) {
         this.memberLevel = memberLevel;
     }
 }
