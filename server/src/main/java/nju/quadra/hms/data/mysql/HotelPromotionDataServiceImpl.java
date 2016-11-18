@@ -2,6 +2,7 @@ package nju.quadra.hms.data.mysql;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Types;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
@@ -37,8 +38,9 @@ public class HotelPromotionDataServiceImpl implements HotelPromotionDataService{
 	@Override
 	public void insert(HotelPromotionPO po) throws Exception {
 		  PreparedStatement pst = MySQLManager.getConnection()
-	                .prepareStatement("INSERT INTO `hotelpromotion` (`id`, `hotelid, `name`, `type`, `starttime`, `endtime`, `promotion`, `cooperation`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-		  pst.setInt(1,po.getId());
+	                .prepareStatement("INSERT INTO `hotelpromotion` (`id`, `hotelid`, `name`, `type`, `starttime`, `endtime`, `promotion`, `cooperation`)"
+	                		+ " VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+	      pst.setInt(1, po.getId());
 		  pst.setInt(2,po.getHotelId());
 		  pst.setString(3,po.getName());
 		  pst.setInt(4, po.getType().ordinal());
@@ -52,8 +54,8 @@ public class HotelPromotionDataServiceImpl implements HotelPromotionDataService{
 	@Override
 	public void delete(HotelPromotionPO po) throws Exception {
 	     PreparedStatement pst = MySQLManager.getConnection()
-	                .prepareStatement("DELETE FROM `hotelpromotion` WHERE `hotelid` = ?");
-	     pst.setInt(1, po.getHotelId());
+	                .prepareStatement("DELETE FROM `hotelpromotion` WHERE `id` = ?");
+	     pst.setInt(1, po.getId());
 	     int result = pst.executeUpdate();
 	     if(result == 0) {
 	    	 throw new Exception("HotelPromotion not found");

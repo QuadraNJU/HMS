@@ -2,6 +2,7 @@ package nju.quadra.hms.data.mysql;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Types;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
@@ -38,7 +39,10 @@ public class WebsitePromotionDataServiceImpl implements WebsitePromotionDataServ
 		 PreparedStatement pst = MySQLManager.getConnection()
 	                .prepareStatement("INSERT INTO `websitepromotion` (`id`, `name`, `type`, `starttime`, `endtime`, "
 	                		+ "`promotion`, `areaid` , `memberlevel`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-		  pst.setInt(1,po.getId());
+		  if (po.getId() > 0)
+	         pst.setInt(1, po.getId());
+	      else
+	         pst.setNull(1, Types.INTEGER);
 		  pst.setString(2,po.getName());
 		  pst.setInt(3, po.getType().ordinal());
 		  pst.setString(4, new SimpleDateFormat("yyyy-MM-dd").format(po.getStartTime()));
@@ -52,8 +56,8 @@ public class WebsitePromotionDataServiceImpl implements WebsitePromotionDataServ
 	@Override
 	public void delete(WebsitePromotionPO po) throws Exception{
 		  PreparedStatement pst = MySQLManager.getConnection()
-                .prepareStatement("DELETE FROM `websitepromotion` WHERE `promotionid` = ?");
-		  pst.setDouble(6, po.getPromotion());
+                .prepareStatement("DELETE FROM `websitepromotion` WHERE `id` = ?");
+		  pst.setDouble(1, po.getId());
 		  int result = pst.executeUpdate();
 		  if(result == 0) {
 			  throw new Exception("WebsitePromotion not found");
