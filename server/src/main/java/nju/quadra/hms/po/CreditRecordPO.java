@@ -1,6 +1,7 @@
 package nju.quadra.hms.po;
 
 import nju.quadra.hms.model.CreditAction;
+import nju.quadra.hms.vo.CreditRecordVO;
 
 import java.util.Date;
 
@@ -29,7 +30,7 @@ public class CreditRecordPO {
      */
     private CreditAction action;
     /**
-     * 信用度变化hhh
+     * 信用度变化
      */
     private double diff;
 
@@ -40,6 +41,10 @@ public class CreditRecordPO {
         this.orderId = orderId;
         this.action = action;
         this.diff = diff;
+    }
+
+    public CreditRecordPO(CreditRecordVO vo) {
+        this(vo.id, vo.username, vo.timestamp, vo.orderId, vo.action, vo.diff);
     }
 
     public int getId() {

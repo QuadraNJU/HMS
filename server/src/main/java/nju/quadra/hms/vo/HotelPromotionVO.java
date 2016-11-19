@@ -1,6 +1,9 @@
 package nju.quadra.hms.vo;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import nju.quadra.hms.model.HotelPromotionType;
+import nju.quadra.hms.po.HotelPromotionPO;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -51,6 +54,10 @@ public class HotelPromotionVO {
         this.endTime = endTime;
         this.promotion = promotion;
         this.cooperation = cooperation;
+    }
+
+    public HotelPromotionVO(HotelPromotionPO po) {
+        this(po.getId(), po.getHotelId(), po.getName(), po.getType(), po.getStartTime(), po.getEndTime(), po.getPromotion(), new Gson().fromJson(po.getCooperation(), new TypeToken<ArrayList<String>>() {}.getType()));
     }
 
 //    @Override

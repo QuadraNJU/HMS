@@ -9,6 +9,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Date;
+
 import static org.junit.Assert.*;
 
 /**
@@ -30,7 +32,7 @@ public class CreditRecordBLTest {
 
     @Test
     public void testAdd() {
-        CreditRecordVO vo = new CreditRecordVO(1, "quadra2", System.currentTimeMillis(), 1, CreditAction.ORDER_FINISHED, 99.9, 199.9);
+        CreditRecordVO vo = new CreditRecordVO(1, "quadra2", new Date(System.currentTimeMillis()), 1, CreditAction.ORDER_FINISHED, 99.9, 199.9);
         assertEquals(ResultMessage.RESULT_SUCCESS, creditRecordBL.add(vo).result);
     }
 }

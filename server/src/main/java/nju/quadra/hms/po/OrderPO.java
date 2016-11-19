@@ -1,6 +1,9 @@
 package nju.quadra.hms.po;
 
+import com.google.gson.Gson;
 import nju.quadra.hms.model.OrderState;
+import nju.quadra.hms.vo.OrderRankVO;
+import nju.quadra.hms.vo.OrderVO;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -81,6 +84,10 @@ public class OrderPO {
         this.state = state;
         this.rank = rank;
         this.comment = comment;
+    }
+
+    public OrderPO(OrderVO vo) {
+        new OrderPO(vo.id, vo.username, vo.hotelId, vo.startDate, vo.endDate, vo.roomId, vo.roomCount, vo.personCount, new Gson().toJson(vo.persons), vo.hasChildren, vo.price, vo.state, vo.rank, vo.comment);
     }
 
     public int getId() {

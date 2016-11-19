@@ -20,7 +20,12 @@ public class OrderDataServiceImpl implements OrderDataService {
                 .prepareStatement("SELECT * FROM `orders` WHERE `username` = ? ORDER BY `startdate` DESC");
         pst.setString(1, username);
         ResultSet rs = pst.executeQuery();
-        return convertToArrayList(rs);
+
+        ArrayList<OrderPO> result = convertToArrayList(rs);
+        if(!rs.isClosed()) rs.close();
+        if(!pst.isClosed()) pst.close();
+        MySQLManager.closeConnection();
+        return result;
     }
 
     @Override
@@ -29,7 +34,12 @@ public class OrderDataServiceImpl implements OrderDataService {
                 .prepareStatement("SELECT * FROM `orders` WHERE `hotelid` = ? ORDER BY `startdate` DESC");
         pst.setInt(1, hotelId);
         ResultSet rs = pst.executeQuery();
-        return convertToArrayList(rs);
+
+        ArrayList<OrderPO> result = convertToArrayList(rs);
+        if(!rs.isClosed()) rs.close();
+        if(!pst.isClosed()) pst.close();
+        MySQLManager.closeConnection();
+        return result;
     }
 
     @Override
@@ -38,7 +48,12 @@ public class OrderDataServiceImpl implements OrderDataService {
                 .prepareStatement("SELECT * FROM `orders` WHERE `state` = ? ORDER BY `startdate` DESC");
         pst.setInt(1, state.ordinal());
         ResultSet rs = pst.executeQuery();
-        return convertToArrayList(rs);
+
+        ArrayList<OrderPO> result = convertToArrayList(rs);
+        if(!rs.isClosed()) rs.close();
+        if(!pst.isClosed()) pst.close();
+        MySQLManager.closeConnection();
+        return result;
     }
 
     @Override
@@ -63,6 +78,9 @@ public class OrderDataServiceImpl implements OrderDataService {
         pst.setInt(13, po.getRank());
         pst.setString(14, po.getComment());
         pst.executeUpdate();
+
+        if(!pst.isClosed()) pst.close();
+        MySQLManager.closeConnection();
     }
 
     @Override
@@ -74,6 +92,9 @@ public class OrderDataServiceImpl implements OrderDataService {
         if (result == 0) {
             throw new Exception("Order not found");
         }
+
+        if(!pst.isClosed()) pst.close();
+        MySQLManager.closeConnection();
     }
 
     @Override

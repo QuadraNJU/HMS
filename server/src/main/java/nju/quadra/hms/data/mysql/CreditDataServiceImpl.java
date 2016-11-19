@@ -22,6 +22,11 @@ public class CreditDataServiceImpl implements CreditDataService {
         pst.setString(1, username);
         ResultSet rs = pst.executeQuery();
         ArrayList<CreditRecordPO> result = convertToArrayList(rs);
+
+
+        if(!rs.isClosed()) rs.close();
+        if(!pst.isClosed()) pst.close();
+        MySQLManager.closeConnection();
         return result;
     }
 
@@ -34,6 +39,10 @@ public class CreditDataServiceImpl implements CreditDataService {
         pst.setInt(3, po.getAction().ordinal());
         pst.setDouble(4, po.getDiff());
         pst.executeUpdate();
+
+
+        if(!pst.isClosed()) pst.close();
+        MySQLManager.closeConnection();
     }
 
     @Override
@@ -45,6 +54,10 @@ public class CreditDataServiceImpl implements CreditDataService {
         if (result == 0) {
             throw new Exception("Credit record not found");
         }
+
+
+        if(!pst.isClosed()) pst.close();
+        MySQLManager.closeConnection();
     }
 
     private ArrayList<CreditRecordPO> convertToArrayList(ResultSet rs) throws Exception{

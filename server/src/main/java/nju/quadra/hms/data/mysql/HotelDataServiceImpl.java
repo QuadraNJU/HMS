@@ -15,23 +15,16 @@ public class HotelDataServiceImpl implements HotelDataService {
 
 	@Override
 	public ArrayList<HotelPO> getAll() throws Exception {
-		ArrayList<HotelPO> result = new ArrayList<>();
         PreparedStatement pst = MySQLManager.getConnection()
                 .prepareStatement("SELECT * FROM `hotel`");
         ResultSet rs = pst.executeQuery();
-        while (rs.next()) {
-        	HotelPO po = new HotelPO(
-                    rs.getInt("id"),
-                    rs.getString("name"),
-                    rs.getInt("cityId"),
-                    rs.getInt("areaId"),
-                    rs.getString("address"),
-                    rs.getString("description"),
-                    rs.getString("facilities"),
-                    rs.getString("staff")
-            );
-            result.add(po);
-        }
+        ArrayList<HotelPO> result = convertToArrayList(rs);
+
+
+
+		if(!rs.isClosed()) rs.close();
+		if(!pst.isClosed()) pst.close();
+		MySQLManager.closeConnection();
         return result;
 	}
 
@@ -54,30 +47,28 @@ public class HotelDataServiceImpl implements HotelDataService {
 					rs.getString("staff")
 			);
 		}
+
+
+		if(!rs.isClosed()) rs.close();
+		if(!pst.isClosed()) pst.close();
+		MySQLManager.closeConnection();
 		return po;
 
 	}
 
 	@Override
 	public ArrayList<HotelPO> getByArea(int areaId) throws Exception {
-		ArrayList<HotelPO> result = new ArrayList<>();
 		PreparedStatement pst = MySQLManager.getConnection()
 				.prepareStatement("SELECT * FROM `hotel` WHERE `areaid` = ?");
 		pst.setInt(1, areaId);
 		ResultSet rs = pst.executeQuery();
-		while (rs.next()) {
-			HotelPO po = new HotelPO(
-					rs.getInt("id"),
-					rs.getString("name"),
-					rs.getInt("cityId"),
-					rs.getInt("areaId"),
-					rs.getString("address"),
-					rs.getString("description"),
-					rs.getString("facilities"),
-					rs.getString("staff")
-			);
-			result.add(po);
-		}
+		ArrayList<HotelPO> result = convertToArrayList(rs);
+
+
+
+		if(!rs.isClosed()) rs.close();
+		if(!pst.isClosed()) pst.close();
+		MySQLManager.closeConnection();
 		return result;
 	}
 
@@ -98,6 +89,10 @@ public class HotelDataServiceImpl implements HotelDataService {
         pst.setString(8, po.getStaff());
         
         pst.executeUpdate();
+
+
+		if(!pst.isClosed()) pst.close();
+		MySQLManager.closeConnection();
 	}
 
 	@Override
@@ -109,12 +104,34 @@ public class HotelDataServiceImpl implements HotelDataService {
         if (result == 0) {
             throw new Exception("Hotel not found");
         }
+
+
+		if(!pst.isClosed()) pst.close();
+		MySQLManager.closeConnection();
 	}
 
 	@Override
 	public void update(HotelPO po) throws Exception {
 		delete(po);
 		insert(po);
+	}
+
+	private ArrayList<HotelPO> convertToArrayList(ResultSet rs) throws Exception{
+		ArrayList<HotelPO> result = new ArrayList<>();
+		while (rs.next()) {
+			HotelPO po = new HotelPO(
+					rs.getInt("id"),
+					rs.getString("name"),
+					rs.getInt("cityId"),
+					rs.getInt("areaId"),
+					rs.getString("address"),
+					rs.getString("description"),
+					rs.getString("facilities"),
+					rs.getString("staff")
+			);
+			result.add(po);
+		}
+		return result;
 	}
 	
 }

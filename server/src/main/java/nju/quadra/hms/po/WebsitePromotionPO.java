@@ -1,6 +1,8 @@
 package nju.quadra.hms.po;
 
+import com.google.gson.Gson;
 import nju.quadra.hms.model.WebsitePromotionType;
+import nju.quadra.hms.vo.WebsitePromotionVO;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -51,6 +53,10 @@ public class WebsitePromotionPO {
         this.promotion = promotion;
         this.areaId = areaId;
         this.memberLevel = memberLevel;
+    }
+
+    public WebsitePromotionPO(WebsitePromotionVO vo) {
+        new WebsitePromotionPO(vo.id, vo.name, vo.type, vo.startTime, vo.endTime, vo.promotion, vo.areaId, new Gson().toJson(vo.memberLevel));
     }
 
     public int getId() {

@@ -1,5 +1,7 @@
 package nju.quadra.hms.vo;
 
+import nju.quadra.hms.po.HotelPO;
+
 /**
  * Created by adn55 on 16/10/15.
  */
@@ -46,5 +48,9 @@ public class HotelVO {
         this.description = description;
         this.facilities = facilities;
         this.staff = staff;
+    }
+
+    public HotelVO(HotelPO po) {
+        this(po.getId(), po.getName(), po.getCityId(), po.getAreaId(), po.getAddress(), po.getDescription(), po.getFacilities(), po.getStaff());
     }
 }

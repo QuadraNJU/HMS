@@ -34,6 +34,10 @@ public class UserDataServiceImpl implements UserDataService {
             );
             result.add(po);
         }
+
+        if(!rs.isClosed()) rs.close();
+        if(!pst.isClosed()) pst.close();
+        MySQLManager.closeConnection();
         return result;
     }
 
@@ -43,8 +47,9 @@ public class UserDataServiceImpl implements UserDataService {
                 .prepareStatement("SELECT * FROM `user` WHERE `username` = ?");
         pst.setString(1, username);
         ResultSet rs = pst.executeQuery();
+        UserPO po = null;
         if (rs.next()) {
-            UserPO po = new UserPO(
+            po = new UserPO(
                     rs.getString("username"),
                     rs.getString("password"),
                     rs.getString("name"),
@@ -54,10 +59,13 @@ public class UserDataServiceImpl implements UserDataService {
                     rs.getDate("birthday"),
                     rs.getString("companyname")
             );
-            return po;
-        } else {
-            return null;
+
         }
+
+        if(!rs.isClosed()) rs.close();
+        if(!pst.isClosed()) pst.close();
+        MySQLManager.closeConnection();
+        return po;
     }
 
     @Override
@@ -73,7 +81,9 @@ public class UserDataServiceImpl implements UserDataService {
         pst.setString(7, new SimpleDateFormat("yyyy-MM-dd").format(po.getBirthday().getTime()));
         pst.setString(8, po.getCompanyName());
         pst.executeUpdate();
-    }
+
+        if(!pst.isClosed()) pst.close();
+        MySQLManager.closeConnection();    }
 
     @Override
     public void delete(UserPO po) throws Exception {
@@ -84,6 +94,10 @@ public class UserDataServiceImpl implements UserDataService {
         if (result == 0) {
             throw new Exception("User not found");
         }
+
+
+        if(!pst.isClosed()) pst.close();
+        MySQLManager.closeConnection();
     }
 
     @Override

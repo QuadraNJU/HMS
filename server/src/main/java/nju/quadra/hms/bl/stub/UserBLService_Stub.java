@@ -47,7 +47,7 @@ public class UserBLService_Stub implements UserBLService {
     }
 
     @Override
-    public ResultMessage modify(String username, UserVO vo) {
+    public ResultMessage modify(UserVO vo) {
         return new ResultMessage(ResultMessage.RESULT_SUCCESS);
     }
 }
