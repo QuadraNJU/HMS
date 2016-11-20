@@ -52,18 +52,4 @@ public class WebsitePromotionVO {
         this.areaId = areaId;
         this.memberLevel = memberLevel;
     }
-
-//    @Override
-//    public boolean equals(Object obj) {
-//        if(obj instanceof WebsitePromotionVO) {
-//            WebsitePromotionVO wpvo = (WebsitePromotionVO) obj;
-//            if(id == wpvo.id && name.equals(wpvo.name) && areaId == wpvo.areaId
-//                    && type.equals(wpvo.type) && startTime.equals(wpvo.startTime)
-//                    && endTime.equals(wpvo.endTime) && promotion == wpvo.promotion
-//                    && memberLevel.equals(wpvo.memberLevel)) {
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
 }

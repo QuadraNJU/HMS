@@ -2,6 +2,8 @@ package nju.quadra.hms.vo;
 
 import nju.quadra.hms.model.CreditAction;
 
+import java.util.Date;
+
 /**
  * Created by adn55 on 16/10/15.
  */
@@ -17,7 +19,7 @@ public class CreditRecordVO {
     /**
      * 发生时间
      */
-    public long timestamp;
+    public Date timestamp;
     /**
      * 相关订单ID
      */
@@ -35,7 +37,7 @@ public class CreditRecordVO {
      */
     public double creditResult;
 
-    public CreditRecordVO(int id, String username, long timestamp, int orderId, CreditAction action, double diff, double creditResult) {
+    public CreditRecordVO(int id, String username, Date timestamp, int orderId, CreditAction action, double diff, double creditResult) {
         this.id = id;
         this.username = username;
         this.timestamp = timestamp;

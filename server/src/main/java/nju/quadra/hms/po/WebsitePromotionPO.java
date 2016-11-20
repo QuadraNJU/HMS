@@ -8,7 +8,7 @@ import java.util.Date;
 /**
  * Created by adn55 on 16/10/15.
  */
-public class WebsitePromotionPO {
+public class WebsitePromotionPO implements Comparable<WebsitePromotionPO>{
     /**
      * 网站促销策略ID
      */
@@ -115,5 +115,12 @@ public class WebsitePromotionPO {
 
     public void setMemberLevel(String memberLevel) {
         this.memberLevel = memberLevel;
+    }
+
+    @Override
+    public int compareTo(WebsitePromotionPO o) {
+        if(promotion < o.getPromotion()) return -1;
+        else if(promotion == o.getPromotion()) return 0;
+        else return 1;
     }
 }
