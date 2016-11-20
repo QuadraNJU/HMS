@@ -47,7 +47,7 @@ public class MockUserBL implements UserBLService {
     }
 
     @Override
-    public ResultMessage modify(UserVO vo) {
+    public ResultMessage modify(String username, UserVO vo) {
         return new ResultMessage(ResultMessage.RESULT_SUCCESS);
     }
 }

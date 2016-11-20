@@ -2,7 +2,6 @@ package nju.quadra.hms.vo;
 
 import nju.quadra.hms.model.MemberType;
 import nju.quadra.hms.model.UserType;
-import nju.quadra.hms.po.UserPO;
 
 import java.util.Date;
 
@@ -53,9 +52,5 @@ public class UserVO {
         this.memberType = memberType;
         this.birthday = birthday;
         this.companyName = companyName;
-    }
-
-    public UserVO(UserPO po) {
-        this(po.getUsername(), po.getPassword(), po.getName(), po.getContact(), po.getType(), po.getMemberType(), po.getBirthday(), po.getCompanyName());
     }
 }

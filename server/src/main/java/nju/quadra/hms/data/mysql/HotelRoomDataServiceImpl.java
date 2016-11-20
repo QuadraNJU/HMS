@@ -30,11 +30,7 @@ public class HotelRoomDataServiceImpl implements HotelRoomDataService {
         			rs.getDouble("price")
         	);
         	result.add(po);
-        }
-
-		if(!rs.isClosed()) rs.close();
-		if(!pst.isClosed()) pst.close();
-		MySQLManager.closeConnection();
+        } 
         return result;
 	}
 
@@ -50,11 +46,8 @@ public class HotelRoomDataServiceImpl implements HotelRoomDataService {
         pst.setString(3, po.getName());
         pst.setInt(4, po.getTotal());
         pst.setDouble(5, po.getPrice());
-
+        
         pst.executeUpdate();
-        if(!pst.isClosed()) pst.close();
-        MySQLManager.closeConnection();
-
 	}
 
 	@Override
@@ -66,12 +59,21 @@ public class HotelRoomDataServiceImpl implements HotelRoomDataService {
         if (result == 0) {
             throw new Exception("HotelRoom not found");
         }
-        if(!pst.isClosed()) pst.close();
-        MySQLManager.closeConnection();
+		
 	}
 
 	@Override
 	public void update(HotelRoomPO po) throws Exception {
+//		PreparedStatement pst = MySQLManager.getConnection()
+//				.prepareStatement("UPDATE `hotelroom` SET `total` = ?, price = ? WHERE `hotelid` = ? AND `name` = ?");
+//		pst.setInt(1, po.getTotal());
+//		pst.setDouble(2, po.getPrice());
+//		pst.setInt(3, po.getHotelId());
+//		pst.setString(4, po.getName());
+//		int result = pst.executeUpdate();
+//		if (result == 0) {
+//			throw new Exception("HotelRoom not found");
+//		}
 		delete(po);
 		insert(po);
 	}

@@ -19,5 +19,5 @@ public interface UserBLService {
 
     ResultMessage delete(String username);
 
-    ResultMessage modify(UserVO vo);
+    ResultMessage modify(String username, UserVO vo);
 }

@@ -24,8 +24,4 @@ public class MySQLManager {
         return conn;
     }
 
-    public static void closeConnection() throws SQLException{
-        if(!conn.isClosed()) conn.close();
-    }
-
 }

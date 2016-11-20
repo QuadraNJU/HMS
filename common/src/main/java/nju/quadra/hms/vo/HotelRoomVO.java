@@ -1,7 +1,5 @@
 package nju.quadra.hms.vo;
 
-import nju.quadra.hms.po.HotelRoomPO;
-
 /**
  * Created by adn55 on 16/10/15.
  */
@@ -33,9 +31,5 @@ public class HotelRoomVO {
         this.name = name;
         this.total = total;
         this.price = price;
-    }
-
-    public HotelRoomVO(HotelRoomPO po) {
-        this(po.getId(), po.getHotelId(), po.getName(), po.getTotal(), po.getPrice());
     }
 }

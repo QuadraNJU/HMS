@@ -15,7 +15,7 @@ public class UserBLService_Driver {
             UserVO vo = userBLService.get(list.get(0).username);
             userBLService.delete(vo.username);
             userBLService.add(vo);
-            userBLService.modify(vo);
+            userBLService.modify(vo.username, vo);
             userBLService.login(vo.username, vo.password);
         } catch (Exception e) {
             e.printStackTrace();

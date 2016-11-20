@@ -1,83 +1,63 @@
 package nju.quadra.hms.bl;
 
+import nju.quadra.hms.bl.mockObject.MockUserBL;
 import nju.quadra.hms.blservice.userBL.UserBLService;
-import nju.quadra.hms.model.MemberType;
 import nju.quadra.hms.model.ResultMessage;
 import nju.quadra.hms.model.UserType;
 import nju.quadra.hms.vo.UserVO;
 import org.junit.*;
-import org.junit.runners.MethodSorters;
-
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  * Created by admin on 2016/11/6.
  */
-
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class UserBLTest {
     UserBLService userBL;
 
     @Before
     public void init() {
-        this.userBL = new UserBL();
+        this.userBL = new MockUserBL();
     }
 
     @Test
-    public void test1_LoginWtihNoSuchUsername() {
+    public void testLogin() {
         String username = "havenothisusername";
         String password = "havenothispassword";
-        ResultMessage resultMessage = userBL.login(username, password);
-        assertEquals(ResultMessage.RESULT_ERROR, resultMessage.result);
-        assertEquals("不存在该用户，请确认所输入的用户名是否正确", resultMessage.message);
+        assertEquals(ResultMessage.RESULT_ERROR, userBL.login(username, password).result);
     }
 
     @Test
-    public void test2_add() {
-        UserVO vo1 = new UserVO("TEST|username1", "TEST|passwordCyphered1", "TEST|name1", "TEST|contact1", UserType.CUSTOMER, MemberType.COMPANY, new Date(1996-1900, 11-1, 21+1), "TEST|companyname1");
-        UserVO vo2 = new UserVO("TEST|username2", "TEST|passwordCyphered2", "TEST|name2", "TEST|contact2", UserType.HOTEL_STAFF, MemberType.COMPANY, new Date(1994-1900, 12-1, 07+1), "TEST|companyname2");
-        assertEquals(ResultMessage.RESULT_SUCCESS, userBL.add(vo1).result);
-        assertEquals(ResultMessage.RESULT_SUCCESS, userBL.add(vo2).result);
+    public void testGetAll() {
+        assertEquals(true, userBL.getAll().size() >= 0);
     }
 
     @Test
-    public void test3_getAll() {
-        ArrayList<UserVO> voarr = userBL.getAll();
-        assertEquals(2, voarr.size());
-        assertEquals("TEST|username1", voarr.get(0).username);
+    public void testGet() {
+        String username = "qurdra";
+        assertNotNull(userBL.get(username));
     }
 
     @Test
-    public void test4_get() {
-        UserVO vo = userBL.get("TEST|username2");
-        assertEquals("TEST|passwordCyphered2", vo.password);
+    public void testAdd() {
+        UserVO vo = new UserVO("saber", "61d1e734315a0db52c3572d7ab8a8b68ac327bb42699ffd80b4fcec9870e77f3",
+                "Servant", "110", UserType.WEBSITE_MANAGER, null, null, null);
+        assertEquals(ResultMessage.RESULT_SUCCESS, userBL.add(vo).result);
     }
 
     @Test
-    public void test5_modify() {
-        UserVO vo2 = new UserVO("TEST|username2", "TEST|passwordCyphered2", "TEST|name2AfterModified", "TEST|contact2", UserType.HOTEL_STAFF, MemberType.COMPANY, new Date(1994-1900, 12-1, 07+1), "TEST|companyname2");
-        ResultMessage resultMessage = userBL.modify(vo2);
-        UserVO vo2Modified = userBL.get("TEST|username2");
-        assertEquals(ResultMessage.RESULT_SUCCESS, resultMessage.result);
-        assertEquals("TEST|name2AfterModified", vo2Modified.name);
+    public void testDelete() {
+        String username = "qurdra";
+        assertEquals(ResultMessage.RESULT_SUCCESS, userBL.delete(username).result);
     }
 
     @Test
-    public void test6_addDuplicated() {
-        UserVO vo1 = new UserVO("TEST|username1", "TEST|passwordCyphered1", "TEST|name1", "TEST|contact1", UserType.CUSTOMER, MemberType.COMPANY, new Date(1996-1900, 11-1, 21+1), "TEST|companyname1");
-        ResultMessage resultMessage = userBL.add(vo1);
-        assertEquals(ResultMessage.RESULT_ERROR, resultMessage.result);
-        assertEquals("用户名已存在，请重新输入", resultMessage.message);
+    public void testModify() {
+        String username = "qurdra";
+        UserVO vo = new UserVO(username, "61d1e734315a0db52c3572d7ab8a8b68ac327bb42699ffd80b4fcec9870e77f3",
+                "Quadra", "1008611", UserType.WEBSITE_MANAGER, null, null, null);
+        assertEquals(ResultMessage.RESULT_SUCCESS, userBL.modify(username, vo).result);
     }
 
-    @Test
-    public void test7_delete() {
-        ArrayList<UserVO> voarr = userBL.getAll();
-        for(UserVO vo: voarr) {
-            assertEquals(ResultMessage.RESULT_SUCCESS, userBL.delete(vo.username).result);
-        }
-    }
 }
