@@ -24,7 +24,7 @@ public class OrderDataServiceImpl implements OrderDataService {
     }
 
     @Override
-    public ArrayList<OrderPO> getByHotel(int hotelId) throws Exception{
+    public ArrayList<OrderPO> getByHotel(int hotelId) throws Exception {
         PreparedStatement pst = MySQLManager.getConnection()
                 .prepareStatement("SELECT * FROM `orders` WHERE `hotelid` = ? ORDER BY `startdate` DESC");
         pst.setInt(1, hotelId);
@@ -33,7 +33,7 @@ public class OrderDataServiceImpl implements OrderDataService {
     }
 
     @Override
-    public ArrayList<OrderPO> getByState(OrderState state) throws Exception{
+    public ArrayList<OrderPO> getByState(OrderState state) throws Exception {
         PreparedStatement pst = MySQLManager.getConnection()
                 .prepareStatement("SELECT * FROM `orders` WHERE `state` = ? ORDER BY `startdate` DESC");
         pst.setInt(1, state.ordinal());
@@ -42,7 +42,16 @@ public class OrderDataServiceImpl implements OrderDataService {
     }
 
     @Override
-    public void insert(OrderPO po) throws Exception{
+    public OrderPO getById(int id) throws Exception {
+        PreparedStatement pst = MySQLManager.getConnection()
+                .prepareStatement("SELECT * FROM `orders` WHERE `id` = ?");
+        pst.setInt(1, id);
+        ResultSet rs = pst.executeQuery();
+        return convertToSingle(rs);
+    }
+
+    @Override
+    public void insert(OrderPO po) throws Exception {
         PreparedStatement pst = MySQLManager.getConnection()
                 .prepareStatement("INSERT INTO `orders` (`id`, `username`, `hotelid`, `startdate`, `enddate`, `roomid`, `roomcount`, `personcount`, `persons`, `haschildren`, `price`, `state`, `rank`, `comment`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
         if (po.getId() > 0)
@@ -77,32 +86,36 @@ public class OrderDataServiceImpl implements OrderDataService {
     }
 
     @Override
-    public void update(OrderPO po) throws Exception{
+    public void update(OrderPO po) throws Exception {
         delete(po);
         insert(po);
     }
 
-    private ArrayList<OrderPO> convertToArrayList(ResultSet rs) throws Exception{
+    private ArrayList<OrderPO> convertToArrayList(ResultSet rs) throws Exception {
         ArrayList<OrderPO> result = new ArrayList<>();
         while (rs.next()) {
-            OrderPO po = new OrderPO(
-                    rs.getInt("id"),
-                    rs.getString("username"),
-                    rs.getInt("hotelid"),
-                    rs.getDate("startdate"),
-                    rs.getDate("enddate"),
-                    rs.getInt("roomid"),
-                    rs.getInt("roomcount"),
-                    rs.getInt("personcount"),
-                    rs.getString("persons"),
-                    rs.getBoolean("haschildren"),
-                    rs.getDouble("price"),
-                    OrderState.getById(rs.getInt("state")),
-                    rs.getInt("rank"),
-                    rs.getString("comment")
-            );
+            OrderPO po = convertToSingle(rs);
             result.add(po);
         }
         return result;
+    }
+
+    private OrderPO convertToSingle(ResultSet rs) throws Exception {
+        return new OrderPO(
+                rs.getInt("id"),
+                rs.getString("username"),
+                rs.getInt("hotelid"),
+                rs.getDate("startdate"),
+                rs.getDate("enddate"),
+                rs.getInt("roomid"),
+                rs.getInt("roomcount"),
+                rs.getInt("personcount"),
+                rs.getString("persons"),
+                rs.getBoolean("haschildren"),
+                rs.getDouble("price"),
+                OrderState.getById(rs.getInt("state")),
+                rs.getInt("rank"),
+                rs.getString("comment")
+        );
     }
 }

@@ -30,9 +30,4 @@ public class CreditRecordBLTest {
         assertEquals(true, creditRecordBL.get(username).size() > 0);
     }
 
-    @Test
-    public void testAdd() {
-        CreditRecordVO vo = new CreditRecordVO(1, "quadra2", new Date(System.currentTimeMillis()), 1, CreditAction.ORDER_FINISHED, 99.9, 199.9);
-        assertEquals(ResultMessage.RESULT_SUCCESS, creditRecordBL.add(vo).result);
-    }
 }

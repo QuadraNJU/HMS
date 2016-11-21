@@ -15,6 +15,8 @@ public interface OrderDataService {
 
     ArrayList<OrderPO> getByState(OrderState state) throws Exception;
 
+    OrderPO getById(int id) throws Exception;
+
     void insert(OrderPO po) throws Exception;
 
     void update(OrderPO po) throws Exception;
