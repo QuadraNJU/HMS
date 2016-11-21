@@ -40,7 +40,10 @@ public class HotelPromotionDataServiceImpl implements HotelPromotionDataService{
 		  PreparedStatement pst = MySQLManager.getConnection()
 	                .prepareStatement("INSERT INTO `hotelpromotion` (`id`, `hotelid`, `name`, `type`, `starttime`, `endtime`, `promotion`, `cooperation`)"
 	                		+ " VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-	      pst.setInt(1, po.getId());
+		  if (po.getId() > 0)
+	            pst.setInt(1, po.getId());
+	        else
+	            pst.setNull(1, Types.INTEGER);
 		  pst.setInt(2,po.getHotelId());
 		  pst.setString(3,po.getName());
 		  pst.setInt(4, po.getType().ordinal());
