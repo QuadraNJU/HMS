@@ -24,16 +24,14 @@ public class UserBL implements UserBLService {
     public ResultMessage login(String username, String password) {
         try {
             UserPO po = userDataService.get(username);
-            if (po == null) {
-                return new ResultMessage(ResultMessage.RESULT_ERROR, "不存在该用户，请确认所输入的用户名是否正确");
-            } else if (password.equals(po.getPassword())) {
+            if (password.equals(po.getPassword())) {
                 return new ResultMessage(ResultMessage.RESULT_SUCCESS);
             }
         } catch (Exception e) {
             e.printStackTrace();
-            return new ResultMessage(ResultMessage.RESULT_ERROR, "服务器访问异常，请重新尝试");
+            return new ResultMessage(ResultMessage.RESULT_DB_ERROR);
         }
-        return new ResultMessage(ResultMessage.RESULT_ERROR, "用户名或密码错误，请重新输入");
+        return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "用户名或密码错误，请重新输入");
     }
 
 
@@ -56,10 +54,11 @@ public class UserBL implements UserBLService {
         UserPO po = null;
         try {
             po = userDataService.get(username);
+            return UserBL.toVO(po);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return UserBL.toVO(po);
+        return null;
     }
 
     @Override
@@ -67,13 +66,13 @@ public class UserBL implements UserBLService {
         UserPO po = UserBL.toPO(vo);
         try {
             userDataService.insert(po);
+            return new ResultMessage(ResultMessage.RESULT_SUCCESS);
         } catch (SQLIntegrityConstraintViolationException e) {
-            return new ResultMessage(ResultMessage.RESULT_ERROR, "用户名已存在，请重新输入");
+            return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "用户名已存在，请重新输入");
         } catch (Exception e) {
             e.printStackTrace();
-            return new ResultMessage(ResultMessage.RESULT_ERROR, "服务器访问异常，请重新尝试");
+            return new ResultMessage(ResultMessage.RESULT_DB_ERROR);
         }
-        return new ResultMessage(ResultMessage.RESULT_SUCCESS);
     }
 
     @Override
@@ -81,11 +80,11 @@ public class UserBL implements UserBLService {
         try {
             UserPO po = userDataService.get(username);
             userDataService.delete(po);
+            return new ResultMessage(ResultMessage.RESULT_SUCCESS);
         } catch (Exception e) {
             e.printStackTrace();
-            return new ResultMessage(ResultMessage.RESULT_ERROR, "服务器访问异常，请重新尝试");
+            return new ResultMessage(ResultMessage.RESULT_DB_ERROR);
         }
-        return new ResultMessage(ResultMessage.RESULT_SUCCESS);
     }
 
     @Override
@@ -93,11 +92,11 @@ public class UserBL implements UserBLService {
         try {
             UserPO newContent = UserBL.toPO(vo);
             userDataService.update(newContent);
+            return new ResultMessage(ResultMessage.RESULT_SUCCESS);
         } catch (Exception e) {
             e.printStackTrace();
-            return new ResultMessage(ResultMessage.RESULT_ERROR, "服务器访问异常，请重新尝试");
+            return new ResultMessage(ResultMessage.RESULT_DB_ERROR);
         }
-        return new ResultMessage(ResultMessage.RESULT_SUCCESS);
     }
 
     public static UserVO toVO(UserPO po) {

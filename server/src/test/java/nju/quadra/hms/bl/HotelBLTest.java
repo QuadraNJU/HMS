@@ -39,7 +39,7 @@ public class HotelBLTest {
     public void testAddDuplicate() {
         HotelVO vo = new HotelVO(1, "南京抵抗军会议大酒店", 1, 1, "玄武区中山陵四方城2号",
                 "城中山林花园酒店", "各类客房, 大小会议室", "quadra");
-        assertEquals(ResultMessage.RESULT_ERROR, hotelBL.add(vo).result);
+        assertEquals(ResultMessage.RESULT_GENERAL_ERROR, hotelBL.add(vo).result);
     }
 
     @Test

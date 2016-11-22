@@ -23,7 +23,7 @@ public class MockUserBL implements UserBLService {
 
     @Override
     public ResultMessage login(String username, String password) {
-        return new ResultMessage(ResultMessage.RESULT_ERROR, "Password error");
+        return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "Password error");
     }
 
     @Override

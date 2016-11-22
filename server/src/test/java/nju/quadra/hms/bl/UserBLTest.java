@@ -31,7 +31,7 @@ public class UserBLTest {
         String username = "havenothisusername";
         String password = "havenothispassword";
         ResultMessage resultMessage = userBL.login(username, password);
-        assertEquals(ResultMessage.RESULT_ERROR, resultMessage.result);
+        assertEquals(ResultMessage.RESULT_GENERAL_ERROR, resultMessage.result);
         assertEquals("不存在该用户，请确认所输入的用户名是否正确", resultMessage.message);
     }
 
@@ -69,7 +69,7 @@ public class UserBLTest {
     public void test6_addDuplicated() {
         UserVO vo1 = new UserVO("TEST|username1", "TEST|passwordCyphered1", "TEST|name1", "TEST|contact1", UserType.CUSTOMER, MemberType.COMPANY, new Date(1996-1900, 11-1, 21+1), "TEST|companyname1");
         ResultMessage resultMessage = userBL.add(vo1);
-        assertEquals(ResultMessage.RESULT_ERROR, resultMessage.result);
+        assertEquals(ResultMessage.RESULT_GENERAL_ERROR, resultMessage.result);
         assertEquals("用户名已存在，请重新输入", resultMessage.message);
     }
 

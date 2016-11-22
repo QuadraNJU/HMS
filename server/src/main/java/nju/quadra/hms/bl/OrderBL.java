@@ -5,25 +5,18 @@ import com.google.gson.reflect.TypeToken;
 import nju.quadra.hms.bl.mockObject.CreditRecordBL;
 import nju.quadra.hms.blservice.orderBL.OrderBLService;
 import nju.quadra.hms.data.mysql.CreditDataServiceImpl;
-import nju.quadra.hms.data.mysql.HotelPromotionDataServiceImpl;
 import nju.quadra.hms.data.mysql.OrderDataServiceImpl;
-import nju.quadra.hms.data.mysql.WebsitePromotionDataServiceImpl;
 import nju.quadra.hms.dataservice.CreditDataService;
-import nju.quadra.hms.dataservice.HotelPromotionDataService;
 import nju.quadra.hms.dataservice.OrderDataService;
-import nju.quadra.hms.dataservice.WebsitePromotionDataService;
 import nju.quadra.hms.model.CreditAction;
 import nju.quadra.hms.model.OrderState;
 import nju.quadra.hms.model.ResultMessage;
 import nju.quadra.hms.po.CreditRecordPO;
-import nju.quadra.hms.po.HotelPromotionPO;
 import nju.quadra.hms.po.OrderPO;
-import nju.quadra.hms.po.WebsitePromotionPO;
 import nju.quadra.hms.vo.*;
 
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
 
 /**
@@ -75,15 +68,15 @@ public class OrderBL implements OrderBLService {
     public ResultMessage add(OrderVO vo) {
         try {
             if(!hasValidCredit(vo.username)){
-                return new ResultMessage(ResultMessage.RESULT_ERROR, "客户信用值不足，无法预定酒店");
+                return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "客户信用值不足，无法预定酒店");
             }
             OrderPO po = OrderBL.toPO(vo);
             orderDataService.insert(po);
         }  catch(SQLIntegrityConstraintViolationException e){
-            return new ResultMessage(ResultMessage.RESULT_ERROR, "订单号已存在，请重新输入");
+            return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "订单号已存在，请重新输入");
         } catch (Exception e) {
             e.printStackTrace();
-            return new ResultMessage(ResultMessage.RESULT_ERROR, "服务器访问异常，请重新尝试");
+            return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "服务器访问异常，请重新尝试");
         }
         return new ResultMessage(ResultMessage.RESULT_SUCCESS);
     }
@@ -137,7 +130,7 @@ public class OrderBL implements OrderBLService {
             OrderPO po = orderDataService.getById(vo.id);
              if(po.getState() != OrderState.DELAYED)
                  //订单状态必须为"异常(逾期)"才可调用此方法
-                 return new ResultMessage(ResultMessage.RESULT_ERROR, "该订单无法被撤销（订单状态不为\"异常(逾期)\"），请重新选择");
+                 return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "该订单无法被撤销（订单状态不为\"异常(逾期)\"），请重新选择");
              po.setState(OrderState.UNDO);
              //todo:这里还要加个记录撤销时间的东西，表打错了orz
              orderDataService.update(po);
@@ -147,10 +140,10 @@ public class OrderBL implements OrderBLService {
              creditDataService.insert(creditRecordPO);
         } catch (NullPointerException e) {
             e.printStackTrace();
-            return new ResultMessage(ResultMessage.RESULT_ERROR, "订单不存在，请确认订单信息");
+            return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "订单不存在，请确认订单信息");
         } catch (Exception e) {
             e.printStackTrace();
-            return new ResultMessage(ResultMessage.RESULT_ERROR, "服务器访问异常，请重新尝试");
+            return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "服务器访问异常，请重新尝试");
         }
         return new ResultMessage(ResultMessage.RESULT_SUCCESS);
     }
@@ -162,7 +155,7 @@ public class OrderBL implements OrderBLService {
             OrderPO po = orderDataService.getById(vo.id);
             //订单状态必须为"未执行"才可调用此方法
             if(po.getState() != OrderState.UNCOMPLETED)
-                return new ResultMessage(ResultMessage.RESULT_ERROR, "该订单无法被撤销（订单状态不为\"未执行\"），请重新选择");
+                return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "该订单无法被撤销（订单状态不为\"未执行\"），请重新选择");
             po.setState(OrderState.UNDO);
             //todo:这里还要加个记录撤销时间的东西，表打错了orz
             orderDataService.update(po);
@@ -174,10 +167,10 @@ public class OrderBL implements OrderBLService {
             creditDataService.insert(creditRecordPO);
         } catch (NullPointerException e) {
             e.printStackTrace();
-            return new ResultMessage(ResultMessage.RESULT_ERROR, "订单不存在，请确认订单信息");
+            return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "订单不存在，请确认订单信息");
         } catch (Exception e) {
             e.printStackTrace();
-            return new ResultMessage(ResultMessage.RESULT_ERROR, "服务器访问异常，请重新尝试");
+            return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "服务器访问异常，请重新尝试");
         }
         return new ResultMessage(ResultMessage.RESULT_SUCCESS);
     }
@@ -188,7 +181,7 @@ public class OrderBL implements OrderBLService {
             CreditDataService creditDataService = new CreditDataServiceImpl();
             OrderPO po = orderDataService.getById(vo.id);
             if(po.getState() == OrderState.FINISHED)
-                return new ResultMessage(ResultMessage.RESULT_ERROR, "该订单已经完成，请重新选择");
+                return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "该订单已经完成，请重新选择");
             po.setState(OrderState.FINISHED);
             po.setEndDate(new Date(System.currentTimeMillis()));
             orderDataService.update(po);
@@ -197,10 +190,10 @@ public class OrderBL implements OrderBLService {
             creditDataService.insert(creditRecordPO);
         } catch (NullPointerException e) {
             e.printStackTrace();
-            return new ResultMessage(ResultMessage.RESULT_ERROR, "订单不存在，请确认订单信息");
+            return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "订单不存在，请确认订单信息");
         } catch (Exception e) {
             e.printStackTrace();
-            return new ResultMessage(ResultMessage.RESULT_ERROR, "服务器访问异常，请重新尝试");
+            return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "服务器访问异常，请重新尝试");
         }
         return new ResultMessage(ResultMessage.RESULT_SUCCESS);
     }
@@ -214,10 +207,10 @@ public class OrderBL implements OrderBLService {
             orderDataService.update(po);
         } catch (NullPointerException e) {
             e.printStackTrace();
-            return new ResultMessage(ResultMessage.RESULT_ERROR, "订单不存在，请确认订单信息");
+            return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "订单不存在，请确认订单信息");
         } catch (Exception e) {
             e.printStackTrace();
-            return new ResultMessage(ResultMessage.RESULT_ERROR, "服务器访问异常，请重新尝试");
+            return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "服务器访问异常，请重新尝试");
         }
         return new ResultMessage(ResultMessage.RESULT_SUCCESS);
     }
