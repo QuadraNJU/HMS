@@ -12,8 +12,6 @@ public interface HotelRoomDataService {
 
     void insert(HotelRoomPO po) throws Exception;
 
-    HotelRoomPO getById(int roomId) throws Exception;
-    
     void delete(HotelRoomPO po) throws Exception;
 
     void update(HotelRoomPO po) throws Exception;

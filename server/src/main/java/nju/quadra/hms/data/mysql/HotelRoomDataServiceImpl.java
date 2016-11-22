@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import nju.quadra.hms.dataservice.HotelRoomDataService;
 import nju.quadra.hms.model.MemberType;
 import nju.quadra.hms.model.UserType;
-import nju.quadra.hms.po.HotelPO;
 import nju.quadra.hms.po.HotelRoomPO;
 import nju.quadra.hms.po.UserPO;
 
@@ -51,25 +50,6 @@ public class HotelRoomDataServiceImpl implements HotelRoomDataService {
         pst.executeUpdate();
 	}
 
-	@Override
-	public HotelRoomPO getById(int roomId) throws Exception {
-		HotelRoomPO po = null;
-		PreparedStatement pst = MySQLManager.getConnection()
-				.prepareStatement("SELECT * FROM `hotelroom` WHERE `id` = ?");
-		pst.setInt(1, roomId);
-		ResultSet rs = pst.executeQuery();
-		if (rs.next()) {
-			po = new HotelRoomPO(
-        			rs.getInt("id"), 
-        			rs.getInt("hotelId"), 
-        			rs.getString("name"), 
-        			rs.getInt("total"), 
-        			rs.getDouble("price")
-        	);
-		}
-		return po;
-	}
-	
 	@Override
 	public void delete(HotelRoomPO po) throws Exception {
 		PreparedStatement pst = MySQLManager.getConnection()
