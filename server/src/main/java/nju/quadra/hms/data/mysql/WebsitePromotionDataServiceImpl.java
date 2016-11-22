@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import nju.quadra.hms.dataservice.WebsitePromotionDataService;
 import nju.quadra.hms.model.WebsitePromotionType;
 import nju.quadra.hms.po.WebsitePromotionPO;
+import nju.quadra.hms.vo.WebsitePromotionVO;
 
 public class WebsitePromotionDataServiceImpl implements WebsitePromotionDataService{
 
@@ -33,6 +34,17 @@ public class WebsitePromotionDataServiceImpl implements WebsitePromotionDataServ
 	        }
 		 return result;
 	    }
+
+	@Override
+	public WebsitePromotionPO getById(int id) throws Exception{
+		PreparedStatement pst = MySQLManager.getConnection()
+				.prepareStatement("SELECT * FROM `websitepromotion` WHERE `id` = ?");
+		pst.setInt(1, id);
+		ResultSet rs = pst.executeQuery();
+        rs.next();
+        WebsitePromotionPO po = convertToSingle(rs);
+		return po;
+	}
 
 	@Override
 	public void insert(WebsitePromotionPO po) throws Exception{
@@ -70,6 +82,19 @@ public class WebsitePromotionDataServiceImpl implements WebsitePromotionDataServ
 		delete(po);
 		// Then insert it again
 		insert(po);
+	}
+
+	private WebsitePromotionPO convertToSingle(ResultSet rs) throws Exception {
+        return new WebsitePromotionPO(
+				rs.getInt("id"),
+				rs.getString("name"),
+				WebsitePromotionType.getById(rs.getInt("type")),
+				rs.getDate("starttime"),
+				rs.getDate("endtime"),
+				rs.getDouble("promotion"),
+				rs.getInt("areaid"),
+				rs.getString("memberlevel")
+		);
 	}
 
 }

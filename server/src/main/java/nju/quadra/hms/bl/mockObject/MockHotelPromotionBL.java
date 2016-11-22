@@ -32,7 +32,7 @@ public class MockHotelPromotionBL implements HotelPromotionBLService {
     }
 
     @Override
-    public ResultMessage modify(int promotionId, HotelPromotionVO vo) {
+    public ResultMessage modify(HotelPromotionVO vo) {
         return new ResultMessage(ResultMessage.RESULT_SUCCESS);
     }
 }

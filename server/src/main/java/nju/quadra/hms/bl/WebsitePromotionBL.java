@@ -3,6 +3,7 @@ package nju.quadra.hms.bl;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import nju.quadra.hms.blservice.promotionBL.WebsitePromotionBLService;
+import nju.quadra.hms.data.mysql.WebsitePromotionDataServiceImpl;
 import nju.quadra.hms.dataservice.WebsitePromotionDataService;
 import nju.quadra.hms.model.ResultMessage;
 import nju.quadra.hms.po.WebsitePromotionPO;
@@ -13,26 +14,60 @@ import java.util.ArrayList;
 /**
  * Created by RaUkonn on 2016/11/21.
  */
-//todo:空方法
 public class WebsitePromotionBL implements WebsitePromotionBLService {
+    WebsitePromotionDataService websitePromotionDataService;
+
+    public WebsitePromotionBL() {
+        websitePromotionDataService = new WebsitePromotionDataServiceImpl();
+    }
+
     @Override
     public ArrayList<WebsitePromotionVO> get() {
-        return null;
+        ArrayList<WebsitePromotionVO> voarr = new ArrayList<>();
+        try {
+            ArrayList<WebsitePromotionPO> poarr = websitePromotionDataService.getAll();
+            for(WebsitePromotionPO po: poarr) voarr.add(WebsitePromotionBL.toVO(po));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return voarr;
     }
 
     @Override
     public ResultMessage add(WebsitePromotionVO vo) {
-        return null;
+        WebsitePromotionPO po = WebsitePromotionBL.toPO(vo);
+        try {
+            websitePromotionDataService.insert(po);
+            return new ResultMessage(ResultMessage.RESULT_SUCCESS);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResultMessage(ResultMessage.RESULT_DB_ERROR);
+        }
     }
 
     @Override
     public ResultMessage delete(int promotionId) {
-        return null;
+        try {
+            WebsitePromotionPO po = websitePromotionDataService.getById(promotionId);
+            websitePromotionDataService.delete(po);
+            return new ResultMessage(ResultMessage.RESULT_SUCCESS);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResultMessage(ResultMessage.RESULT_DB_ERROR);
+        }
     }
 
     @Override
-    public ResultMessage modify(int promotionId, WebsitePromotionVO vo) {
-        return null;
+    public ResultMessage modify(WebsitePromotionVO vo) {
+        WebsitePromotionPO po = WebsitePromotionBL.toPO(vo);
+        try {
+            websitePromotionDataService.update(po);
+            return new ResultMessage(ResultMessage.RESULT_SUCCESS);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResultMessage(ResultMessage.RESULT_DB_ERROR);
+        }
     }
 
     public static WebsitePromotionVO toVO(WebsitePromotionPO po) {

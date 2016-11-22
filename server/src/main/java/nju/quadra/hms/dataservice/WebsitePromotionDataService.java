@@ -10,6 +10,8 @@ import java.util.ArrayList;
 public interface WebsitePromotionDataService {
     ArrayList<WebsitePromotionPO> getAll() throws Exception;
 
+    WebsitePromotionPO getById(int id) throws Exception;
+
     void insert(WebsitePromotionPO po) throws Exception;
 
     void delete(WebsitePromotionPO po) throws Exception;

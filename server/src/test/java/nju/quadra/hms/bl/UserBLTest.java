@@ -49,7 +49,7 @@ public class UserBLTest {
         for (UserVO vo : voarr) {
             if (vo.username.equals("TEST|username1")) {
                 b1 = true;
-            } else if (vo.username.equals("TEST|username1")) {
+            } else if (vo.username.equals("TEST|username2")) {
                 b2 = true;
             }
         }

@@ -47,6 +47,7 @@ public class OrderDataServiceImpl implements OrderDataService {
                 .prepareStatement("SELECT * FROM `orders` WHERE `id` = ?");
         pst.setInt(1, id);
         ResultSet rs = pst.executeQuery();
+        rs.next();
         return convertToSingle(rs);
     }
 

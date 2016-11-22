@@ -11,9 +11,10 @@ import java.util.ArrayList;
 public interface HotelPromotionBLService {
     ArrayList<HotelPromotionVO> get(int hotelId);
 
+
     ResultMessage add(HotelPromotionVO vo);
 
     ResultMessage delete(int promotionId);
 
-    ResultMessage modify(int promotionId, HotelPromotionVO vo);
+    ResultMessage modify(HotelPromotionVO vo);
 }

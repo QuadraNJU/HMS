@@ -15,5 +15,5 @@ public interface WebsitePromotionBLService {
 
     ResultMessage delete(int promotionId);
 
-    ResultMessage modify(int promotionId, WebsitePromotionVO vo);
+    ResultMessage modify(WebsitePromotionVO vo);
 }

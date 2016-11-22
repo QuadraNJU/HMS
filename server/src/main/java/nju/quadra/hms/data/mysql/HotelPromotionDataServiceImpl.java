@@ -17,23 +17,25 @@ public class HotelPromotionDataServiceImpl implements HotelPromotionDataService{
 	public ArrayList<HotelPromotionPO> get(int hotelId) throws Exception{
 		 ArrayList<HotelPromotionPO> result = new ArrayList<>();
 		 PreparedStatement pst = MySQLManager.getConnection()
-	                .prepareStatement("SELECT * FROM `hotelpromotion`");
+	                .prepareStatement("SELECT * FROM `hotelpromotion` WHERE `hotelid` = ?");
+		 pst.setInt(1, hotelId);
 		 ResultSet rs = pst.executeQuery();
 		 while(rs.next()){
-			 HotelPromotionPO po = new HotelPromotionPO(
-					 rs.getInt("id"),
-					 rs.getInt("hotelid"),
-					 rs.getString("name"),
-					 HotelPromotionType.getById(rs.getInt("type")),
-					 rs.getDate("starttime"),
-					 rs.getDate("endtime"),
-					 rs.getDouble("promotion"),
-					 rs.getString("cooperation")
-					 );
+			 HotelPromotionPO po = convertToSingle(rs);
 			 result.add(po);
 	        }
 		 return result;
-	    }
+	}
+
+	@Override
+	public HotelPromotionPO getById(int promotionId) throws Exception{
+		PreparedStatement pst = MySQLManager.getConnection()
+				.prepareStatement("SELECT * FROM `hotelpromotion` WHERE `id` = ?");
+		pst.setInt(1, promotionId);
+		ResultSet rs = pst.executeQuery();
+		rs.next();
+		return convertToSingle(rs);
+	}
 
 	@Override
 	public void insert(HotelPromotionPO po) throws Exception {
@@ -73,4 +75,16 @@ public class HotelPromotionDataServiceImpl implements HotelPromotionDataService{
 		insert(po);
 	}
 
+	private HotelPromotionPO convertToSingle(ResultSet rs) throws Exception{
+		return new HotelPromotionPO(
+				rs.getInt("id"),
+				rs.getInt("hotelid"),
+				rs.getString("name"),
+				HotelPromotionType.getById(rs.getInt("type")),
+				rs.getDate("starttime"),
+				rs.getDate("endtime"),
+				rs.getDouble("promotion"),
+				rs.getString("cooperation")
+		);
+	}
 }
