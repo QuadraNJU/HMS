@@ -21,11 +21,11 @@ public class CustomerBLTest {
 
     @Before
     public void init() {
-        customerBL = new CustomerBL();
+        customerBL = new MockCustomerBL();
     }
 
     @Test
-    public void test1_GetInfo() {
+    public void testGetInfo() {
         String username = "quadra";
         assertNotNull(customerBL.getInfo(username));
     }
