@@ -24,7 +24,7 @@ public class UserBL implements UserBLService {
     public ResultMessage login(String username, String password) {
         try {
             UserPO po = userDataService.get(username);
-            if (password.equals(po.getPassword())) {
+            if (po != null && password.equals(po.getPassword())) {
                 return new ResultMessage(ResultMessage.RESULT_SUCCESS);
             }
         } catch (Exception e) {
