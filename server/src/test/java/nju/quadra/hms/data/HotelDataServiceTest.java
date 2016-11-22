@@ -11,6 +11,7 @@ import org.junit.runners.MethodSorters;
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 /**
@@ -45,11 +46,10 @@ public class HotelDataServiceTest {
     public void test2_GetAll() {
         try {
             ArrayList<HotelPO> poarr = hotelDataService.getAll();
-            assertEquals("TEST|name", poarr.get(0).getName());
-            assertEquals("TEST|address1", poarr.get(1).getAddress());
-            assertEquals("TEST|description2", poarr.get(2).getDescription());
+            assertTrue(poarr.size() >= 3);
         } catch (Exception e) {
             e.printStackTrace();
+            fail();
         }
     }
 
@@ -61,6 +61,7 @@ public class HotelDataServiceTest {
             assertEquals(poarr.get(0).getAddress(), po.getAddress());
         } catch (Exception e) {
             e.printStackTrace();
+            fail();
         }
     }
 
@@ -90,6 +91,7 @@ public class HotelDataServiceTest {
             assertEquals("TEST|name2", poarr.get(2).getName());
         } catch (Exception e) {
             e.printStackTrace();
+            fail();
         }
     }
 
@@ -102,6 +104,7 @@ public class HotelDataServiceTest {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            fail();
         }
     }
 }

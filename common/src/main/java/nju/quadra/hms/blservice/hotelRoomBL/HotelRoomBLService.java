@@ -15,5 +15,5 @@ public interface HotelRoomBLService {
 
     ResultMessage delete(int roomId);
 
-    ResultMessage modify(int roomId, HotelRoomVO vo);
+    ResultMessage modify(HotelRoomVO vo);
 }

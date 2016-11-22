@@ -29,7 +29,7 @@ public class MockHotelRoomBL implements HotelRoomBLService {
     }
 
     @Override
-    public ResultMessage modify(int roomId, HotelRoomVO vo) {
+    public ResultMessage modify(HotelRoomVO vo) {
         return new ResultMessage(ResultMessage.RESULT_SUCCESS);
     }
 }
