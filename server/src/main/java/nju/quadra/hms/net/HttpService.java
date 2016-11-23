@@ -40,6 +40,8 @@ public class HttpService {
      * Stops the HTTP server.
      */
     public void stop() {
-        httpServer.stop(0);
+        if (httpServer != null) {
+            httpServer.stop(0);
+        }
     }
 }
