@@ -14,19 +14,24 @@
             <Image url="@../../../../../../../../../../../../../../Users/Lenovo/Desktop/大作业/背景图/eso1242a.jpg" />
          </image>
       </ImageView>
-      <Pane layoutY="558.0" prefHeight="40.0" prefWidth="900.0">
+      <Pane layoutY="570.0" prefHeight="30.0" prefWidth="900.0">
          <children>
             <Label layoutX="12.0" layoutY="9.0" text="酒店管理系统v1.0 ©2016 Quadra." textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font></Label>
+            <Label layoutX="856.0" layoutY="9.0" text="关于" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
          </children></Pane>
       <Button layoutX="52.0" layoutY="508.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="88.0" text="退出登录">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Pane layoutX="181.0" layoutY="113.0" prefHeight="444.0" prefWidth="719.0" />
+      <Pane layoutX="200.0" layoutY="100.0" prefHeight="470.0" prefWidth="700.0" />
       <Label layoutX="741.0" layoutY="61.0" text="domouser" textFill="WHITE">
          <font>
             <Font size="14.0" />
