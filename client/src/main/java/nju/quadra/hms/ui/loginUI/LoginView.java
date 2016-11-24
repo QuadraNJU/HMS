@@ -8,6 +8,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import nju.quadra.hms.controller.UserController;
+import nju.quadra.hms.model.ResultMessage;
 import nju.quadra.hms.ui.common.Dialogs;
 
 import java.net.URL;
@@ -17,8 +18,9 @@ import java.net.URL;
  */
 public class LoginView extends Stage {
 
+    private UserController controller = new UserController();
+
     public LoginView() throws Exception {
-        URL test = getClass().getResource(".");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
         loader.setController(this);
         Parent root = loader.load();
@@ -31,7 +33,19 @@ public class LoginView extends Stage {
 
     @FXML
     protected void onLoginAction() {
-        Dialogs.showError(new UserController().login(textUsername.getText(), textPassword.getText()).message);
+        String username = textUsername.getText().trim();
+        String password = textPassword.getText();
+        if (username.isEmpty() || password.isEmpty()) {
+            Dialogs.showError("请输入用户名和密码！");
+            return;
+        }
+
+        ResultMessage result = controller.login(username, password);
+        if (result.result == ResultMessage.RESULT_SUCCESS) {
+            Dialogs.showInfo("登录成功");
+        } else {
+            Dialogs.showError("登录失败：" + result.message);
+        }
     }
 
 }
