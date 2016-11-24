@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="41.0" layoutY="18.0" prefHeight="39.0" prefWidth="137.0" text="信用记录">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <ComboBox layoutX="41.0" layoutY="71.0" prefWidth="150.0" promptText="选择订单状态" />
+      <ComboBox layoutX="200.0" layoutY="71.0" prefWidth="150.0" promptText="选择日期范围" />
+      <VBox layoutX="41.0" layoutY="111.0" prefHeight="200.0" prefWidth="590.0" />
+   </children>
+</Pane>

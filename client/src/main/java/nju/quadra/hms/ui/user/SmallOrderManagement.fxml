@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="80.0" prefWidth="590.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="40.0" layoutY="14.0" text="2016.11.9 - 2016.11.12">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+      <Label layoutX="250.0" layoutY="14.0" text="¥88.00">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="343.0" layoutY="14.0" text="共2人">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="509.0" layoutY="14.0" text="未执行">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="40.0" layoutY="39.0" text="南京抵抗军会议大酒店，大床房，1间">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Button layoutX="493.0" layoutY="39.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="76.0" text="详情">
+         <font>
+            <Font size="16.0" />
+         </font></Button>
+      <Button layoutX="405.0" layoutY="39.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="76.0" text="撤销">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+   </children>
+</Pane>
