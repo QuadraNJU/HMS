@@ -12,7 +12,7 @@ public class MySQLManager {
     private static Connection conn;
 
     public static Connection getConnection() throws SQLException, ClassNotFoundException {
-        if (conn == null || conn.isClosed()) {
+        if (conn == null || conn.isClosed() || !conn.isValid(5)) {
             // Open a new connection
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(
