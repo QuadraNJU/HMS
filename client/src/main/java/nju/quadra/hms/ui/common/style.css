@@ -1,0 +1,13 @@
+.hyperlink,
+.hyperlink:visited {
+    -fx-text-fill: #30a5dd;
+}
+
+.btn-r {
+    -fx-background-radius: 5px;
+    -fx-text-fill: white;
+}
+
+.btn-blue {
+    -fx-background-color: #1e65bb;
+}

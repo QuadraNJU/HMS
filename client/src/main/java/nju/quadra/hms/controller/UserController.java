@@ -4,6 +4,7 @@ import com.google.gson.reflect.TypeToken;
 import nju.quadra.hms.blservice.userBL.UserBLService;
 import nju.quadra.hms.model.ResultMessage;
 import nju.quadra.hms.net.HttpRemote;
+import nju.quadra.hms.net.PassHash;
 import nju.quadra.hms.vo.UserVO;
 
 import java.util.ArrayList;
@@ -21,8 +22,9 @@ public class UserController implements UserBLService {
 
     @Override
     public ResultMessage login(String username, String password) {
+        String encryptedPassword = PassHash.hash(password);
         try {
-            return remote.invoke(ResultMessage.class, "login", username, password);
+            return remote.invoke(ResultMessage.class, "login", username, encryptedPassword);
         } catch (Exception e) {
             e.printStackTrace();
             return new ResultMessage(ResultMessage.RESULT_NET_ERROR);
