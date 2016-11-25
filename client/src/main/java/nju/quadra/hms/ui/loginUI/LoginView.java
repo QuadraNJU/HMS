@@ -4,33 +4,37 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import nju.quadra.hms.controller.UserController;
 import nju.quadra.hms.model.ResultMessage;
 import nju.quadra.hms.ui.common.Dialogs;
-
-import java.net.URL;
 
 /**
  * Created by adn55 on 2016/11/24.
  */
 public class LoginView extends Stage {
 
+    private Scene scene;
     private UserController controller = new UserController();
 
     public LoginView() throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
         loader.setController(this);
         Parent root = loader.load();
-        this.setScene(new Scene(root));
+        scene = new Scene(root);
+        this.setScene(scene);
         this.setResizable(false);
+        this.initStyle(StageStyle.UNDECORATED);
     }
 
     @FXML
     TextField textUsername, textPassword;
 
+    /**
+     * 处理登录按钮事件
+     */
     @FXML
     protected void onLoginAction() {
         String username = textUsername.getText().trim();
@@ -46,6 +50,15 @@ public class LoginView extends Stage {
         } else {
             Dialogs.showError("登录失败：" + result.message);
         }
+    }
+
+    /**
+     * 处理网络设置链接事件
+     */
+    @FXML
+    protected void onNetworkSettingsAction() throws Exception {
+        NetworkSettingsView view = new NetworkSettingsView();
+        view.show();
     }
 
 }
