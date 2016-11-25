@@ -10,6 +10,9 @@ import javafx.stage.StageStyle;
 import nju.quadra.hms.controller.UserController;
 import nju.quadra.hms.model.ResultMessage;
 import nju.quadra.hms.ui.common.Dialogs;
+import nju.quadra.hms.ui.mainUI.MainView;
+
+import java.io.IOException;
 
 /**
  * Created by adn55 on 2016/11/24.
@@ -36,7 +39,7 @@ public class LoginView extends Stage {
      * 处理登录按钮事件
      */
     @FXML
-    protected void onLoginAction() {
+    protected void onLoginAction() throws IOException {
         String username = textUsername.getText().trim();
         String password = textPassword.getText();
         if (username.isEmpty() || password.isEmpty()) {
@@ -46,7 +49,9 @@ public class LoginView extends Stage {
 
         ResultMessage result = controller.login(username, password);
         if (result.result == ResultMessage.RESULT_SUCCESS) {
-            Dialogs.showInfo("登录成功");
+            MainView main = new MainView();
+            main.show();
+            this.close();
         } else {
             Dialogs.showError("登录失败：" + result.message);
         }

@@ -68,10 +68,14 @@ public class UserBL implements UserBLService {
     public ResultMessage add(UserVO vo) {
         UserPO po = UserBL.toPO(vo);
         try {
+            if (vo.username.isEmpty() || vo.password.isEmpty() || vo.contact.isEmpty() || vo.name.isEmpty()) {
+                return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "用户信息不完整，请重新输入");
+            }
+            if (userDataService.get(vo.username) != null) {
+                return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "用户名已存在，请重新输入");
+            }
             userDataService.insert(po);
             return new ResultMessage(ResultMessage.RESULT_SUCCESS);
-        } catch (SQLIntegrityConstraintViolationException e) {
-            return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "用户名已存在，请重新输入");
         } catch (Exception e) {
             e.printStackTrace();
             return new ResultMessage(ResultMessage.RESULT_DB_ERROR);
