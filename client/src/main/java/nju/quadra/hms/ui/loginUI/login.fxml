@@ -32,7 +32,7 @@
             <Font size="14.0" />
         </font>
     </CheckBox>
-    <Hyperlink layoutX="240.0" layoutY="409.0" text="新用户注册">
+    <Hyperlink layoutX="240.0" layoutY="409.0" onAction="#onRegisterAction" text="新用户注册">
         <font>
             <Font size="14.0" />
         </font>

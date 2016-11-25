@@ -30,14 +30,14 @@ public class CustomerBLTest {
     public void init() {
         customerBLService = new CustomerBL();
         userBLService = new UserBL();
-        UserVO vo = new UserVO("TEST|username1", "TEST|passwordEncrypted1", "TEST|name1", "TEST|contact1", UserType.CUSTOMER, MemberType.COMPANY, new Date(1996 - 1900, 11 - 1, 21 + 1), "TEST|companyname1");
+        UserVO vo = new UserVO("TEST|username1", "TEST|passwordEncrypted1", "TEST|name1", "TEST|contact1", UserType.CUSTOMER);
         userBLService.add(vo);
     }
 
     @Test
-    public void test1_GetInfo() {
+    public void test1_GetMemberInfo() {
         String username = "TEST|username1";
-        assertNotNull(customerBLService.getInfo(username));
+        assertNotNull(customerBLService.getMemberInfo(username));
     }
 
     @Test

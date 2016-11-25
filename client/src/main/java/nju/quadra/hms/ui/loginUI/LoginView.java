@@ -53,6 +53,15 @@ public class LoginView extends Stage {
     }
 
     /**
+     * 处理新用户注册链接事件
+     */
+    @FXML
+    protected void onRegisterAction() throws Exception {
+        RegisterView view = new RegisterView();
+        view.show();
+    }
+
+    /**
      * 处理网络设置链接事件
      */
     @FXML

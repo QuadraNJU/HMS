@@ -36,8 +36,8 @@ public class UserBLTest {
 
     @Test
     public void test2_add() {
-        UserVO vo1 = new UserVO("TEST|username1", "TEST|passwordEncrypted1", "TEST|name1", "TEST|contact1", UserType.CUSTOMER, MemberType.COMPANY, new Date(1996 - 1900, 11 - 1, 21 + 1), "TEST|companyname1");
-        UserVO vo2 = new UserVO("TEST|username2", "TEST|passwordEncrypted2", "TEST|name2", "TEST|contact2", UserType.HOTEL_STAFF, MemberType.COMPANY, new Date(1994 - 1900, 12 - 1, 07 + 1), "TEST|companyname2");
+        UserVO vo1 = new UserVO("TEST|username1", "TEST|passwordEncrypted1", "TEST|name1", "TEST|contact1", UserType.CUSTOMER);
+        UserVO vo2 = new UserVO("TEST|username2", "TEST|passwordEncrypted2", "TEST|name2", "TEST|contact2", UserType.HOTEL_STAFF);
         assertEquals(ResultMessage.RESULT_SUCCESS, userBL.add(vo1).result);
         assertEquals(ResultMessage.RESULT_SUCCESS, userBL.add(vo2).result);
     }
@@ -64,7 +64,7 @@ public class UserBLTest {
 
     @Test
     public void test5_modify() {
-        UserVO vo2 = new UserVO("TEST|username2", "TEST|passwordEncrypted2", "TEST|name2AfterModified", "TEST|contact2", UserType.HOTEL_STAFF, MemberType.COMPANY, new Date(1994 - 1900, 12 - 1, 07 + 1), "TEST|companyname2");
+        UserVO vo2 = new UserVO("TEST|username2", "TEST|passwordEncrypted2", "TEST|name2AfterModified", "TEST|contact2", UserType.HOTEL_STAFF);
         ResultMessage resultMessage = userBL.modify(vo2);
         UserVO vo2Modified = userBL.get("TEST|username2");
         assertEquals(ResultMessage.RESULT_SUCCESS, resultMessage.result);
@@ -73,7 +73,7 @@ public class UserBLTest {
 
     @Test
     public void test6_addDuplicated() {
-        UserVO vo1 = new UserVO("TEST|username1", "TEST|passwordEncrypted1", "TEST|name1", "TEST|contact1", UserType.CUSTOMER, MemberType.COMPANY, new Date(1996 - 1900, 11 - 1, 21 + 1), "TEST|companyname1");
+        UserVO vo1 = new UserVO("TEST|username1", "TEST|passwordEncrypted1", "TEST|name1", "TEST|contact1", UserType.CUSTOMER);
         ResultMessage resultMessage = userBL.add(vo1);
         assertNotEquals(ResultMessage.RESULT_SUCCESS, resultMessage.result);
     }
