@@ -8,6 +8,10 @@
     -fx-text-fill: white;
 }
 
+.btn-r:hover {
+    -fx-cursor: hand;
+}
+
 .btn-blue {
     -fx-background-color: #1e65bb;
 }

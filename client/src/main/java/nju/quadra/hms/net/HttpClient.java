@@ -1,5 +1,7 @@
 package nju.quadra.hms.net;
 
+import nju.quadra.hms.util.ClientConfigUtil;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -12,18 +14,8 @@ import java.net.URL;
  */
 public class HttpClient {
 
-    private static String server = "http://localhost:8081";
-
-    public static String getServer() {
-        return server;
-    }
-
-    public static void setServer(String server) {
-        HttpClient.server = server;
-    }
-
     public static String get(String path) throws IOException {
-        HttpURLConnection conn = (HttpURLConnection) new URL(server + path).openConnection();
+        HttpURLConnection conn = (HttpURLConnection) new URL(ClientConfigUtil.getConfig().getServerHost() + path).openConnection();
         conn.setConnectTimeout(5000);
         conn.setReadTimeout(5000);
 
@@ -33,12 +25,12 @@ public class HttpClient {
     }
 
     public static String post(String path, String payload) throws IOException {
-        HttpURLConnection conn = (HttpURLConnection) new URL(server + path).openConnection();
+        HttpURLConnection conn = (HttpURLConnection) new URL(ClientConfigUtil.getConfig().getServerHost() + path).openConnection();
         conn.setConnectTimeout(5000);
         conn.setReadTimeout(5000);
         conn.setDoOutput(true);
         OutputStream os = conn.getOutputStream();
-        os.write(payload.getBytes("utf-8"));
+        os.write(payload.getBytes("UTF-8"));
         os.close();
 
         String resp = getStringFromInputStream(conn.getInputStream());

@@ -3,8 +3,11 @@ package nju.quadra.hms.bl;
 import nju.quadra.hms.blservice.userBL.UserBLService;
 import nju.quadra.hms.data.mysql.UserDataServiceImpl;
 import nju.quadra.hms.dataservice.UserDataService;
+import nju.quadra.hms.model.MemberType;
 import nju.quadra.hms.model.ResultMessage;
+import nju.quadra.hms.model.UserType;
 import nju.quadra.hms.po.UserPO;
+import nju.quadra.hms.vo.MemberVO;
 import nju.quadra.hms.vo.UserVO;
 
 import java.sql.SQLIntegrityConstraintViolationException;
@@ -65,10 +68,14 @@ public class UserBL implements UserBLService {
     public ResultMessage add(UserVO vo) {
         UserPO po = UserBL.toPO(vo);
         try {
+            if (vo.username.isEmpty() || vo.password.isEmpty() || vo.contact.isEmpty() || vo.name.isEmpty()) {
+                return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "用户信息不完整，请重新输入");
+            }
+            if (userDataService.get(vo.username) != null) {
+                return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "用户名已存在，请重新输入");
+            }
             userDataService.insert(po);
             return new ResultMessage(ResultMessage.RESULT_SUCCESS);
-        } catch (SQLIntegrityConstraintViolationException e) {
-            return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "用户名已存在，请重新输入");
         } catch (Exception e) {
             e.printStackTrace();
             return new ResultMessage(ResultMessage.RESULT_DB_ERROR);
@@ -100,11 +107,16 @@ public class UserBL implements UserBLService {
     }
 
     public static UserVO toVO(UserPO po) {
-        return new UserVO(po.getUsername(), po.getPassword(), po.getName(), po.getContact(), po.getType(), po.getMemberType(), po.getBirthday(), po.getCompanyName());
-
+        return new UserVO(po.getUsername(), po.getPassword(), po.getName(), po.getContact(), po.getType());
     }
 
     public static UserPO toPO(UserVO vo) {
-        return new UserPO(vo.username, vo.password, vo.name, vo.contact, vo.type, vo.memberType, vo.birthday, vo.companyName);
+        if (vo.type == UserType.CUSTOMER) {
+            MemberVO memberVO = new CustomerBL().getMemberInfo(vo.username);
+            if (memberVO != null) {
+                return new UserPO(vo.username, vo.password, vo.name, vo.contact, vo.type, memberVO.memberType, memberVO.birthday, memberVO.companyName);
+            }
+        }
+        return new UserPO(vo.username, vo.password, vo.name, vo.contact, vo.type, MemberType.NONE, null, null);
     }
 }

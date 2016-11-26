@@ -4,25 +4,38 @@ import nju.quadra.hms.blservice.customerBL.CustomerBLService;
 import nju.quadra.hms.blservice.userBL.UserBLService;
 import nju.quadra.hms.data.mysql.UserDataServiceImpl;
 import nju.quadra.hms.dataservice.UserDataService;
+import nju.quadra.hms.model.MemberType;
 import nju.quadra.hms.model.ResultMessage;
+import nju.quadra.hms.model.UserType;
 import nju.quadra.hms.po.HotelPO;
 import nju.quadra.hms.po.UserPO;
 import nju.quadra.hms.vo.HotelVO;
 import nju.quadra.hms.vo.MemberVO;
 import nju.quadra.hms.vo.UserVO;
 
-public class CustomerBL implements CustomerBLService{
-    UserBLService userBL;
+public class CustomerBL implements CustomerBLService {
+
+    private UserBLService userBL;
+	private UserDataService userDataService;
     
     public CustomerBL() {
-       userBL = new UserBL();;
+        userBL = new UserBL();;
+		userDataService = new UserDataServiceImpl();
 	}
-    
+
 	@Override
-	public UserVO getInfo(String username) {
+	public ResultMessage register(UserVO vo) {
+		vo.type = UserType.CUSTOMER;
+		return new UserBL().add(vo);
+	}
+
+	@Override
+	public MemberVO getMemberInfo(String username) {
 		try {
-			UserVO vo = userBL.get(username);
-			return vo;
+			UserPO po = userDataService.get(username);
+			if (po != null) {
+				return new MemberVO(po.getUsername(), po.getMemberType(), po.getBirthday(), po.getCompanyName());
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -43,18 +56,13 @@ public class CustomerBL implements CustomerBLService{
 	}
     	
 	public static UserVO toVO(UserPO po) {
-		return new UserVO(po.getUsername(), po.getPassword(), po.getName(), 
-				po.getContact(), po.getType(), po.getMemberType(), po.getBirthday(), po.getCompanyName());
+		return new UserVO(po.getUsername(), po.getPassword(), po.getName(), po.getContact(), po.getType());
 	}
 	
 	public static UserPO toPO(MemberVO vo) {
-		UserBL userBL =new UserBL();
-		UserVO user = userBL.get(vo.username);
-		user.birthday = vo.birthday;
-		user.companyName = vo.companyName;
-		user.companyName = vo.companyName;
+		UserVO user = new UserBL().get(vo.username);
 		return new UserPO(user.username, user.password, user.name, user.contact,
-				user.type, user.memberType, user.birthday, user.companyName);
+				user.type, vo.memberType, vo.birthday, vo.companyName);
 	}
 	
 }

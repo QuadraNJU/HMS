@@ -30,27 +30,20 @@ public class UserVO {
      * 用户类型
      */
     public UserType type;
-    /**
-     * 会员类型
-     */
-    public MemberType memberType;
-    /**
-     * 生日
-     */
-    public Date birthday;
-    /**
-     * 企业名称
-     */
-    public String companyName;
 
-    public UserVO(String username, String password, String name, String contact, UserType type, MemberType memberType, Date birthday, String companyName) {
+    public UserVO(String username, String password, String name, String contact, UserType type) {
         this.username = username;
         this.password = password;
         this.name = name;
         this.contact = contact;
         this.type = type;
-        this.memberType = memberType;
-        this.birthday = birthday;
-        this.companyName = companyName;
+    }
+
+    public UserVO(String username, String password, String name, String contact) {
+        this.username = username;
+        this.password = password;
+        this.name = name;
+        this.contact = contact;
+        this.type = UserType.CUSTOMER;
     }
 }

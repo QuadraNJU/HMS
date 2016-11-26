@@ -37,4 +37,12 @@ public class ResultMessage {
         this.message = e.getClass().getSimpleName() + ": " + e.getLocalizedMessage();
     }
 
+    @Override
+    public String toString() {
+        if (result == RESULT_SUCCESS) {
+            return "Result: Success, Message: " + message;
+        } else {
+            return "Result: Error(code=" + result + "), Message: " + message;
+        }
+    }
 }

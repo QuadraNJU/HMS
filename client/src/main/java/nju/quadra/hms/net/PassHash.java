@@ -24,7 +24,7 @@ public class PassHash {
         // get bytes from original string
         byte[] bytes;
         try {
-            bytes = digest.digest(original.getBytes("utf-8"));
+            bytes = digest.digest(original.getBytes("UTF-8"));
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
             return "";

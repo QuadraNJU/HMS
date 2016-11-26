@@ -7,6 +7,7 @@ import nju.quadra.hms.po.UserPO;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Types;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
@@ -70,7 +71,11 @@ public class UserDataServiceImpl implements UserDataService {
         pst.setString(4, po.getContact());
         pst.setInt(5, po.getType().ordinal());
         pst.setInt(6, po.getMemberType().ordinal());
-        pst.setString(7, new SimpleDateFormat("yyyy-MM-dd").format(po.getBirthday().getTime()));
+        if (po.getBirthday() != null) {
+            pst.setString(7, new SimpleDateFormat("yyyy-MM-dd").format(po.getBirthday().getTime()));
+        } else {
+            pst.setNull(7, Types.DATE);
+        }
         pst.setString(8, po.getCompanyName());
         pst.executeUpdate();
     }
