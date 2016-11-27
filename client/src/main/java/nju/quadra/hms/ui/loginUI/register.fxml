@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -45,5 +48,10 @@
                <Font size="18.0" />
            </font>
        </Button>
+      <Hyperlink layoutX="527.0" layoutY="437.0"  onAction="#onExitAction" text="返回">
+          <font>
+              <Font size="15.0" />
+          </font>
+      </Hyperlink>
    </children>
 </Pane>

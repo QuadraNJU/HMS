@@ -11,7 +11,7 @@
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="590.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ComboBox layoutX="14.0" layoutY="14.0" prefHeight="23.0" prefWidth="100.0" promptText="排序条件" />
-      <Button layoutX="371.0" layoutY="14.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="56.0" text="应用" />
+      <Button layoutX="377.0" layoutY="14.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="56.0" text="应用" />
       <ComboBox layoutX="122.0" layoutY="14.0" prefHeight="23.0" prefWidth="100.0" promptText="筛选条件" />
       <CheckBox layoutX="232.0" layoutY="18.0" mnemonicParsing="false" text="只看我预订过的酒店" />
    </children>

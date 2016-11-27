@@ -4,18 +4,25 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import nju.quadra.hms.blservice.orderBL.OrderBLService;
 import nju.quadra.hms.data.mysql.CreditDataServiceImpl;
+import nju.quadra.hms.data.mysql.HotelPromotionDataServiceImpl;
 import nju.quadra.hms.data.mysql.OrderDataServiceImpl;
+import nju.quadra.hms.data.mysql.WebsitePromotionDataServiceImpl;
 import nju.quadra.hms.dataservice.CreditDataService;
+import nju.quadra.hms.dataservice.HotelPromotionDataService;
 import nju.quadra.hms.dataservice.OrderDataService;
+import nju.quadra.hms.dataservice.WebsitePromotionDataService;
 import nju.quadra.hms.model.CreditAction;
 import nju.quadra.hms.model.OrderState;
 import nju.quadra.hms.model.ResultMessage;
 import nju.quadra.hms.po.CreditRecordPO;
+import nju.quadra.hms.po.HotelPromotionPO;
 import nju.quadra.hms.po.OrderPO;
+import nju.quadra.hms.po.WebsitePromotionPO;
 import nju.quadra.hms.vo.*;
 
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 
 /**
@@ -35,27 +42,22 @@ public class OrderBL implements OrderBLService {
      */
     @Override
     public PriceVO getPrice(OrderVO vo) {
-//        WebsitePromotionDataService websitePromotionDataService = new WebsitePromotionDataServiceImpl();
-//        HotelPromotionDataService hotelPromotionDataService = new HotelPromotionDataServiceImpl();
+        WebsitePromotionDataService websitePromotionDataService = new WebsitePromotionDataServiceImpl();
+        HotelPromotionDataService hotelPromotionDataService = new HotelPromotionDataServiceImpl();
         PriceVO result = null;
         try {
-//            ArrayList<WebsitePromotionPO> wppos = websitePromotionDataService.getAll();
-//            Collections.sort(wppos);
-//            WebsitePromotionPO wppo = wppos.get(wppos.size() - 1);
-//            WebsitePromotionVO wpvo = WebsitePromotionBL.toVO(wppo);
-//
-//            ArrayList<HotelPromotionPO> hppos = hotelPromotionDataService.get(vo.hotelId);
-//            Collections.sort(hppos);
-//            HotelPromotionPO hppo = hppos.get(hppos.size() - 1);
-//            HotelPromotionVO hpvo = HotelPromotionBL.toVO(hppo);
-
-            /*TEST*/
-            WebsitePromotionVO wpvo = null;
-            HotelPromotionVO hpvo = null;
             double originalPrice = vo.price;
-//            double finalPrice = originalPrice * wppo.getPromotion() * hppo.getPromotion();
-            double finalPrice = originalPrice;
-            /*TEST*/
+            ArrayList<WebsitePromotionPO> wppos = websitePromotionDataService.getAll();
+            Collections.sort(wppos);
+            WebsitePromotionPO wppo = wppos.get(0);
+            WebsitePromotionVO wpvo = WebsitePromotionBL.toVO(wppo);
+
+            ArrayList<HotelPromotionPO> hppos = hotelPromotionDataService.get(vo.hotelId);
+            Collections.sort(hppos);
+            HotelPromotionPO hppo = hppos.get(0);
+            HotelPromotionVO hpvo = HotelPromotionBL.toVO(hppo);
+
+            double finalPrice = originalPrice * wppo.getPromotion() * hppo.getPromotion();
             result =  new PriceVO(originalPrice, finalPrice, hpvo, wpvo);
         } catch (Exception e) {
             e.printStackTrace();

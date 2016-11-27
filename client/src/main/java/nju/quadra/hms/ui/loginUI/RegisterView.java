@@ -73,4 +73,12 @@ public class RegisterView extends Stage {
         }
     }
 
+    /**
+     * 处理注册界面返回事件
+     */
+    @FXML
+    protected void onExitAction() throws Exception {
+        this.close();
+    }
+
 }

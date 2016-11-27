@@ -20,6 +20,7 @@ public class ClientRunner extends Application {
         ClientConfigUtil.loadFromFile();
         // open Login view
         LoginView loginView = new LoginView();
+
         loginView.show();
     }
 }
