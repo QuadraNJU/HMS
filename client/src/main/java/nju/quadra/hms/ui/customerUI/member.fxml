@@ -2,30 +2,59 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.Font?>
-
-<Pane stylesheets="@../common/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<?import javafx.scene.text.*?>
+<Pane stylesheets="@../common/style.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
     <Label layoutX="45.0" layoutY="25.0" text="会员登记">
         <font>
             <Font size="24.0"/>
         </font>
     </Label>
 
-    <Label layoutX="55.0" layoutY="85.0" text="会员类型"/>
-    <RadioButton fx:id="radioPersonal" layoutX="130.0" layoutY="85.0" mnemonicParsing="false" text="个人会员" onAction="#onRadioAction">
+    <Label layoutX="55.0" layoutY="85.0" text="会员类型">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </Label>
+    <RadioButton fx:id="radioPersonal" layoutX="130.0" layoutY="85.0" mnemonicParsing="false" onAction="#onRadioAction"
+                 text="个人会员">
         <toggleGroup>
             <ToggleGroup fx:id="memberType"/>
         </toggleGroup>
+        <font>
+            <Font size="14.0"/>
+        </font>
     </RadioButton>
-    <RadioButton fx:id="radioCompany" layoutX="250.0" layoutY="85.0" mnemonicParsing="false" text="企业会员"
-                 toggleGroup="$memberType" onAction="#onRadioAction"/>
+    <RadioButton fx:id="radioCompany" layoutX="250.0" layoutY="85.0" mnemonicParsing="false" onAction="#onRadioAction"
+                 text="企业会员" toggleGroup="$memberType">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </RadioButton>
 
-    <Label fx:id="labelBirthday" visible="false" layoutX="55.0" layoutY="130.0" text="生日"/>
-    <DatePicker fx:id="dateBirthday" visible="false" layoutX="130.0" layoutY="125.0" prefHeight="30.0" prefWidth="250.0"/>
+    <Label fx:id="labelBirthday" layoutX="55.0" layoutY="130.0" text="生日" visible="false">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </Label>
+    <DatePicker fx:id="dateBirthday" layoutX="130.0" layoutY="125.0" prefHeight="30.0" prefWidth="250.0"
+                visible="false"/>
 
-    <Label fx:id="labelCompanyName" visible="false" layoutX="55.0" layoutY="130.0" text="企业名称"/>
-    <TextField fx:id="editCompanyName" visible="false" layoutX="130.0" layoutY="125.0" prefWidth="250.0" promptText="企业名称"/>
+    <Label fx:id="labelCompanyName" layoutX="55.0" layoutY="130.0" text="企业名称" visible="false">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </Label>
+    <TextField fx:id="editCompanyName" layoutX="130.0" layoutY="125.0" prefWidth="250.0" promptText="企业名称"
+               visible="false">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </TextField>
 
-    <Button fx:id="btnSubmit" layoutX="55.0" layoutY="188.0" prefHeight="30.0" prefWidth="90.0"
-            styleClass="btn-r,btn-blue" text="提交" onAction="#onSubmitAction"/>
+    <Button fx:id="btnSubmit" layoutX="55.0" layoutY="188.0" onAction="#onSubmitAction" prefHeight="30.0"
+            prefWidth="90.0" styleClass="btn-r,btn-blue" text="提交">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </Button>
 </Pane>

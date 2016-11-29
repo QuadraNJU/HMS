@@ -2,29 +2,59 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.Font?>
-
-<Pane stylesheets="@../common/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<?import javafx.scene.text.*?>
+<Pane stylesheets="@../common/style.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
     <Label layoutX="45.0" layoutY="25.0" text="个人信息">
         <font>
             <Font size="24.0"/>
         </font>
     </Label>
 
-    <Label layoutX="55.0" layoutY="85.0" text="姓名"/>
-    <TextField fx:id="editName" editable="false" layoutX="130.0" layoutY="80.0" prefWidth="250.0" promptText="姓名"/>
+    <Label layoutX="55.0" layoutY="85.0" text="姓名">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </Label>
+    <TextField fx:id="editName" editable="false" layoutX="130.0" layoutY="80.0" prefWidth="250.0" promptText="姓名">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </TextField>
 
-    <Label layoutX="55.0" layoutY="130.0" text="联系方式"/>
-    <TextField fx:id="editContact" editable="false" layoutX="130.0" layoutY="125.0" prefWidth="250.0"
-               promptText="联系方式"/>
+    <Label layoutX="55.0" layoutY="130.0" text="联系方式">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </Label>
+    <TextField fx:id="editContact" editable="false" layoutX="130.0" layoutY="125.0" prefWidth="250.0" promptText="联系方式">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </TextField>
 
-    <Label layoutX="55.0" layoutY="175.0" text="信用值"/>
+    <Label layoutX="55.0" layoutY="175.0" text="信用值">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </Label>
     <TextField fx:id="editCredit" disable="true" editable="false" layoutX="130.0" layoutY="170.0" prefWidth="250.0"
-               promptText="信用值"/>
+               promptText="信用值">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </TextField>
 
     <Button fx:id="btnModify" layoutX="55.0" layoutY="230.0" onAction="#onModifyAction" prefHeight="30.0"
-            prefWidth="90.0" styleClass="btn-r,btn-blue" text="修改"/>
+            prefWidth="90.0" styleClass="btn-r,btn-blue" text="修改">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </Button>
 
     <Button fx:id="btnCancel" layoutX="165.0" layoutY="230.0" onAction="#onCancelAction" prefHeight="30.0"
-            prefWidth="90.0" styleClass="btn-r,btn-red" text="取消" visible="false"/>
+            prefWidth="90.0" styleClass="btn-r,btn-red" text="取消" visible="false">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </Button>
 </Pane>
