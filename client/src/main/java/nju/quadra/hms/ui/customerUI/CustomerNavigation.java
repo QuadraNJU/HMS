@@ -40,7 +40,11 @@ public class CustomerNavigation extends Parent {
         // process logic
         switch (source.getId()) {
             case "info":
-                mainView.loadContent(new CustomerInfoView());
+                mainView.loadView(new CustomerInfoView());
+                break;
+            case "member":
+                mainView.loadView(new MemberEnrollView());
+                break;
         }
     }
 

@@ -11,20 +11,20 @@
         </font>
     </Label>
 
-    <Label layoutX="55.0" layoutY="75.0" text="姓名"/>
-    <TextField fx:id="editName" editable="false" layoutX="130.0" layoutY="70.0" prefWidth="250.0" promptText="姓名"/>
+    <Label layoutX="55.0" layoutY="85.0" text="姓名"/>
+    <TextField fx:id="editName" editable="false" layoutX="130.0" layoutY="80.0" prefWidth="250.0" promptText="姓名"/>
 
-    <Label layoutX="55.0" layoutY="120.0" text="联系方式"/>
-    <TextField fx:id="editContact" editable="false" layoutX="130.0" layoutY="115.0" prefWidth="250.0"
+    <Label layoutX="55.0" layoutY="130.0" text="联系方式"/>
+    <TextField fx:id="editContact" editable="false" layoutX="130.0" layoutY="125.0" prefWidth="250.0"
                promptText="联系方式"/>
 
-    <Label layoutX="55.0" layoutY="165.0" text="信用值"/>
-    <TextField fx:id="editCredit" disable="true" editable="false" layoutX="130.0" layoutY="160.0" prefWidth="250.0"
+    <Label layoutX="55.0" layoutY="175.0" text="信用值"/>
+    <TextField fx:id="editCredit" disable="true" editable="false" layoutX="130.0" layoutY="170.0" prefWidth="250.0"
                promptText="信用值"/>
 
-    <Button fx:id="btnModify" layoutX="55.0" layoutY="210.0" prefHeight="30.0" prefWidth="80.0"
-            styleClass="btn-r,btn-blue" text="修改" onAction="#onModifyAction"/>
+    <Button fx:id="btnModify" layoutX="55.0" layoutY="230.0" onAction="#onModifyAction" prefHeight="30.0"
+            prefWidth="90.0" styleClass="btn-r,btn-blue" text="修改"/>
 
-    <Button fx:id="btnCancel" visible="false" layoutX="155.0" layoutY="210.0" prefHeight="30.0" prefWidth="80.0"
-            styleClass="btn-r,btn-red" text="取消" onAction="#onCancelAction"/>
+    <Button fx:id="btnCancel" layoutX="165.0" layoutY="230.0" onAction="#onCancelAction" prefHeight="30.0"
+            prefWidth="90.0" styleClass="btn-r,btn-red" text="取消" visible="false"/>
 </Pane>

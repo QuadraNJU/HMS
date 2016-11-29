@@ -2,7 +2,7 @@ package nju.quadra.hms.vo;
 
 import nju.quadra.hms.model.MemberType;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 
 /**
@@ -20,13 +20,13 @@ public class MemberVO {
     /**
      * 生日
      */
-    public Date birthday;
+    public LocalDate birthday;
     /**
      * 企业名称
      */
     public String companyName;
 
-    public MemberVO(String username, MemberType memberType, Date birthday, String companyName) {
+    public MemberVO(String username, MemberType memberType, LocalDate birthday, String companyName) {
         this.username = username;
         this.memberType = memberType;
         this.birthday = birthday;

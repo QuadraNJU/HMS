@@ -14,6 +14,7 @@ import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import static org.junit.Assert.*;
@@ -42,7 +43,7 @@ public class CustomerBLTest {
 
     @Test
     public void test2_Enroll() {
-        MemberVO vo = new MemberVO("TEST|username1", MemberType.PERSONAL, new Date(1987-1900, 2-1, 3), null);
+        MemberVO vo = new MemberVO("TEST|username1", MemberType.PERSONAL, LocalDate.parse("1987-02-03"), null);
         assertEquals(ResultMessage.RESULT_SUCCESS, customerBLService.enroll(vo).result);
     }
 

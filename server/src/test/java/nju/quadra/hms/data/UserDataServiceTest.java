@@ -10,6 +10,7 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import static org.junit.Assert.*;
@@ -29,7 +30,7 @@ public class UserDataServiceTest {
 
     @Test
     public void test1_Insert() {
-        UserPO po = new UserPO("TEST|user", "TEST|pass", "JUnit", "123456", UserType.CUSTOMER, MemberType.PERSONAL, new Date(1996-1900,11-1,21+1), null);
+        UserPO po = new UserPO("TEST|user", "TEST|pass", "JUnit", "123456", UserType.CUSTOMER, MemberType.PERSONAL, LocalDate.parse("1996-11-21"), null);
         try {
             userDataService.insert(po);
         } catch (Exception e) {
@@ -51,7 +52,7 @@ public class UserDataServiceTest {
 
     @Test
     public void test3_Update() {
-        UserPO po = new UserPO("TEST|user", "TEST|pass", "JUnitMod", "123456", UserType.CUSTOMER, MemberType.PERSONAL, new Date(1996-1900,11-1,21+1), null);
+        UserPO po = new UserPO("TEST|user", "TEST|pass", "JUnitMod", "123456", UserType.CUSTOMER, MemberType.PERSONAL, LocalDate.parse("1996-11-21"), null);
         try {
             userDataService.update(po);
         } catch (Exception e) {

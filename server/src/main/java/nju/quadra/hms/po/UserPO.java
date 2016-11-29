@@ -3,8 +3,7 @@ package nju.quadra.hms.po;
 import nju.quadra.hms.model.MemberType;
 import nju.quadra.hms.model.UserType;
 
-import java.util.Date;
-
+import java.time.LocalDate;
 
 /**
  * Created by adn55 on 16/10/14.
@@ -37,13 +36,13 @@ public class UserPO {
     /**
      * 生日
      */
-    private Date birthday;
+    private LocalDate birthday;
     /**
      * 企业名称
      */
     private String companyName;
 
-    public UserPO(String username, String password, String name, String contact, UserType type, MemberType memberType, Date birthday, String companyName) {
+    public UserPO(String username, String password, String name, String contact, UserType type, MemberType memberType, LocalDate birthday, String companyName) {
         this.username = username;
         this.password = password;
         this.name = name;
@@ -102,11 +101,11 @@ public class UserPO {
         this.memberType = memberType;
     }
 
-    public Date getBirthday() {
+    public LocalDate getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Date birthday) {
+    public void setBirthday(LocalDate birthday) {
         this.birthday = birthday;
     }
 

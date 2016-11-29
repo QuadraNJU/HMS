@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane stylesheets="@../common/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <Label layoutX="45.0" layoutY="25.0" text="会员登记">
+        <font>
+            <Font size="24.0"/>
+        </font>
+    </Label>
+
+    <Label layoutX="55.0" layoutY="85.0" text="会员类型"/>
+    <RadioButton fx:id="radioPersonal" layoutX="130.0" layoutY="85.0" mnemonicParsing="false" text="个人会员" onAction="#onRadioAction">
+        <toggleGroup>
+            <ToggleGroup fx:id="memberType"/>
+        </toggleGroup>
+    </RadioButton>
+    <RadioButton fx:id="radioCompany" layoutX="250.0" layoutY="85.0" mnemonicParsing="false" text="企业会员"
+                 toggleGroup="$memberType" onAction="#onRadioAction"/>
+
+    <Label fx:id="labelBirthday" visible="false" layoutX="55.0" layoutY="130.0" text="生日"/>
+    <DatePicker fx:id="dateBirthday" visible="false" layoutX="130.0" layoutY="125.0" prefHeight="30.0" prefWidth="250.0"/>
+
+    <Label fx:id="labelCompanyName" visible="false" layoutX="55.0" layoutY="130.0" text="企业名称"/>
+    <TextField fx:id="editCompanyName" visible="false" layoutX="130.0" layoutY="125.0" prefWidth="250.0" promptText="企业名称"/>
+
+    <Button fx:id="btnSubmit" layoutX="55.0" layoutY="188.0" prefHeight="30.0" prefWidth="90.0"
+            styleClass="btn-r,btn-blue" text="提交" onAction="#onSubmitAction"/>
+</Pane>

@@ -47,7 +47,7 @@ public class MainView extends Stage {
         }
     }
 
-    public void loadContent(Node node) {
+    public void loadView(Node node) {
         contentPane.getChildren().clear();
         contentPane.getChildren().add(node);
     }

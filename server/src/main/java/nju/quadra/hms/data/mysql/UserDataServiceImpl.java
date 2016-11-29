@@ -5,10 +5,10 @@ import nju.quadra.hms.model.MemberType;
 import nju.quadra.hms.model.UserType;
 import nju.quadra.hms.po.UserPO;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Types;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 /**
@@ -30,7 +30,7 @@ public class UserDataServiceImpl implements UserDataService {
                     rs.getString("contact"),
                     UserType.getById(rs.getInt("type")),
                     MemberType.getById(rs.getInt("membertype")),
-                    rs.getDate("birthday"),
+                    (rs.getDate("birthday") == null) ? null : rs.getDate("birthday").toLocalDate(),
                     rs.getString("companyname")
             );
             result.add(po);
@@ -52,7 +52,7 @@ public class UserDataServiceImpl implements UserDataService {
                     rs.getString("contact"),
                     UserType.getById(rs.getInt("type")),
                     MemberType.getById(rs.getInt("membertype")),
-                    rs.getDate("birthday"),
+                    (rs.getDate("birthday") == null) ? null : rs.getDate("birthday").toLocalDate(),
                     rs.getString("companyname")
             );
             return po;
@@ -72,7 +72,7 @@ public class UserDataServiceImpl implements UserDataService {
         pst.setInt(5, po.getType().ordinal());
         pst.setInt(6, po.getMemberType().ordinal());
         if (po.getBirthday() != null) {
-            pst.setString(7, new SimpleDateFormat("yyyy-MM-dd").format(po.getBirthday().getTime()));
+            pst.setDate(7, Date.valueOf(po.getBirthday()));
         } else {
             pst.setNull(7, Types.DATE);
         }
