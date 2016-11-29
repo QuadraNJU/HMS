@@ -1,5 +1,6 @@
 package nju.quadra.hms.net;
 
+import nju.quadra.hms.model.LoginSession;
 import nju.quadra.hms.util.ClientConfigUtil;
 
 import java.io.ByteArrayOutputStream;
@@ -14,8 +15,14 @@ import java.net.URL;
  */
 public class HttpClient {
 
+    public static LoginSession session;
+
     public static String get(String path) throws IOException {
-        HttpURLConnection conn = (HttpURLConnection) new URL(ClientConfigUtil.getConfig().getServerHost() + path).openConnection();
+        String url = ClientConfigUtil.getConfig().getServerHost() + path;
+        if (session != null) {
+            url += "/?sessid=" + session.id;
+        }
+        HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();
         conn.setConnectTimeout(5000);
         conn.setReadTimeout(5000);
 
@@ -25,8 +32,11 @@ public class HttpClient {
     }
 
     public static String post(String path, String payload) throws IOException {
-        HttpURLConnection conn = (HttpURLConnection) new URL(ClientConfigUtil.getConfig().getServerHost() + path).openConnection();
-        conn.setConnectTimeout(5000);
+        String url = ClientConfigUtil.getConfig().getServerHost() + path;
+        if (session != null) {
+            url += "/?sessid=" + session.id;
+        }
+        HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();conn.setConnectTimeout(5000);
         conn.setReadTimeout(5000);
         conn.setDoOutput(true);
         OutputStream os = conn.getOutputStream();

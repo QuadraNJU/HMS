@@ -32,6 +32,8 @@ public class HttpService {
         // setup HTTP server
         httpServer = HttpServer.create(new InetSocketAddress(this.port), 0);
         httpServer.setExecutor(executor);
+        httpServer.createContext("/AuthService/login", new UserLoginHandler());
+        httpServer.createContext("/AuthService/register", new UserRegisterHandler());
         httpServer.createContext("/", new HttpQueryHandler());
         httpServer.start();
     }

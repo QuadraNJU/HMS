@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import nju.quadra.hms.controller.AuthController;
 import nju.quadra.hms.controller.UserController;
 import nju.quadra.hms.model.ResultMessage;
 import nju.quadra.hms.ui.common.Dialogs;
@@ -20,7 +21,7 @@ import java.io.IOException;
 public class LoginView extends Stage {
 
     private Scene scene;
-    private UserController controller = new UserController();
+    private AuthController controller = new AuthController();
 
     public LoginView() throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));

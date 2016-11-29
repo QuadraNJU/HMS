@@ -9,7 +9,7 @@ import nju.quadra.hms.vo.UserVO;
 /**
  * Created by adn55 on 16/11/25.
  */
-public class CustomerController implements CustomerBLService {
+public class CustomerController {
 
     private HttpRemote remote;
 
@@ -17,17 +17,6 @@ public class CustomerController implements CustomerBLService {
         this.remote = new HttpRemote("CustomerBL");
     }
 
-    @Override
-    public ResultMessage register(UserVO vo) {
-        try {
-            return remote.invoke(ResultMessage.class, "register", vo);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new ResultMessage(ResultMessage.RESULT_NET_ERROR);
-        }
-    }
-
-    @Override
     public MemberVO getMemberInfo(String username) {
         try {
             return remote.invoke(MemberVO.class, "getMemberInfo", username);
@@ -37,7 +26,6 @@ public class CustomerController implements CustomerBLService {
         }
     }
 
-    @Override
     public ResultMessage enroll(MemberVO vo) {
         try {
             return remote.invoke(ResultMessage.class, "enroll", vo);

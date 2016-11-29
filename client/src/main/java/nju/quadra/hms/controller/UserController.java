@@ -2,7 +2,9 @@ package nju.quadra.hms.controller;
 
 import com.google.gson.reflect.TypeToken;
 import nju.quadra.hms.blservice.userBL.UserBLService;
+import nju.quadra.hms.model.LoginResult;
 import nju.quadra.hms.model.ResultMessage;
+import nju.quadra.hms.net.HttpClient;
 import nju.quadra.hms.net.HttpRemote;
 import nju.quadra.hms.net.PassHash;
 import nju.quadra.hms.vo.UserVO;
@@ -12,7 +14,7 @@ import java.util.ArrayList;
 /**
  * Created by adn55 on 2016/11/23.
  */
-public class UserController implements UserBLService {
+public class UserController {
 
     private HttpRemote remote;
 
@@ -20,18 +22,6 @@ public class UserController implements UserBLService {
         remote = new HttpRemote("UserBL");
     }
 
-    @Override
-    public ResultMessage login(String username, String password) {
-        String encryptedPassword = PassHash.hash(password);
-        try {
-            return remote.invoke(ResultMessage.class, "login", username, encryptedPassword);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new ResultMessage(ResultMessage.RESULT_NET_ERROR);
-        }
-    }
-
-    @Override
     public ArrayList<UserVO> getAll() {
         try {
             return remote.invoke(new TypeToken<ArrayList<UserVO>>(){}.getType(), "getAll");
@@ -41,7 +31,6 @@ public class UserController implements UserBLService {
         }
     }
 
-    @Override
     public UserVO get(String username) {
         try {
             return remote.invoke(UserVO.class, "get", username);
@@ -51,7 +40,6 @@ public class UserController implements UserBLService {
         }
     }
 
-    @Override
     public ResultMessage add(UserVO vo) {
         try {
             return remote.invoke(ResultMessage.class, "add", vo);
@@ -61,7 +49,6 @@ public class UserController implements UserBLService {
         }
     }
 
-    @Override
     public ResultMessage delete(String username) {
         try {
             return remote.invoke(ResultMessage.class, "delete", username);
@@ -71,7 +58,6 @@ public class UserController implements UserBLService {
         }
     }
 
-    @Override
     public ResultMessage modify(UserVO vo) {
         try {
             return remote.invoke(ResultMessage.class, "modify", vo);
