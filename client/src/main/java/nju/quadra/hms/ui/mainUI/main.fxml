@@ -34,7 +34,8 @@
         </font>
     </Button>
 
-    <Pane layoutX="200.0" layoutY="100.0" prefHeight="470.0" prefWidth="700.0"/>
+    <Pane fx:id="contentPane" style="-fx-background-color: #ffffff;"
+          layoutX="200.0" layoutY="100.0" prefHeight="470.0" prefWidth="700.0"/>
 
     <Pane layoutY="570.0" prefHeight="30.0" prefWidth="900.0" style="-fx-background-color: #3c3f41;">
         <Label layoutX="14.0" layoutY="5.0" text="酒店管理系统 客户端 ©2016 Quadra." textFill="WHITE">

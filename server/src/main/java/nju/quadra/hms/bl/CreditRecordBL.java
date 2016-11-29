@@ -33,7 +33,13 @@ public class CreditRecordBL implements CreditRecordBLService {
         ArrayList<CreditRecordVO> voarr = new ArrayList<>();
         try {
             ArrayList<CreditRecordPO> poarr = creditDataService.get(username);
-            for(CreditRecordPO po: poarr) voarr.add(CreditRecordBL.toVO(po));
+            double creditResult = ORIGINAL_CREDIT;
+            for (int i = poarr.size()-1; i >= 0; i--) {
+                CreditRecordPO po = poarr.get(i);
+                creditResult += po.getDiff();
+                // reverse
+                voarr.add(0, new CreditRecordVO(po.getId(), po.getUsername(), po.getTimestamp(), po.getOrderId(), po.getAction(), po.getDiff(), creditResult));
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -57,16 +63,4 @@ public class CreditRecordBL implements CreditRecordBLService {
         return new CreditRecordPO(vo.id, vo.username, vo.timestamp, vo.orderId, vo.action, vo.diff);
     }
 
-    public static CreditRecordVO toVO(CreditRecordPO po) {
-        double currCredit = ORIGINAL_CREDIT;
-        try {
-            ArrayList<CreditRecordPO> poarr = creditDataService.get(po.getUsername());
-            if(!poarr.isEmpty()) {
-                for(CreditRecordPO temppo: poarr) currCredit += temppo.getDiff();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return new CreditRecordVO(po.getId(), po.getUsername(), po.getTimestamp(), po.getOrderId(), po.getAction(), po.getDiff(), currCredit);
-    }
 }

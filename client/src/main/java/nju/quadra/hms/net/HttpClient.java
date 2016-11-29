@@ -23,8 +23,8 @@ public class HttpClient {
             url += "/?sessid=" + session.id;
         }
         HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();
-        conn.setConnectTimeout(5000);
-        conn.setReadTimeout(5000);
+        conn.setConnectTimeout(10000);
+        conn.setReadTimeout(10000);
 
         String resp = getStringFromInputStream(conn.getInputStream());
         conn.disconnect();
@@ -36,8 +36,9 @@ public class HttpClient {
         if (session != null) {
             url += "/?sessid=" + session.id;
         }
-        HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();conn.setConnectTimeout(5000);
-        conn.setReadTimeout(5000);
+        HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();
+        conn.setConnectTimeout(10000);
+        conn.setReadTimeout(10000);
         conn.setDoOutput(true);
         OutputStream os = conn.getOutputStream();
         os.write(payload.getBytes("UTF-8"));

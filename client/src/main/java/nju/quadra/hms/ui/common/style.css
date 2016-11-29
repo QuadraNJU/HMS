@@ -15,3 +15,13 @@
 .btn-blue {
     -fx-background-color: #1e65bb;
 }
+
+.btn-red {
+    -fx-background-color: #c62828;
+}
+
+.text-field, .password-field, .text-area {
+    -fx-border-color: #6d6d6d;
+    -fx-border-style: solid;
+    -fx-border-width: 2px;
+}

@@ -2,6 +2,7 @@ package nju.quadra.hms.ui.mainUI;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -24,7 +25,7 @@ public class MainView extends Stage {
     @FXML
     private Label labelUsername, labelUserType;
     @FXML
-    private Pane navPane;
+    private Pane navPane, contentPane;
 
     public MainView() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("main.fxml"));
@@ -40,10 +41,15 @@ public class MainView extends Stage {
             labelUserType.setText(HttpClient.session.userType.toString());
             switch (HttpClient.session.userType) {
                 case CUSTOMER:
-                    navPane.getChildren().add(new CustomerNavigation());
+                    navPane.getChildren().add(new CustomerNavigation(this));
                     break;
             }
         }
+    }
+
+    public void loadContent(Node node) {
+        contentPane.getChildren().clear();
+        contentPane.getChildren().add(node);
     }
 
     /**

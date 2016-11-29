@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane stylesheets="@../common/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <Label layoutX="45.0" layoutY="25.0" text="个人信息">
+        <font>
+            <Font size="24.0"/>
+        </font>
+    </Label>
+
+    <Label layoutX="55.0" layoutY="75.0" text="姓名"/>
+    <TextField fx:id="editName" editable="false" layoutX="130.0" layoutY="70.0" prefWidth="250.0" promptText="姓名"/>
+
+    <Label layoutX="55.0" layoutY="120.0" text="联系方式"/>
+    <TextField fx:id="editContact" editable="false" layoutX="130.0" layoutY="115.0" prefWidth="250.0"
+               promptText="联系方式"/>
+
+    <Label layoutX="55.0" layoutY="165.0" text="信用值"/>
+    <TextField fx:id="editCredit" disable="true" editable="false" layoutX="130.0" layoutY="160.0" prefWidth="250.0"
+               promptText="信用值"/>
+
+    <Button fx:id="btnModify" layoutX="55.0" layoutY="210.0" prefHeight="30.0" prefWidth="80.0"
+            styleClass="btn-r,btn-blue" text="修改" onAction="#onModifyAction"/>
+
+    <Button fx:id="btnCancel" visible="false" layoutX="155.0" layoutY="210.0" prefHeight="30.0" prefWidth="80.0"
+            styleClass="btn-r,btn-red" text="取消" onAction="#onCancelAction"/>
+</Pane>

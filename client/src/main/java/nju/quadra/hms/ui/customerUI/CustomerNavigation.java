@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.input.MouseEvent;
+import nju.quadra.hms.ui.mainUI.MainView;
 
 import java.io.IOException;
 
@@ -13,15 +14,22 @@ import java.io.IOException;
  */
 public class CustomerNavigation extends Parent {
 
-    public CustomerNavigation() throws IOException {
-        FXMLLoader navLoader = new FXMLLoader(getClass().getResource("navigation.fxml"));
-        navLoader.setController(this);
-        this.getChildren().add(navLoader.load());
+    private MainView mainView;
+
+    public CustomerNavigation(MainView main) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("navigation.fxml"));
+        loader.setController(this);
+        this.getChildren().add(loader.load());
+        this.mainView = main;
     }
 
     @FXML
-    protected void onLabelClicked(MouseEvent t) {
+    protected void onLabelClicked(MouseEvent t) throws IOException {
         Node source = (Node) t.getSource();
+        // ignore when an active label was clicked
+        if (source.getStyleClass().indexOf("nav-active") >= 0) {
+            return;
+        }
         // remove all active style first
         Parent vBox = (Parent) this.getChildren().get(0);
         for (Node anchorPane : vBox.getChildrenUnmodifiable()) {
@@ -30,7 +38,10 @@ public class CustomerNavigation extends Parent {
         // add active style
         source.getStyleClass().add("nav-active");
         // process logic
-        System.out.println(source.getId());
+        switch (source.getId()) {
+            case "info":
+                mainView.loadContent(new CustomerInfoView());
+        }
     }
 
 }
