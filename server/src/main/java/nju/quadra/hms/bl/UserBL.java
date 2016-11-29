@@ -94,6 +94,19 @@ public class UserBL implements UserBLService {
         }
     }
 
+    public ResultMessage modifyBasicInfo(UserVO vo) {
+        try {
+            UserPO user = userDataService.get(vo.username);
+            user.setName(vo.name);
+            user.setContact(vo.contact);
+            userDataService.update(user);
+            return new ResultMessage(ResultMessage.RESULT_SUCCESS);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResultMessage(ResultMessage.RESULT_DB_ERROR);
+        }
+    }
+
     @Override
     public ResultMessage modify(UserVO vo) {
         try {

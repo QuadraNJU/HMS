@@ -85,6 +85,7 @@ public class CustomerInfoView extends Parent {
         editContact.setEditable(false);
         btnModify.setText("修改");
         btnCancel.setVisible(false);
+        // recover
         loadInfo();
     }
 

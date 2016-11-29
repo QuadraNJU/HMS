@@ -37,7 +37,7 @@ public class CustomerController {
 
     public ResultMessage modifyUserInfo(UserVO vo) {
         try {
-            return userRemote.invoke(ResultMessage.class, "modify", vo);
+            return userRemote.invoke(ResultMessage.class, "modifyBasicInfo", vo);
         } catch (Exception e) {
             e.printStackTrace();
             return new ResultMessage(ResultMessage.RESULT_NET_ERROR);
