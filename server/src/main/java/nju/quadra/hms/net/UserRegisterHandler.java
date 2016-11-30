@@ -6,9 +6,7 @@ import com.google.gson.JsonParser;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import nju.quadra.hms.bl.CustomerBL;
-import nju.quadra.hms.bl.UserBL;
-import nju.quadra.hms.model.LoginResult;
-import nju.quadra.hms.model.LoginSession;
+import nju.quadra.hms.blservice.customerBL.CustomerBLService;
 import nju.quadra.hms.model.ResultMessage;
 import nju.quadra.hms.vo.UserVO;
 
@@ -35,7 +33,7 @@ public class UserRegisterHandler implements HttpHandler {
         if (jsonParams.isJsonArray()) {
             try {
                 UserVO vo = new Gson().fromJson(jsonParams.getAsJsonArray().get(0), UserVO.class);
-                CustomerBL customerBL = new CustomerBL();
+                CustomerBLService customerBL = new CustomerBL();
                 ResultMessage registerResult = customerBL.register(vo);
                 result = new Gson().toJson(registerResult);
             } catch (Exception e) {

@@ -4,7 +4,7 @@ package nju.quadra.hms.model;
  * Created by adn55 on 16/10/15.
  */
 public enum CreditAction {
-    NULL("空"),
+    ORIGINAL("初始信用值"),
     ORDER_FINISHED("完成订单"),
     ORDER_CANCELLED("撤销未执行订单"),
     ORDER_DELAYED("订单逾期未执行"),

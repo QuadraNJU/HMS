@@ -3,6 +3,7 @@ package nju.quadra.hms.bl;
 import nju.quadra.hms.blservice.customerBL.CreditRecordBLService;
 import nju.quadra.hms.data.mysql.CreditDataServiceImpl;
 import nju.quadra.hms.dataservice.CreditDataService;
+import nju.quadra.hms.model.CreditAction;
 import nju.quadra.hms.model.ResultMessage;
 import nju.quadra.hms.po.CreditRecordPO;
 import nju.quadra.hms.vo.CreditRecordVO;
@@ -34,6 +35,7 @@ public class CreditRecordBL implements CreditRecordBLService {
         try {
             ArrayList<CreditRecordPO> poarr = creditDataService.get(username);
             double creditResult = ORIGINAL_CREDIT;
+            voarr.add(new CreditRecordVO(0, username, null, 0, CreditAction.ORIGINAL, creditResult, creditResult));
             for (int i = poarr.size()-1; i >= 0; i--) {
                 CreditRecordPO po = poarr.get(i);
                 creditResult += po.getDiff();

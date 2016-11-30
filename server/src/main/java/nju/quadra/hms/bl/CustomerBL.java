@@ -22,7 +22,6 @@ public class CustomerBL implements CustomerBLService {
 
     public CustomerBL() {
         userBL = new UserBL();
-        ;
         creditRecordBL = new CreditRecordBL();
         userDataService = new UserDataServiceImpl();
     }
@@ -31,18 +30,6 @@ public class CustomerBL implements CustomerBLService {
     public ResultMessage register(UserVO vo) {
         vo.type = UserType.CUSTOMER;
         return new UserBL().add(vo);
-    }
-
-    public double getCurrentCredit(String username) {
-        try {
-            ArrayList<CreditRecordVO> record = creditRecordBL.get(username);
-            if (record != null && record.size() > 0) {
-                return record.get(0).creditResult;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return CreditRecordBL.ORIGINAL_CREDIT;
     }
 
     @Override

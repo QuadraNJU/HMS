@@ -21,7 +21,7 @@ public class AuthController {
     public ResultMessage login(String username, String password) {
         String encryptedPassword = PassHash.hash(password);
         try {
-            LoginResult loginResult = new HttpRemote("AuthService").invoke(LoginResult.class, "login", username, encryptedPassword);
+            LoginResult loginResult = remote.invoke(LoginResult.class, "login", username, encryptedPassword);
             if (loginResult.result == ResultMessage.RESULT_SUCCESS) {
                 // save the session for further usage
                 HttpClient.session = loginResult.session;
@@ -35,7 +35,7 @@ public class AuthController {
 
     public ResultMessage register(UserVO vo) {
         try {
-            return new HttpRemote("AuthService").invoke(ResultMessage.class, "register", vo);
+            return remote.invoke(ResultMessage.class, "register", vo);
         } catch (Exception e) {
             e.printStackTrace();
             return new ResultMessage(ResultMessage.RESULT_NET_ERROR);

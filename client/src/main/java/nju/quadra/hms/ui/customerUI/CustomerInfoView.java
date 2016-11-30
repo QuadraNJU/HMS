@@ -8,9 +8,11 @@ import nju.quadra.hms.controller.CustomerController;
 import nju.quadra.hms.model.ResultMessage;
 import nju.quadra.hms.net.HttpClient;
 import nju.quadra.hms.ui.common.Dialogs;
+import nju.quadra.hms.vo.CreditRecordVO;
 import nju.quadra.hms.vo.UserVO;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * Created by adn55 on 2016/11/29.
@@ -42,8 +44,8 @@ public class CustomerInfoView extends Parent {
             editContact.setText(userVO.contact);
         }
         // get credit
-        double credit = controller.getCurrentCredit(HttpClient.session.username);
-        editCredit.setText(credit + "");
+        ArrayList<CreditRecordVO> record = controller.getCreditRecord(HttpClient.session.username);
+        editCredit.setText(record.get(0).creditResult + "");
     }
 
     @FXML
