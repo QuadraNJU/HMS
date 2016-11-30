@@ -39,11 +39,11 @@ public class HotelBLTest {
     
     @Test
     public void test2_Add() {
-        HotelVO vo1 = new HotelVO(0, "南京抵抗军会议大酒店", 1, 1, "玄武区中山陵四方城2号",
+        HotelVO vo1 = new HotelVO(0, "南京抵抗军会议大酒店", 1, "玄武区中山陵四方城2号",
                 "城中山林花园酒店", "各类客房, 大小会议室", "四星级", "quadra");
-        HotelVO vo2 = new HotelVO(0, "布达佩斯大饭店", 2, 2, "二战时候的布达佩斯（大概？）",
+        HotelVO vo2 = new HotelVO(0, "布达佩斯大饭店", 2, "二战时候的布达佩斯（大概？）",
                 "这是一个坐落于布达佩斯的大饭店", "我不知道这里有什么设施", "四星级", "quadra");
-        HotelVO vo3 = new HotelVO(0, "南京金陵大饭店", 1, 1, "秦淮区汉中路汉中路2号",
+        HotelVO vo3 = new HotelVO(0, "南京金陵大饭店", 1, "秦淮区汉中路汉中路2号",
                 "金陵帝皇饭店", "应有尽有", "四星级", "quadra");
         assertEquals(ResultMessage.RESULT_SUCCESS, hotelBL.add(vo1).result);
         assertEquals(ResultMessage.RESULT_SUCCESS, hotelBL.add(vo2).result);
@@ -64,7 +64,6 @@ public class HotelBLTest {
     	assertEquals("南京抵抗军会议大酒店", voarr.get(0).name);
         assertEquals(1, voarr.get(0).areaId);
         assertEquals("南京金陵大饭店", voarr.get(1).name);
-        assertEquals(1, voarr.get(1).cityId);
     }
 
     @Test

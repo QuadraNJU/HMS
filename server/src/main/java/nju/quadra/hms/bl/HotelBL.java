@@ -115,12 +115,12 @@ public class HotelBL implements HotelBLService{
 	}
 	
 	public static HotelVO toVO(HotelPO po) {
-		return new HotelVO(po.getId(), po.getName(), po.getCityId(), po.getAreaId(), 
+		return new HotelVO(po.getId(), po.getName(), po.getAreaId(),
 				po.getAddress(), po.getDescription(), po.getFacilities(), po.getStar(), po.getStaff());
 	}
 	
 	public static HotelPO toPO(HotelVO vo) {
-		return new HotelPO(vo.id, vo.name, vo.cityId, vo.areaId, vo.address, vo.description, vo.facilities, vo.star, vo.staff);
+		return new HotelPO(vo.id, vo.name, vo.areaId, vo.address, vo.description, vo.facilities, vo.star, vo.staff);
 	}
 	
 }

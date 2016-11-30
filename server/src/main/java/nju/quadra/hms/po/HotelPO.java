@@ -13,10 +13,6 @@ public class HotelPO {
      */
     private String name;
     /**
-     * 城市ID
-     */
-    private int cityId;
-    /**
      * 商圈ID
      */
     private int areaId;
@@ -41,10 +37,9 @@ public class HotelPO {
      */
     private String staff;
 
-    public HotelPO(int id, String name, int cityId, int areaId, String address, String description, String facilities, String star, String staff) {
+    public HotelPO(int id, String name, int areaId, String address, String description, String facilities, String star, String staff) {
         this.id = id;
         this.name = name;
-        this.cityId = cityId;
         this.areaId = areaId;
         this.address = address;
         this.description = description;
@@ -67,14 +62,6 @@ public class HotelPO {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public int getCityId() {
-        return cityId;
-    }
-
-    public void setCityId(int cityId) {
-        this.cityId = cityId;
     }
 
     public int getAreaId() {

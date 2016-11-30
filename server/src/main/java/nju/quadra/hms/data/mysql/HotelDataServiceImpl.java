@@ -68,19 +68,18 @@ public class HotelDataServiceImpl implements HotelDataService {
     @Override
     public void insert(HotelPO po) throws Exception {
         PreparedStatement pst = MySQLManager.getConnection()
-                .prepareStatement("INSERT INTO `hotel` (`id`, `name`, `cityId`, `areaId`, `address`, `description`, `facilities`, `star`, `staff`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                .prepareStatement("INSERT INTO `hotel` (`id`, `name`, `areaId`, `address`, `description`, `facilities`, `star`, `staff`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
         if (po.getId() > 0)
             pst.setInt(1, po.getId());
         else
             pst.setNull(1, Types.INTEGER);
         pst.setString(2, po.getName());
-        pst.setInt(3, po.getCityId());
-        pst.setInt(4, po.getAreaId());
-        pst.setString(5, po.getAddress());
-        pst.setString(6, po.getDescription());
-        pst.setString(7, po.getFacilities());
-        pst.setString(8, po.getStar());
-        pst.setString(9, po.getStaff());
+        pst.setInt(3, po.getAreaId());
+        pst.setString(4, po.getAddress());
+        pst.setString(5, po.getDescription());
+        pst.setString(6, po.getFacilities());
+        pst.setString(7, po.getStar());
+        pst.setString(8, po.getStaff());
 
         pst.executeUpdate();
     }
@@ -106,7 +105,6 @@ public class HotelDataServiceImpl implements HotelDataService {
         return new HotelPO(
                 rs.getInt("id"),
                 rs.getString("name"),
-                rs.getInt("cityId"),
                 rs.getInt("areaId"),
                 rs.getString("address"),
                 rs.getString("description"),
