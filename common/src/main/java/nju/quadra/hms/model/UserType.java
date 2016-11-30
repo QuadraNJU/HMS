@@ -7,7 +7,7 @@ public enum UserType {
     CUSTOMER("客户"),
     HOTEL_STAFF("酒店工作人员"),
     WEBSITE_MARKETER("网站营销人员"),
-    WEBSITE_MANAGER("网站管理人员");
+    WEBSITE_MASTER("网站管理人员");
 
     String showname;
 

@@ -16,6 +16,11 @@
     -fx-background-color: #1e65bb;
 }
 
+
+.btn-green {
+    -fx-background-color: green;
+}
+
 .btn-red {
     -fx-background-color: #c62828;
 }

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox alignment="TOP_CENTER" prefHeight="470.0" prefWidth="200.0" stylesheets="@../common/navigation.css"
+      xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <AnchorPane prefHeight="50.0">
+        <Label alignment="CENTER" text="用户管理" textFill="WHITE" AnchorPane.bottomAnchor="0.0"
+               AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"
+               fx:id="usermanage" onMouseClicked="#onLabelClicked">
+            <font>
+                <Font size="18.0"/>
+            </font>
+        </Label>
+    </AnchorPane>
+    <AnchorPane prefHeight="50.0">
+        <Label alignment="CENTER" text="酒店及工作人员管理" textFill="WHITE" AnchorPane.bottomAnchor="0.0"
+               AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"
+               fx:id="hotelmanage" onMouseClicked="#onLabelClicked">
+            <font>
+                <Font size="18.0"/>
+            </font>
+        </Label>
+    </AnchorPane>
+</VBox>

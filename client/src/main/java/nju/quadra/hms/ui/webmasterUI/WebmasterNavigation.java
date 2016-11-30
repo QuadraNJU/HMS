@@ -1,10 +1,11 @@
-package nju.quadra.hms.ui.customerUI;
+package nju.quadra.hms.ui.webmasterUI;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.input.MouseEvent;
+import nju.quadra.hms.ui.customerUI.MemberEnrollView;
 import nju.quadra.hms.ui.mainUI.MainView;
 
 import java.io.IOException;
@@ -12,17 +13,16 @@ import java.io.IOException;
 /**
  * Created by adn55 on 2016/11/29.
  */
-public class CustomerNavigation extends Parent {
+public class WebmasterNavigation extends Parent {
 
     private MainView mainView;
 
-    public CustomerNavigation(MainView main) throws IOException {
+    public WebmasterNavigation(MainView main) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("navigation.fxml"));
         loader.setController(this);
         this.getChildren().add(loader.load());
         this.mainView = main;
     }
-
 
     @FXML
     protected void onLabelClicked(MouseEvent t) throws IOException {
@@ -40,17 +40,11 @@ public class CustomerNavigation extends Parent {
         source.getStyleClass().add("nav-active");
         // process logic
         switch (source.getId()) {
-            case "info":
-                mainView.loadView(new CustomerInfoView());
+            case "usermanage":
+                mainView.loadView(new UserView());
                 break;
-            case "member":
-                mainView.loadView(new MemberEnrollView());
-                break;
-            case "credit":
-                mainView.loadView(new CreditRecordView());
-                break;
-            case "hotelsearch":
-                mainView.loadView(new HotelSearchView());
+            case "hotelmanage":
+                mainView.loadView(new HotelAndStaffView());
                 break;
         }
     }

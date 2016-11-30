@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="41.0" layoutY="18.0" prefHeight="39.0" prefWidth="226.0" text="酒店及工作人员管理">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="comboCity" layoutX="41.0" layoutY="71.0" prefWidth="150.0" promptText="选择城市" />
+      <ComboBox fx:id="comboArea" layoutX="200.0" layoutY="71.0" prefWidth="150.0" promptText="选择商圈" />
+      <VBox fx:id="vBox" layoutX="41.0" layoutY="111.0" prefHeight="200.0" prefWidth="590.0" />
+      <Button fx:id="btnNew" layoutX="50.0" layoutY="331.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="83.0" text="新增" styleClass="btn-green,btn-r" onAction="#onNewHotelAndStaffAction">
+         <font>
+            <Font size="16.0" />
+         </font></Button>
+      <Button fx:id="btnModify" layoutX="141.0" layoutY="331.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="83.0" text="修改" styleClass="btn-blue,btn-r" onAction="#onModifyHotelAndStaffAction">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Button  fx:id="btnDelete" layoutX="234.0" layoutY="331.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="83.0" text="删除" styleClass="btn-r,btn-red" onAction="#onDeleteHotelAndStaffAction">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+   </children>
+</Pane>

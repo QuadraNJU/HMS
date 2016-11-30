@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <Label layoutX="41.0" layoutY="18.0" prefHeight="39.0" prefWidth="152.0" text="修改酒店信息">
+            <font>
+                <Font size="24.0" />
+            </font>
+        </Label>
+        <Label layoutX="56.0" layoutY="72.0" text="酒店名">
+            <font>
+                <Font size="16.0" />
+            </font>
+        </Label>
+        <Label layoutX="56.0" layoutY="101.0" text="城市">
+            <font>
+                <Font size="16.0" />
+            </font>
+        </Label>
+        <Label layoutX="56.0" layoutY="130.0" text="商圈">
+            <font>
+                <Font size="16.0" />
+            </font>
+        </Label>
+        <Label layoutX="56.0" layoutY="159.0" text="简介">
+            <font>
+                <Font size="16.0" />
+            </font>
+        </Label>
+        <Label layoutX="56.0" layoutY="246.0" text="设施服务">
+            <font>
+                <Font size="16.0" />
+            </font>
+        </Label>
+        <Label layoutX="56.0" layoutY="276.0" text="星级">
+            <font>
+                <Font size="16.0" />
+            </font>
+        </Label>
+        <Label layoutX="56.0" layoutY="307.0" text="工作人员">
+            <font>
+                <Font size="16.0" />
+            </font>
+        </Label>
+
+        <TextField fx:id="fieldHotelName" layoutX="150.0" layoutY="72.0" />
+        <ComboBox fx:id="comboProvince" layoutX="150.0" layoutY="101.0" prefHeight="23.0" prefWidth="80.0" />
+        <ComboBox fx:id="comboCity" layoutX="241.0" layoutY="102.0" prefHeight="27.0" prefWidth="80.0" />
+        <ComboBox fx:id="comboArea" layoutX="150.0" layoutY="130.0" prefHeight="20.0" prefWidth="167.0" />
+        <TextArea fx:id="areaIntro" layoutX="149.0" layoutY="159.0" prefHeight="85.0" prefWidth="240.0" />
+        <TextField fx:id="fieldFacilities" layoutX="150.0" layoutY="246.0" prefHeight="23.0" prefWidth="240.0" />
+        <ComboBox fx:id="comboStar" layoutX="150.0" layoutY="276.0" prefHeight="23.0" prefWidth="80.0" />
+        <TextField fx:id="fieldHotelstaff" layoutX="152.0" layoutY="307.0" prefHeight="23.0" prefWidth="108.0" />
+        <Button layoutX="269.0" layoutY="307.0" mnemonicParsing="false" onAction="#onChooseUserAction" prefHeight="23.0" prefWidth="73.0" text="选择用户" styleClass="btn-blue,btn-r"/>
+
+        <Button layoutX="56.0" layoutY="358.0" mnemonicParsing="false" onAction="#onAgreeAction" prefHeight="34.0" prefWidth="89.0" text="确认" styleClass="btn-blue,btn-r">
+            <font>
+                <Font size="16.0" />
+            </font>
+        </Button>
+        <Button layoutX="163.0" layoutY="358.0" mnemonicParsing="false" onAction="#onCancelAction" prefHeight="34.0" prefWidth="89.0" text="取消" styleClass="btn-red,btn-r">
+            <font>
+                <Font size="16.0" />
+            </font>
+        </Button>
+    </children>
+</Pane>
