@@ -1,7 +1,6 @@
 package nju.quadra.hms.bl;
 
-import nju.quadra.hms.blservice.userBL.UserBLService;
-import nju.quadra.hms.model.MemberType;
+import nju.quadra.hms.blservice.UserBLService;
 import nju.quadra.hms.model.ResultMessage;
 import nju.quadra.hms.model.UserType;
 import nju.quadra.hms.vo.UserVO;
@@ -11,7 +10,6 @@ import org.junit.runners.MethodSorters;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  * Created by admin on 2016/11/6.

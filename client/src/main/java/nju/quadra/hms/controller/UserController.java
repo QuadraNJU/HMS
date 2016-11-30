@@ -1,12 +1,8 @@
 package nju.quadra.hms.controller;
 
 import com.google.gson.reflect.TypeToken;
-import nju.quadra.hms.blservice.userBL.UserBLService;
-import nju.quadra.hms.model.LoginResult;
 import nju.quadra.hms.model.ResultMessage;
-import nju.quadra.hms.net.HttpClient;
 import nju.quadra.hms.net.HttpRemote;
-import nju.quadra.hms.net.PassHash;
 import nju.quadra.hms.vo.UserVO;
 
 import java.util.ArrayList;

@@ -2,7 +2,7 @@ package nju.quadra.hms.bl;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import nju.quadra.hms.blservice.orderBL.OrderBLService;
+import nju.quadra.hms.blservice.OrderBLService;
 import nju.quadra.hms.data.mysql.CreditDataServiceImpl;
 import nju.quadra.hms.data.mysql.HotelPromotionDataServiceImpl;
 import nju.quadra.hms.data.mysql.OrderDataServiceImpl;

@@ -1,12 +1,10 @@
 package nju.quadra.hms.bl;
 
-import nju.quadra.hms.bl.mockObject.MockHotelBL;
-import nju.quadra.hms.blservice.hotelBL.HotelBLService;
+import nju.quadra.hms.blservice.HotelBLService;
 import nju.quadra.hms.data.mysql.HotelDataServiceImpl;
 import nju.quadra.hms.dataservice.HotelDataService;
 import nju.quadra.hms.model.ResultMessage;
 import nju.quadra.hms.vo.HotelVO;
-import nju.quadra.hms.vo.WebsitePromotionVO;
 
 import org.junit.Before;
 import org.junit.FixMethodOrder;

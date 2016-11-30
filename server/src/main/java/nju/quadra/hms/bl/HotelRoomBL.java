@@ -2,16 +2,12 @@ package nju.quadra.hms.bl;
 
 import java.util.ArrayList;
 
-import nju.quadra.hms.blservice.hotelBL.HotelBLService;
-import nju.quadra.hms.blservice.hotelRoomBL.HotelRoomBLService;
-import nju.quadra.hms.data.mysql.HotelDataServiceImpl;
+import nju.quadra.hms.blservice.HotelRoomBLService;
 import nju.quadra.hms.data.mysql.HotelRoomDataServiceImpl;
 import nju.quadra.hms.dataservice.HotelRoomDataService;
 import nju.quadra.hms.model.ResultMessage;
-import nju.quadra.hms.po.HotelPO;
 import nju.quadra.hms.po.HotelRoomPO;
 import nju.quadra.hms.vo.HotelRoomVO;
-import nju.quadra.hms.vo.HotelVO;
 
 public class HotelRoomBL implements HotelRoomBLService{
     HotelRoomDataService hotelRoomDataService;

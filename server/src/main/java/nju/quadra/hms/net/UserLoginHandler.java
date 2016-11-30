@@ -6,7 +6,7 @@ import com.google.gson.JsonParser;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import nju.quadra.hms.bl.UserBL;
-import nju.quadra.hms.blservice.userBL.UserBLService;
+import nju.quadra.hms.blservice.UserBLService;
 import nju.quadra.hms.model.LoginResult;
 import nju.quadra.hms.model.LoginSession;
 import nju.quadra.hms.model.ResultMessage;

@@ -1,4 +1,4 @@
-package nju.quadra.hms.blservice.customerBL;
+package nju.quadra.hms.blservice;
 
 import nju.quadra.hms.model.ResultMessage;
 import nju.quadra.hms.vo.CreditRecordVO;

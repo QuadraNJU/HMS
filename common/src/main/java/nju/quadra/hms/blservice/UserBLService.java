@@ -1,4 +1,4 @@
-package nju.quadra.hms.blservice.userBL;
+package nju.quadra.hms.blservice;
 
 import nju.quadra.hms.model.ResultMessage;
 import nju.quadra.hms.vo.UserVO;
@@ -18,6 +18,8 @@ public interface UserBLService {
     ResultMessage add(UserVO vo);
 
     ResultMessage delete(String username);
+
+    ResultMessage modifyBasicInfo(UserVO vo);
 
     ResultMessage modify(UserVO vo);
 }

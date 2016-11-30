@@ -1,4 +1,4 @@
-package nju.quadra.hms.blservice.orderBL;
+package nju.quadra.hms.blservice;
 
 import nju.quadra.hms.model.OrderState;
 import nju.quadra.hms.model.ResultMessage;
