@@ -1,10 +1,13 @@
 package nju.quadra.hms.ui.loginUI;
 
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -95,6 +98,12 @@ public class LoginView extends Stage {
     protected void onNetworkSettingsAction() throws Exception {
         NetworkSettingsView view = new NetworkSettingsView();
         view.show();
+    }
+
+    @FXML
+    protected void onEnterTypedAction(KeyEvent e) throws Exception {
+        if(e.getCode().equals(KeyCode.ENTER))
+            onLoginAction();
     }
 
 }

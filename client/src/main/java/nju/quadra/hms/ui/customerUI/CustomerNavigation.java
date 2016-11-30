@@ -48,6 +48,9 @@ public class CustomerNavigation extends Parent {
             case "credit":
                 mainView.loadView(new CreditRecordView());
                 break;
+            case "hotelsearch":
+                mainView.loadView(new HotelSearchView());
+                break;
         }
     }
 

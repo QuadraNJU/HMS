@@ -20,6 +20,10 @@
     -fx-background-color: #c62828;
 }
 
+.btn-pink {
+    -fx-background-color: #ffc0cb;
+}
+
 .text-field, .password-field, .text-area {
     -fx-border-color: #6d6d6d;
     -fx-border-style: solid;

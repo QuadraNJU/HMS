@@ -17,13 +17,13 @@
     </ImageView>
 
     <TextField fx:id="textUsername" layoutX="240.0" layoutY="320.0" prefHeight="35.0" prefWidth="420.0"
-               promptText="用户名">
+               promptText="用户名" onKeyPressed="#onEnterTypedAction">
         <font>
             <Font size="18.0"/>
         </font>
     </TextField>
     <PasswordField fx:id="textPassword" layoutX="240.0" layoutY="362.0" prefHeight="35.0" prefWidth="420.0"
-                   promptText="密码">
+                   promptText="密码" onKeyPressed="#onEnterTypedAction">
         <font>
             <Font size="18.0"/>
         </font>

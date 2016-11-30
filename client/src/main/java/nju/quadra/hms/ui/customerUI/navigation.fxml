@@ -27,7 +27,7 @@
     <AnchorPane prefHeight="50.0">
         <Label alignment="CENTER" text="酒店搜索" textFill="WHITE" AnchorPane.bottomAnchor="0.0"
                AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"
-               fx:id="hotel" onMouseClicked="#onLabelClicked">
+               fx:id="hotelsearch" onMouseClicked="#onLabelClicked">
             <font>
                 <Font size="18.0"/>
             </font>
