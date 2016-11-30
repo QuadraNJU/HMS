@@ -6,7 +6,9 @@ import nju.quadra.hms.blservice.HotelBLService;
 import nju.quadra.hms.data.mysql.HotelDataServiceImpl;
 import nju.quadra.hms.dataservice.HotelDataService;
 import nju.quadra.hms.model.ResultMessage;
+import nju.quadra.hms.po.AreaPO;
 import nju.quadra.hms.po.HotelPO;
+import nju.quadra.hms.vo.AreaVO;
 import nju.quadra.hms.vo.HotelVO;
 
 public class HotelBL implements HotelBLService{
@@ -65,6 +67,19 @@ public class HotelBL implements HotelBLService{
 	}
 
 	@Override
+	public ArrayList<AreaVO> getAllArea() {
+		ArrayList<AreaVO> voarr = new ArrayList<>();
+		try {
+			ArrayList<AreaPO> poarr = hotelDataService.getAllArea();
+			for (AreaPO po: poarr)
+			    voarr.add(new AreaVO(po.getId(), po.getCityName(), po.getAreaName()));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return voarr;
+	}
+
+	@Override
 	public ResultMessage add(HotelVO vo) {
 		HotelPO po = HotelBL.toPO(vo);
 		try {
@@ -89,7 +104,7 @@ public class HotelBL implements HotelBLService{
 	}
 
 	@Override
-	public ResultMessage modify(int id, HotelVO vo) {
+	public ResultMessage modify(HotelVO vo) {
 		HotelPO po = HotelBL.toPO(vo);
 		try {
 			hotelDataService.update(po);

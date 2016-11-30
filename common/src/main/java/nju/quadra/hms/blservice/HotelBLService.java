@@ -1,6 +1,7 @@
 package nju.quadra.hms.blservice;
 
 import nju.quadra.hms.model.ResultMessage;
+import nju.quadra.hms.vo.AreaVO;
 import nju.quadra.hms.vo.HotelVO;
 
 import java.util.ArrayList;
@@ -17,11 +18,13 @@ public interface HotelBLService {
 
     HotelVO getDetail(int id);
 
+    ArrayList<AreaVO> getAllArea();
+
     ResultMessage add(HotelVO vo);
 
     ResultMessage delete(int id);
 
-    ResultMessage modify(int id, HotelVO vo);
+    ResultMessage modify(HotelVO vo);
 
     ResultMessage changeStaff(int id, String username);
 }

@@ -29,8 +29,13 @@
     -fx-background-color: #ffc0cb;
 }
 
-.text-field, .password-field, .text-area {
+.text-field, .password-field, .text-area, .choice-box {
+    -fx-background-color: #ffffff;
     -fx-border-color: #6d6d6d;
     -fx-border-style: solid;
     -fx-border-width: 2px;
+}
+
+.choice-box {
+    -fx-font-size: 14px;
 }

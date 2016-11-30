@@ -16,6 +16,7 @@ import nju.quadra.hms.ClientRunner;
 import nju.quadra.hms.net.HttpClient;
 import nju.quadra.hms.ui.common.Dialogs;
 import nju.quadra.hms.ui.customerUI.CustomerNavigation;
+import nju.quadra.hms.ui.hotelStaff.HotelStaffNavigation;
 import nju.quadra.hms.ui.loginUI.LoginView;
 import nju.quadra.hms.ui.webmasterUI.WebmasterNavigation;
 
@@ -47,12 +48,15 @@ public class MainView extends Stage {
         if (HttpClient.session != null) {
             labelUsername.setText(HttpClient.session.username);
             labelUserType.setText(HttpClient.session.userType.toString());
+            navPane.getChildren().clear();
             switch (HttpClient.session.userType) {
                 case CUSTOMER:
                     navPane.getChildren().add(new CustomerNavigation(this));
                     break;
                 case WEBSITE_MASTER:
                     navPane.getChildren().add(new WebmasterNavigation(this));
+                case HOTEL_STAFF:
+                    navPane.getChildren().add(new HotelStaffNavigation(this));
             }
         }
     }

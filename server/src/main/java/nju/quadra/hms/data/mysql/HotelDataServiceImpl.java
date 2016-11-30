@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import nju.quadra.hms.dataservice.HotelDataService;
 import nju.quadra.hms.model.MemberType;
 import nju.quadra.hms.model.UserType;
+import nju.quadra.hms.po.AreaPO;
 import nju.quadra.hms.po.HotelPO;
 import nju.quadra.hms.po.UserPO;
 
@@ -63,6 +64,19 @@ public class HotelDataServiceImpl implements HotelDataService {
             return createPO(rs);
         }
         return null;
+    }
+
+    @Override
+    public ArrayList<AreaPO> getAllArea() throws Exception {
+        ArrayList<AreaPO> result = new ArrayList<>();
+        PreparedStatement pst = MySQLManager.getConnection()
+                .prepareStatement("SELECT * FROM `area` ORDER BY `cityname`");
+        ResultSet rs = pst.executeQuery();
+        while (rs.next()) {
+            AreaPO po = new AreaPO(rs.getInt("id"), rs.getString("cityname"), rs.getString("name"));
+            result.add(po);
+        }
+        return result;
     }
 
     @Override
