@@ -41,6 +41,18 @@ public class HotelBL implements HotelBLService{
 	}
 
 	@Override
+	public HotelVO getByStaff(String staff) {
+		HotelPO po = null;
+		try {
+			po = hotelDataService.getByStaff(staff);
+			return HotelBL.toVO(po);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+    }
+
+	@Override
 	public HotelVO getDetail(int id) {
 		HotelPO po = null;
 		try {
@@ -104,11 +116,11 @@ public class HotelBL implements HotelBLService{
 	
 	public static HotelVO toVO(HotelPO po) {
 		return new HotelVO(po.getId(), po.getName(), po.getCityId(), po.getAreaId(), 
-				po.getAddress(), po.getDescription(), po.getFacilities(), po.getStaff());
+				po.getAddress(), po.getDescription(), po.getFacilities(), po.getStar(), po.getStaff());
 	}
 	
 	public static HotelPO toPO(HotelVO vo) {
-		return new HotelPO(vo.id, vo.name, vo.cityId, vo.areaId, vo.address, vo.description, vo.facilities, vo.staff);
+		return new HotelPO(vo.id, vo.name, vo.cityId, vo.areaId, vo.address, vo.description, vo.facilities, vo.star, vo.staff);
 	}
 	
 }

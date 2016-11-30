@@ -14,6 +14,8 @@ public interface HotelDataService {
 
     ArrayList<HotelPO> getByArea(int areaId) throws Exception;
 
+    HotelPO getByStaff(String staff) throws Exception;
+
     void insert(HotelPO po) throws Exception;
 
     void delete(HotelPO po) throws Exception;

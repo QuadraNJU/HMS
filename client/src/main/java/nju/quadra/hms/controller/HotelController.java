@@ -45,6 +45,15 @@ public class HotelController {
         }
     }
 
+    public HotelVO getByStaff(String staff) {
+        try {
+            return hotelRemote.invoke(HotelVO.class, "getByStaff", staff);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     public ResultMessage add(HotelVO vo) {
         try {
             return hotelRemote.invoke(ResultMessage.class, "add", vo);

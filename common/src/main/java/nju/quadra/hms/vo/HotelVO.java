@@ -33,11 +33,15 @@ public class HotelVO {
      */
     public String facilities;
     /**
+     * 星级
+     */
+    public String star;
+    /**
      * 工作人员用户名
      */
     public String staff;
 
-    public HotelVO(int id, String name, int cityId, int areaId, String address, String description, String facilities, String staff) {
+    public HotelVO(int id, String name, int cityId, int areaId, String address, String description, String facilities, String star, String staff) {
         this.id = id;
         this.name = name;
         this.cityId = cityId;
@@ -45,6 +49,7 @@ public class HotelVO {
         this.address = address;
         this.description = description;
         this.facilities = facilities;
+        this.star = star;
         this.staff = staff;
     }
 }

@@ -13,6 +13,8 @@ public interface HotelBLService {
 
     ArrayList<HotelVO> getAll();
 
+    HotelVO getByStaff(String staff);
+
     HotelVO getDetail(int id);
 
     ResultMessage add(HotelVO vo);

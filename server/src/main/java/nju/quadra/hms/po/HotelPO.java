@@ -33,11 +33,15 @@ public class HotelPO {
      */
     private String facilities;
     /**
+     * 星级
+     */
+    private String star;
+    /**
      * 工作人员用户名
      */
     private String staff;
 
-    public HotelPO(int id, String name, int cityId, int areaId, String address, String description, String facilities, String staff) {
+    public HotelPO(int id, String name, int cityId, int areaId, String address, String description, String facilities, String star, String staff) {
         this.id = id;
         this.name = name;
         this.cityId = cityId;
@@ -45,6 +49,7 @@ public class HotelPO {
         this.address = address;
         this.description = description;
         this.facilities = facilities;
+        this.star = star;
         this.staff = staff;
     }
 
@@ -102,6 +107,14 @@ public class HotelPO {
 
     public void setFacilities(String facilities) {
         this.facilities = facilities;
+    }
+
+    public String getStar() {
+        return star;
+    }
+
+    public void setStar(String star) {
+        this.star = star;
     }
 
     public String getStaff() {
