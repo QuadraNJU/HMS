@@ -24,7 +24,7 @@ public class LoginView extends Stage {
     private Scene scene;
     private AuthController controller = new AuthController();
     @FXML
-    TextField textUsername, textPassword;
+    private TextField textUsername, textPassword;
 
     public LoginView() throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
@@ -43,6 +43,7 @@ public class LoginView extends Stage {
      * 提供窗口拖放支持
      */
     private double offsetX, offsetY;
+
     @FXML
     protected void onDragStart(MouseEvent event) {
         this.offsetX = event.getSceneX();
