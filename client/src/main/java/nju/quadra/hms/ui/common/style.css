@@ -30,3 +30,7 @@
     -fx-border-style: solid;
     -fx-border-width: 2px;
 }
+
+.choice-box {
+    -fx-font-size: 14px;
+}
