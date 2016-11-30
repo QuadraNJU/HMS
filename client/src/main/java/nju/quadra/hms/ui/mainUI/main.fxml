@@ -15,13 +15,13 @@
     </ImageView>
 
     <Label fx:id="labelUsername" alignment="CENTER_RIGHT" layoutX="409.0" layoutY="46.0" onMouseDragged="#onDrag"
-           onMousePressed="#onDragStart" prefWidth="400.0" text="domouser" textFill="WHITE">
+           onMousePressed="#onDragStart" prefWidth="400.0" text="" textFill="WHITE">
         <font>
             <Font size="14.0"/>
         </font>
     </Label>
     <Label fx:id="labelUserType" alignment="CENTER_RIGHT" layoutX="409.0" layoutY="66.0" onMouseDragged="#onDrag"
-           onMousePressed="#onDragStart" prefWidth="400.0" text="客户" textAlignment="RIGHT" textFill="WHITE">
+           onMousePressed="#onDragStart" prefWidth="400.0" text="" textAlignment="RIGHT" textFill="WHITE">
         <font>
             <Font size="14.0"/>
         </font>
@@ -33,7 +33,7 @@
 
     <Pane fx:id="navPane" layoutY="100.0" prefHeight="470.0" prefWidth="200.0"/>
 
-    <Button layoutX="55.0" layoutY="530.0" prefHeight="30.0" prefWidth="90.0" styleClass="btn-r,btn-blue" text="退出登录">
+    <Button fx:id="btnLogout" layoutX="55.0" layoutY="530.0" prefHeight="30.0" prefWidth="90.0" styleClass="btn-r,btn-blue" text="退出登录" onAction="#onLogoutAction">
         <font>
             <Font size="14.0"/>
         </font>

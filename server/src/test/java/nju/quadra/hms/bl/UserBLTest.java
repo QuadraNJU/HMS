@@ -27,7 +27,7 @@ public class UserBLTest {
     }
 
     @Test
-    public void test1_loginWithNoSuchUsername() {
+    public void test1_LoginWithNoSuchUsername() {
         String username = "havenothisusername";
         String password = "havenothispassword";
         ResultMessage resultMessage = userBL.login(username, password);
@@ -35,7 +35,7 @@ public class UserBLTest {
     }
 
     @Test
-    public void test2_add() {
+    public void test2_Add() {
         UserVO vo1 = new UserVO("TEST|username1", "TEST|passwordEncrypted1", "TEST|name1", "TEST|contact1", UserType.CUSTOMER);
         UserVO vo2 = new UserVO("TEST|username2", "TEST|passwordEncrypted2", "TEST|name2", "TEST|contact2", UserType.HOTEL_STAFF);
         assertEquals(ResultMessage.RESULT_SUCCESS, userBL.add(vo1).result);
@@ -43,7 +43,7 @@ public class UserBLTest {
     }
 
     @Test
-    public void test3_getAll() {
+    public void test3_GetAll() {
         ArrayList<UserVO> voarr = userBL.getAll();
         boolean b1 = false, b2 = false;
         for (UserVO vo : voarr) {
@@ -57,13 +57,13 @@ public class UserBLTest {
     }
 
     @Test
-    public void test4_get() {
+    public void test4_Get() {
         UserVO vo = userBL.get("TEST|username2");
         assertEquals("TEST|passwordEncrypted2", vo.password);
     }
 
     @Test
-    public void test5_modify() {
+    public void test5_Modify() {
         UserVO vo2 = new UserVO("TEST|username2", "TEST|passwordEncrypted2", "TEST|name2AfterModified", "TEST|contact2", UserType.HOTEL_STAFF);
         ResultMessage resultMessage = userBL.modify(vo2);
         UserVO vo2Modified = userBL.get("TEST|username2");
@@ -72,14 +72,14 @@ public class UserBLTest {
     }
 
     @Test
-    public void test6_addDuplicated() {
+    public void test6_AddDuplicated() {
         UserVO vo1 = new UserVO("TEST|username1", "TEST|passwordEncrypted1", "TEST|name1", "TEST|contact1", UserType.CUSTOMER);
         ResultMessage resultMessage = userBL.add(vo1);
         assertNotEquals(ResultMessage.RESULT_SUCCESS, resultMessage.result);
     }
 
     @Test
-    public void test7_delete() {
+    public void test7_Delete() {
         assertEquals(ResultMessage.RESULT_SUCCESS, userBL.delete("TEST|username1").result);
         assertEquals(ResultMessage.RESULT_SUCCESS, userBL.delete("TEST|username2").result);
     }

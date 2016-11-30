@@ -5,13 +5,18 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import nju.quadra.hms.ClientRunner;
 import nju.quadra.hms.net.HttpClient;
+import nju.quadra.hms.ui.common.Dialogs;
 import nju.quadra.hms.ui.customerUI.CustomerNavigation;
+import nju.quadra.hms.ui.loginUI.LoginView;
 
 import java.io.IOException;
 
@@ -26,6 +31,8 @@ public class MainView extends Stage {
     private Label labelUsername, labelUserType;
     @FXML
     private Pane navPane, contentPane;
+    @FXML
+    private Button btnLotout;
 
     public MainView() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("main.fxml"));
@@ -67,6 +74,16 @@ public class MainView extends Stage {
     protected void onDrag(MouseEvent event) {
         this.setX(event.getScreenX() - this.offsetX);
         this.setY(event.getScreenY() - this.offsetY);
+    }
+
+    @FXML
+    protected void onLogoutAction() throws Exception {
+        Dialogs.showInfo("登出成功！");
+        String username = HttpClient.session.username;
+        LoginView loginView = new LoginView(username);
+        loginView.show();
+        HttpClient.session = null;
+        this.close();
     }
 
 }

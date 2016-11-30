@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import nju.quadra.hms.controller.AuthController;
@@ -22,6 +23,8 @@ public class LoginView extends Stage {
 
     private Scene scene;
     private AuthController controller = new AuthController();
+    @FXML
+    TextField textUsername, textPassword;
 
     public LoginView() throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
@@ -32,9 +35,26 @@ public class LoginView extends Stage {
         this.setResizable(false);
         this.initStyle(StageStyle.UNDECORATED);
     }
+    public LoginView(String username) throws Exception {
+        this();
+        textUsername.setText(username);
+    }
+    /**
+     * 提供窗口拖放支持
+     */
+    private double offsetX, offsetY;
+    @FXML
+    protected void onDragStart(MouseEvent event) {
+        this.offsetX = event.getSceneX();
+        this.offsetY = event.getSceneY();
+    }
 
     @FXML
-    TextField textUsername, textPassword;
+    protected void onDrag(MouseEvent event) {
+        this.setX(event.getScreenX() - this.offsetX);
+        this.setY(event.getScreenY() - this.offsetY);
+    }
+
 
     /**
      * 处理登录按钮事件

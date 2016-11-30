@@ -12,39 +12,39 @@
 <?import javafx.scene.text.Font?>
 
 <Pane prefHeight="600.0" prefWidth="900.0" stylesheets="@../common/style.css" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1">
-    <ImageView fitHeight="700.0" fitWidth="900.0" preserveRatio="true">
+    <ImageView fitHeight="700.0" fitWidth="900.0" preserveRatio="true" onMouseDragged="#onDrag" onMousePressed="#onDragStart">
         <Image url="@../common/bg.jpg" />
     </ImageView>
 
-    <TextField fx:id="textUsername" layoutX="240.0" layoutY="300.0" prefHeight="35.0" prefWidth="420.0" promptText="用户名">
+    <TextField fx:id="textUsername" layoutX="240.0" layoutY="300.0" prefHeight="35.0" prefWidth="420.0" promptText="用户名" onMouseDragged="#onDrag" onMousePressed="#onDragStart">
         <font>
             <Font size="18.0" />
         </font>
     </TextField>
-    <PasswordField fx:id="textPassword" layoutX="240.0" layoutY="342.0" prefHeight="35.0" prefWidth="420.0" promptText="密码">
+    <PasswordField fx:id="textPassword" layoutX="240.0" layoutY="342.0" prefHeight="35.0" prefWidth="420.0" promptText="密码" onMouseDragged="#onDrag" onMousePressed="#onDragStart">
         <font>
             <Font size="18.0" />
         </font>
     </PasswordField>
 
-    <CheckBox fx:id="checkRemember" layoutX="245.0" layoutY="388.0" text="记住我的登录信息" textFill="WHITE">
+    <CheckBox fx:id="checkRemember" layoutX="245.0" layoutY="388.0" text="记住我的登录信息" textFill="WHITE" onMouseDragged="#onDrag" onMousePressed="#onDragStart">
         <font>
             <Font size="14.0" />
         </font>
     </CheckBox>
-    <Hyperlink layoutX="240.0" layoutY="409.0" onAction="#onRegisterAction" text="新用户注册">
+    <Hyperlink layoutX="240.0" layoutY="409.0" onAction="#onRegisterAction" onMouseDragged="#onDrag" onMousePressed="#onDragStart" text="新用户注册">
         <font>
             <Font size="14.0" />
         </font>
     </Hyperlink>
     <Label layoutX="320.0" layoutY="411.0" text="|" textFill="WHITE" />
-    <Hyperlink layoutX="324.0" layoutY="409.0" onAction="#onNetworkSettingsAction" text="网络设置">
+    <Hyperlink layoutX="324.0" layoutY="409.0" onAction="#onNetworkSettingsAction" onMouseDragged="#onDrag" onMousePressed="#onDragStart" text="网络设置">
         <font>
             <Font size="14.0" />
         </font>
     </Hyperlink>
 
-    <Button layoutX="573.0" layoutY="387.0" onAction="#onLoginAction" prefHeight="41.0" prefWidth="87.0" styleClass="btn-r,btn-blue" text="登 录">
+    <Button layoutX="573.0" layoutY="387.0" onAction="#onLoginAction" onMouseDragged="#onDrag" onMousePressed="#onDragStart" prefHeight="41.0" prefWidth="87.0" styleClass="btn-r,btn-blue" text="登 录">
         <font>
             <Font size="20.0" />
         </font>
