@@ -20,7 +20,7 @@ public class HttpClient {
     public static String get(String path) throws IOException {
         String url = ClientConfigUtil.getConfig().getServerHost() + path;
         if (session != null) {
-            url += "/?sessid=" + session.id;
+            url += "/" + session.id;
         }
         HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();
         conn.setConnectTimeout(10000);
@@ -34,7 +34,7 @@ public class HttpClient {
     public static String post(String path, String payload) throws IOException {
         String url = ClientConfigUtil.getConfig().getServerHost() + path;
         if (session != null) {
-            url += "/?sessid=" + session.id;
+            url += "/" + session.id;
         }
         HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();
         conn.setConnectTimeout(10000);

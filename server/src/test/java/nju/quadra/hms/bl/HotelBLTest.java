@@ -79,7 +79,7 @@ public class HotelBLTest {
     	ArrayList<HotelVO> voarr = hotelBL.getAll();
     	HotelVO vo = voarr.get(0);
         vo.name = "金陵会议大酒店";
-        assertEquals(ResultMessage.RESULT_SUCCESS, hotelBL.modify(vo.id, vo).result);
+        assertEquals(ResultMessage.RESULT_SUCCESS, hotelBL.modify(vo).result);
     }
 
     @Test

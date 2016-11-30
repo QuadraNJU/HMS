@@ -1,5 +1,6 @@
 package nju.quadra.hms.dataservice;
 
+import nju.quadra.hms.po.AreaPO;
 import nju.quadra.hms.po.HotelPO;
 
 import java.util.ArrayList;
@@ -15,6 +16,8 @@ public interface HotelDataService {
     ArrayList<HotelPO> getByArea(int areaId) throws Exception;
 
     HotelPO getByStaff(String staff) throws Exception;
+
+    ArrayList<AreaPO> getAllArea() throws Exception;
 
     void insert(HotelPO po) throws Exception;
 
