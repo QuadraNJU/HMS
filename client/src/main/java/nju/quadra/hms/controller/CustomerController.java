@@ -1,20 +1,25 @@
 package nju.quadra.hms.controller;
 
+import com.google.gson.reflect.TypeToken;
 import nju.quadra.hms.model.ResultMessage;
 import nju.quadra.hms.net.HttpRemote;
+import nju.quadra.hms.vo.CreditRecordVO;
 import nju.quadra.hms.vo.MemberVO;
 import nju.quadra.hms.vo.UserVO;
+
+import java.util.ArrayList;
 
 /**
  * Created by adn55 on 16/11/25.
  */
 public class CustomerController {
 
-    private HttpRemote userRemote, customerRemote;
+    private HttpRemote userRemote, customerRemote, creditRemote;
 
     public CustomerController() {
         this.userRemote = new HttpRemote("UserBL");
         this.customerRemote = new HttpRemote("CustomerBL");
+        this.creditRemote = new HttpRemote("CreditRecordBL");
     }
 
     public UserVO getUserInfo(String username) {
@@ -23,15 +28,6 @@ public class CustomerController {
         } catch (Exception e) {
             e.printStackTrace();
             return null;
-        }
-    }
-
-    public double getCurrentCredit(String username) {
-        try {
-            return customerRemote.invoke(double.class, "getCurrentCredit", username);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return 0.0;
         }
     }
 
@@ -59,6 +55,15 @@ public class CustomerController {
         } catch (Exception e) {
             e.printStackTrace();
             return new ResultMessage(ResultMessage.RESULT_NET_ERROR);
+        }
+    }
+
+    public ArrayList<CreditRecordVO> getCreditRecord(String username) {
+        try {
+            return creditRemote.invoke(new TypeToken<ArrayList<CreditRecordVO>>(){}.getType(), "get", username);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
     }
 

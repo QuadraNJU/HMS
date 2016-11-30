@@ -45,6 +45,9 @@ public class CustomerNavigation extends Parent {
             case "member":
                 mainView.loadView(new MemberEnrollView());
                 break;
+            case "credit":
+                mainView.loadView(new CreditRecordView());
+                break;
         }
     }
 

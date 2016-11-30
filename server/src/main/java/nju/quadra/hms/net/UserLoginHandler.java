@@ -1,12 +1,12 @@
 package nju.quadra.hms.net;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import nju.quadra.hms.bl.UserBL;
+import nju.quadra.hms.blservice.userBL.UserBLService;
 import nju.quadra.hms.model.LoginResult;
 import nju.quadra.hms.model.LoginSession;
 import nju.quadra.hms.model.ResultMessage;
@@ -15,7 +15,6 @@ import nju.quadra.hms.vo.UserVO;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.lang.reflect.Parameter;
 
 /**
  * Created by adn55 on 2016/11/29.
@@ -36,7 +35,7 @@ public class UserLoginHandler implements HttpHandler {
         if (jsonParams.isJsonArray()) {
             String username = jsonParams.getAsJsonArray().get(0).getAsString();
             String password = jsonParams.getAsJsonArray().get(1).getAsString();
-            UserBL userBL = new UserBL();
+            UserBLService userBL = new UserBL();
             ResultMessage blResult = userBL.login(username, password);
             if (blResult.result == ResultMessage.RESULT_SUCCESS) {
                 // generate a new session

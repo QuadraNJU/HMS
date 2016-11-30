@@ -10,7 +10,8 @@
                preserveRatio="true">
         <Image url="@../common/bg.jpg"/>
     </ImageView>
-    <ImageView layoutX="40.0" layoutY="30.0" preserveRatio="true">
+    <ImageView layoutX="40.0" layoutY="30.0" onMouseDragged="#onDrag" onMousePressed="#onDragStart"
+               preserveRatio="true">
         <Image url="@../common/title-h.png"/>
     </ImageView>
 

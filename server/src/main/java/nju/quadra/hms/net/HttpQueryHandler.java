@@ -27,7 +27,7 @@ public class HttpQueryHandler implements HttpHandler {
                 Method[] methods = bl.getMethods();
                 Method method = null;
                 for (Method m : methods) {
-                    if (m.getName().equals(paths[2])) {
+                    if (m.getName().toLowerCase().equals(paths[2].toLowerCase())) {
                         method = m;
                         break;
                     }
@@ -57,7 +57,7 @@ public class HttpQueryHandler implements HttpHandler {
                 result = new Gson().toJson(returnValue);
             } catch (Exception e) {
                 e.printStackTrace();
-                result = "Invalid request";
+                result = "Server exception: " + e.getClass().getSimpleName();
             }
         }
 
