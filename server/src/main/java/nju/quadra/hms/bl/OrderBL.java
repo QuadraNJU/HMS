@@ -37,9 +37,7 @@ public class OrderBL implements OrderBLService {
 
     }
 
-    /**
-     * 注释部分都是正文，但是两个promotion还没写orz
-     */
+
     @Override
     public PriceVO getPrice(OrderVO vo) {
         WebsitePromotionDataService websitePromotionDataService = new WebsitePromotionDataServiceImpl();
