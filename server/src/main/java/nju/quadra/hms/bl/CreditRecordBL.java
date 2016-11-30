@@ -1,6 +1,6 @@
 package nju.quadra.hms.bl;
 
-import nju.quadra.hms.blservice.customerBL.CreditRecordBLService;
+import nju.quadra.hms.blservice.CreditRecordBLService;
 import nju.quadra.hms.data.mysql.CreditDataServiceImpl;
 import nju.quadra.hms.dataservice.CreditDataService;
 import nju.quadra.hms.model.CreditAction;

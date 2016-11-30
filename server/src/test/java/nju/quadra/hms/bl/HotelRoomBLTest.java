@@ -1,6 +1,6 @@
 package nju.quadra.hms.bl;
 
-import nju.quadra.hms.blservice.hotelRoomBL.HotelRoomBLService;
+import nju.quadra.hms.blservice.HotelRoomBLService;
 import nju.quadra.hms.model.ResultMessage;
 import nju.quadra.hms.vo.HotelRoomVO;
 import org.junit.Before;

@@ -1,18 +1,15 @@
 package nju.quadra.hms.bl;
 
-import nju.quadra.hms.blservice.customerBL.CreditRecordBLService;
-import nju.quadra.hms.blservice.customerBL.CustomerBLService;
-import nju.quadra.hms.blservice.userBL.UserBLService;
+import nju.quadra.hms.blservice.CreditRecordBLService;
+import nju.quadra.hms.blservice.CustomerBLService;
+import nju.quadra.hms.blservice.UserBLService;
 import nju.quadra.hms.data.mysql.UserDataServiceImpl;
 import nju.quadra.hms.dataservice.UserDataService;
 import nju.quadra.hms.model.ResultMessage;
 import nju.quadra.hms.model.UserType;
 import nju.quadra.hms.po.UserPO;
-import nju.quadra.hms.vo.CreditRecordVO;
 import nju.quadra.hms.vo.MemberVO;
 import nju.quadra.hms.vo.UserVO;
-
-import java.util.ArrayList;
 
 public class CustomerBL implements CustomerBLService {
 

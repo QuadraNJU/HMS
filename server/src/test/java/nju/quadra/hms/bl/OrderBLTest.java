@@ -1,18 +1,14 @@
 package nju.quadra.hms.bl;
 
-import nju.quadra.hms.bl.mockObject.MockOrderBL;
-import nju.quadra.hms.blservice.orderBL.OrderBLService;
-import nju.quadra.hms.blservice.promotionBL.HotelPromotionBLService;
-import nju.quadra.hms.blservice.promotionBL.WebsitePromotionBLService;
+import nju.quadra.hms.blservice.OrderBLService;
+import nju.quadra.hms.blservice.HotelPromotionBLService;
+import nju.quadra.hms.blservice.WebsitePromotionBLService;
 import nju.quadra.hms.data.mysql.OrderDataServiceImpl;
 import nju.quadra.hms.dataservice.OrderDataService;
-import nju.quadra.hms.dataservice.WebsitePromotionDataService;
 import nju.quadra.hms.model.HotelPromotionType;
 import nju.quadra.hms.model.OrderState;
-import nju.quadra.hms.model.ResultMessage;
 import nju.quadra.hms.model.WebsitePromotionType;
 import nju.quadra.hms.po.OrderPO;
-import nju.quadra.hms.po.WebsitePromotionPO;
 import nju.quadra.hms.vo.*;
 import org.junit.Before;
 import org.junit.FixMethodOrder;

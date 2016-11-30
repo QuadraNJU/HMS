@@ -1,6 +1,6 @@
 package nju.quadra.hms.bl.mockObject;
 
-import nju.quadra.hms.blservice.hotelBL.HotelBLService;
+import nju.quadra.hms.blservice.HotelBLService;
 import nju.quadra.hms.model.ResultMessage;
 import nju.quadra.hms.vo.HotelVO;
 

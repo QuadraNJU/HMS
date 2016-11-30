@@ -1,7 +1,6 @@
 package nju.quadra.hms.bl;
 
-import nju.quadra.hms.bl.mockObject.MockHotelPromotionBL;
-import nju.quadra.hms.blservice.promotionBL.HotelPromotionBLService;
+import nju.quadra.hms.blservice.HotelPromotionBLService;
 import nju.quadra.hms.model.HotelPromotionType;
 import nju.quadra.hms.model.ResultMessage;
 import nju.quadra.hms.vo.HotelPromotionVO;

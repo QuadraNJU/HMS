@@ -1,6 +1,6 @@
 package nju.quadra.hms.bl;
 
-import nju.quadra.hms.blservice.promotionBL.WebsitePromotionBLService;
+import nju.quadra.hms.blservice.WebsitePromotionBLService;
 import nju.quadra.hms.model.ResultMessage;
 import nju.quadra.hms.model.WebsitePromotionType;
 import nju.quadra.hms.vo.WebsitePromotionVO;

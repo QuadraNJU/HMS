@@ -1,6 +1,6 @@
 package nju.quadra.hms.bl.mockObject;
 
-import nju.quadra.hms.blservice.customerBL.CreditRecordBLService;
+import nju.quadra.hms.blservice.CreditRecordBLService;
 import nju.quadra.hms.model.CreditAction;
 import nju.quadra.hms.model.ResultMessage;
 import nju.quadra.hms.vo.CreditRecordVO;

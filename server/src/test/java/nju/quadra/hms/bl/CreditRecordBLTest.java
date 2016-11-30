@@ -1,15 +1,9 @@
 package nju.quadra.hms.bl;
 
 import nju.quadra.hms.bl.mockObject.MockCreditRecordBL;
-import nju.quadra.hms.blservice.customerBL.CreditRecordBLService;
-import nju.quadra.hms.model.CreditAction;
-import nju.quadra.hms.model.ResultMessage;
-import nju.quadra.hms.vo.CreditRecordVO;
+import nju.quadra.hms.blservice.CreditRecordBLService;
 import org.junit.Before;
 import org.junit.Test;
-
-import java.util.ArrayList;
-import java.util.Date;
 
 import static org.junit.Assert.*;
 

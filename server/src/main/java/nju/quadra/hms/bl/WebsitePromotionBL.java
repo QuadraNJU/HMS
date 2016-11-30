@@ -2,7 +2,7 @@ package nju.quadra.hms.bl;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import nju.quadra.hms.blservice.promotionBL.WebsitePromotionBLService;
+import nju.quadra.hms.blservice.WebsitePromotionBLService;
 import nju.quadra.hms.data.mysql.WebsitePromotionDataServiceImpl;
 import nju.quadra.hms.dataservice.WebsitePromotionDataService;
 import nju.quadra.hms.model.ResultMessage;

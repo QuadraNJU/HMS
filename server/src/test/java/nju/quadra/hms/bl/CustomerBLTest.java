@@ -1,7 +1,7 @@
 package nju.quadra.hms.bl;
 
-import nju.quadra.hms.blservice.customerBL.CustomerBLService;
-import nju.quadra.hms.blservice.userBL.UserBLService;
+import nju.quadra.hms.blservice.CustomerBLService;
+import nju.quadra.hms.blservice.UserBLService;
 import nju.quadra.hms.model.MemberType;
 import nju.quadra.hms.model.ResultMessage;
 import nju.quadra.hms.model.UserType;
@@ -15,7 +15,6 @@ import org.junit.runners.MethodSorters;
 
 
 import java.time.LocalDate;
-import java.util.Date;
 
 import static org.junit.Assert.*;
 

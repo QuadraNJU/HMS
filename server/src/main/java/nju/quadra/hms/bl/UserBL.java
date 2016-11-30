@@ -1,6 +1,6 @@
 package nju.quadra.hms.bl;
 
-import nju.quadra.hms.blservice.userBL.UserBLService;
+import nju.quadra.hms.blservice.UserBLService;
 import nju.quadra.hms.data.mysql.UserDataServiceImpl;
 import nju.quadra.hms.dataservice.UserDataService;
 import nju.quadra.hms.model.MemberType;
@@ -10,7 +10,6 @@ import nju.quadra.hms.po.UserPO;
 import nju.quadra.hms.vo.MemberVO;
 import nju.quadra.hms.vo.UserVO;
 
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 
 /**

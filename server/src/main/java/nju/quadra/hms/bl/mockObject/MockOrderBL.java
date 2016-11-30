@@ -1,6 +1,6 @@
 package nju.quadra.hms.bl.mockObject;
 
-import nju.quadra.hms.blservice.orderBL.OrderBLService;
+import nju.quadra.hms.blservice.OrderBLService;
 import nju.quadra.hms.model.OrderState;
 import nju.quadra.hms.model.ResultMessage;
 import nju.quadra.hms.vo.OrderRankVO;
