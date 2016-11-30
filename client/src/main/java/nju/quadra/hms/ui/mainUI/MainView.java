@@ -55,8 +55,10 @@ public class MainView extends Stage {
                     break;
                 case WEBSITE_MASTER:
                     navPane.getChildren().add(new WebmasterNavigation(this));
+                    break;
                 case HOTEL_STAFF:
                     navPane.getChildren().add(new HotelStaffNavigation(this));
+                    break;
             }
         }
     }
