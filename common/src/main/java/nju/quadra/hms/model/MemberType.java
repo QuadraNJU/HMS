@@ -22,4 +22,5 @@ public enum MemberType {
     public static MemberType getById(int id) {
         return MemberType.values()[id];
     }
+
 }

@@ -5,7 +5,7 @@
 
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.control.Button?>
-<FlowPane prefHeight="30.0" prefWidth="620.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<FlowPane prefHeight="30.0" prefWidth="620.0" style="-fx-background-color: #ffffff" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <Label fx:id="labelName" text="TEST|labelName">
         <font>
             <Font size="14.0"/>

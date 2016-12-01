@@ -1,33 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<?import javafx.scene.control.Button?>
 <Pane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-    <Label layoutX="45.0" layoutY="25.0" text="用户管理">
-        <font>
-            <Font size="24.0"/>
-        </font>
-    </Label>
-    <ScrollPane layoutX="45.0" layoutY="77.0" prefHeight="350.0" prefWidth="620.0">
-        <VBox fx:id="vBox"/>
-    </ScrollPane>
-    <Button fx:id="btnNew" layoutX="50.0" layoutY="331.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="83.0" text="新增" styleClass="btn-green,btn-r" onAction="#onNewUserAction">
-        <font>
-            <Font size="16.0" />
-        </font></Button>
-    <Button fx:id="btnModify" layoutX="141.0" layoutY="331.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="83.0" text="修改" styleClass="btn-blue,btn-r" onAction="#onModifyUserAction">
-        <font>
-            <Font size="16.0" />
-        </font>
-    </Button>
-    <Button  fx:id="btnDelete" layoutX="234.0" layoutY="331.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="83.0" text="删除" styleClass="btn-r,btn-red" onAction="#onDeleteUserAction">
-        <font>
-            <Font size="16.0" />
-        </font>
-    </Button>
+    <children>
+        <Label layoutX="45.0" layoutY="25.0" text="用户管理">
+            <font>
+                <Font size="24.0"/>
+            </font>
+        </Label>
+
+        <Pane fx:id="pane" layoutX="45.0" layoutY="74.0">
+
+            <TableView fx:id="tableUserInfo" prefHeight="320.0" prefWidth="620.0">
+                <columns>
+                    <TableColumn prefWidth="250.0" text="用户名"/>
+                    <TableColumn prefWidth="120.0" text="姓名"/>
+                    <TableColumn prefWidth="130.0" text="联系方式"/>
+                    <TableColumn prefWidth="120.0" text="用户类型"/>
+                </columns>
+            </TableView>
+
+            <Button fx:id="btnNew" layoutX="50.0" layoutY="325.0" mnemonicParsing="false" onAction="#onAddUserAction"
+                    prefHeight="34.0" prefWidth="83.0" styleClass="btn-green,btn-r" text="新增">
+                <font>
+                    <Font size="16.0"/>
+                </font>
+            </Button>
+            <Button fx:id="btnModify" layoutX="150.0" layoutY="325.0" mnemonicParsing="false"
+                    onAction="#onModifyUserAction" prefHeight="34.0" prefWidth="83.0" styleClass="btn-blue,btn-r"
+                    text="修改">
+                <font>
+                    <Font size="16.0"/>
+                </font>
+            </Button>
+            <Button fx:id="btnDelete" layoutX="250.0" layoutY="325.0" mnemonicParsing="false"
+                    onAction="#onDeleteUserAction" prefHeight="34.0" prefWidth="83.0" styleClass="btn-r,btn-red"
+                    text="删除">
+                <font>
+                    <Font size="16.0"/>
+                </font>
+            </Button>
+        </Pane>
+    </children>
 </Pane>
