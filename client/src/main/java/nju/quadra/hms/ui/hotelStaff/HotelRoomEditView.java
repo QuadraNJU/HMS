@@ -87,8 +87,8 @@ public class HotelRoomEditView extends Parent {
         this.getChildren().clear();
     }
 
-}
+    interface SuccessHandler {
+        void handle();
+    }
 
-interface SuccessHandler {
-    void handle();
 }

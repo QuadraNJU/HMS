@@ -112,8 +112,8 @@ public class UserEditView extends Parent {
         }
     }
 
-}
+    interface SuccessHandler {
+        void handle();
+    }
 
-interface SuccessHandler {
-    void handle();
 }
