@@ -61,12 +61,7 @@ public class HotelRoomView extends Parent {
     protected void onModifyAction() throws IOException {
         HotelRoomProperty selected = tableView.getSelectionModel().getSelectedItem();
         if (selected != null) {
-            for (HotelRoomVO vo : rooms) {
-                if (vo.id == selected.id) {
-                    pane.getChildren().add(new HotelRoomEditView(vo, controller, this::loadRooms));
-                    break;
-                }
-            }
+            pane.getChildren().add(new HotelRoomEditView(selected.vo, controller, this::loadRooms));
         }
     }
 
@@ -81,7 +76,7 @@ public class HotelRoomView extends Parent {
             alert.getButtonTypes().setAll(ButtonType.YES, ButtonType.NO);
             Optional<ButtonType> confirm = alert.showAndWait();
             if (confirm.isPresent() && confirm.get().equals(ButtonType.YES)) {
-                ResultMessage result = controller.deleteHotelRoom(selected.id);
+                ResultMessage result = controller.deleteHotelRoom(selected.vo.id);
                 if (result.result == ResultMessage.RESULT_SUCCESS) {
                     Dialogs.showInfo("删除客房信息成功");
                 } else {
@@ -93,44 +88,22 @@ public class HotelRoomView extends Parent {
     }
 
     public class HotelRoomProperty {
-        private int id;
-        private SimpleStringProperty name;
-        private SimpleStringProperty price;
-        private SimpleStringProperty total;
+        public HotelRoomVO vo;
 
         public HotelRoomProperty(HotelRoomVO vo) {
-            this.id = vo.id;
-            this.name = new SimpleStringProperty(vo.name);
-            this.price = new SimpleStringProperty(vo.price + "");
-            this.total = new SimpleStringProperty(vo.total + "");
-        }
-
-        public int getId() {
-            return id;
+            this.vo = vo;
         }
 
         public String getName() {
-            return name.get();
-        }
-
-        public SimpleStringProperty nameProperty() {
-            return name;
+            return vo.name;
         }
 
         public String getPrice() {
-            return price.get();
-        }
-
-        public SimpleStringProperty priceProperty() {
-            return price;
+            return vo.price + "";
         }
 
         public String getTotal() {
-            return total.get();
-        }
-
-        public SimpleStringProperty totalProperty() {
-            return total;
+            return vo.total + "";
         }
     }
 

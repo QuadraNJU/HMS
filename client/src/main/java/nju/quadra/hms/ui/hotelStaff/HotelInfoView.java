@@ -1,7 +1,5 @@
 package nju.quadra.hms.ui.hotelStaff;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -9,15 +7,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import nju.quadra.hms.controller.CustomerController;
 import nju.quadra.hms.controller.HotelStaffController;
 import nju.quadra.hms.model.ResultMessage;
 import nju.quadra.hms.net.HttpClient;
 import nju.quadra.hms.ui.common.Dialogs;
 import nju.quadra.hms.vo.AreaVO;
-import nju.quadra.hms.vo.CreditRecordVO;
 import nju.quadra.hms.vo.HotelVO;
-import nju.quadra.hms.vo.UserVO;
 
 import java.io.IOException;
 import java.util.ArrayList;

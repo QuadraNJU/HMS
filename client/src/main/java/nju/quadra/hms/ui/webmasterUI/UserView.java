@@ -24,11 +24,12 @@ import java.util.Optional;
 public class UserView extends Parent {
 
     private UserController controller = new UserController();
+    private ArrayList<UserVO> userList;
+
     @FXML
     private TableView<UserProperty> tableUserInfo;
     @FXML
     Pane pane;
-    private ArrayList<UserVO> userList;
 
     public UserView() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("userlist.fxml"));
@@ -39,7 +40,6 @@ public class UserView extends Parent {
         tableUserInfo.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("name"));
         tableUserInfo.getColumns().get(2).setCellValueFactory(new PropertyValueFactory<>("contact"));
         tableUserInfo.getColumns().get(3).setCellValueFactory(new PropertyValueFactory<>("type"));
-
 
         loadUserList();
     }
@@ -90,67 +90,30 @@ public class UserView extends Parent {
                 }
                 loadUserList();
             }
-        }    }
+        }
+    }
 
     public class UserProperty {
-        private SimpleStringProperty username;
-        private SimpleStringProperty name;
-        private SimpleStringProperty contact;
-        private SimpleStringProperty type;
+        private UserVO vo;
 
         public UserProperty(UserVO vo) {
-            this.username = new SimpleStringProperty(vo.username);
-            this.name = new SimpleStringProperty(vo.name);
-            this.contact = new SimpleStringProperty(vo.contact);
-            this.type = new SimpleStringProperty(vo.type.toString());
+            this.vo = vo;
         }
 
         public String getUsername() {
-            return username.get();
-        }
-
-        public SimpleStringProperty usernameProperty() {
-            return username;
-        }
-
-        public void setUsername(String username) {
-            this.username.set(username);
+            return vo.username;
         }
 
         public String getName() {
-            return name.get();
-        }
-
-        public SimpleStringProperty nameProperty() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name.set(name);
+            return vo.name;
         }
 
         public String getContact() {
-            return contact.get();
-        }
-
-        public SimpleStringProperty contactProperty() {
-            return contact;
-        }
-
-        public void setContact(String contact) {
-            this.contact.set(contact);
+            return vo.contact;
         }
 
         public String getType() {
-            return type.get();
-        }
-
-        public SimpleStringProperty typeProperty() {
-            return type;
-        }
-
-        public void setType(String type) {
-            this.type.set(type);
+            return vo.type.toString();
         }
     }
 }

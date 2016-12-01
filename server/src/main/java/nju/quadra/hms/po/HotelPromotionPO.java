@@ -2,14 +2,12 @@ package nju.quadra.hms.po;
 
 import nju.quadra.hms.model.HotelPromotionType;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Date;
+import java.time.LocalDate;
 
 /**
  * Created by adn55 on 16/10/15.
  */
-public class HotelPromotionPO implements Comparable<HotelPromotionPO>{
+public class HotelPromotionPO {
     /**
      * 酒店促销策略ID
      */
@@ -29,11 +27,11 @@ public class HotelPromotionPO implements Comparable<HotelPromotionPO>{
     /**
      * 起始时间
      */
-    private Date startTime;
+    private LocalDate startTime;
     /**
      * 终止时间
      */
-    private Date endTime;
+    private LocalDate endTime;
     /**
      * 折扣力度
      */
@@ -43,7 +41,7 @@ public class HotelPromotionPO implements Comparable<HotelPromotionPO>{
      */
     private String cooperation;
 
-    public HotelPromotionPO(int id, int hotelId, String name, HotelPromotionType type, Date startTime, Date endTime, double promotion, String cooperation) {
+    public HotelPromotionPO(int id, int hotelId, String name, HotelPromotionType type, LocalDate startTime, LocalDate endTime, double promotion, String cooperation) {
         this.id = id;
         this.hotelId = hotelId;
         this.name = name;
@@ -86,19 +84,19 @@ public class HotelPromotionPO implements Comparable<HotelPromotionPO>{
         this.type = type;
     }
 
-    public Date getStartTime() {
+    public LocalDate getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Date startTime) {
+    public void setStartTime(LocalDate startTime) {
         this.startTime = startTime;
     }
 
-    public Date getEndTime() {
+    public LocalDate getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(Date endTime) {
+    public void setEndTime(LocalDate endTime) {
         this.endTime = endTime;
     }
 
@@ -118,10 +116,4 @@ public class HotelPromotionPO implements Comparable<HotelPromotionPO>{
         this.cooperation = cooperation;
     }
 
-    @Override
-    public int compareTo(HotelPromotionPO o) {
-        if(promotion < o.getPromotion()) return -1;
-        else if(promotion == o.getPromotion()) return 0;
-        else return 1;
-    }
 }

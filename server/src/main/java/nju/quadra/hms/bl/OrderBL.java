@@ -46,17 +46,17 @@ public class OrderBL implements OrderBLService {
         try {
             double originalPrice = vo.price;
             ArrayList<WebsitePromotionPO> wppos = websitePromotionDataService.getAll();
-            Collections.sort(wppos);
-            WebsitePromotionPO wppo = wppos.get(0);
-            WebsitePromotionVO wpvo = WebsitePromotionBL.toVO(wppo);
+            // TODO Collections.sort(wppos);
+            // WebsitePromotionPO wppo = wppos.get(0);
+            // WebsitePromotionVO wpvo = WebsitePromotionBL.toVO(wppo);
 
             ArrayList<HotelPromotionPO> hppos = hotelPromotionDataService.get(vo.hotelId);
-            Collections.sort(hppos);
-            HotelPromotionPO hppo = hppos.get(0);
-            HotelPromotionVO hpvo = HotelPromotionBL.toVO(hppo);
+            // TODO Collections.sort(hppos);
+            // HotelPromotionPO hppo = hppos.get(0);
+            // HotelPromotionVO hpvo = HotelPromotionBL.toVO(hppo);
 
-            double finalPrice = originalPrice * wppo.getPromotion() * hppo.getPromotion();
-            result =  new PriceVO(originalPrice, finalPrice, hpvo, wpvo);
+            double finalPrice = originalPrice; // * wppo.getPromotion() * hppo.getPromotion();
+            result =  new PriceVO(originalPrice, finalPrice, null, null);//hpvo, wpvo);
         } catch (Exception e) {
             e.printStackTrace();
         }

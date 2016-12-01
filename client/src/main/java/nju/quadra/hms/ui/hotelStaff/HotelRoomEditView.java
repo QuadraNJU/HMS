@@ -11,10 +11,6 @@ import nju.quadra.hms.vo.HotelRoomVO;
 
 import java.io.IOException;
 
-interface SuccessHandler {
-    void handle();
-}
-
 /**
  * Created by adn55 on 2016/12/1.
  */
@@ -23,8 +19,6 @@ public class HotelRoomEditView extends Parent {
     private HotelStaffController controller;
     private HotelRoomVO hotelRoomVO;
     private SuccessHandler onSuccess;
-    @FXML
-    private TextField editName, editPrice, editTotal;
 
     public HotelRoomEditView(HotelRoomVO vo, HotelStaffController controller, SuccessHandler onSuccess) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("roomedit.fxml"));
@@ -40,6 +34,9 @@ public class HotelRoomEditView extends Parent {
             editTotal.setText(vo.total + "");
         }
     }
+
+    @FXML
+    private TextField editName, editPrice, editTotal;
 
     @FXML
     protected void onSaveAction() {
@@ -88,6 +85,10 @@ public class HotelRoomEditView extends Parent {
     @FXML
     protected void onCancelAction() {
         this.getChildren().clear();
+    }
+
+    interface SuccessHandler {
+        void handle();
     }
 
 }

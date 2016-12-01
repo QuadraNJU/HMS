@@ -2,8 +2,8 @@ package nju.quadra.hms.vo;
 
 import nju.quadra.hms.model.HotelPromotionType;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  * Created by adn55 on 16/10/15.
@@ -28,11 +28,11 @@ public class HotelPromotionVO {
     /**
      * 起始时间
      */
-    public Date startTime;
+    public LocalDate startTime;
     /**
      * 终止时间
      */
-    public Date endTime;
+    public LocalDate endTime;
     /**
      * 折扣力度
      */
@@ -42,7 +42,7 @@ public class HotelPromotionVO {
      */
     public ArrayList<String> cooperation;
 
-    public HotelPromotionVO(int id, int hotelId, String name, HotelPromotionType type, Date startTime, Date endTime, double promotion, ArrayList<String> cooperation) {
+    public HotelPromotionVO(int id, int hotelId, String name, HotelPromotionType type, LocalDate startTime, LocalDate endTime, double promotion, ArrayList<String> cooperation) {
         this.id = id;
         this.hotelId = hotelId;
         this.name = name;
@@ -53,17 +53,4 @@ public class HotelPromotionVO {
         this.cooperation = cooperation;
     }
 
-//    @Override
-//    public boolean equals(Object obj) {
-//        if(obj instanceof HotelPromotionVO) {
-//            HotelPromotionVO hpvo = (HotelPromotionVO) obj;
-//            if(id == hpvo.id && hotelId == hpvo.id && name.equals(hpvo.name)
-//                    && type.equals(hpvo.type) && startTime.equals(hpvo.startTime)
-//                    && endTime.equals(hpvo.endTime) && promotion == hpvo.promotion
-//                    && cooperation.equals(hpvo.cooperation)) {
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
 }

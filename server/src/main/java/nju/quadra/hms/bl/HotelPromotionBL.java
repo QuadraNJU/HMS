@@ -21,6 +21,7 @@ public class HotelPromotionBL implements HotelPromotionBLService {
     public HotelPromotionBL() {
         hotelPromotionDataService = new HotelPromotionDataServiceImpl();
     }
+
     @Override
     public ArrayList<HotelPromotionVO> get(int hotelId) {
         ArrayList<HotelPromotionVO> voarr = new ArrayList<>();
