@@ -138,6 +138,7 @@ public class UserEditView extends Parent {
         }
     }
 
+
     @FXML
     private void reloadUsertypePartInfo() {
         if (comboUsertype.getSelectionModel().getSelectedItem().equals(UserType.CUSTOMER.toString())) {
