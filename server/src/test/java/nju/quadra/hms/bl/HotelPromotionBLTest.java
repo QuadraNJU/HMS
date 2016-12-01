@@ -9,6 +9,7 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -35,9 +36,9 @@ public class HotelPromotionBLTest {
         co2.add("TEST|coCom21");
         co2.add("TEST|coCom22");
         HotelPromotionVO vo1 = new HotelPromotionVO(0, 123456, "TEST|name1", HotelPromotionType.TIME_PROMOTION,
-                new Date(2016 - 1900, 11 - 1, 10 + 1), new Date(2016 - 1900, 11 - 1, 12 + 1), 0.8, co1);
+                LocalDate.parse("2016-11-10"), LocalDate.parse("2016-11-12"), 0.8, co1);
         HotelPromotionVO vo2 = new HotelPromotionVO(0, 123456, "TEST|name2", HotelPromotionType.COMPANY_PROMOTION,
-                new Date(2015 - 1900, 11 - 1, 10 + 1), new Date(2017 - 1900, 11 - 1, 12 + 1), 0.5, co2);
+                LocalDate.parse("2015-11-10"), LocalDate.parse("2017-11-12"), 0.5, co2);
         assertEquals(ResultMessage.RESULT_SUCCESS, hotelPromotionBL.add(vo1).result);
         assertEquals(ResultMessage.RESULT_SUCCESS, hotelPromotionBL.add(vo2).result);
     }
@@ -68,7 +69,6 @@ public class HotelPromotionBLTest {
         ArrayList<HotelPromotionVO> voarr = hotelPromotionBL.get(123456);
         for(HotelPromotionVO vo: voarr) {
             assertEquals(ResultMessage.RESULT_SUCCESS, hotelPromotionBL.delete(vo.id).result);
-
         }
     }
 }

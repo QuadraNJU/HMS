@@ -1,9 +1,9 @@
 package nju.quadra.hms.data.mysql;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Types;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import nju.quadra.hms.dataservice.HotelPromotionDataService;
@@ -21,7 +21,7 @@ public class HotelPromotionDataServiceImpl implements HotelPromotionDataService{
 		 pst.setInt(1, hotelId);
 		 ResultSet rs = pst.executeQuery();
 		 while(rs.next()){
-			 HotelPromotionPO po = convertToSingle(rs);
+			 HotelPromotionPO po = createPO(rs);
 			 result.add(po);
 	        }
 		 return result;
@@ -34,7 +34,7 @@ public class HotelPromotionDataServiceImpl implements HotelPromotionDataService{
 		pst.setInt(1, promotionId);
 		ResultSet rs = pst.executeQuery();
 		rs.next();
-		return convertToSingle(rs);
+		return createPO(rs);
 	}
 
 	@Override
@@ -49,8 +49,8 @@ public class HotelPromotionDataServiceImpl implements HotelPromotionDataService{
 		  pst.setInt(2,po.getHotelId());
 		  pst.setString(3,po.getName());
 		  pst.setInt(4, po.getType().ordinal());
-		  pst.setString(5, new SimpleDateFormat("yyyy-MM-dd").format(po.getStartTime()));
-		  pst.setString(6, new SimpleDateFormat("yyyy-MM-dd").format(po.getEndTime()));
+		  pst.setDate(5, Date.valueOf(po.getStartTime()));
+		  pst.setDate(6, Date.valueOf(po.getEndTime()));
 		  pst.setDouble(7,po.getPromotion());
 		  pst.setString(8,po.getCooperation());
 		  pst.executeUpdate();
@@ -75,14 +75,14 @@ public class HotelPromotionDataServiceImpl implements HotelPromotionDataService{
 		insert(po);
 	}
 
-	private HotelPromotionPO convertToSingle(ResultSet rs) throws Exception{
+	private HotelPromotionPO createPO(ResultSet rs) throws Exception{
 		return new HotelPromotionPO(
 				rs.getInt("id"),
 				rs.getInt("hotelid"),
 				rs.getString("name"),
 				HotelPromotionType.getById(rs.getInt("type")),
-				rs.getDate("starttime"),
-				rs.getDate("endtime"),
+				rs.getDate("starttime").toLocalDate(),
+				rs.getDate("endtime").toLocalDate(),
 				rs.getDouble("promotion"),
 				rs.getString("cooperation")
 		);
