@@ -23,7 +23,6 @@ public class CustomerNavigation extends Parent {
         this.mainView = main;
     }
 
-
     @FXML
     protected void onLabelClicked(MouseEvent t) throws IOException {
         Node source = (Node) t.getSource();

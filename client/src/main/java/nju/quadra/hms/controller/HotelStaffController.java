@@ -1,9 +1,11 @@
 package nju.quadra.hms.controller;
 
 import nju.quadra.hms.blservice.HotelBLService;
+import nju.quadra.hms.blservice.HotelRoomBLService;
 import nju.quadra.hms.model.ResultMessage;
 import nju.quadra.hms.net.BLServiceFactory;
 import nju.quadra.hms.vo.AreaVO;
+import nju.quadra.hms.vo.HotelRoomVO;
 import nju.quadra.hms.vo.HotelVO;
 
 import java.util.ArrayList;
@@ -14,6 +16,13 @@ import java.util.ArrayList;
 public class HotelStaffController {
 
     private HotelBLService hotelBL = BLServiceFactory.getHotelBLService();
+    private HotelRoomBLService hotelRoomBL = BLServiceFactory.getHotelRoomBLService();
+
+    private HotelVO hotelVO;
+
+    public HotelStaffController(String username) {
+        hotelVO = hotelBL.getByStaff(username);
+    }
 
     public ArrayList<AreaVO> getAllArea() {
         try {
@@ -24,9 +33,9 @@ public class HotelStaffController {
         }
     }
 
-    public HotelVO getHotelInfo(String username) {
+    public HotelVO getHotelInfo() {
         try {
-            return hotelBL.getByStaff(username);
+            return hotelVO;
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -39,6 +48,15 @@ public class HotelStaffController {
         } catch (Exception e) {
             e.printStackTrace();
             return new ResultMessage(ResultMessage.RESULT_NET_ERROR);
+        }
+    }
+
+    public ArrayList<HotelRoomVO> getHotelRooms() {
+        try {
+            return hotelRoomBL.getAll(hotelVO.id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
     }
 
