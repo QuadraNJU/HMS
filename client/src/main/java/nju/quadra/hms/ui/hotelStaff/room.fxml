@@ -14,29 +14,33 @@
                <Font size="24.0" />
            </font>
        </Label>
-   
-       <TableView fx:id="tableView" layoutX="45.0" layoutY="74.0" prefHeight="320.0" prefWidth="620.0">
-           <columns>
-               <TableColumn prefWidth="400.0" text="客房类型" />
-               <TableColumn prefWidth="100.0" text="价格" />
-               <TableColumn prefWidth="100.0" text="数量" />
-           </columns>
-       </TableView>
-   
-       <Button layoutX="45.0" layoutY="410.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="90.0" styleClass="btn-r,btn-green" text="新增">
-           <font>
-               <Font size="14.0" />
-           </font>
-       </Button>
-       <Button layoutX="145.0" layoutY="410.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="90.0" styleClass="btn-r,btn-blue" text="修改">
-           <font>
-               <Font size="14.0" />
-           </font>
-       </Button>
-       <Button layoutX="245.0" layoutY="410.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="90.0" styleClass="btn-r,btn-red" text="删除">
-           <font>
-               <Font size="14.0" />
-           </font>
-       </Button>
+       <Pane fx:id="pane" layoutX="45.0" layoutY="74.0">
+           <TableView fx:id="tableView" prefHeight="320.0" prefWidth="620.0">
+               <columns>
+                   <TableColumn prefWidth="400.0" text="客房类型"/>
+                   <TableColumn prefWidth="100.0" text="价格"/>
+                   <TableColumn prefWidth="100.0" text="数量"/>
+               </columns>
+           </TableView>
+
+           <Button layoutX="100.0" layoutY="336.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="90.0"
+                   styleClass="btn-r,btn-blue" text="修改" onAction="#onModifyAction">
+               <font>
+                   <Font size="14.0"/>
+               </font>
+           </Button>
+           <Button layoutX="200.0" layoutY="336.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="90.0"
+                   styleClass="btn-r,btn-red" text="删除" onAction="#onDeleteAction">
+               <font>
+                   <Font size="14.0"/>
+               </font>
+           </Button>
+           <Button layoutY="336.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="90.0"
+                   styleClass="btn-r,btn-green" text="新增" onAction="#onAddAction">
+               <font>
+                   <Font size="14.0"/>
+               </font>
+           </Button>
+       </Pane>
    </children>
 </Pane>

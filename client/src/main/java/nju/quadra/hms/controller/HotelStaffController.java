@@ -60,4 +60,32 @@ public class HotelStaffController {
         }
     }
 
+    public ResultMessage addHotelRoom(HotelRoomVO vo) {
+        vo.hotelId = this.hotelVO.id;
+        try {
+            return hotelRoomBL.add(vo);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResultMessage(ResultMessage.RESULT_NET_ERROR);
+        }
+    }
+
+    public ResultMessage modifyHotelRoom(HotelRoomVO vo) {
+        try {
+            return hotelRoomBL.modify(vo);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResultMessage(ResultMessage.RESULT_NET_ERROR);
+        }
+    }
+
+    public ResultMessage deleteHotelRoom(int id) {
+        try {
+            return hotelRoomBL.delete(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResultMessage(ResultMessage.RESULT_NET_ERROR);
+        }
+    }
+
 }
