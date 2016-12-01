@@ -42,7 +42,6 @@ public class CustomerController {
         try {
             return customerBL.getMemberInfo(username);
         } catch (Exception e) {
-            e.printStackTrace();
             return null;
         }
     }

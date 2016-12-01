@@ -22,5 +22,13 @@ public enum MemberType {
     public static MemberType getById(int id) {
         return MemberType.values()[id];
     }
+    public static MemberType getByShowname(String showname) {
+        MemberType[] memberTypes = MemberType.values();
+        for(MemberType ut: memberTypes) {
+            if(ut.showname.equals(showname))
+                return ut;
+        }
+        return null;
+    }
 
 }
