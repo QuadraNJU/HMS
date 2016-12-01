@@ -24,6 +24,7 @@ public class HotelAndStaffItem extends Parent {
         labelName.setText(vo.name);
     }
 
+
     @FXML
     public void onHotelDetailAction() {
         //TODO
