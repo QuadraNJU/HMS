@@ -31,6 +31,7 @@
         <ChoiceBox fx:id="choiceCity" disable="true"/>
         <ChoiceBox fx:id="choiceArea" disable="true"/>
     </HBox>
+
     <Label layoutX="55.0" layoutY="176.0" text="地址">
         <font>
             <Font size="14.0"/>
@@ -41,6 +42,7 @@
             <Font size="14.0"/>
         </font>
     </TextField>
+
     <Label layoutX="55.0" layoutY="221.0" text="简介">
         <font>
             <Font size="14.0"/>
@@ -52,6 +54,7 @@
             <Font size="14.0"/>
         </font>
     </TextArea>
+
     <Label layoutX="55.0" layoutY="332.0" text="设施服务">
         <font>
             <Font size="14.0"/>
@@ -63,6 +66,7 @@
             <Font size="14.0"/>
         </font>
     </TextField>
+
     <Label layoutX="55.0" layoutY="374.0" text="星级">
         <font>
             <Font size="14.0"/>

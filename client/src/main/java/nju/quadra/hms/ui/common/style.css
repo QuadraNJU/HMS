@@ -27,7 +27,7 @@
 
 .btn-pink {
     -fx-background-color: #ffc0cb;
-    -fx-text-fill: white;
+    -fx-text-fill: black;
 }
 
 .text-field, .password-field, .text-area, .choice-box {

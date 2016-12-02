@@ -2,6 +2,7 @@ package nju.quadra.hms.ui.hotelStaff;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -46,9 +47,13 @@ public class HotelPromotionView extends Parent {
         if (promotions != null) {
             vBox.getChildren().clear();
             for (HotelPromotionVO vo : promotions) {
-                vBox.getChildren().add(new HotelPromotionItem(vo));
+                vBox.getChildren().add(new HotelPromotionItem(this, vo, controller));
             }
         }
+    }
+
+    public void loadView(Node node) {
+        pane.getChildren().add(node);
     }
 
     @FXML
