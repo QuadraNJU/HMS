@@ -1,25 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
-<Pane stylesheets="@../common/style.css" prefHeight="45.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8"
-      xmlns:fx="http://javafx.com/fxml/1">
-    <Label fx:id="labelDate" layoutX="30.0" layoutY="13.0">
-        <font>
-            <Font size="14.0"/>
-        </font>
-    </Label>
-    <Label fx:id="labelName" layoutX="200.0" layoutY="13.0">
-        <font>
-            <Font size="14.0"/>
-        </font>
-    </Label>
-    <Button layoutX="500.0" layoutY="7.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="80.0" text="详情"
-            styleClass="btn-r,btn-blue">
-        <font>
-            <Font size="14.0"/>
-        </font>
-    </Button>
+
+<Pane prefHeight="45.0" prefWidth="600.0" stylesheets="@../common/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+       <Label fx:id="labelDate" layoutX="10.0" layoutY="13.0">
+           <font>
+               <Font size="14.0" />
+           </font>
+       </Label>
+       <Label fx:id="labelName" layoutX="200.0" layoutY="13.0">
+           <font>
+               <Font size="14.0" />
+           </font>
+       </Label>
+       <Button layoutX="440.0" layoutY="7.0" mnemonicParsing="false" prefWidth="50.0" styleClass="btn-r,btn-pink" text="详情">
+           <font>
+               <Font size="14.0" />
+           </font>
+       </Button>
+       <Button layoutX="495.0" layoutY="7.0" mnemonicParsing="false" prefWidth="50.0" styleClass="btn-r,btn-blue" text="修改">
+           <font>
+               <Font size="14.0" />
+           </font>
+       </Button>
+       <Button layoutX="550.0" layoutY="7.0" mnemonicParsing="false" prefWidth="50.0" styleClass="btn-r,btn-red" text="删除">
+           <font>
+               <Font size="14.0" />
+           </font>
+       </Button>
+   </children>
 </Pane>

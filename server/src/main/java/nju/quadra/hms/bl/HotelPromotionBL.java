@@ -5,6 +5,7 @@ import com.google.gson.reflect.TypeToken;
 import nju.quadra.hms.blservice.HotelPromotionBLService;
 import nju.quadra.hms.data.mysql.HotelPromotionDataServiceImpl;
 import nju.quadra.hms.dataservice.HotelPromotionDataService;
+import nju.quadra.hms.model.HotelPromotionType;
 import nju.quadra.hms.model.ResultMessage;
 import nju.quadra.hms.po.HotelPromotionPO;
 import nju.quadra.hms.vo.HotelPromotionVO;
@@ -70,11 +71,15 @@ public class HotelPromotionBL implements HotelPromotionBLService {
         }
     }
 
-    public static HotelPromotionVO toVO(HotelPromotionPO po) {
-        return new HotelPromotionVO(po.getId(), po.getHotelId(), po.getName(), po.getType(), po.getStartTime(), po.getEndTime(), po.getPromotion(), new Gson().fromJson(po.getCooperation(), new TypeToken<ArrayList<String>>() {}.getType()));
+    private static HotelPromotionVO toVO(HotelPromotionPO po) {
+        ArrayList<String> cooperation = null;
+        if (po.getCooperation() != null && po.getType().equals(HotelPromotionType.COMPANY_PROMOTION)) {
+            cooperation = new Gson().fromJson(po.getCooperation(), new TypeToken<ArrayList<String>>(){}.getType());
+        }
+        return new HotelPromotionVO(po.getId(), po.getHotelId(), po.getName(), po.getType(), po.getStartTime(), po.getEndTime(), po.getPromotion(), cooperation);
     }
 
-    protected static HotelPromotionPO toPO(HotelPromotionVO vo) {
+    private static HotelPromotionPO toPO(HotelPromotionVO vo) {
         return new HotelPromotionPO(vo.id, vo.hotelId, vo.name, vo.type, vo.startTime, vo.endTime, vo.promotion, new Gson().toJson(vo.cooperation));
     }
 }

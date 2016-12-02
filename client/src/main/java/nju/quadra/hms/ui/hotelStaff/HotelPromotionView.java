@@ -26,6 +26,7 @@ import java.util.Optional;
 public class HotelPromotionView extends Parent {
 
     private HotelStaffController controller = new HotelStaffController(HttpClient.session.username);
+    private ArrayList<HotelPromotionVO> promotions;
 
     public HotelPromotionView() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("promotion.fxml"));
@@ -40,7 +41,14 @@ public class HotelPromotionView extends Parent {
     @FXML
     private VBox vBox;
 
-    private void loadPromotion() {
+    private void loadPromotion() throws IOException {
+        promotions = controller.getHotelPromotions();
+        if (promotions != null) {
+            vBox.getChildren().clear();
+            for (HotelPromotionVO vo : promotions) {
+                vBox.getChildren().add(new HotelPromotionItem(vo));
+            }
+        }
     }
 
     @FXML

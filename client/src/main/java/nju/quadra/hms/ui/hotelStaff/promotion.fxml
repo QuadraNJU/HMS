@@ -12,24 +12,12 @@
     </Label>
 
     <Pane fx:id="pane" layoutX="45.0" layoutY="74.0">
-        <ScrollPane prefHeight="320.0" prefWidth="620.0">
+        <ScrollPane prefHeight="320.0" prefWidth="620.0" style="-fx-background-color: #ffffff;">
             <VBox fx:id="vBox"/>
         </ScrollPane>
 
-        <Button layoutX="100.0" layoutY="336.0" mnemonicParsing="false" onAction="#onModifyAction" prefHeight="30.0"
-                prefWidth="90.0" styleClass="btn-r,btn-blue" text="修改">
-            <font>
-                <Font size="14.0"/>
-            </font>
-        </Button>
-        <Button layoutX="200.0" layoutY="336.0" mnemonicParsing="false" onAction="#onDeleteAction" prefHeight="30.0"
-                prefWidth="90.0" styleClass="btn-r,btn-red" text="删除">
-            <font>
-                <Font size="14.0"/>
-            </font>
-        </Button>
-        <Button layoutY="336.0" mnemonicParsing="false" onAction="#onAddAction" prefHeight="30.0" prefWidth="90.0"
-                styleClass="btn-r,btn-green" text="新增">
+        <Button layoutY="336.0" mnemonicParsing="false" onAction="#onAddAction" prefHeight="30.0" prefWidth="150.0"
+                styleClass="btn-r,btn-green" text="新增促销策略">
             <font>
                 <Font size="14.0"/>
             </font>

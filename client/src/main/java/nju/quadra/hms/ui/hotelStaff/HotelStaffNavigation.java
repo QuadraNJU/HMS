@@ -49,6 +49,9 @@ public class HotelStaffNavigation extends Parent {
             case "room":
                 mainView.loadView(new HotelRoomView());
                 break;
+            case "promotion":
+                mainView.loadView(new HotelPromotionView());
+                break;
         }
     }
 

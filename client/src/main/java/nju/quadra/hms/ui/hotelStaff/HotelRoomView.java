@@ -46,9 +46,11 @@ public class HotelRoomView extends Parent {
 
     private void loadRooms() {
         rooms = controller.getHotelRooms();
-        tableView.getItems().clear();
-        for (HotelRoomVO vo : rooms) {
-            tableView.getItems().add(new HotelRoomProperty(vo));
+        if (rooms != null) {
+            tableView.getItems().clear();
+            for (HotelRoomVO vo : rooms) {
+                tableView.getItems().add(new HotelRoomProperty(vo));
+            }
         }
     }
 

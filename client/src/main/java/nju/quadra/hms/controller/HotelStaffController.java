@@ -1,10 +1,12 @@
 package nju.quadra.hms.controller;
 
 import nju.quadra.hms.blservice.HotelBLService;
+import nju.quadra.hms.blservice.HotelPromotionBLService;
 import nju.quadra.hms.blservice.HotelRoomBLService;
 import nju.quadra.hms.model.ResultMessage;
 import nju.quadra.hms.net.BLServiceFactory;
 import nju.quadra.hms.vo.AreaVO;
+import nju.quadra.hms.vo.HotelPromotionVO;
 import nju.quadra.hms.vo.HotelRoomVO;
 import nju.quadra.hms.vo.HotelVO;
 
@@ -17,6 +19,7 @@ public class HotelStaffController {
 
     private HotelBLService hotelBL = BLServiceFactory.getHotelBLService();
     private HotelRoomBLService hotelRoomBL = BLServiceFactory.getHotelRoomBLService();
+    private HotelPromotionBLService hotelPromotionBL = BLServiceFactory.getHotelPromotionBLService();
 
     private HotelVO hotelVO;
 
@@ -85,6 +88,15 @@ public class HotelStaffController {
         } catch (Exception e) {
             e.printStackTrace();
             return new ResultMessage(ResultMessage.RESULT_NET_ERROR);
+        }
+    }
+
+    public ArrayList<HotelPromotionVO> getHotelPromotions() {
+        try {
+            return hotelPromotionBL.get(hotelVO.id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
     }
 
