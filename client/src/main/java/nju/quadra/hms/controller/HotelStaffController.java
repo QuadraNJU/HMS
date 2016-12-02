@@ -91,12 +91,40 @@ public class HotelStaffController {
         }
     }
 
-    public ArrayList<HotelPromotionVO> getHotelPromotions() {
+    public ArrayList<HotelPromotionVO> getHotelPromotion() {
         try {
             return hotelPromotionBL.get(hotelVO.id);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
+        }
+    }
+
+    public ResultMessage addHotelPromotion(HotelPromotionVO vo) {
+        vo.hotelId = this.hotelVO.id;
+        try {
+            return hotelPromotionBL.add(vo);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResultMessage(ResultMessage.RESULT_NET_ERROR);
+        }
+    }
+
+    public ResultMessage modifyHotelPromotion(HotelPromotionVO vo) {
+        try {
+            return hotelPromotionBL.modify(vo);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResultMessage(ResultMessage.RESULT_NET_ERROR);
+        }
+    }
+
+    public ResultMessage deleteHotelPromotion(int id) {
+        try {
+            return hotelPromotionBL.delete(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResultMessage(ResultMessage.RESULT_NET_ERROR);
         }
     }
 

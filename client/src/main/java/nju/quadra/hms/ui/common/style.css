@@ -30,13 +30,13 @@
     -fx-text-fill: black;
 }
 
-.text-field, .password-field, .text-area, .choice-box {
+.text-field, .password-field, .text-area, .choice-box, .arrow-button {
     -fx-background-color: #ffffff;
     -fx-border-color: #6d6d6d;
     -fx-border-style: solid;
     -fx-border-width: 2px;
 }
 
-.choice-box {
+.choice-box, .date-picker {
     -fx-font-size: 14px;
 }
