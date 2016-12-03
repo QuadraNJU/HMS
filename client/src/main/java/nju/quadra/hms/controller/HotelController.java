@@ -1,8 +1,11 @@
 package nju.quadra.hms.controller;
 
 import com.google.gson.reflect.TypeToken;
+import nju.quadra.hms.blservice.HotelBLService;
 import nju.quadra.hms.model.ResultMessage;
+import nju.quadra.hms.net.BLServiceFactory;
 import nju.quadra.hms.net.HttpRemote;
+import nju.quadra.hms.vo.AreaVO;
 import nju.quadra.hms.vo.HotelVO;
 import nju.quadra.hms.vo.UserVO;
 
@@ -12,15 +15,20 @@ import java.util.ArrayList;
  * Created by RaUkonn on 2016/11/30.
  */
 public class HotelController {
-    private HttpRemote hotelRemote;
+    private HotelBLService hotelBL = BLServiceFactory.getHotelBLService();
 
-    public HotelController() {
-        this.hotelRemote = new HttpRemote("HotelBL");
+    public ArrayList<AreaVO> getAllArea() {
+        try {
+            return hotelBL.getAllArea();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public ArrayList<HotelVO> search(int areaId) {
         try {
-            return hotelRemote.invoke(new TypeToken<ArrayList<HotelVO>>(){}.getType(), "search", areaId);
+            return hotelBL.search(areaId);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -29,7 +37,7 @@ public class HotelController {
 
     public ArrayList<HotelVO> getAll() {
         try {
-            return hotelRemote.invoke(new TypeToken<ArrayList<HotelVO>>(){}.getType(), "getAll");
+            return hotelBL.getAll();
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -38,7 +46,7 @@ public class HotelController {
 
     public HotelVO getDetail(int id) {
         try {
-            return hotelRemote.invoke(HotelVO.class, "getDetail", id);
+            return hotelBL.getDetail(id);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -47,7 +55,7 @@ public class HotelController {
 
     public HotelVO getByStaff(String staff) {
         try {
-            return hotelRemote.invoke(HotelVO.class, "getByStaff", staff);
+            return hotelBL.getByStaff(staff);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -56,7 +64,7 @@ public class HotelController {
 
     public ResultMessage add(HotelVO vo) {
         try {
-            return hotelRemote.invoke(ResultMessage.class, "add", vo);
+            return hotelBL.add(vo);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -65,16 +73,16 @@ public class HotelController {
 
     public ResultMessage delete(int id) {
         try {
-            return hotelRemote.invoke(ResultMessage.class, "delete", id);
+            return hotelBL.delete(id);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
     }
 
-    public ResultMessage modify(int id, HotelVO vo) {
+    public ResultMessage modify(HotelVO vo) {
         try {
-            return hotelRemote.invoke(ResultMessage.class, "modify", id, vo);
+            return hotelBL.modify(vo);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -83,7 +91,7 @@ public class HotelController {
 
     public ResultMessage changeStaff(int id, String username) {
         try {
-            return hotelRemote.invoke(ResultMessage.class, "changeStaff", id, username);
+            return hotelBL.changeStaff(id, username);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
