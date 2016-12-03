@@ -80,6 +80,10 @@ public class HotelPromotionBL implements HotelPromotionBLService {
     }
 
     private static HotelPromotionPO toPO(HotelPromotionVO vo) {
-        return new HotelPromotionPO(vo.id, vo.hotelId, vo.name, vo.type, vo.startTime, vo.endTime, vo.promotion, new Gson().toJson(vo.cooperation));
+        if (vo.type.equals(HotelPromotionType.COMPANY_PROMOTION)) {
+            return new HotelPromotionPO(vo.id, vo.hotelId, vo.name, vo.type, vo.startTime, vo.endTime, vo.promotion, new Gson().toJson(vo.cooperation));
+        } else {
+            return new HotelPromotionPO(vo.id, vo.hotelId, vo.name, vo.type, vo.startTime, vo.endTime, vo.promotion, null);
+        }
     }
 }

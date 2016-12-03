@@ -1,5 +1,6 @@
 package nju.quadra.hms.controller;
 
+import nju.quadra.hms.blservice.CustomerBLService;
 import nju.quadra.hms.blservice.HotelBLService;
 import nju.quadra.hms.blservice.HotelPromotionBLService;
 import nju.quadra.hms.blservice.HotelRoomBLService;
@@ -20,6 +21,7 @@ public class HotelStaffController {
     private HotelBLService hotelBL = BLServiceFactory.getHotelBLService();
     private HotelRoomBLService hotelRoomBL = BLServiceFactory.getHotelRoomBLService();
     private HotelPromotionBLService hotelPromotionBL = BLServiceFactory.getHotelPromotionBLService();
+    private CustomerBLService customerBL = BLServiceFactory.getCustomerBLService();
 
     private HotelVO hotelVO;
 
@@ -125,6 +127,15 @@ public class HotelStaffController {
         } catch (Exception e) {
             e.printStackTrace();
             return new ResultMessage(ResultMessage.RESULT_NET_ERROR);
+        }
+    }
+
+    public ArrayList<String> getAllCompany() {
+        try {
+            return customerBL.getAllCompany();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
     }
 

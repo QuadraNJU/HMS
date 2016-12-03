@@ -5,11 +5,14 @@ import nju.quadra.hms.blservice.CustomerBLService;
 import nju.quadra.hms.blservice.UserBLService;
 import nju.quadra.hms.data.mysql.UserDataServiceImpl;
 import nju.quadra.hms.dataservice.UserDataService;
+import nju.quadra.hms.model.MemberType;
 import nju.quadra.hms.model.ResultMessage;
 import nju.quadra.hms.model.UserType;
 import nju.quadra.hms.po.UserPO;
 import nju.quadra.hms.vo.MemberVO;
 import nju.quadra.hms.vo.UserVO;
+
+import java.util.ArrayList;
 
 public class CustomerBL implements CustomerBLService {
 
@@ -54,6 +57,24 @@ public class CustomerBL implements CustomerBLService {
         } catch (Exception e) {
             e.printStackTrace();
             return new ResultMessage(ResultMessage.RESULT_DB_ERROR);
+        }
+    }
+
+    @Override
+    public ArrayList<String> getAllCompany() {
+        try {
+            ArrayList<UserPO> users = userDataService.getAll();
+            ArrayList<String> companyList = new ArrayList<>();
+            for (UserPO po : users) {
+                if (po.getMemberType().equals(MemberType.COMPANY) && po.getCompanyName() != null
+                        && !po.getCompanyName().isEmpty() && !companyList.contains(po.getCompanyName())) {
+                    companyList.add(po.getCompanyName());
+                }
+            }
+            return companyList;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
     }
 
