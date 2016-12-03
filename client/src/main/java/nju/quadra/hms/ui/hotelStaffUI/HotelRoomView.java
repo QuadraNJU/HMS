@@ -1,6 +1,5 @@
-package nju.quadra.hms.ui.hotelStaff;
+package nju.quadra.hms.ui.hotelStaffUI;
 
-import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

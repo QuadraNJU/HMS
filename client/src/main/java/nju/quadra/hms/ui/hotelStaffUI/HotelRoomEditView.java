@@ -1,4 +1,4 @@
-package nju.quadra.hms.ui.hotelStaff;
+package nju.quadra.hms.ui.hotelStaffUI;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

@@ -6,17 +6,15 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import nju.quadra.hms.ClientRunner;
 import nju.quadra.hms.net.HttpClient;
 import nju.quadra.hms.ui.common.Dialogs;
 import nju.quadra.hms.ui.customerUI.CustomerNavigation;
-import nju.quadra.hms.ui.hotelStaff.HotelStaffNavigation;
+import nju.quadra.hms.ui.hotelStaffUI.HotelStaffNavigation;
 import nju.quadra.hms.ui.loginUI.LoginView;
 import nju.quadra.hms.ui.webmasterUI.WebmasterNavigation;
 

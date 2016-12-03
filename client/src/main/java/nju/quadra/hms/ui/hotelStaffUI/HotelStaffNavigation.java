@@ -1,14 +1,10 @@
-package nju.quadra.hms.ui.hotelStaff;
+package nju.quadra.hms.ui.hotelStaffUI;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.input.MouseEvent;
-import nju.quadra.hms.ui.customerUI.CreditRecordView;
-import nju.quadra.hms.ui.customerUI.CustomerInfoView;
-import nju.quadra.hms.ui.customerUI.HotelSearchView;
-import nju.quadra.hms.ui.customerUI.MemberEnrollView;
 import nju.quadra.hms.ui.mainUI.MainView;
 
 import java.io.IOException;
