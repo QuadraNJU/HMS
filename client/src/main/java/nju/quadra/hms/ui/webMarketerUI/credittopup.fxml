@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.*?>
+<Pane stylesheets="@../common/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <Label layoutX="45.0" layoutY="25.0" text="信用充值">
+        <font>
+            <Font size="24.0"/>
+        </font>
+    </Label>
+
+    <Label layoutX="55.0" layoutY="85.0" text="用户名">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </Label>
+    <TextField fx:id="editUsername" layoutX="130.0" layoutY="80.0" prefWidth="250.0" promptText="用户名">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </TextField>
+
+    <Label layoutX="55.0" layoutY="130.0" text="充值额度">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </Label>
+    <TextField fx:id="editAmount" layoutX="130.0" layoutY="125.0" prefWidth="250.0" promptText="额度">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </TextField>
+
+    <Button fx:id="btnSubmit" layoutX="55.0" layoutY="180.0" onAction="#onSubmitAction" prefHeight="30.0"
+            prefWidth="90.0" styleClass="btn-r,btn-blue" text="确认">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </Button>
+</Pane>

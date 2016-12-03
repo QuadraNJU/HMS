@@ -12,4 +12,6 @@ public interface CreditRecordBLService {
     ArrayList<CreditRecordVO> get(String username);
 
     ResultMessage add(CreditRecordVO vo);
+
+    ResultMessage topup(String username, int amount);
 }

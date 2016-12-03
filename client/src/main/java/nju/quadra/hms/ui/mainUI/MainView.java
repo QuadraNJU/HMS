@@ -16,6 +16,7 @@ import nju.quadra.hms.ui.common.Dialogs;
 import nju.quadra.hms.ui.customerUI.CustomerNavigation;
 import nju.quadra.hms.ui.hotelStaffUI.HotelStaffNavigation;
 import nju.quadra.hms.ui.loginUI.LoginView;
+import nju.quadra.hms.ui.webMarketerUI.WebMarketerNavigation;
 import nju.quadra.hms.ui.webmasterUI.WebmasterNavigation;
 
 import java.io.IOException;
@@ -51,11 +52,14 @@ public class MainView extends Stage {
                 case CUSTOMER:
                     navPane.getChildren().add(new CustomerNavigation(this));
                     break;
-                case WEBSITE_MASTER:
-                    navPane.getChildren().add(new WebmasterNavigation(this));
-                    break;
                 case HOTEL_STAFF:
                     navPane.getChildren().add(new HotelStaffNavigation(this));
+                    break;
+                case WEBSITE_MARKETER:
+                    navPane.getChildren().add(new WebMarketerNavigation(this));
+                    break;
+                case WEBSITE_MASTER:
+                    navPane.getChildren().add(new WebmasterNavigation(this));
                     break;
             }
         }
