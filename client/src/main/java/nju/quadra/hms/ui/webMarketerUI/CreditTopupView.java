@@ -41,6 +41,8 @@ public class CreditTopupView extends Parent {
         ResultMessage result = controller.creditTopup(username, amount);
         if (result.result == ResultMessage.RESULT_SUCCESS) {
             Dialogs.showInfo("充值成功");
+            editUsername.clear();
+            editAmount.clear();
         } else {
             Dialogs.showError("充值失败: " + result.message);
         }

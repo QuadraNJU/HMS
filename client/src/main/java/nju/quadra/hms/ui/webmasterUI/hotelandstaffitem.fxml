@@ -1,21 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="590.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <Label fx:id="labelName" layoutX="14.0" layoutY="14.0">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Label>
-      <Button onAction="#onHotelDetailAction" fx:id="btnDetail" layoutX="493.0" layoutY="8.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="76.0" text="详情" styleClass="btn-blue,btn-r">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Button>
-   </children>
+<Pane prefHeight="45.0" prefWidth="600.0" stylesheets="@../common/style.css" xmlns="http://javafx.com/javafx/8"
+      xmlns:fx="http://javafx.com/fxml/1">
+    <Label fx:id="labelName" layoutX="10.0" layoutY="13.0">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </Label>
+    <Button layoutX="440.0" layoutY="7.0" prefWidth="50.0" styleClass="btn-r,btn-pink" text="详情"
+            onAction="#onDetailAction">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </Button>
+    <Button layoutX="495.0" layoutY="7.0" prefWidth="50.0" styleClass="btn-r,btn-blue" text="修改"
+            onAction="#onModifyAction">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </Button>
+    <Button layoutX="550.0" layoutY="7.0" prefWidth="50.0" styleClass="btn-r,btn-red" text="删除"
+            onAction="#onDeleteAction">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </Button>
 </Pane>

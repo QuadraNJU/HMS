@@ -84,7 +84,7 @@ public class HotelInfoView extends Parent {
             hotelVO.name = editName.getText();
             hotelVO.areaId = 0;
             for (AreaVO areaVO : areas) {
-                if (areaVO.areaName.equals(choiceArea.getValue())) {
+                if (areaVO.areaName.equals(choiceArea.getValue()) && areaVO.cityName.equals(choiceCity.getValue())) {
                     hotelVO.areaId = areaVO.id;
                     break;
                 }

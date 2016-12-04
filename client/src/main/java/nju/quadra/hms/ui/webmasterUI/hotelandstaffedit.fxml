@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.*?>
+
+<Pane prefHeight="390" prefWidth="620" style="-fx-background-color: white;" stylesheets="@../common/style.css"
+      xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <Label layoutY="5.0" text="酒店名">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Label>
+        <TextField fx:id="editName" layoutX="75.0" prefWidth="250.0" promptText="酒店名">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </TextField>
+
+        <Label layoutY="50.0" text="商圈">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Label>
+        <HBox layoutX="75.0" layoutY="45.0" spacing="10.0">
+            <children>
+                <ChoiceBox fx:id="choiceCity"/>
+                <ChoiceBox fx:id="choiceArea"/>
+            </children>
+        </HBox>
+
+        <Label layoutY="96.0" text="地址">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Label>
+        <TextField fx:id="editAddress" layoutX="75.0" layoutY="91.0" prefWidth="500.0" promptText="地址">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </TextField>
+
+        <Label layoutY="141.0" text="简介">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Label>
+        <TextArea fx:id="textDescription" layoutX="75.0" layoutY="136.0" prefHeight="100.0" prefWidth="500.0"
+                  promptText="简介">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </TextArea>
+
+        <Label layoutY="252.0" text="设施服务">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Label>
+        <TextField fx:id="editFacilities" layoutX="75.0" layoutY="247.0" prefWidth="500.0" promptText="设施服务">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </TextField>
+
+        <Label layoutY="294.0" text="星级">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Label>
+        <ChoiceBox fx:id="choiceStar" layoutX="75.0" layoutY="289.0"/>
+
+        <Label layoutX="250.0" layoutY="294.0" text="工作人员">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Label>
+        <TextField fx:id="editStaff" layoutX="325.0" layoutY="289.0" prefWidth="250.0" promptText="用户名">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </TextField>
+
+        <Button fx:id="btnSave" layoutY="340.0" onAction="#onSaveAction" prefHeight="30.0" prefWidth="90.0"
+                styleClass="btn-r,btn-blue" text="保存">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Button>
+        <Button layoutX="110.0" layoutY="340.0" onAction="#onCancelAction" prefHeight="30.0" prefWidth="90.0"
+                styleClass="btn-r,btn-red" text="返回">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Button>
+    </children>
+</Pane>
