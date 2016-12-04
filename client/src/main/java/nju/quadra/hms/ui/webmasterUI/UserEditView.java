@@ -66,7 +66,6 @@ public class UserEditView extends Parent {
             return;
         }
 
-//        MemberVO memberVO = null;
         if(userVO != null) {
             if(textPassword.getText() != null) userVO.password = PassHash.hash(textPassword.getText());
             userVO.name = textName.getText();

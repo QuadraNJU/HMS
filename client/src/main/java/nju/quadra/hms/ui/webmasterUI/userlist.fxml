@@ -23,20 +23,20 @@
                 </columns>
             </TableView>
 
-            <Button fx:id="btnNew" layoutX="50.0" layoutY="325.0" mnemonicParsing="false" onAction="#onAddUserAction"
+            <Button fx:id="btnNew" layoutX="0.0" layoutY="325.0" mnemonicParsing="false" onAction="#onAddUserAction"
                     prefHeight="34.0" prefWidth="83.0" styleClass="btn-green,btn-r" text="新增">
                 <font>
                     <Font size="16.0"/>
                 </font>
             </Button>
-            <Button fx:id="btnModify" layoutX="150.0" layoutY="325.0" mnemonicParsing="false"
+            <Button fx:id="btnModify" layoutX="100.0" layoutY="325.0" mnemonicParsing="false"
                     onAction="#onModifyUserAction" prefHeight="34.0" prefWidth="83.0" styleClass="btn-blue,btn-r"
                     text="修改">
                 <font>
                     <Font size="16.0"/>
                 </font>
             </Button>
-            <Button fx:id="btnDelete" layoutX="250.0" layoutY="325.0" mnemonicParsing="false"
+            <Button fx:id="btnDelete" layoutX="200.0" layoutY="325.0" mnemonicParsing="false"
                     onAction="#onDeleteUserAction" prefHeight="34.0" prefWidth="83.0" styleClass="btn-r,btn-red"
                     text="删除">
                 <font>
