@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.*?>
+
+<Pane prefHeight="370" prefWidth="620" style="-fx-background-color: #ffffff" stylesheets="@../common/style.css"
+      xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <Label layoutY="5.0" text="名称">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </Label>
+    <TextField fx:id="editName" layoutX="75.0" prefWidth="250.0" promptText="促销名称">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </TextField>
+
+    <Label layoutY="50.0" text="类型">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </Label>
+    <ChoiceBox fx:id="choiceType" layoutX="75.0" layoutY="43.0"/>
+
+    <Label layoutY="91.0" text="起止日期">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </Label>
+    <DatePicker fx:id="dateStart" layoutX="75.0" layoutY="86.0" prefHeight="30.0" prefWidth="150.0" promptText="开始日期"/>
+    <DatePicker fx:id="dateEnd" layoutX="235.0" layoutY="86.0" prefHeight="30.0" prefWidth="150.0" promptText="结束日期"/>
+
+    <Label layoutY="134.0" text="折扣幅度">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </Label>
+    <TextField fx:id="editPromotion" layoutX="75.0" layoutY="129.0" prefWidth="250.0" promptText="折扣幅度">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </TextField>
+
+    <Button fx:id="btnSave" layoutY="221.0" onAction="#onSaveAction" prefHeight="30.0" prefWidth="90.0"
+            styleClass="btn-r,btn-blue" text="保存">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </Button>
+    <Button layoutX="110.0" layoutY="221.0" onAction="#onCancelAction" prefHeight="30.0" prefWidth="90.0"
+            styleClass="btn-r,btn-red" text="返回">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </Button>
+
+    <Pane fx:id="paneCompany" layoutY="172.0" visible="false">
+        <Label layoutY="5.0" text="合作企业">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Label>
+        <Label fx:id="labelCompany" layoutX="80.0" layoutY="5.0" text="已选择 0 个企业">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Label>
+        <Button layoutX="235.0" prefWidth="90.0" styleClass="btn-r,btn-green" text="选择企业" onAction="#onOpenSelectorAction">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Button>
+    </Pane>
+    <Pane fx:id="paneSelectCompany" layoutX="165.0" layoutY="30.0" visible="false"
+          style="-fx-background-color: white; -fx-border-color: #333333; -fx-border-style: solid; -fx-border-width: 2px;">
+        <padding>
+            <Insets bottom="10.0" right="10.0"/>
+        </padding>
+        <ListView fx:id="listCompany" layoutX="10.0" layoutY="10.0" prefHeight="250.0" prefWidth="300.0"/>
+        <Button layoutX="250.0" layoutY="266.0" prefWidth="60.0" styleClass="btn-r,btn-green" text="确认" onAction="#onCloseSelectorAction">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Button>
+    </Pane>
+</Pane>
