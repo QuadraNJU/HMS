@@ -1,11 +1,13 @@
 package nju.quadra.hms.controller;
 
+import nju.quadra.hms.blservice.CustomerBLService;
 import nju.quadra.hms.blservice.HotelBLService;
 import nju.quadra.hms.blservice.UserBLService;
 import nju.quadra.hms.model.ResultMessage;
 import nju.quadra.hms.net.BLServiceFactory;
 import nju.quadra.hms.vo.AreaVO;
 import nju.quadra.hms.vo.HotelVO;
+import nju.quadra.hms.vo.MemberVO;
 import nju.quadra.hms.vo.UserVO;
 
 import java.util.ArrayList;
@@ -17,6 +19,61 @@ public class WebmasterController {
 
     private UserBLService userBL = BLServiceFactory.getUserBLService();
     private HotelBLService hotelBL = BLServiceFactory.getHotelBLService();
+    private CustomerBLService customerBL = BLServiceFactory.getCustomerBLService();
+
+    public ArrayList<UserVO> getAllUsers() {
+        try {
+            return userBL.getAll();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public ResultMessage addUser(UserVO vo) {
+        try {
+            return userBL.add(vo);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResultMessage(ResultMessage.RESULT_NET_ERROR);
+        }
+    }
+
+    public ResultMessage modifyUser(UserVO vo) {
+        try {
+            return userBL.modify(vo);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResultMessage(ResultMessage.RESULT_NET_ERROR);
+        }
+    }
+
+    public ResultMessage deleteUser(String username) {
+        try {
+            return userBL.delete(username);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResultMessage(ResultMessage.RESULT_NET_ERROR);
+        }
+    }
+
+    public MemberVO getMemberInfo(String username) {
+        try {
+            return customerBL.getMemberInfo(username);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public ResultMessage modifyMemberInfo(MemberVO vo) {
+        try {
+            return customerBL.modifyMemberInfo(vo);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResultMessage(ResultMessage.RESULT_NET_ERROR);
+        }
+    }
 
     public UserVO getUserInfo(String username) {
         try {
