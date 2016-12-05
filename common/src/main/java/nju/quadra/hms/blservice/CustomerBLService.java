@@ -14,6 +14,8 @@ public interface CustomerBLService {
 
     MemberVO getMemberInfo(String username);
 
+    ResultMessage modifyMemberInfo(MemberVO vo);
+
     ResultMessage enroll(MemberVO vo);
 
     ArrayList<String> getAllCompany();

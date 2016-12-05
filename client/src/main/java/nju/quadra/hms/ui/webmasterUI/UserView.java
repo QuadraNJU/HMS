@@ -10,6 +10,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import nju.quadra.hms.controller.UserController;
+import nju.quadra.hms.controller.WebmasterController;
 import nju.quadra.hms.model.ResultMessage;
 import nju.quadra.hms.ui.common.Dialogs;
 import nju.quadra.hms.vo.UserVO;
@@ -23,13 +24,13 @@ import java.util.Optional;
  */
 public class UserView extends Parent {
 
-    private UserController controller = new UserController();
+    private WebmasterController controller = new WebmasterController();
     private ArrayList<UserVO> userList;
 
     @FXML
     private TableView<UserProperty> tableUserInfo;
     @FXML
-    Pane pane;
+    private Pane pane;
 
     public UserView() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("userlist.fxml"));
@@ -45,26 +46,25 @@ public class UserView extends Parent {
     }
 
     private void loadUserList() {
-        userList = controller.getAll();
+        userList = controller.getAllUsers();
         tableUserInfo.getItems().clear();
         for(UserVO vo: userList) {
             tableUserInfo.getItems().add(new UserProperty(vo));
         }
-
     }
 
     @FXML
-    protected void onAddUserAction() throws IOException {
-        pane.getChildren().add(new UserEditView(null, controller, this::loadUserList));
+    protected void onAddAction() throws IOException {
+        pane.getChildren().add(new UserEditView(null, this::loadUserList));
     }
 
     @FXML
-    protected void onModifyUserAction() throws IOException {
+    protected void onModifyAction() throws IOException {
         UserProperty selected = tableUserInfo.getSelectionModel().getSelectedItem();
         if (selected != null) {
             for (UserVO vo : userList) {
                 if (vo.username.equals(selected.getUsername())) {
-                    pane.getChildren().add(new UserEditView(vo, controller, this::loadUserList));
+                    pane.getChildren().add(new UserEditView(vo, this::loadUserList));
                     break;
                 }
             }
@@ -72,21 +72,21 @@ public class UserView extends Parent {
     }
 
     @FXML
-    protected void onDeleteUserAction() throws IOException {
+    protected void onDeleteAction() throws IOException {
         UserProperty selected = tableUserInfo.getSelectionModel().getSelectedItem();
         if (selected != null) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("确认");
             alert.setHeaderText(null);
-            alert.setContentText("是否删除该用户信息?");
+            alert.setContentText("确认删除该用户?");
             alert.getButtonTypes().setAll(ButtonType.YES, ButtonType.NO);
             Optional<ButtonType> confirm = alert.showAndWait();
             if (confirm.isPresent() && confirm.get().equals(ButtonType.YES)) {
-                ResultMessage result = controller.delete(selected.getUsername());
+                ResultMessage result = controller.deleteUser(selected.getUsername());
                 if (result.result == ResultMessage.RESULT_SUCCESS) {
-                    Dialogs.showInfo("删除客户信息成功");
+                    Dialogs.showInfo("删除用户成功");
                 } else {
-                    Dialogs.showError("删除客户信息失败: " + result.message);
+                    Dialogs.showError("删除用户失败: " + result.message);
                 }
                 loadUserList();
             }

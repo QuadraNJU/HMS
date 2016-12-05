@@ -46,7 +46,7 @@ public class CustomerBL implements CustomerBLService {
     }
 
     @Override
-    public ResultMessage enroll(MemberVO vo) {
+    public ResultMessage modifyMemberInfo(MemberVO vo) {
         try {
             UserPO user = userDataService.get(vo.username);
             user.setMemberType(vo.memberType);
@@ -58,6 +58,11 @@ public class CustomerBL implements CustomerBLService {
             e.printStackTrace();
             return new ResultMessage(ResultMessage.RESULT_DB_ERROR);
         }
+    }
+
+    @Override
+    public ResultMessage enroll(MemberVO vo) {
+        return modifyMemberInfo(vo);
     }
 
     @Override

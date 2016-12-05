@@ -26,12 +26,4 @@ public enum UserType {
     public static UserType getById(int id) {
         return UserType.values()[id];
     }
-    public static UserType getByShowname(String showname) {
-        UserType[] userTypes = UserType.values();
-        for(UserType ut: userTypes) {
-            if(ut.showname.equals(showname))
-                return ut;
-        }
-        return null;
-    }
 }

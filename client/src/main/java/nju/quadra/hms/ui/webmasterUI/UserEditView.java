@@ -3,12 +3,8 @@ package nju.quadra.hms.ui.webmasterUI;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import nju.quadra.hms.controller.CustomerController;
-import nju.quadra.hms.controller.UserController;
+import javafx.scene.control.*;
+import nju.quadra.hms.controller.WebmasterController;
 import nju.quadra.hms.model.MemberType;
 import nju.quadra.hms.model.ResultMessage;
 import nju.quadra.hms.model.UserType;
@@ -18,91 +14,120 @@ import nju.quadra.hms.vo.MemberVO;
 import nju.quadra.hms.vo.UserVO;
 
 import java.io.IOException;
-import java.security.interfaces.RSAKey;
-import java.time.LocalDate;
 
 /**
  * Created by adn55 on 2016/12/1.
  */
 public class UserEditView extends Parent {
 
-    private UserController userController;
-    private CustomerController customerController;
+    private WebmasterController controller = new WebmasterController();
     private UserVO userVO;
     private MemberVO memberVO;
     private SuccessHandler onSuccess;
 
-    public UserEditView(UserVO vo, UserController userController, SuccessHandler onSuccess) throws IOException {
+    public UserEditView(UserVO vo, SuccessHandler onSuccess) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("useredit.fxml"));
         loader.setController(this);
         this.getChildren().add(loader.load());
 
-        this.userController = userController;
-        this.customerController = new CustomerController();
+        choiceUserType.getItems().addAll(UserType.values());
+        choiceMemberType.getItems().addAll(MemberType.values());
+        choiceUserType.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.equals(UserType.CUSTOMER)) {
+                labelMembertype.setVisible(true);
+                choiceMemberType.setVisible(true);
+            } else {
+                labelMembertype.setVisible(false);
+                choiceMemberType.setVisible(false);
+                labelBirthday.setVisible(false);
+                dateBirthday.setVisible(false);
+                labelCompanyName.setVisible(false);
+                textCompanyName.setVisible(false);
+            }
+        });
+        choiceMemberType.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            switch (newValue) {
+                case PERSONAL:
+                    labelBirthday.setVisible(true);
+                    dateBirthday.setVisible(true);
+                    labelCompanyName.setVisible(false);
+                    textCompanyName.setVisible(false);
+                case COMPANY:
+                    labelBirthday.setVisible(false);
+                    dateBirthday.setVisible(false);
+                    labelCompanyName.setVisible(true);
+                    textCompanyName.setVisible(true);
+            }
+        });
+
         this.onSuccess = onSuccess;
         this.userVO = vo;
         if (vo != null) {
             loadUserInfo(vo);
         } else {
-            loadUserInfo(null);
+            labelWarn.setVisible(false);
         }
     }
 
     @FXML
     private TextField textUsername, textPassword, textName, textContact, textCompanyName;
     @FXML
-    private ComboBox<String> comboUsertype, comboMembertype;
+    private ChoiceBox<UserType> choiceUserType;
     @FXML
-    private Label labelMembertype, labelBirthday, labelCompanyName, labelWarn;
+    private ChoiceBox<MemberType> choiceMemberType;
+    @FXML
+    private Label labelUserType, labelMembertype, labelBirthday, labelCompanyName, labelWarn;
     @FXML
     private DatePicker dateBirthday;
 
     @FXML
     protected void onSaveAction() {
-        ResultMessage userMessage;
-        ResultMessage memberMessage;
-        if(textName.getText().isEmpty() || textContact.getText().isEmpty()) {
+        ResultMessage userResult;
+
+        if (textName.getText().isEmpty() || textContact.getText().isEmpty()) {
             Dialogs.showError("基础信息未填写完全，请重新填写");
             return;
         }
 
-        if(userVO != null) {
-            if(textPassword.getText() != null) userVO.password = PassHash.hash(textPassword.getText());
+        if (textUsername.isEditable()) {
+            // add
+            userVO = new UserVO(textUsername.getText(), PassHash.hash(textPassword.getText()), textName.getText(), textContact.getText(), choiceUserType.getValue());
+            userResult = controller.addUser(userVO);
+        } else {
+            // modify
+            if (!textPassword.getText().isEmpty()) {
+                userVO.password = PassHash.hash(textPassword.getText());
+            }
             userVO.name = textName.getText();
             userVO.contact = textContact.getText();
-            userVO.type = UserType.getByShowname(comboUsertype.getValue());
-            userMessage = userController.modify(userVO);
-        } else {
-            UserType type = UserType.getByShowname(comboUsertype.getValue());
-            userVO = new UserVO(textUsername.getText(), PassHash.hash(textPassword.getText()), textName.getText(), textContact.getText(), type);
-            userMessage = userController.add(userVO);
+            userResult = controller.modifyUser(userVO);
         }
 
-        if (comboMembertype.getValue().equals(MemberType.PERSONAL.toString())) {
-            memberVO = new MemberVO(userVO.username, MemberType.PERSONAL, LocalDate.from(dateBirthday.getValue()), null);
-        } else if (comboMembertype.getValue().equals(MemberType.COMPANY.toString())) {
-            memberVO = new MemberVO(userVO.username, MemberType.COMPANY, null, textCompanyName.getText());
-        } else {
-            memberVO = new MemberVO(userVO.username, MemberType.NONE, null, null);
-        }
-
-        memberMessage = customerController.enroll(memberVO);
-
-        if(userMessage.result == ResultMessage.RESULT_SUCCESS && memberMessage.result == ResultMessage.RESULT_SUCCESS) {
+        if (userResult.result == ResultMessage.RESULT_SUCCESS) {
             if(textUsername.isEditable()) {
                 Dialogs.showInfo("增加用户信息成功");
-                onSuccess.handle();
-                onCancelAction();
             } else {
                 Dialogs.showInfo("修改用户信息成功");
-                onSuccess.handle();
-                onCancelAction();
             }
+            onSuccess.handle();
+            onCancelAction();
         } else {
             if(textUsername.isEditable()) {
-                Dialogs.showInfo("增加用户信息失败: " + userMessage.message + memberMessage.message);
+                Dialogs.showInfo("增加用户信息失败: " + userResult.message);
             } else {
-                Dialogs.showInfo("修改用户信息失败: " + userMessage.message + memberMessage.message);
+                Dialogs.showInfo("修改用户信息失败: " + userResult.message);
+            }
+        }
+
+        if (userVO.type.equals(UserType.CUSTOMER)) {
+            if (choiceMemberType.getValue().equals(MemberType.PERSONAL)) {
+                memberVO = new MemberVO(userVO.username, choiceMemberType.getValue(), dateBirthday.getValue(), null);
+            } else {
+                memberVO = new MemberVO(userVO.username, choiceMemberType.getValue(), null, textCompanyName.getText());
+            }
+            ResultMessage memberResult = controller.modifyMemberInfo(memberVO);
+            if (memberResult.result != ResultMessage.RESULT_SUCCESS) {
+                Dialogs.showInfo("修改会员信息失败: " + memberResult.message);
             }
         }
     }
@@ -113,89 +138,17 @@ public class UserEditView extends Parent {
     }
 
     private void loadUserInfo(UserVO userVO) {
-        if(userVO != null) {
-            textUsername.setText(userVO.username);
-            textUsername.setEditable(false);
-            textPassword.setText(null);
-            textName.setText(userVO.name);
-            textContact.setText(userVO.contact);
-            comboUsertype.setValue(userVO.type.toString());
-            reloadUsertypePartInfo();
-        } else {
-            labelWarn.setText("请输入密码");
-            textUsername.setText(null);
-            textPassword.setText(null);
-            textName.setText(null);
-            textContact.setText(null);
-            comboUsertype.setValue(UserType.CUSTOMER.toString());
-            labelCompanyName.setVisible(false);
-            textCompanyName.setVisible(false);
-            textCompanyName.setText(null);
-            labelBirthday.setVisible(false);
-            dateBirthday.setVisible(false);
-            dateBirthday.setValue(null);
-        }
-    }
-
-
-    @FXML
-    private void reloadUsertypePartInfo() {
-        if (comboUsertype.getSelectionModel().getSelectedItem().equals(UserType.CUSTOMER.toString())) {
-            labelMembertype.setVisible(true);
-            comboMembertype.setVisible(true);
-            try{
-                memberVO = customerController.getMemberInfo(userVO.username);
-            } catch (NullPointerException e) {
-                memberVO = null;
-            }
-            try{
-                comboMembertype.setValue(memberVO.memberType.toString());
-            } catch (NullPointerException e) {
-                comboMembertype.getSelectionModel().select(0);
-            }
-            reloadMembertypePartInfo();
-        } else {
-            labelMembertype.setVisible(false);
-            comboMembertype.setVisible(false);
-            comboMembertype.getSelectionModel().select(0);
-            labelCompanyName.setVisible(false);
-            textCompanyName.setVisible(false);
-            textCompanyName.setText(null);
-            labelBirthday.setVisible(false);
-            dateBirthday.setVisible(false);
-            dateBirthday.setValue(null);
-        }
-    }
-
-    @FXML
-    private void reloadMembertypePartInfo() {
-        if (comboMembertype.getSelectionModel().getSelectedItem().equals(MemberType.PERSONAL.toString())) {
-            labelCompanyName.setVisible(false);
-            textCompanyName.setVisible(false);
-            textCompanyName.setText(null);
-            labelBirthday.setVisible(true);
-            dateBirthday.setVisible(true);
-            if(memberVO == null || memberVO.birthday == null)
-                dateBirthday.setValue(null);
-            else
-                dateBirthday.setValue(LocalDate.from(memberVO.birthday));
-        } else if (comboMembertype.getSelectionModel().getSelectedItem().equals(MemberType.COMPANY.toString())) {
-            labelCompanyName.setVisible(true);
-            textCompanyName.setVisible(true);
-            if(memberVO == null || memberVO.companyName == null)
-                textCompanyName.setText(null);
-            else
-                textCompanyName.setText(memberVO.companyName);
-            labelBirthday.setVisible(false);
-            dateBirthday.setVisible(false);
-            dateBirthday.setValue(null);
-        } else if (comboMembertype.getSelectionModel().getSelectedItem().equals(MemberType.NONE.toString())) {
-            labelCompanyName.setVisible(false);
-            textCompanyName.setVisible(false);
-            textCompanyName.setText(null);
-            labelBirthday.setVisible(false);
-            dateBirthday.setVisible(false);
-            dateBirthday.setValue(null);
+        textUsername.setText(userVO.username);
+        textUsername.setEditable(false);
+        textName.setText(userVO.name);
+        textContact.setText(userVO.contact);
+        choiceUserType.setValue(userVO.type);
+        choiceUserType.setDisable(true);
+        if (userVO.type.equals(UserType.CUSTOMER)) {
+            MemberVO memberVO = controller.getMemberInfo(userVO.username);
+            choiceMemberType.setValue(memberVO.memberType);
+            dateBirthday.setValue(memberVO.birthday);
+            textCompanyName.setText(memberVO.companyName);
         }
     }
 

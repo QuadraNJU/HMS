@@ -14,7 +14,12 @@
     </Label>
 
     <Pane fx:id="pane" layoutX="45.0" layoutY="74.0">
-        <HBox spacing="10.0">
+        <HBox spacing="10.0" alignment="CENTER_LEFT">
+            <Label text="选择城市/商圈:">
+                <font>
+                    <Font size="14.0"/>
+                </font>
+            </Label>
             <ChoiceBox fx:id="choiceCity"/>
             <ChoiceBox fx:id="choiceArea"/>
             <Button prefWidth="80.0" styleClass="btn-r,btn-blue" text="搜索" onAction="#onSearchAction"/>

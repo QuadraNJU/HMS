@@ -1,135 +1,106 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
-<?import javafx.collections.FXCollections?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.*?>
+<Pane prefHeight="370" prefWidth="620" style="-fx-background-color: #ffffff;" stylesheets="@../common/style.css"
+      xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <Label layoutY="10.0" text="用户名">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </Label>
+    <TextField fx:id="textUsername" layoutX="75.0" layoutY="5.0" prefWidth="250.0" promptText="用户名">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </TextField>
 
-<Pane prefHeight="370" prefWidth="620" style="-fx-background-color: #ffffff" stylesheets="@../common/style.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-       <Label layoutX="0.0" layoutY="5.0" text="用户名">
-           <font>
-               <Font size="14.0" />
-           </font>
-       </Label>
-       <TextField fx:id="textUsername" layoutX="75.0" layoutY="5.0" prefWidth="250.0" promptText="用户名">
-           <font>
-               <Font size="14.0" />
-           </font>
-       </TextField>
+    <Label layoutY="50.0" text="密码">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </Label>
+    <PasswordField fx:id="textPassword" layoutX="75.0" layoutY="45.0" prefWidth="250.0" promptText="密码">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </PasswordField>
+    <Label fx:id="labelWarn" layoutX="335.0" layoutY="52.0" text="不修改请留空" textFill="RED">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </Label>
 
-       <Label layoutX="0.0" layoutY="45.0" text="密码">
-           <font>
-               <Font size="14.0" />
-           </font>
-       </Label>
-       <PasswordField fx:id="textPassword" layoutX="75.0" layoutY="45.0" prefWidth="250.0" promptText="密码">
-           <font>
-               <Font size="14.0" />
-           </font>
-       </PasswordField>
-       <Label fx:id="labelWarn" layoutX="325.0" layoutY="45.0" textFill="RED" text="如果您想修改密码，请输入新密码，否则请保留空白" >
-           <font>
-               <Font size="12.0" />
-           </font>
-       </Label>
+    <Label layoutY="90.0" text="姓名">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </Label>
+    <TextField fx:id="textName" layoutX="75.0" layoutY="85.0" prefWidth="250.0" promptText="姓名">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </TextField>
 
+    <Label layoutY="130.0" text="联系方式">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </Label>
+    <TextField fx:id="textContact" layoutX="75.0" layoutY="125.0" prefWidth="250.0" promptText="联系方式">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </TextField>
 
-       <Label layoutX="0.0" layoutY="85.0" text="姓名">
-           <font>
-               <Font size="14.0" />
-           </font>
-       </Label>
-       <TextField fx:id="textName" layoutX="75.0" layoutY="85.0" prefWidth="250.0" promptText="姓名">
-           <font>
-               <Font size="14.0" />
-           </font>
-       </TextField>
-   
-       <Label layoutX="0.0" layoutY="125.0" text="联系方式">
-           <font>
-               <Font size="14.0" />
-           </font>
-       </Label>
-       <TextField fx:id="textContact" layoutX="75.0" layoutY="125.0" prefWidth="250.0" promptText="联系方式">
-           <font>
-               <Font size="14.0" />
-           </font>
-       </TextField>
+    <Label layoutY="170.0" text="用户类型">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </Label>
+    <ChoiceBox fx:id="choiceUserType" layoutX="75.0" layoutY="165.0"/>
 
-      <Label layoutX="0.0" layoutY="165.0" text="用户类型">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <ComboBox fx:id="comboUsertype" layoutX="75.0" layoutY="165.0" onAction="#reloadUsertypePartInfo" prefWidth="250.0">
-          <items>
-              <FXCollections fx:factory="observableArrayList">
-                  <String fx:value="客户" />
-                  <String fx:value="网站营销人员" />
-                  <String fx:value="网站管理人员" />
-              </FXCollections>
-          </items>
-          <value>
-              <String fx:value="客户" />
-          </value>
-      </ComboBox>
+    <!--以下为Customer专属-->
+    <Label fx:id="labelMembertype" layoutY="210.0" text="会员类型" visible="false">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </Label>
+    <ChoiceBox fx:id="choiceMemberType" layoutX="75.0" layoutY="205.0" visible="false"/>
 
-       <!--以下为Customer专属-->
-      <Label fx:id="labelMembertype" layoutX="0.0" layoutY="205.0" text="会员类型">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-       <ComboBox fx:id="comboMembertype" layoutX="75.0" layoutY="205.0" onAction="#reloadMembertypePartInfo" prefWidth="250.0">
-           <items>
-               <FXCollections fx:factory="observableArrayList">
-                   <String fx:value="非会员" />
-                   <String fx:value="个人会员" />
-                   <String fx:value="企业会员" />
-               </FXCollections>
-           </items>
-           <value>
-               <String fx:value="非会员" />
-           </value>
-       </ComboBox>
+    <!--如果是personal会员，可以定制生日-->
+    <Label fx:id="labelBirthday" layoutY="250.0" text="生日" visible="false">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </Label>
+    <DatePicker fx:id="dateBirthday" layoutX="75.0" layoutY="245.0" prefWidth="250.0" visible="false"/>
 
-       <!--如果是personal会员，可以定制生日-->
-      <Label fx:id="labelBirthday" layoutX="0.0" layoutY="245.0" text="生日">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <DatePicker fx:id="dateBirthday" layoutX="75.0" layoutY="245.0" prefWidth="250.0" />
-
-       <!--如果是company会员，可以定制公司名称-->
-      <Label fx:id="labelCompanyName" layoutX="0.0" layoutY="245.0" text="企业名称">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <TextField fx:id="textCompanyName" layoutX="75.0" layoutY="245.0" prefWidth="250.0" promptText="企业名称">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </TextField>
+    <!--如果是company会员，可以定制公司名称-->
+    <Label fx:id="labelCompanyName" layoutY="250.0" text="企业名称" visible="false">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </Label>
+    <TextField fx:id="textCompanyName" layoutX="75.0" layoutY="245.0" prefWidth="250.0" promptText="企业名称"
+               visible="false">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </TextField>
 
 
-       <Button layoutX="75.0" layoutY="285.0" onAction="#onSaveAction" prefHeight="30.0" prefWidth="90.0" styleClass="btn-r,btn-blue" text="保存">
-           <font>
-               <Font size="14.0" />
-           </font>
-       </Button>
-       <Button layoutX="175.0" layoutY="285.0" onAction="#onCancelAction" prefHeight="30.0" prefWidth="90.0" styleClass="btn-r,btn-red" text="取消">
-           <font>
-               <Font size="14.0" />
-           </font>
-       </Button>
-   </children>
+    <Button layoutX="75.0" layoutY="288.0" onAction="#onSaveAction" prefHeight="30.0" prefWidth="90.0"
+            styleClass="btn-r,btn-blue" text="保存">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </Button>
+    <Button layoutX="175.0" layoutY="288.0" onAction="#onCancelAction" prefHeight="30.0" prefWidth="90.0"
+            styleClass="btn-r,btn-red" text="取消">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </Button>
 </Pane>
