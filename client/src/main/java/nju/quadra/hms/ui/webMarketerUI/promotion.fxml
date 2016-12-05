@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<Pane stylesheets="@../common/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <Label layoutX="45.0" layoutY="25.0" text="促销策略">
+        <font>
+            <Font size="24.0"/>
+        </font>
+    </Label>
+
+    <Pane fx:id="pane" layoutX="45.0" layoutY="74.0">
+        <ScrollPane prefHeight="320.0" prefWidth="620.0" style="-fx-background-color: #ffffff;">
+            <VBox fx:id="vBox"/>
+        </ScrollPane>
+
+        <Button layoutY="336.0" mnemonicParsing="false" onAction="#onAddAction" prefHeight="30.0" prefWidth="150.0"
+                styleClass="btn-r,btn-green" text="新增促销策略">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Button>
+    </Pane>
+</Pane>

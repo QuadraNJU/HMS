@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.*?>
+<Pane prefHeight="45.0" prefWidth="600.0" stylesheets="@../common/style.css" xmlns="http://javafx.com/javafx/8"
+      xmlns:fx="http://javafx.com/fxml/1">
+    <Label fx:id="labelDate" layoutX="10.0" layoutY="13.0">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </Label>
+    <Label fx:id="labelName" layoutX="200.0" layoutY="13.0">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </Label>
+    <Button layoutX="440.0" layoutY="7.0" prefWidth="50.0" styleClass="btn-r,btn-pink" text="详情" onAction="#onDetailAction">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </Button>
+    <Button layoutX="495.0" layoutY="7.0" prefWidth="50.0" styleClass="btn-r,btn-blue" text="修改" onAction="#onModifyAction">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </Button>
+    <Button layoutX="550.0" layoutY="7.0" prefWidth="50.0" styleClass="btn-r,btn-red" text="删除" onAction="#onDeleteAction">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </Button>
+</Pane>
