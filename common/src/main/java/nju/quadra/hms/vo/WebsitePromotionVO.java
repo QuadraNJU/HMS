@@ -2,8 +2,8 @@ package nju.quadra.hms.vo;
 
 import nju.quadra.hms.model.WebsitePromotionType;
 
-import java.util.ArrayList;
-import java.util.Date;
+import java.time.LocalDate;
+import java.util.HashMap;
 
 /**
  * Created by adn55 on 16/10/15.
@@ -24,11 +24,11 @@ public class WebsitePromotionVO {
     /**
      * 起始时间
      */
-    public Date startTime;
+    public LocalDate startTime;
     /**
      * 终止时间
      */
-    public Date endTime;
+    public LocalDate endTime;
     /**
      * 折扣力度
      */
@@ -40,9 +40,9 @@ public class WebsitePromotionVO {
     /**
      * 会员等级规则
      */
-    public ArrayList<int[]> memberLevel;
+    public HashMap<Double, Double> memberLevel;
 
-    public WebsitePromotionVO(int id, String name, WebsitePromotionType type, Date startTime, Date endTime, double promotion, int areaId, ArrayList<int[]> memberLevel) {
+    public WebsitePromotionVO(int id, String name, WebsitePromotionType type, LocalDate startTime, LocalDate endTime, double promotion, int areaId, HashMap<Double, Double> memberLevel) {
         this.id = id;
         this.name = name;
         this.type = type;

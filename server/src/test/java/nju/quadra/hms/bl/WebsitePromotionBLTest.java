@@ -9,6 +9,7 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -29,9 +30,9 @@ public class WebsitePromotionBLTest {
     @Test
     public void test1_Add() {
         WebsitePromotionVO vo1 = new WebsitePromotionVO(0, "TEST|name1", WebsitePromotionType.TIME_PROMOTION,
-                new Date(2016 - 1900, 11 - 1, 10 + 1), new Date(2016 - 1900, 11 - 1, 12 + 1), 0.8, -10, null);
-        WebsitePromotionVO vo2 = new WebsitePromotionVO(0, "TEST|name2", WebsitePromotionType.AREA_PROMOTION,
-                new Date(2015 - 1900, 11 - 1, 10 + 1), new Date(2017 - 1900, 11 - 1, 12 + 1), 0.5, -10, null);
+                LocalDate.parse("2016-11-10"), LocalDate.parse("2016-11-10"), 0.8, -10, null);
+        WebsitePromotionVO vo2 = new WebsitePromotionVO(0, "TEST|name2", WebsitePromotionType.LEVEL_PROMOTION,
+                LocalDate.parse("2015-11-10"), LocalDate.parse("2015-11-10"), 0.5, -10, null);
         assertEquals(ResultMessage.RESULT_SUCCESS, websitePromotionBL.add(vo1).result);
         assertEquals(ResultMessage.RESULT_SUCCESS, websitePromotionBL.add(vo2).result);
     }

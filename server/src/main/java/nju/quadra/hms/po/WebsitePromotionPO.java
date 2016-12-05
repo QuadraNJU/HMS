@@ -2,8 +2,7 @@ package nju.quadra.hms.po;
 
 import nju.quadra.hms.model.WebsitePromotionType;
 
-import java.util.ArrayList;
-import java.util.Date;
+import java.time.LocalDate;
 
 /**
  * Created by adn55 on 16/10/15.
@@ -24,11 +23,11 @@ public class WebsitePromotionPO implements Comparable<WebsitePromotionPO>{
     /**
      * 起始时间
      */
-    private Date startTime;
+    private LocalDate startTime;
     /**
      * 终止时间
      */
-    private Date endTime;
+    private LocalDate endTime;
     /**
      * 折扣力度
      */
@@ -42,7 +41,7 @@ public class WebsitePromotionPO implements Comparable<WebsitePromotionPO>{
      */
     private String memberLevel;
 
-    public WebsitePromotionPO(int id, String name, WebsitePromotionType type, Date startTime, Date endTime, double promotion, int areaId, String memberLevel) {
+    public WebsitePromotionPO(int id, String name, WebsitePromotionType type, LocalDate startTime, LocalDate endTime, double promotion, int areaId, String memberLevel) {
         this.id = id;
         this.name = name;
         this.type = type;
@@ -77,19 +76,19 @@ public class WebsitePromotionPO implements Comparable<WebsitePromotionPO>{
         this.type = type;
     }
 
-    public Date getStartTime() {
+    public LocalDate getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Date startTime) {
+    public void setStartTime(LocalDate startTime) {
         this.startTime = startTime;
     }
 
-    public Date getEndTime() {
+    public LocalDate getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(Date endTime) {
+    public void setEndTime(LocalDate endTime) {
         this.endTime = endTime;
     }
 

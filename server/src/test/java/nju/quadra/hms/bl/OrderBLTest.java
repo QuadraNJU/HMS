@@ -63,10 +63,10 @@ public class OrderBLTest {
             //hotelPromotionBL.add(hotelvo1);
             //hotelPromotionBL.add(hotelvo2);
 
-            WebsitePromotionVO webvo1 = new WebsitePromotionVO(0, "TEST|websitePromotion1", WebsitePromotionType.TIME_PROMOTION, new Date(2000 - 1900, 1 - 1, 1 + 1), new Date(2300 - 1900, 1 - 1, 1 + 1), 0.8, -1, null);
-            WebsitePromotionVO webvo2 = new WebsitePromotionVO(0, "TEST|websitePromotion2", WebsitePromotionType.TIME_PROMOTION, new Date(2000 - 1900, 1 - 1, 1 + 1), new Date(2300 - 1900, 1 - 1, 1 + 1), 0.7, -1, null);
-            websitePromotionBL.add(webvo1);
-            websitePromotionBL.add(webvo2);
+            //WebsitePromotionVO webvo1 = new WebsitePromotionVO(0, "TEST|websitePromotion1", WebsitePromotionType.TIME_PROMOTION, new Date(2000 - 1900, 1 - 1, 1 + 1), new Date(2300 - 1900, 1 - 1, 1 + 1), 0.8, -1, null);
+            //WebsitePromotionVO webvo2 = new WebsitePromotionVO(0, "TEST|websitePromotion2", WebsitePromotionType.TIME_PROMOTION, new Date(2000 - 1900, 1 - 1, 1 + 1), new Date(2300 - 1900, 1 - 1, 1 + 1), 0.7, -1, null);
+            //websitePromotionBL.add(webvo1);
+            //websitePromotionBL.add(webvo2);
         } catch (Exception e) {
             fail();
         }
