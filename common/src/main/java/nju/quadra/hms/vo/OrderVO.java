@@ -2,6 +2,7 @@ package nju.quadra.hms.vo;
 
 import nju.quadra.hms.model.OrderState;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -24,11 +25,11 @@ public class OrderVO {
     /**
      * 起始时间
      */
-    public Date startDate;
+    public LocalDate startDate;
     /**
      * 终止时间
      */
-    public Date endDate;
+    public LocalDate endDate;
     /**
      * 客房ID
      */
@@ -66,7 +67,7 @@ public class OrderVO {
      */
     public String comment;
 
-    public OrderVO(int id, String username, int hotelId, Date startDate, Date endDate, int roomId, int roomCount, int personCount, ArrayList<String> persons, boolean hasChildren, double price, OrderState state, int rank, String comment) {
+    public OrderVO(int id, String username, int hotelId, LocalDate startDate, LocalDate endDate, int roomId, int roomCount, int personCount, ArrayList<String> persons, boolean hasChildren, double price, OrderState state, int rank, String comment) {
         this.id = id;
         this.username = username;
         this.hotelId = hotelId;

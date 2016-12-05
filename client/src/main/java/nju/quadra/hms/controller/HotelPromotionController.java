@@ -12,15 +12,11 @@ import java.util.ArrayList;
  * Created by RaUkonn on 2016/11/30.
  */
 public class HotelPromotionController {
-    private HttpRemote hotelPromptionRemote;
-
-    public HotelPromotionController() {
-        this.hotelPromptionRemote = new HttpRemote("HotelPromotionBL");
-    }
+    private HotelPromotionController hotelPromotionController;
 
     public ArrayList<HotelPromotionVO> get(int hotelId) {
         try {
-            return hotelPromptionRemote.invoke(new TypeToken<ArrayList<HotelPromotionVO>>(){}.getType(), "get", hotelId);
+            return hotelPromotionController.get(hotelId);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -29,7 +25,7 @@ public class HotelPromotionController {
 
     public ResultMessage add(HotelPromotionVO vo) {
         try {
-            return hotelPromptionRemote.invoke(ResultMessage.class, "add", vo);
+            return hotelPromotionController.add(vo);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -38,7 +34,7 @@ public class HotelPromotionController {
 
     public ResultMessage delete(int promotionId) {
         try {
-            return hotelPromptionRemote.invoke(ResultMessage.class, "delete", promotionId);
+            return hotelPromotionController.delete(promotionId);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -47,7 +43,7 @@ public class HotelPromotionController {
 
     public ResultMessage modify(HotelPromotionVO vo) {
         try {
-            return hotelPromptionRemote.invoke(ResultMessage.class, "modify", vo);
+            return hotelPromotionController.modify(vo);
         } catch (Exception e) {
             e.printStackTrace();
             return null;

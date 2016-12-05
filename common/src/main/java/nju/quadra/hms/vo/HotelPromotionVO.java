@@ -53,4 +53,5 @@ public class HotelPromotionVO {
         this.cooperation = cooperation;
     }
 
+
 }

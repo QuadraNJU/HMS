@@ -37,4 +37,9 @@ public class HotelSearchItem extends Parent {
     public void onDetailAction() throws IOException{
         parent.loadView(new HotelDetailView(hotelId));
     }
+
+    @FXML
+    public void onOrderAction() throws IOException{
+        parent.loadView(new BookHotelView(hotelId));
+    }
 }

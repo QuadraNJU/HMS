@@ -21,6 +21,10 @@ import nju.quadra.hms.po.WebsitePromotionPO;
 import nju.quadra.hms.vo.*;
 
 import java.sql.SQLIntegrityConstraintViolationException;
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.temporal.TemporalField;
+import java.time.temporal.TemporalUnit;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -161,7 +165,9 @@ public class OrderBL implements OrderBLService {
             //如果撤销的订单距离最晚订单执行时间不足6个小时，撤销的同时扣除用户的信用值，信用值为订单的(总价值*1/2)
             double currRate = 0;
             //由于我们的记录时间是按0:00记录，但是实际上的酒店是按12:00为入住时限的，所以要加一个12h的gap
-            if(vo.startDate.getTime() + 12 * 3600 *1000 - System.currentTimeMillis() > CreditRecordBL.LATEST_CHECKIN_TIME_GAP) currRate = CreditRecordBL.UNDO_UNFINISHED_RATE;
+            LocalDate latestAvaliableTime = vo.startDate.plus(Duration.ofHours(CreditRecordBL.LATEST_CHECKIN_TIME_GAP));
+            if(LocalDate.now().compareTo(latestAvaliableTime) > 0)
+                currRate = CreditRecordBL.UNDO_UNFINISHED_RATE;
             CreditRecordPO creditRecordPO = new CreditRecordPO(0, vo.username, new Date(System.currentTimeMillis()), vo.id, CreditAction.ORDER_UNDO, vo.price * currRate);
             creditDataService.insert(creditRecordPO);
         } catch (NullPointerException e) {
@@ -182,7 +188,7 @@ public class OrderBL implements OrderBLService {
             if(po.getState() == OrderState.FINISHED)
                 return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "该订单已经完成，请重新选择");
             po.setState(OrderState.FINISHED);
-            po.setEndDate(new Date(System.currentTimeMillis()));
+            po.setEndDate(LocalDate.now());
             orderDataService.update(po);
             //信用值为订单原价
             CreditRecordPO creditRecordPO = new CreditRecordPO(0, vo.username, new Date(System.currentTimeMillis()), vo.id, CreditAction.ORDER_UNDO, vo.price * CreditRecordBL.FINISH_RATE);

@@ -1,8 +1,10 @@
 package nju.quadra.hms.controller;
 
 import com.google.gson.reflect.TypeToken;
+import nju.quadra.hms.blservice.OrderBLService;
 import nju.quadra.hms.model.OrderState;
 import nju.quadra.hms.model.ResultMessage;
+import nju.quadra.hms.net.BLServiceFactory;
 import nju.quadra.hms.net.HttpRemote;
 import nju.quadra.hms.vo.*;
 
@@ -13,15 +15,11 @@ import java.util.ArrayList;
  */
 public class OrderController {
 
-    private HttpRemote orderRemote;
-
-    public OrderController() {
-        orderRemote = new HttpRemote("OrderBL");
-    }
+    private OrderBLService orderBL = BLServiceFactory.getOrderBLService();
 
     public PriceVO getPrice(OrderVO vo) {
         try {
-            return orderRemote.invoke(PriceVO.class, "getPrice", vo);
+            return orderBL.getPrice(vo);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -30,7 +28,7 @@ public class OrderController {
 
     public ResultMessage add(OrderVO vo) {
         try {
-            return orderRemote.invoke(ResultMessage.class, "add", vo);
+            return orderBL.add(vo);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -39,7 +37,7 @@ public class OrderController {
 
     public ArrayList<OrderVO> getByCustomer(String username) {
         try {
-            return orderRemote.invoke(new TypeToken<ArrayList<OrderVO>>(){}.getType(), "getByCustomer", username);
+            return orderBL.getByCustomer(username);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -48,7 +46,7 @@ public class OrderController {
 
     public ArrayList<OrderVO> getByHotel(int hotelId) {
         try {
-            return orderRemote.invoke(new TypeToken<ArrayList<OrderVO>>(){}.getType(), "getByHotel", hotelId);
+            return orderBL.getByHotel(hotelId);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -57,7 +55,7 @@ public class OrderController {
 
     public ArrayList<OrderVO> getByState(OrderState state) {
         try {
-            return orderRemote.invoke(new TypeToken<ArrayList<OrderVO>>(){}.getType(), "getByState", state);
+            return orderBL.getByState(state);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -66,7 +64,7 @@ public class OrderController {
 
     public ResultMessage undoDelayed(OrderVO vo, boolean returnAllCredit) {
         try {
-            return orderRemote.invoke(ResultMessage.class, "undoDelayed", vo, returnAllCredit);
+            return orderBL.undoDelayed(vo, returnAllCredit);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -75,7 +73,7 @@ public class OrderController {
 
     public ResultMessage undoUnfinished(OrderVO vo) {
         try {
-            return orderRemote.invoke(ResultMessage.class, "undoUnfinished", vo);
+            return orderBL.undoUnfinished(vo);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -84,7 +82,7 @@ public class OrderController {
 
     public ResultMessage finish(OrderVO vo) {
         try {
-            return orderRemote.invoke(ResultMessage.class, "finish", vo);
+            return orderBL.finish(vo);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -93,7 +91,7 @@ public class OrderController {
 
     public ResultMessage addRank(OrderRankVO vo) {
         try {
-            return orderRemote.invoke(ResultMessage.class, "addRank", vo);
+            return orderBL.addRank(vo);
         } catch (Exception e) {
             e.printStackTrace();
             return null;

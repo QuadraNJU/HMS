@@ -2,9 +2,11 @@ package nju.quadra.hms.ui.customerUI;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.Pane;
 import nju.quadra.hms.controller.HotelController;
 import nju.quadra.hms.controller.HotelRoomController;
 import nju.quadra.hms.controller.OrderController;
@@ -13,6 +15,7 @@ import nju.quadra.hms.vo.HotelVO;
 import nju.quadra.hms.vo.OrderVO;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 /**
@@ -23,6 +26,8 @@ public class HotelDetailView extends Parent {
     Label labelHotelName, labelAddress, labelDescription, labelFacilities, labelRooms, labelComment;
     @FXML
     ScrollPane scrollComment, scrollHistory;
+    @FXML
+    Pane pane;
 
     private HotelController hotelController;
     private HotelRoomController hotelRoomController;
@@ -41,7 +46,13 @@ public class HotelDetailView extends Parent {
         hotelRoomController = new HotelRoomController();
         hotelVO = hotelController.getDetail(hotelId);
         rooms = hotelRoomController.getAll(hotelId);
+        historyOrders = orderController.getByHotel(hotelId);
 
+        loadBasicInfo();
+        loadComments();
+    }
+
+    public void loadBasicInfo() {
         labelHotelName.setText(hotelVO.name);
         labelAddress.setText(hotelVO.address);
         labelDescription.setText(hotelVO.description);
@@ -55,13 +66,35 @@ public class HotelDetailView extends Parent {
         labelRooms.setText(sb.toString());
     }
 
+    public void loadView(Node node) {
+        pane.getChildren().add(node);
+    }
+
+    public void loadComments() throws IOException{
+        double avgRank = 0;
+        int usableOrderCnt = 0;
+        if(historyOrders != null && !historyOrders.isEmpty()) {
+            for (OrderVO vo : historyOrders) {
+                if (vo.rank != 0 && vo.comment != null) {
+                    scrollComment.setContent(new CommentItemView(vo));
+                    avgRank += vo.rank;
+                    usableOrderCnt++;
+                }
+            }
+            if (usableOrderCnt != 0) avgRank /= usableOrderCnt;
+
+            DecimalFormat df = new DecimalFormat("#.0");
+            labelComment.setText("评价（" + df.format(avgRank) + " /5.0");
+        }
+    }
+
     @FXML
     public void onCancelAction() {
         this.getChildren().clear();
     }
 
     @FXML
-    public void onOrderAction() {
-        //TODO
+    public void onOrderAction() throws IOException{
+        this.loadView(new BookHotelView(hotelVO.id));
     }
 }
