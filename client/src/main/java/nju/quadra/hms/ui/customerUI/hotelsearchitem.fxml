@@ -17,7 +17,7 @@
         </font>
     </Label>
     <FlowPane alignment="CENTER_RIGHT">
-        <Button fx:id="btnDetail" text="详情" styleClass="btn-r,btn-blue">
+        <Button fx:id="btnDetail" text="详情" styleClass="btn-r,btn-blue" onAction="#onDetailAction">
         </Button>
         <Button fx:id="btnOrder" text="预订" styleClass="btn-r,btn-pink" style="-fx-text-fill: black">
         </Button>

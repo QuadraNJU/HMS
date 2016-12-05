@@ -1,7 +1,9 @@
 package nju.quadra.hms.controller;
 
 import com.google.gson.reflect.TypeToken;
+import nju.quadra.hms.blservice.UserBLService;
 import nju.quadra.hms.model.ResultMessage;
+import nju.quadra.hms.net.BLServiceFactory;
 import nju.quadra.hms.net.HttpRemote;
 import nju.quadra.hms.vo.UserVO;
 
@@ -12,15 +14,15 @@ import java.util.ArrayList;
  */
 public class UserController {
 
-    private HttpRemote remote;
+    private UserBLService userBL;
 
     public UserController() {
-        remote = new HttpRemote("UserBL");
+        userBL = BLServiceFactory.getUserBLService();
     }
 
     public ArrayList<UserVO> getAll() {
         try {
-            return remote.invoke(new TypeToken<ArrayList<UserVO>>(){}.getType(), "getAll");
+            return userBL.getAll();
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -29,7 +31,7 @@ public class UserController {
 
     public UserVO get(String username) {
         try {
-            return remote.invoke(UserVO.class, "get", username);
+            return userBL.get(username);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -38,7 +40,7 @@ public class UserController {
 
     public ResultMessage add(UserVO vo) {
         try {
-            return remote.invoke(ResultMessage.class, "add", vo);
+            return userBL.add(vo);
         } catch (Exception e) {
             e.printStackTrace();
             return new ResultMessage(ResultMessage.RESULT_NET_ERROR);
@@ -47,7 +49,7 @@ public class UserController {
 
     public ResultMessage delete(String username) {
         try {
-            return remote.invoke(ResultMessage.class, "delete", username);
+            return userBL.delete(username);
         } catch (Exception e) {
             e.printStackTrace();
             return new ResultMessage(ResultMessage.RESULT_NET_ERROR);
@@ -56,7 +58,7 @@ public class UserController {
 
     public ResultMessage modify(UserVO vo) {
         try {
-            return remote.invoke(ResultMessage.class, "modify", vo);
+            return userBL.modify(vo);
         } catch (Exception e) {
             e.printStackTrace();
             return new ResultMessage(ResultMessage.RESULT_NET_ERROR);

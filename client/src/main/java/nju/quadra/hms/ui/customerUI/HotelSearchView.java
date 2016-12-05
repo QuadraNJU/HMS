@@ -2,7 +2,9 @@ package nju.quadra.hms.ui.customerUI;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import nju.quadra.hms.controller.CustomerController;
 import nju.quadra.hms.controller.HotelController;
@@ -27,14 +29,21 @@ public class HotelSearchView extends Parent {
         loadHotelList();
     }
 
+    public void loadView(Node node) {
+        pane.getChildren().add(node);
+    }
+
+
     @FXML
     private VBox vBox;
+    @FXML
+    private Pane pane;
 
     private void loadHotelList() throws IOException {
         ArrayList<HotelVO> hotelList = controller.getAll();
         if (hotelList != null && hotelList.size() > 0) {
             for (HotelVO vo : hotelList) {
-                vBox.getChildren().add(new HotelSearchItem(vo));
+                vBox.getChildren().add(new HotelSearchItem(this, vo));
             }
         }
     }

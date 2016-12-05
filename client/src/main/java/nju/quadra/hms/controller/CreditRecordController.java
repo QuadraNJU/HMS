@@ -1,7 +1,9 @@
 package nju.quadra.hms.controller;
 
 import com.google.gson.reflect.TypeToken;
+import nju.quadra.hms.blservice.CreditRecordBLService;
 import nju.quadra.hms.model.ResultMessage;
+import nju.quadra.hms.net.BLServiceFactory;
 import nju.quadra.hms.net.HttpRemote;
 import nju.quadra.hms.vo.CreditRecordVO;
 
@@ -11,15 +13,15 @@ import java.util.ArrayList;
  * Created by RaUkonn on 2016/11/30.
  */
 public class CreditRecordController {
-    private HttpRemote creditRecordRemote;
+    private CreditRecordBLService creditRecordBL;
 
     public CreditRecordController() {
-        this.creditRecordRemote = new HttpRemote("CreditRecordBL");
+        this.creditRecordBL = BLServiceFactory.getCreditRecordBLService();
     }
 
     public ArrayList<CreditRecordVO> get(String username) {
         try {
-            return creditRecordRemote.invoke(new TypeToken<ArrayList<CreditRecordVO>>(){}.getType(), "get", username);
+            return creditRecordBL.get(username);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -28,7 +30,7 @@ public class CreditRecordController {
 
     public ResultMessage add(CreditRecordVO vo) {
         try {
-            return creditRecordRemote.invoke(ResultMessage.class, "add", vo);
+            return creditRecordBL.add(vo);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
