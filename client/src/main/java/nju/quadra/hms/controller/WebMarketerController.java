@@ -6,6 +6,8 @@ import nju.quadra.hms.model.ResultMessage;
 import nju.quadra.hms.net.BLServiceFactory;
 import nju.quadra.hms.vo.WebsitePromotionVO;
 
+import java.util.ArrayList;
+
 /**
  * Created by adn55 on 2016/12/4.
  */
@@ -20,6 +22,15 @@ public class WebMarketerController {
         } catch (Exception e) {
             e.printStackTrace();
             return new ResultMessage(ResultMessage.RESULT_NET_ERROR);
+        }
+    }
+
+    public ArrayList<WebsitePromotionVO> getWebsitePromotion() {
+        try {
+            return websitePromotionBL.get();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
     }
 
