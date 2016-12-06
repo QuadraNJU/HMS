@@ -40,6 +40,7 @@ public class CreditRecordBL implements CreditRecordBLService {
         try {
             ArrayList<CreditRecordPO> poarr = creditDataService.get(username);
             double creditResult = ORIGINAL_CREDIT;
+            voarr.add(new CreditRecordVO(0, username, null, 0, CreditAction.ORIGINAL, creditResult, creditResult));
             for (int i = poarr.size()-1; i >= 0; i--) {
                 CreditRecordPO po = poarr.get(i);
                 creditResult += po.getDiff();

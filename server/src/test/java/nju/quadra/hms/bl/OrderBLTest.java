@@ -15,6 +15,7 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -53,8 +54,8 @@ public class OrderBLTest {
             persons2.add("TEST|person21");
             persons2.add("TEST|person22");
             persons2.add("TEST|person23");
-            OrderVO vo1 = new OrderVO(0, "TEST|username1", 123456, new Date(2222 - 1900, 11 - 1, 21 + 1), new Date(2222 - 1900, 11 - 1, 23 + 1), 111, 1, 2, persons1, false, 299.0, OrderState.UNCOMPLETED, 0, null);
-            OrderVO vo2 = new OrderVO(0, "TEST|username2", 123456, new Date(2016 - 1900, 11 - 1, 22 + 1), new Date(2016 - 1900, 11 - 1, 23 + 1), 222, 1, 3, persons2, true, 599.0, OrderState.UNCOMPLETED, 0, null);
+            OrderVO vo1 = new OrderVO(0, "TEST|username1", 123456, LocalDate.parse("2222-11-21"), LocalDate.parse("2222-11-23"), 111, 1, 2, persons1, false, 299.0, OrderState.UNCOMPLETED, 0, null);
+            OrderVO vo2 = new OrderVO(0, "TEST|username2", 123456, LocalDate.parse("2016-11-22"), LocalDate.parse("2016-11-23"), 222, 1, 3, persons2, true, 599.0, OrderState.UNCOMPLETED, 0, null);
             orderBL.add(vo1);
             orderBL.add(vo2);
 

@@ -4,6 +4,7 @@ import nju.quadra.hms.dataservice.OrderDataService;
 import nju.quadra.hms.model.OrderState;
 import nju.quadra.hms.po.OrderPO;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Types;
@@ -48,7 +49,7 @@ public class OrderDataServiceImpl implements OrderDataService {
         pst.setInt(1, id);
         ResultSet rs = pst.executeQuery();
         rs.next();
-        return convertToSingle(rs);
+        return createPO(rs);
     }
 
     @Override
@@ -61,8 +62,8 @@ public class OrderDataServiceImpl implements OrderDataService {
             pst.setNull(1, Types.INTEGER);
         pst.setString(2, po.getUsername());
         pst.setInt(3, po.getHotelId());
-        pst.setString(4, new SimpleDateFormat("yyyy-MM-dd").format(po.getStartDate()));
-        pst.setString(5, new SimpleDateFormat("yyyy-MM-dd").format(po.getEndDate()));
+        pst.setDate(4, Date.valueOf(po.getStartDate()));
+        pst.setDate(5, Date.valueOf(po.getEndDate()));
         pst.setInt(6, po.getRoomId());
         pst.setInt(7, po.getRoomCount());
         pst.setInt(8, po.getPersonCount());
@@ -95,19 +96,19 @@ public class OrderDataServiceImpl implements OrderDataService {
     private ArrayList<OrderPO> convertToArrayList(ResultSet rs) throws Exception {
         ArrayList<OrderPO> result = new ArrayList<>();
         while (rs.next()) {
-            OrderPO po = convertToSingle(rs);
+            OrderPO po = createPO(rs);
             result.add(po);
         }
         return result;
     }
 
-    private OrderPO convertToSingle(ResultSet rs) throws Exception {
+    private OrderPO createPO(ResultSet rs) throws Exception {
         return new OrderPO(
                 rs.getInt("id"),
                 rs.getString("username"),
                 rs.getInt("hotelid"),
-                rs.getDate("startdate"),
-                rs.getDate("enddate"),
+                rs.getDate("startdate").toLocalDate(),
+                rs.getDate("enddate").toLocalDate(),
                 rs.getInt("roomid"),
                 rs.getInt("roomcount"),
                 rs.getInt("personcount"),

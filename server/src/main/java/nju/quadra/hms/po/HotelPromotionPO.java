@@ -1,14 +1,13 @@
 package nju.quadra.hms.po;
 
 import nju.quadra.hms.model.HotelPromotionType;
-import nju.quadra.hms.vo.HotelRoomVO;
 
 import java.time.LocalDate;
 
 /**
  * Created by adn55 on 16/10/15.
  */
-public class HotelPromotionPO implements Comparable<HotelPromotionPO>{
+public class HotelPromotionPO {
     /**
      * 酒店促销策略ID
      */
@@ -115,13 +114,6 @@ public class HotelPromotionPO implements Comparable<HotelPromotionPO>{
 
     public void setCooperation(String cooperation) {
         this.cooperation = cooperation;
-    }
-
-    @Override
-    public int compareTo(HotelPromotionPO o) {
-        if(promotion < o.getPromotion()) return -1;
-        else if(promotion == o.getPromotion()) return 0;
-        else return 1;
     }
 
 }
