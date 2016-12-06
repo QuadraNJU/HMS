@@ -4,29 +4,99 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-
-<Pane fx:id="pane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<?import javafx.scene.text.*?>
+<Pane fx:id="pane" stylesheets="@../common/style.css" xmlns="http://javafx.com/javafx/8"
+      xmlns:fx="http://javafx.com/fxml/1">
     <Label layoutX="45.0" layoutY="25.0" text="搜索酒店">
         <font>
             <Font size="24.0"/>
         </font>
     </Label>
 
-    <Pane layoutX="45.0" layoutY="74.0">
-        <HBox spacing="10.0" alignment="CENTER_LEFT">
-            <Label text="选择城市/商圈:">
-                <font>
-                    <Font size="14.0"/>
-                </font>
-            </Label>
-            <ChoiceBox fx:id="choiceCity"/>
-            <ChoiceBox fx:id="choiceArea"/>
-            <Button prefWidth="80.0" styleClass="btn-r,btn-blue" text="搜索" onAction="#onSearchAction"/>
-        </HBox>
+    <ScrollPane layoutX="45.0" layoutY="114.0" prefHeight="340.0" prefWidth="620.0"
+                style="-fx-background-color: #ffffff;">
+        <VBox fx:id="vBox"/>
+    </ScrollPane>
+    <HBox alignment="CENTER_LEFT" layoutX="45.0" layoutY="74.0" spacing="10.0">
+        <Label text="选择城市/商圈:">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Label>
+        <ChoiceBox fx:id="choiceCity"/>
+        <ChoiceBox fx:id="choiceArea"/>
+        <Button onAction="#onSearchAction" prefWidth="80.0" styleClass="btn-r,btn-blue" text="搜索">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Button>
+        <Button onAction="#onOptionAction" prefWidth="100.0" styleClass="btn-r,btn-green" text="筛选/排序">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Button>
+    </HBox>
 
-        <ScrollPane layoutY="40.0" prefHeight="340.0" prefWidth="620.0" style="-fx-background-color: #ffffff;">
-            <VBox fx:id="vBox"/>
-        </ScrollPane>
+    <Pane fx:id="paneOption" layoutX="380.0" layoutY="74.0" prefHeight="200.0" prefWidth="285.0"
+          style="-fx-background-color:white; -fx-border-color: #333333; -fx-border-width: 2px; -fx-border-style: solid;"
+          visible="false">
+        <Label layoutX="15.0" layoutY="11.0" text="酒店名"/>
+        <TextField fx:id="editKeyword" layoutX="75.0" layoutY="5.0" promptText="关键字">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </TextField>
+
+        <Label layoutX="15.0" layoutY="42.0" text="星级"/>
+        <CheckBox fx:id="checkStar1" layoutX="75.0" layoutY="43.0" mnemonicParsing="false" text="一星">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </CheckBox>
+        <CheckBox fx:id="checkStar2" layoutX="135.0" layoutY="43.0" mnemonicParsing="false" text="二星">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </CheckBox>
+        <CheckBox fx:id="checkStar3" layoutX="195.0" layoutY="43.0" mnemonicParsing="false" text="三星">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </CheckBox>
+        <CheckBox fx:id="checkStar4" layoutX="75.0" layoutY="65.0" mnemonicParsing="false" text="四星">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </CheckBox>
+        <CheckBox fx:id="checkStar5" layoutX="135.0" layoutY="65.0" mnemonicParsing="false" text="五星">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </CheckBox>
+
+        <Label layoutX="15.0" layoutY="95.0" text="评分"/>
+        <ChoiceBox fx:id="choiceRank1" layoutX="75.0" layoutY="89.0" prefWidth="70.0"/>
+
+        <Label layoutX="155.0" layoutY="96.0" text="-">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Label>
+        <ChoiceBox fx:id="choiceRank2" layoutX="170.0" layoutY="89.0" prefWidth="70.0"/>
+
+        <Label layoutX="15.0" layoutY="133.0" text="排序"/>
+        <ChoiceBox fx:id="choiceSort" layoutX="75.0" layoutY="127.0"/>
+        <CheckBox fx:id="checkOrderedOnly" layoutX="15.0" layoutY="168.0" mnemonicParsing="false" text="只显示我预定过的酒店">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </CheckBox>
+
+        <Button layoutX="210.0" layoutY="163.0" onAction="#onFilterAction" prefWidth="60.0"
+                styleClass="btn-r,btn-green" text="应用">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Button>
     </Pane>
 </Pane>

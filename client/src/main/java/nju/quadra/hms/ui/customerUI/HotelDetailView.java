@@ -41,9 +41,7 @@ public class HotelDetailView extends Parent {
                 rooms += room.toString();
             }
             labelRooms.setText(rooms);
-            try {
-                labelRank.setText("评价（" + vo.ranks.stream().mapToInt(rank -> rank.rank).average().getAsDouble() +" / 5）");
-            } catch (Exception ignored) {}
+            labelRank.setText("评价（" + vo.getAverageRank() +" / 5）");
             listRank.getItems().addAll(vo.ranks);
             listOrder.getItems().addAll(vo.orders);
         }
