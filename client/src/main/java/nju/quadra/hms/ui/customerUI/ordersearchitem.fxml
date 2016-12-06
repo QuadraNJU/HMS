@@ -1,52 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<Pane prefHeight="70.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8"
-      xmlns:fx="http://javafx.com/fxml/1">
-    <Label layoutX="35.0" layoutY="15.0" text="时间：">
-        <font>
-            <Font size="14.0"/>
-        </font>
-    </Label>
-    <Label fx:id="labelTime" layoutX="80.0" layoutY="15.0" text="无">
-        <font>
-            <Font size="14.0"/>
-        </font>
-    </Label>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-    <Label layoutX="35.0" layoutY="40.0" text="动作：">
-        <font>
-            <Font size="14.0"/>
-        </font>
-    </Label>
-    <Label fx:id="labelAction" layoutX="80.0" layoutY="40.0">
-        <font>
-            <Font size="14.0"/>
-        </font>
-    </Label>
-
-    <Label layoutX="316.0" layoutY="15.0" text="信用值变化：">
-        <font>
-            <Font size="14.0"/>
-        </font>
-    </Label>
-    <Label fx:id="labelDiff" layoutX="400.0" layoutY="15.0">
-        <font>
-            <Font size="14.0"/>
-        </font>
-    </Label>
-
-    <Label layoutX="316.0" layoutY="40.0" text="信用值结果：">
-        <font>
-            <Font size="14.0"/>
-        </font>
-    </Label>
-    <Label fx:id="labelResult" layoutX="400.0" layoutY="40.0">
-        <font>
-            <Font size="14.0"/>
-        </font>
-    </Label>
+<Pane prefHeight="70.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+       <Label layoutX="35.0" layoutY="15.0" text="时间：">
+           <font>
+               <Font size="14.0" />
+           </font>
+       </Label>
+       <Label fx:id="labelTime" layoutX="80.0" layoutY="15.0" prefHeight="18.0" prefWidth="30.0">
+           <font>
+               <Font size="14.0" />
+           </font>
+       </Label>
+   
+       <Label layoutX="35.0" layoutY="40.0" text="订单内容：">
+           <font>
+               <Font size="14.0" />
+           </font>
+       </Label>
+       <Label fx:id="labelAction" layoutX="105.0" layoutY="40.0" prefHeight="18.0" prefWidth="30.0">
+           <font>
+               <Font size="14.0" />
+           </font>
+       </Label>
+   
+       <Label layoutX="165.0" layoutY="15.0" text="订单价格：">
+           <font>
+               <Font size="14.0" />
+           </font>
+       </Label>
+       <Label fx:id="labelPrice" layoutX="235.0" layoutY="15.0" prefHeight="18.0" prefWidth="42.0">
+           <font>
+               <Font size="14.0" />
+           </font>
+       </Label>
+      <Label layoutX="309.0" layoutY="15.0" text="人数：">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelPersonNumber" layoutX="351.0" layoutY="15.0" prefHeight="18.0" prefWidth="42.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelOrderState" layoutX="518.0" layoutY="15.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Button layoutX="441.0" layoutY="36.0" mnemonicParsing="false" onDragDetected="#onUndoAction" text="撤销" styleClass="btn-red"/>
+      <Button layoutX="518.0" layoutY="36.0" mnemonicParsing="false" onDragDetected="#onDetailAction" text="详情" styleClass="btn-blue"/>
+      <Button layoutX="441.0" layoutY="36.0" mnemonicParsing="false" onDragDetected="#onCommentAction" text="评价" styleClass="btn-green"/>
+   </children>
 
 </Pane>
