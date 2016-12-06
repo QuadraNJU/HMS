@@ -45,7 +45,7 @@ public class HotelDetailView extends Parent {
                 labelRank.setText("评价（" + vo.ranks.stream().mapToInt(rank -> rank.rank).average().getAsDouble() +" / 5）");
             } catch (Exception ignored) {}
             listRank.getItems().addAll(vo.ranks);
-            listOrder.getItems().addAll(vo.orders);
+            loadOrderList();
         }
     }
 
@@ -56,13 +56,18 @@ public class HotelDetailView extends Parent {
     @FXML
     private ListView<OrderVO> listOrder;
 
+    private void loadOrderList() {
+        listOrder.getItems().clear();
+        listOrder.getItems().addAll(vo.orders);
+    }
+
     @FXML
     public void onCancelAction() {
         this.getChildren().clear();
     }
 
     @FXML
-    public void onOrderAction() throws IOException{
-        //parent.loadView(new BookHotelView(vo.id));
+    public void onOrderAction() throws IOException {
+        parent.loadView(new BookHotelView(vo.id, this::loadOrderList));
     }
 }
