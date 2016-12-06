@@ -40,3 +40,7 @@
 .choice-box, .date-picker {
     -fx-font-size: 14px;
 }
+
+.pane-border {
+    -fx-background-color: gray;
+}

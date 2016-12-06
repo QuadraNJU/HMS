@@ -71,7 +71,7 @@ public class HotelPromotionBL implements HotelPromotionBLService {
         }
     }
 
-    private static HotelPromotionVO toVO(HotelPromotionPO po) {
+    public static HotelPromotionVO toVO(HotelPromotionPO po) {
         ArrayList<String> cooperation = null;
         if (po.getCooperation() != null && po.getType().equals(HotelPromotionType.COMPANY_PROMOTION)) {
             cooperation = new Gson().fromJson(po.getCooperation(), new TypeToken<ArrayList<String>>(){}.getType());
@@ -79,7 +79,7 @@ public class HotelPromotionBL implements HotelPromotionBLService {
         return new HotelPromotionVO(po.getId(), po.getHotelId(), po.getName(), po.getType(), po.getStartTime(), po.getEndTime(), po.getPromotion(), cooperation);
     }
 
-    private static HotelPromotionPO toPO(HotelPromotionVO vo) {
+    public static HotelPromotionPO toPO(HotelPromotionVO vo) {
         if (vo.type.equals(HotelPromotionType.COMPANY_PROMOTION)) {
             return new HotelPromotionPO(vo.id, vo.hotelId, vo.name, vo.type, vo.startTime, vo.endTime, vo.promotion, new Gson().toJson(vo.cooperation));
         } else {

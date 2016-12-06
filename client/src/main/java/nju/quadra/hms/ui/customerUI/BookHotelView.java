@@ -1,5 +1,6 @@
 package nju.quadra.hms.ui.customerUI;
 
+import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -60,8 +61,11 @@ public class BookHotelView extends Parent {
         radioHasChildren.setSelected(true);
         textRoomNumber.setText("0");
 
+
         loadPrice();
     }
+
+    private void changePersons(String names) {textPersons.setText(names);}
 
     @FXML
     private void loadPrice() {
@@ -98,11 +102,11 @@ public class BookHotelView extends Parent {
 
     @FXML
     private void onSubmitAction() throws IOException{
-        new BookHotelView(hotelId);
+        //todo
     }
 
     @FXML
-    private void onChangePersons() {
-
+    private void onChangePersons() throws IOException {
+        this.getChildren().add(new NameListView(textPersons.getText(), this::changePersons));
     }
 }

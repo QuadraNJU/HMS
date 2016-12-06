@@ -89,6 +89,7 @@ public class HotelPromotionEditView extends Parent {
 
     @FXML
     protected void onOpenSelectorAction() {
+        companySelection.clear();
         listCompany.getItems().clear();
         ArrayList<String> company = controller.getAllCompany();
         if (company != null) {

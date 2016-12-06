@@ -32,4 +32,9 @@ public class HotelRoomVO {
         this.total = total;
         this.price = price;
     }
+
+    @Override
+    public String toString() {
+        return name + "（" + price + "/间）";
+    }
 }
