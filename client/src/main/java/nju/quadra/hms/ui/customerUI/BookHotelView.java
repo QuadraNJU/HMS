@@ -24,9 +24,12 @@ public class BookHotelView extends Parent {
     private OrderController orderController;
     private ArrayList<HotelRoomVO> rooms;
     private PriceVO price;
+    private OrderVO order;
     private int hotelId;
     private HotelPromotionVO hotelPromotion;
     private WebsitePromotionVO websitePromotion;
+    private HotelRoomVO selectedRoom;
+    private int number;
     @FXML
     Pane pane;
     @FXML
@@ -40,6 +43,7 @@ public class BookHotelView extends Parent {
     @FXML
     RadioButton radioHasChildren, radioNoChildren;
     ToggleGroup toggleGroup;
+    SuccessHandler onSuccess = null;
 
     public BookHotelView(int hotelId) throws IOException {
         this.hotelId = hotelId;
@@ -60,16 +64,23 @@ public class BookHotelView extends Parent {
         radioHasChildren.setSelected(true);
         textRoomNumber.setText("0");
 
+        order = new OrderVO(0, HttpClient.session.username, hotelId, dateStart.getValue(), dateEnd.getValue(), 0, 0, 0, null, false, 0, OrderState.BOOKED, 0, null);
 
         loadPrice();
     }
 
-    private void changePersons(String names) {textPersons.setText(names);}
+    public BookHotelView(int hotelId, SuccessHandler onSuccess) throws IOException {
+        this(hotelId);
+        this.onSuccess = onSuccess;
+    }
+
+    private void changePersons(String names) {
+        textPersons.setText(names);
+    }
 
     @FXML
     private void loadPrice() {
-        HotelRoomVO selectedRoom = comboRoomType.getValue();
-        int number;
+        selectedRoom = comboRoomType.getValue();
         try {
             number = Integer.parseInt(textRoomNumber.getText());
             if(number < 0) throw new NumberFormatException();
@@ -79,7 +90,9 @@ public class BookHotelView extends Parent {
         }
 
         double originalPrice = number * selectedRoom.price;
-        OrderVO order = new OrderVO(0, HttpClient.session.username, hotelId, dateStart.getValue(), dateEnd.getValue(), selectedRoom.id, number, 0, null, radioHasChildren.isSelected()? true: false, originalPrice, OrderState.BOOKED, 0, null);
+        order.roomId = selectedRoom.id;
+        order.roomCount = number;
+        order.price = originalPrice;
         price = orderController.getPrice(order);
         DecimalFormat df = new DecimalFormat("#.00");
         labelOriginalPrice.setText("¥" + df.format(price.originalPrice));
@@ -100,12 +113,51 @@ public class BookHotelView extends Parent {
     }
 
     @FXML
-    private void onSubmitAction() throws IOException{
-        //todo
+    private void onSubmitAction() throws IOException {
+        if(order != null) {
+            if(dateStart.getValue() != null && dateEnd.getValue() != null && Integer.parseInt(textRoomNumber.getText()) > 0 && textPersons.getText() != null) {
+                if(dateStart.getValue().compareTo(dateEnd.getValue()) > -1) {
+                    Dialogs.showError("订单开始的时间应该早于订单结束的时间，请重新输入");
+                    return;
+                }
+                order.startDate = dateStart.getValue();
+                order.endDate = dateEnd.getValue();
+                order.roomId = selectedRoom.id;
+                order.roomCount = number;
+                updatePersonsOfOrderVO();
+                order.hasChildren = (radioHasChildren.isSelected() ? true : false);
+                order.price = price.finalPrice;
+                orderController.add(order);
+                Dialogs.showInfo("添加订单成功");
+                if(onSuccess != null) onSuccess.handle();
+                onCancelAction();
+            } else {
+                Dialogs.showError("输入信息不完全，请重新输入");
+                return;
+            }
+        } else {
+            Dialogs.showError("订单创建失败，请检查输入的合法性");
+            return;
+        }
+
+    }
+
+    private void updatePersonsOfOrderVO() {
+        String[] ss = textPersons.getText().split("、");
+        order.personCount = ss.length;
+        ArrayList<String> arrPersons = new ArrayList<>();
+        for(String s: ss) {
+            arrPersons.add(s);
+        }
+        order.persons = arrPersons;
     }
 
     @FXML
     private void onChangePersons() throws IOException {
         this.getChildren().add(new NameListView(textPersons.getText(), this::changePersons));
+    }
+
+    interface SuccessHandler {
+        void handle() throws IOException;
     }
 }

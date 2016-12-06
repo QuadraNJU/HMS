@@ -9,14 +9,14 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" style="-fx-background-color: white">
+<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="700.0" style="-fx-background-color: white" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="41.0" layoutY="18.0" prefHeight="39.0" prefWidth="57.0" text="预订">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="labelHotelName" layoutX="108.0" layoutY="18.0" prefHeight="39.0" prefWidth="163.0">
+      <Label fx:id="labelHotelName" layoutX="108.0" layoutY="18.0" prefHeight="39.0" prefWidth="250.0">
          <font>
             <Font size="24.0" />
          </font>
@@ -24,89 +24,89 @@
 
       <Label layoutX="51.0" layoutY="74.0" text="日期">
          <font>
-            <Font size="16.0" />
+            <Font size="14.0" />
          </font>
       </Label>
       <DatePicker fx:id="dateStart" layoutX="130.0" layoutY="74.0" prefWidth="100" />
-      <DatePicker fx:id="dateEnd" layoutX="250.0" layoutY="74.0" prefWidth="100" />
+      <DatePicker fx:id="dateEnd" layoutX="265.0" layoutY="74.0" prefWidth="100" />
 
-      <Label layoutX="51.0" layoutY="104.0" text="客房">
+      <Label layoutX="51.0" layoutY="109.0" text="客房">
          <font>
-            <Font size="16.0" />
+            <Font size="14.0" />
          </font>
       </Label>
-      <ComboBox fx:id="comboRoomType" layoutX="130.0" layoutY="104.0" prefHeight="23.0" prefWidth="80.0" />
-      <TextField fx:id="textRoomNumber" layoutX="222.0" layoutY="104.0" prefHeight="23.0" prefWidth="70.0" onAction="#loadPrice"/>
+      <ComboBox fx:id="comboRoomType" layoutX="130.0" layoutY="109.0" prefHeight="23.0" prefWidth="80.0" />
+      <TextField fx:id="textRoomNumber" layoutX="222.0" layoutY="109.0" onAction="#loadPrice" prefHeight="23.0" prefWidth="70.0" />
       
-      <Label layoutX="51.0" layoutY="191.0" text="儿童">
+      <Label layoutX="51.0" layoutY="210.0" text="儿童">
          <font>
-            <Font size="16.0" />
+            <Font size="14.0" />
          </font>
       </Label>
-      <RadioButton fx:id="radioHasChildren" layoutX="130.0" layoutY="194.0" mnemonicParsing="false" text="有" />
-      <RadioButton fx:id="radioNoChildren" layoutX="172.0" layoutY="194.0" mnemonicParsing="false" text="无" />
+      <RadioButton fx:id="radioHasChildren" layoutX="130.0" layoutY="213.0" mnemonicParsing="false" text="有" />
+      <RadioButton fx:id="radioNoChildren" layoutX="172.0" layoutY="213.0" mnemonicParsing="false" text="无" />
 
-      <Label layoutX="51.0" layoutY="134.0" text="入住人员">
+      <Label layoutX="51.0" layoutY="145.0" text="入住人员">
          <font>
-            <Font size="16.0" />
+            <Font size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="textPersons" editable="false" layoutX="130.0" layoutY="134.0" />
+      <TextField fx:id="textPersons" editable="false" layoutX="130.0" layoutY="145.0" />
 
-      <Button layoutX="130.0" layoutY="161.0" mnemonicParsing="false" onAction="#onChangePersons" text="修改人员列表" styleClass="btn-blue,btn-r"/>
+      <Button layoutX="130.0" layoutY="176.0" mnemonicParsing="false" onAction="#onChangePersons" styleClass="btn-blue,btn-r" text="修改人员列表" />
 
       <Label layoutX="50.0" layoutY="252.0" text="原价">
          <font>
-            <Font size="16.0" />
+            <Font size="14.0" />
          </font>
       </Label>
       <Label fx:id="labelOriginalPrice" layoutX="130.0" layoutY="252.0">
          <font>
-            <Font size="16.0" />
+            <Font size="14.0" />
          </font>
       </Label>
 
       <Label layoutX="50.0" layoutY="280.0" text="酒店优惠">
          <font>
-            <Font size="16.0" />
+            <Font size="14.0" />
          </font>
       </Label>
       <Label fx:id="labelHotelPromotion" layoutX="130.0" layoutY="280.0">
          <font>
-            <Font size="16.0" />
+            <Font size="14.0" />
          </font>
       </Label>
 
       <Label layoutX="50.0" layoutY="310.0" text="网站优惠">
          <font>
-            <Font size="16.0" />
+            <Font size="14.0" />
          </font>
       </Label>
       <Label fx:id="labelWebPromotion" layoutX="130.0" layoutY="310.0">
          <font>
-            <Font size="16.0" />
+            <Font size="14.0" />
          </font>
       </Label>
 
       <Label layoutX="51.0" layoutY="340.0" text="价格">
          <font>
-            <Font size="16.0" />
+            <Font size="14.0" />
          </font>
       </Label>
       <Label fx:id="labelFinalPrice" layoutX="130.0" layoutY="340.0">
          <font>
-            <Font size="16.0" />
+            <Font size="14.0" />
          </font>
       </Label>
 
-      <Button layoutX="50.0" layoutY="378.0" mnemonicParsing="false" styleClass="btn-blue,btn-r" onAction="#onSubmitAction" prefHeight="34.0" prefWidth="80.0" text="确认">
+      <Button layoutX="50.0" layoutY="378.0" mnemonicParsing="false" onAction="#onSubmitAction" prefHeight="34.0" prefWidth="80.0" styleClass="btn-blue,btn-r" text="确认">
          <font>
-            <Font size="16.0" />
+            <Font size="14.0" />
          </font>
       </Button>
-      <Button layoutX="154.0" layoutY="378.0" mnemonicParsing="false" styleClass="btn-r,btn-red" onAction="#onCancelAction" prefHeight="34.0" prefWidth="80.0" text="取消">
+      <Button layoutX="154.0" layoutY="378.0" mnemonicParsing="false" onAction="#onCancelAction" prefHeight="34.0" prefWidth="80.0" styleClass="btn-r,btn-red" text="取消">
          <font>
-            <Font size="16.0" />
+            <Font size="14.0" />
          </font>
       </Button>
 

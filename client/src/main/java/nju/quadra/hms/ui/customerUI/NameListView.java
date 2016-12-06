@@ -43,15 +43,17 @@ public class NameListView extends Parent {
     @FXML
     private void onAddNameAction() {
         String name = textName.getText();
-        if(name.contains("、") || name.contains("|")) {
-            Dialogs.showInfo("请输入英文或者汉字，不要输入'、'，'|'等符号！");
-        } else if(name.length() > 8) {
-            Dialogs.showInfo("输入的长度不能大于8个汉字或英文字母，请重新输入");
-        }
+        if(name != null && name.length() != 0) {
+            if (name.contains("、") || name.contains("|")) {
+                Dialogs.showInfo("请输入英文或者汉字，不要输入'、'，'|'等符号！");
+            } else if (name.length() > 8) {
+                Dialogs.showInfo("输入的长度不能大于8个汉字或英文字母，请重新输入");
+            }
 
-        arrayNames.add(name);
-        textName.clear();
-        loadNameToListView();
+            arrayNames.add(name);
+            textName.clear();
+            loadNameToListView();
+        }
     }
 
     @FXML
