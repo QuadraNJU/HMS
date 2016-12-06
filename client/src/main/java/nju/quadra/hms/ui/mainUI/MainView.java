@@ -70,6 +70,11 @@ public class MainView extends Stage {
         contentPane.getChildren().add(node);
     }
 
+    public void loadViewOverlay(Node node) {
+        contentPane.getChildren().clear();
+        contentPane.getChildren().add(node);
+    }
+
     /**
      * 提供窗口拖放支持
      */

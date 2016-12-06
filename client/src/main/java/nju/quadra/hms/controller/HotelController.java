@@ -1,13 +1,10 @@
 package nju.quadra.hms.controller;
 
-import com.google.gson.reflect.TypeToken;
 import nju.quadra.hms.blservice.HotelBLService;
 import nju.quadra.hms.model.ResultMessage;
 import nju.quadra.hms.net.BLServiceFactory;
-import nju.quadra.hms.net.HttpRemote;
 import nju.quadra.hms.vo.AreaVO;
 import nju.quadra.hms.vo.HotelVO;
-import nju.quadra.hms.vo.UserVO;
 
 import java.util.ArrayList;
 
@@ -28,7 +25,7 @@ public class HotelController {
 
     public ArrayList<HotelVO> search(int areaId) {
         try {
-            return hotelBL.search(areaId);
+            return hotelBL.getByArea(areaId);
         } catch (Exception e) {
             e.printStackTrace();
             return null;

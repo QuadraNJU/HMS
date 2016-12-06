@@ -60,7 +60,7 @@ public class HotelBLTest {
 
     @Test
     public void test4_Search() {
-    	ArrayList<HotelVO> voarr = hotelBL.search(1);
+    	ArrayList<HotelVO> voarr = hotelBL.getByArea(1);
     	assertEquals("南京抵抗军会议大酒店", voarr.get(0).name);
         assertEquals(1, voarr.get(0).areaId);
         assertEquals("南京金陵大饭店", voarr.get(1).name);

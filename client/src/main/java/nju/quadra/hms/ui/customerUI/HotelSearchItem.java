@@ -5,9 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.Pane;
-import nju.quadra.hms.vo.CreditRecordVO;
-import nju.quadra.hms.vo.HotelVO;
+import nju.quadra.hms.vo.HotelSearchVO;
 
 import java.io.IOException;
 
@@ -16,30 +14,33 @@ import java.io.IOException;
  */
 public class HotelSearchItem extends Parent {
 
-    @FXML
-    HotelSearchView parent;
+    private HotelSearchView parent;
+    private HotelSearchVO vo;
+
     @FXML
     Label labelName, labelStates;
     @FXML
     Button btnDetail, btnOrder;
-    int hotelId;
 
-    public HotelSearchItem(HotelSearchView parent, HotelVO vo) throws IOException {
+    public HotelSearchItem(HotelSearchView parent, HotelSearchVO vo) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("hotelsearchitem.fxml"));
         loader.setController(this);
         this.getChildren().add(loader.load());
+
         this.parent = parent;
-        hotelId = vo.id;
-        if(vo.name != null) labelName.setText(vo.name);
+        this.vo = vo;
+        if (vo != null) {
+            labelName.setText(vo.name);
+        }
     }
 
     @FXML
-    public void onDetailAction() throws IOException{
-        parent.loadView(new HotelDetailView(hotelId));
+    public void onDetailAction() throws IOException {
+        parent.loadView(new HotelDetailView(parent, vo));
     }
 
     @FXML
-    public void onOrderAction() throws IOException{
-        parent.loadView(new BookHotelView(hotelId));
+    public void onOrderAction() throws IOException {
+        //parent.loadView(new BookHotelView(vo));
     }
 }

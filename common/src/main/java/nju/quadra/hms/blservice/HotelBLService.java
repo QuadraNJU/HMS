@@ -2,6 +2,7 @@ package nju.quadra.hms.blservice;
 
 import nju.quadra.hms.model.ResultMessage;
 import nju.quadra.hms.vo.AreaVO;
+import nju.quadra.hms.vo.HotelSearchVO;
 import nju.quadra.hms.vo.HotelVO;
 
 import java.util.ArrayList;
@@ -10,7 +11,9 @@ import java.util.ArrayList;
  * Created by adn55 on 16/10/15.
  */
 public interface HotelBLService {
-    ArrayList<HotelVO> search(int areaId);
+    ArrayList<HotelSearchVO> search(int areaId, String username);
+
+    ArrayList<HotelVO> getByArea(int areaId);
 
     ArrayList<HotelVO> getAll();
 

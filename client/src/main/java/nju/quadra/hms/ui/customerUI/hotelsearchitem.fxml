@@ -1,26 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.text.Font?>
-
-<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.control.Button?>
-<FlowPane prefHeight="30.0" prefWidth="620.0" style="-fx-background-color: #ffffff" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-    <Label fx:id="labelName" text="TEST|labelName">
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<Pane prefHeight="45.0" prefWidth="600.0" stylesheets="@../common/style.css" xmlns="http://javafx.com/javafx/8"
+      xmlns:fx="http://javafx.com/fxml/1">
+    <Label fx:id="labelName" layoutX="10.0" layoutY="13.0">
         <font>
             <Font size="14.0"/>
         </font>
     </Label>
-    <Label fx:id="labelStates" text="TEST|labelStates" alignment="BOTTOM_RIGHT" style="-fx-text-fill: gray">
-        <font>
-            <Font size="11.0"/>
-        </font>
-    </Label>
-    <FlowPane alignment="CENTER_RIGHT">
-        <Button fx:id="btnDetail" text="详情" styleClass="btn-r,btn-blue" onAction="#onDetailAction">
-        </Button>
-        <Button fx:id="btnOrder" text="预订" styleClass="btn-r,btn-pink" style="-fx-text-fill: black" onAction="#onOrderAction">
-        </Button>
-    </FlowPane>
 
-</FlowPane>
+    <Button layoutX="490.0" layoutY="7.0" onAction="#onDetailAction" prefWidth="50.0" styleClass="btn-r,btn-blue"
+            text="详情">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </Button>
+    <Button layoutX="545.0" layoutY="7.0" onAction="#onOrderAction" prefWidth="50.0" styleClass="btn-r,btn-pink"
+            text="预订">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </Button>
+</Pane>

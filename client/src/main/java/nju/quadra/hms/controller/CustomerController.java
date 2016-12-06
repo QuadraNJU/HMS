@@ -2,12 +2,11 @@ package nju.quadra.hms.controller;
 
 import nju.quadra.hms.blservice.CreditRecordBLService;
 import nju.quadra.hms.blservice.CustomerBLService;
+import nju.quadra.hms.blservice.HotelBLService;
 import nju.quadra.hms.blservice.UserBLService;
 import nju.quadra.hms.model.ResultMessage;
 import nju.quadra.hms.net.BLServiceFactory;
-import nju.quadra.hms.vo.CreditRecordVO;
-import nju.quadra.hms.vo.MemberVO;
-import nju.quadra.hms.vo.UserVO;
+import nju.quadra.hms.vo.*;
 
 import java.util.ArrayList;
 
@@ -19,6 +18,7 @@ public class CustomerController {
     private CustomerBLService customerBL = BLServiceFactory.getCustomerBLService();
     private CreditRecordBLService creditBL = BLServiceFactory.getCreditRecordBLService();
     private UserBLService userBL = BLServiceFactory.getUserBLService();
+    private HotelBLService hotelBL = BLServiceFactory.getHotelBLService();
 
     public UserVO getUserInfo(String username) {
         try {
@@ -58,6 +58,24 @@ public class CustomerController {
     public ArrayList<CreditRecordVO> getCreditRecord(String username) {
         try {
             return creditBL.get(username);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public ArrayList<AreaVO> getAllArea() {
+        try {
+            return hotelBL.getAllArea();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public ArrayList<HotelSearchVO> searchHotel(int areaId, String username) {
+        try {
+            return hotelBL.search(areaId, username);
         } catch (Exception e) {
             e.printStackTrace();
             return null;

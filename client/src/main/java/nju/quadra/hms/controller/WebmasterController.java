@@ -95,7 +95,7 @@ public class WebmasterController {
 
     public ArrayList<HotelVO> getHotelsByArea(int areaId) {
         try {
-            return hotelBL.search(areaId);
+            return hotelBL.getByArea(areaId);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
