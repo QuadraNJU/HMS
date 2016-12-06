@@ -1,6 +1,5 @@
 package nju.quadra.hms.ui.customerUI;
 
-import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -80,7 +79,7 @@ public class BookHotelView extends Parent {
         }
 
         double originalPrice = number * selectedRoom.price;
-        OrderVO order = new OrderVO(0, HttpClient.session.username, hotelId, dateStart.getValue(), dateEnd.getValue(), selectedRoom.id, number, 0, null, radioHasChildren.isSelected()? true: false, originalPrice, OrderState.UNCOMPLETED, 0, null);
+        OrderVO order = new OrderVO(0, HttpClient.session.username, hotelId, dateStart.getValue(), dateEnd.getValue(), selectedRoom.id, number, 0, null, radioHasChildren.isSelected()? true: false, originalPrice, OrderState.BOOKED, 0, null);
         price = orderController.getPrice(order);
         DecimalFormat df = new DecimalFormat("#.00");
         labelOriginalPrice.setText("¥" + df.format(price.originalPrice));

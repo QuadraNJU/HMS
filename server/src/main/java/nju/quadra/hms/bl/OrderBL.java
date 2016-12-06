@@ -23,10 +23,7 @@ import nju.quadra.hms.vo.*;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.time.Duration;
 import java.time.LocalDate;
-import java.time.temporal.TemporalField;
-import java.time.temporal.TemporalUnit;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
 
 /**
@@ -157,7 +154,7 @@ public class OrderBL implements OrderBLService {
             CreditDataService creditDataService = new CreditDataServiceImpl();
             OrderPO po = orderDataService.getById(vo.id);
             //订单状态必须为"未执行"才可调用此方法
-            if(po.getState() != OrderState.UNCOMPLETED)
+            if(po.getState() != OrderState.BOOKED)
                 return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "该订单无法被撤销（订单状态不为\"未执行\"），请重新选择");
             po.setState(OrderState.UNDO);
             //todo:这里还要加个记录撤销时间的东西，表打错了orz

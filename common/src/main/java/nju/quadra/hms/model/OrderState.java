@@ -4,12 +4,12 @@ package nju.quadra.hms.model;
  * Created by adn55 on 16/10/15.
  */
 public enum OrderState {
-    NULL("空"),
-    UNCOMPLETED("未执行"),
+    BOOKED("未执行"),
+    UNFINISHED("已入住"),
     FINISHED("已完成"),
+    RANKED("已完成并评价"),
     DELAYED("异常(逾期)"),
-    UNDO("已撤销"),
-    RANKED("已完成并评价");
+    UNDO("已撤销");
 
     String showname;
 

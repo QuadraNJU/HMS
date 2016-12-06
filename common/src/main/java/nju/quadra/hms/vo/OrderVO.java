@@ -3,6 +3,7 @@ package nju.quadra.hms.vo;
 import nju.quadra.hms.model.OrderState;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -82,5 +83,12 @@ public class OrderVO {
         this.state = state;
         this.rank = rank;
         this.comment = comment;
+    }
+
+    @Override
+    public String toString() {
+        return startDate.format(DateTimeFormatter.ofPattern("uuuu/MM/dd - "))
+                + endDate.format(DateTimeFormatter.ofPattern("uuuu/MM/dd "))
+                + "\n" + state.toString();
     }
 }

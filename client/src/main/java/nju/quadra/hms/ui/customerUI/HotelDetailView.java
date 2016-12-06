@@ -4,10 +4,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import nju.quadra.hms.controller.CustomerController;
 import nju.quadra.hms.vo.HotelRoomVO;
 import nju.quadra.hms.vo.HotelSearchVO;
+import nju.quadra.hms.vo.OrderRankVO;
+import nju.quadra.hms.vo.OrderVO;
 
 import java.io.IOException;
 
@@ -38,13 +41,20 @@ public class HotelDetailView extends Parent {
                 rooms += room.toString();
             }
             labelRooms.setText(rooms);
+            try {
+                labelRank.setText("评价（" + vo.ranks.stream().mapToInt(rank -> rank.rank).average().getAsDouble() +" / 5）");
+            } catch (Exception ignored) {}
+            listRank.getItems().addAll(vo.ranks);
+            listOrder.getItems().addAll(vo.orders);
         }
     }
 
     @FXML
-    private Label labelHotelName, labelAddress, labelDescription, labelFacilities, labelRooms, labelComment;
+    private Label labelHotelName, labelAddress, labelDescription, labelFacilities, labelRooms, labelRank;
     @FXML
-    private ScrollPane scrollComment, scrollHistory;
+    private ListView<OrderRankVO> listRank;
+    @FXML
+    private ListView<OrderVO> listOrder;
 
     @FXML
     public void onCancelAction() {

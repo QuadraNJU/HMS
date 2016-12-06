@@ -5,9 +5,7 @@ import nju.quadra.hms.blservice.HotelPromotionBLService;
 import nju.quadra.hms.blservice.WebsitePromotionBLService;
 import nju.quadra.hms.data.mysql.OrderDataServiceImpl;
 import nju.quadra.hms.dataservice.OrderDataService;
-import nju.quadra.hms.model.HotelPromotionType;
 import nju.quadra.hms.model.OrderState;
-import nju.quadra.hms.model.WebsitePromotionType;
 import nju.quadra.hms.po.OrderPO;
 import nju.quadra.hms.vo.*;
 import org.junit.Before;
@@ -17,7 +15,6 @@ import org.junit.runners.MethodSorters;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 
 import static org.junit.Assert.*;
 
@@ -54,8 +51,8 @@ public class OrderBLTest {
             persons2.add("TEST|person21");
             persons2.add("TEST|person22");
             persons2.add("TEST|person23");
-            OrderVO vo1 = new OrderVO(0, "TEST|username1", 123456, LocalDate.parse("2222-11-21"), LocalDate.parse("2222-11-23"), 111, 1, 2, persons1, false, 299.0, OrderState.UNCOMPLETED, 0, null);
-            OrderVO vo2 = new OrderVO(0, "TEST|username2", 123456, LocalDate.parse("2016-11-22"), LocalDate.parse("2016-11-23"), 222, 1, 3, persons2, true, 599.0, OrderState.UNCOMPLETED, 0, null);
+            OrderVO vo1 = new OrderVO(0, "TEST|username1", 123456, LocalDate.parse("2222-11-21"), LocalDate.parse("2222-11-23"), 111, 1, 2, persons1, false, 299.0, OrderState.BOOKED, 0, null);
+            OrderVO vo2 = new OrderVO(0, "TEST|username2", 123456, LocalDate.parse("2016-11-22"), LocalDate.parse("2016-11-23"), 222, 1, 3, persons2, true, 599.0, OrderState.BOOKED, 0, null);
             orderBL.add(vo1);
             orderBL.add(vo2);
 
@@ -83,7 +80,7 @@ public class OrderBLTest {
 
     @Test
     public void test3_GetByState() {
-        ArrayList<OrderVO> voarr = orderBL.getByState(OrderState.UNCOMPLETED);
+        ArrayList<OrderVO> voarr = orderBL.getByState(OrderState.BOOKED);
         assertEquals(2, voarr.size());
     }
 
@@ -95,7 +92,7 @@ public class OrderBLTest {
 
     @Test
     public void test5_GetPrice() {
-        ArrayList<OrderVO> voarr = orderBL.getByState(OrderState.UNCOMPLETED);
+        ArrayList<OrderVO> voarr = orderBL.getByState(OrderState.BOOKED);
         PriceVO pricevo1 = orderBL.getPrice(voarr.get(0));
         //assertEquals(299.0 * 0.7 * 0.7, pricevo1.finalPrice, 1.0);
         PriceVO pricevo2 = orderBL.getPrice(voarr.get(1));
