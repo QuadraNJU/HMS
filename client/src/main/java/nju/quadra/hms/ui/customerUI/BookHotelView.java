@@ -13,6 +13,7 @@ import nju.quadra.hms.vo.*;
 
 import java.io.IOException;
 import java.text.DecimalFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
@@ -124,6 +125,10 @@ public class BookHotelView extends Parent {
                 order.endDate = dateEnd.getValue();
                 order.roomId = selectedRoom.id;
                 order.roomCount = number;
+                if(!roomAvailable()) {
+                    Dialogs.showError("选择的房间数量不足，请重新选择房间类型或修改房间数量");
+                    return;
+                }
                 updatePersonsOfOrderVO();
                 order.hasChildren = (radioHasChildren.isSelected() ? true : false);
                 order.price = price.finalPrice;
@@ -140,6 +145,21 @@ public class BookHotelView extends Parent {
             return;
         }
 
+    }
+
+    private boolean roomAvailable() {
+        LocalDate thisStart = dateStart.getValue();
+        LocalDate thisEnd = dateEnd.getValue();
+        OrderVO[] selectedSameRoomArray = (OrderVO[]) orderController.getByHotel(hotelId).stream().filter(orderVO -> orderVO.roomId == selectedRoom.id).toArray();
+        int remainRoom = selectedRoom.total;
+        for(int i = 0; i < selectedSameRoomArray.length; i++) {
+            LocalDate tempStart = selectedSameRoomArray[i].startDate;
+            LocalDate tempEnd = selectedSameRoomArray[i].endDate;
+            int selectedSameRoomNumber = selectedSameRoomArray[i].roomCount;
+            if(tempEnd.compareTo(thisStart) != -1 || thisEnd.compareTo(tempStart) != -1) {remainRoom -= selectedSameRoomNumber;}
+            if(remainRoom >= order.roomCount) return true;
+        }
+        return false;
     }
 
     private void updatePersonsOfOrderVO() {
