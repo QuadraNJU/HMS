@@ -1,9 +1,15 @@
 package nju.quadra.hms.vo;
 
+import nju.quadra.hms.model.ResultMessage;
+
 /**
  * Created by adn55 on 16/10/15.
  */
 public class PriceVO {
+    /**
+     * 能否预定
+     */
+    public ResultMessage result;
     /**
      * 订单原价
      */
@@ -19,22 +25,15 @@ public class PriceVO {
     public WebsitePromotionVO websitePromotion;
 
     public PriceVO(double originalPrice, double finalPrice, HotelPromotionVO hotelPromotion, WebsitePromotionVO websitePromotion) {
+        this.result = new ResultMessage(ResultMessage.RESULT_SUCCESS);
         this.originalPrice = originalPrice;
         this.finalPrice = finalPrice;
         this.hotelPromotion = hotelPromotion;
         this.websitePromotion = websitePromotion;
     }
 
-//    @Override
-//    public boolean equals(Object obj) {
-//        if(obj instanceof PriceVO) {
-//            PriceVO pvo = (PriceVO)obj;
-//            if(originalPrice == pvo.originalPrice && finalPrice == pvo.finalPrice
-//                    && hotelPromotion.equals(pvo.hotelPromotion)
-//                    && websitePromotion.equals(pvo.websitePromotion)) {
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
+    public PriceVO(String errorMessage) {
+        this.result = new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, errorMessage);
+    }
+
 }

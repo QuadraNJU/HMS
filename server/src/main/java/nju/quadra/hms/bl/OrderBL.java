@@ -4,14 +4,11 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import nju.quadra.hms.blservice.OrderBLService;
 import nju.quadra.hms.data.mysql.CreditDataServiceImpl;
-import nju.quadra.hms.data.mysql.HotelPromotionDataServiceImpl;
 import nju.quadra.hms.data.mysql.OrderDataServiceImpl;
-import nju.quadra.hms.data.mysql.WebsitePromotionDataServiceImpl;
 import nju.quadra.hms.dataservice.CreditDataService;
-import nju.quadra.hms.dataservice.HotelPromotionDataService;
 import nju.quadra.hms.dataservice.OrderDataService;
-import nju.quadra.hms.dataservice.WebsitePromotionDataService;
 import nju.quadra.hms.model.CreditAction;
+import nju.quadra.hms.model.MemberType;
 import nju.quadra.hms.model.OrderState;
 import nju.quadra.hms.model.ResultMessage;
 import nju.quadra.hms.po.CreditRecordPO;
@@ -30,53 +27,96 @@ import java.util.Date;
  * Created by RaUkonn on 2016/11/20.
  */
 public class OrderBL implements OrderBLService {
-    private OrderDataService orderDataService;
-
-
-    public OrderBL() {
-        orderDataService = new OrderDataServiceImpl();
-
-    }
-
+    private OrderDataService orderDataService = new OrderDataServiceImpl();
 
     @Override
     public PriceVO getPrice(OrderVO vo) {
-        WebsitePromotionDataService websitePromotionDataService = new WebsitePromotionDataServiceImpl();
-        HotelPromotionDataService hotelPromotionDataService = new HotelPromotionDataServiceImpl();
-        PriceVO result = null;
-        try {
-            double originalPrice = vo.price;
-            ArrayList<WebsitePromotionPO> wppos = websitePromotionDataService.getAll();
-            // TODO Collections.sort(wppos);
-            // WebsitePromotionPO wppo = wppos.get(0);
-            // WebsitePromotionVO wpvo = WebsitePromotionBL.toVO(wppo);
-
-            ArrayList<HotelPromotionPO> hppos = hotelPromotionDataService.get(vo.hotelId);
-            // TODO Collections.sort(hppos);
-            // HotelPromotionPO hppo = hppos.get(0);
-            // HotelPromotionVO hpvo = HotelPromotionBL.toVO(hppo);
-
-            double finalPrice = originalPrice; // * wppo.getPromotion() * hppo.getPromotion();
-            result =  new PriceVO(originalPrice, finalPrice, null, null);//hpvo, wpvo);
-        } catch (Exception e) {
-            e.printStackTrace();
+        ArrayList<CreditRecordVO> credits = new CreditRecordBL().get(vo.username);
+        if (credits.size() > 0 && credits.get(0).creditResult < CreditRecordBL.MIN_CREDIT) {
+            return new PriceVO("用户信用值不足，不能预订酒店");
         }
-        return result;
+        if (vo.startDate.compareTo(vo.endDate) >= 0) {
+            return new PriceVO("入住时间应早于离开时间，请重新输入");
+        }
+        if (vo.startDate.compareTo(LocalDate.now()) < 0) {
+            return new PriceVO("入住时间早于当前时间，请重新输入");
+        }
+        HotelRoomVO room = new HotelRoomBL().get(vo.roomId);
+        if (room == null) {
+            return new PriceVO("客房类型不存在，请重新选择");
+        } else {
+            int roomCount = room.total;
+            ArrayList<OrderVO> orders = getByHotel(vo.hotelId);
+            roomCount -= orders.stream()
+                    .filter(order -> !order.state.equals(OrderState.FINISHED)
+                            && !order.state.equals(OrderState.RANKED)
+                            && !order.state.equals(OrderState.UNDO)
+                            && order.roomId == vo.roomId
+                            && order.startDate.compareTo(vo.endDate) < 0)
+                    .mapToInt(order -> order.roomCount).sum();
+            if (roomCount < vo.roomCount) {
+                return new PriceVO("房间数量不足");
+            }
+        }
+        double originalPrice = vo.roomCount * room.price * vo.endDate.compareTo(vo.startDate);
+        // check hotel promotion
+        HotelPromotionVO hotelPromotion = null;
+        ArrayList<HotelPromotionVO> hpvos = new HotelPromotionBL().get(vo.hotelId);
+        for (HotelPromotionVO promo : hpvos) {
+            boolean available = false;
+            switch (promo.type) {
+                case TIME_PROMOTION:
+                    if (promo.startTime.compareTo(LocalDate.now()) <= 0 && promo.endTime.compareTo(LocalDate.now()) >= 0) {
+                        available = true;
+                    }
+                    break;
+                case MULTI_PROMOTION:
+                    if (vo.roomCount >= 3) { //三间或以上优惠
+                        available = true;
+                    }
+                    break;
+                case BIRTHDAY_PROMOTION:
+                    MemberVO member = new CustomerBL().getMemberInfo(vo.username);
+                    if (member.memberType.equals(MemberType.PERSONAL)
+                            && member.birthday.getMonthValue() == LocalDate.now().getMonthValue()
+                            && member.birthday.getDayOfMonth() == LocalDate.now().getDayOfMonth()) {
+                        available = true;
+                    }
+                    break;
+                case COMPANY_PROMOTION:
+                    MemberVO member2 = new CustomerBL().getMemberInfo(vo.username);
+                    if (member2.memberType.equals(MemberType.COMPANY) && promo.cooperation.contains(member2.companyName)) {
+                        available = true;
+                    }
+                    break;
+            }
+            if (available && (hotelPromotion == null || promo.promotion < hotelPromotion.promotion)) {
+                hotelPromotion = promo;
+            }
+        }
+        // check website promotion
+        WebsitePromotionVO websitePromotion = null;
+
+        double finalPrice = originalPrice * (hotelPromotion != null ? hotelPromotion.promotion : 1.0)
+                * (websitePromotion != null ? websitePromotion.promotion : 1.0);
+        return new PriceVO(originalPrice, finalPrice, hotelPromotion, websitePromotion);
     }
 
     @Override
     public ResultMessage add(OrderVO vo) {
         try {
-            if(!hasValidCredit(vo.username)){
-                return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "客户信用值不足，无法预定酒店");
+            PriceVO priceVO = getPrice(vo);
+            if (priceVO.result.result != ResultMessage.RESULT_SUCCESS) {
+                return priceVO.result;
+            }
+            if (Double.compare(priceVO.finalPrice, vo.price) != 0) {
+                return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "订单价格发生变化，请重新预订");
             }
             OrderPO po = OrderBL.toPO(vo);
             orderDataService.insert(po);
-        }  catch(SQLIntegrityConstraintViolationException e){
-            return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "订单号已存在，请重新输入");
         } catch (Exception e) {
             e.printStackTrace();
-            return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "服务器访问异常，请重新尝试");
+            return new ResultMessage(ResultMessage.RESULT_DB_ERROR);
         }
         return new ResultMessage(ResultMessage.RESULT_SUCCESS);
     }

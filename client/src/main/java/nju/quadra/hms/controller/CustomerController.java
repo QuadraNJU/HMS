@@ -1,9 +1,6 @@
 package nju.quadra.hms.controller;
 
-import nju.quadra.hms.blservice.CreditRecordBLService;
-import nju.quadra.hms.blservice.CustomerBLService;
-import nju.quadra.hms.blservice.HotelBLService;
-import nju.quadra.hms.blservice.UserBLService;
+import nju.quadra.hms.blservice.*;
 import nju.quadra.hms.model.ResultMessage;
 import nju.quadra.hms.net.BLServiceFactory;
 import nju.quadra.hms.vo.*;
@@ -19,6 +16,7 @@ public class CustomerController {
     private CreditRecordBLService creditBL = BLServiceFactory.getCreditRecordBLService();
     private UserBLService userBL = BLServiceFactory.getUserBLService();
     private HotelBLService hotelBL = BLServiceFactory.getHotelBLService();
+    private OrderBLService orderBL = BLServiceFactory.getOrderBLService();
 
     public UserVO getUserInfo(String username) {
         try {
@@ -79,6 +77,24 @@ public class CustomerController {
         } catch (Exception e) {
             e.printStackTrace();
             return null;
+        }
+    }
+
+    public PriceVO getOrderPrice(OrderVO vo) {
+        try {
+            return orderBL.getPrice(vo);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new PriceVO("发生网络通信错误，请稍后重试");
+        }
+    }
+
+    public ResultMessage addOrder(OrderVO vo) {
+        try {
+            return orderBL.add(vo);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResultMessage(ResultMessage.RESULT_NET_ERROR);
         }
     }
 
