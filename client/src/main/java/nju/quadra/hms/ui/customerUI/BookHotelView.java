@@ -50,11 +50,6 @@ public class BookHotelView extends Parent {
         loader.setController(this);
         this.getChildren().add(loader.load());
 
-        listName.itemsProperty().addListener((observable, oldValue, newValue) -> {
-            System.out.println(newValue.stream().collect(Collectors.joining(", ")));
-            textPersons.setText(newValue.stream().collect(Collectors.joining(", ")));
-        });
-
         this.hotelSearchVO = vo;
         if (vo != null) {
             labelTitle.setText("预订 " + vo.name);
@@ -127,6 +122,10 @@ public class BookHotelView extends Parent {
         }
     }
 
+    private void updatePersonList() {
+        textPersons.setText(listName.getItems().stream().collect(Collectors.joining(", ")));
+    }
+
     @FXML
     private void onChangePersons() throws IOException {
         panePerson.setVisible(true);
@@ -137,7 +136,9 @@ public class BookHotelView extends Parent {
         String name = textName.getText();
         if (name != null && !name.isEmpty()) {
             listName.getItems().add(name);
+            textName.clear();
         }
+        updatePersonList();
     }
 
     @FXML
@@ -145,6 +146,7 @@ public class BookHotelView extends Parent {
         if (listName.getSelectionModel().getSelectedIndex() >= 0) {
             listName.getItems().remove(listName.getSelectionModel().getSelectedIndex());
         }
+        updatePersonList();
     }
 
     @FXML

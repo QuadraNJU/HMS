@@ -65,11 +65,6 @@ public class OrderBL implements OrderBLService {
         for (HotelPromotionVO promo : hpvos) {
             boolean available = false;
             switch (promo.type) {
-                case TIME_PROMOTION:
-                    if (promo.startTime.compareTo(LocalDate.now()) <= 0 && promo.endTime.compareTo(LocalDate.now()) >= 0) {
-                        available = true;
-                    }
-                    break;
                 case MULTI_PROMOTION:
                     if (vo.roomCount >= 3) { //三间或以上优惠
                         available = true;
@@ -90,11 +85,14 @@ public class OrderBL implements OrderBLService {
                     }
                     break;
             }
+            if (promo.startTime.compareTo(LocalDate.now()) > 0 || promo.endTime.compareTo(LocalDate.now()) < 0) {
+                available = false;
+            }
             if (available && (hotelPromotion == null || promo.promotion < hotelPromotion.promotion)) {
                 hotelPromotion = promo;
             }
         }
-        // check website promotion
+        // TODO check website promotion
         WebsitePromotionVO websitePromotion = null;
 
         double finalPrice = originalPrice * (hotelPromotion != null ? hotelPromotion.promotion : 1.0)
@@ -265,13 +263,4 @@ public class OrderBL implements OrderBLService {
         return new OrderPO(vo.id, vo.username, vo.hotelId, vo.startDate, vo.endDate, vo.roomId, vo.roomCount, vo.personCount, new Gson().toJson(vo.persons), vo.hasChildren, vo.price, vo.state, vo.rank, vo.comment);
     }
 
-    private boolean hasValidCredit(String username) throws Exception{
-        CreditDataService creditDataService = new CreditDataServiceImpl();
-
-        double currCredit = CreditRecordBL.ORIGINAL_CREDIT;
-        ArrayList<CreditRecordPO> poarr = creditDataService.get(username);
-        for(CreditRecordPO po: poarr) currCredit += po.getDiff();
-
-        return currCredit >= CreditRecordBL.MIN_CREDIT? true: false;
-    }
 }

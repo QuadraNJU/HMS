@@ -46,11 +46,11 @@ public class HotelSearchItem extends Parent {
                 long normalCount = vo.orders.stream().filter(order -> !order.state.equals(OrderState.DELAYED) && !order.state.equals(OrderState.UNDO)).count();
                 long delayedCount = vo.orders.stream().filter(order -> order.state.equals(OrderState.DELAYED)).count();
                 long undoCount = vo.orders.stream().filter(order -> order.state.equals(OrderState.UNDO)).count();
-                info += "曾预定过（"
+                info += "曾预定过 ( "
                         + ((normalCount > 0) ? "正常 " + normalCount + " " : "")
                         + ((delayedCount > 0) ? "异常 " + delayedCount + " " : "")
                         + ((undoCount > 0) ? "撤销 " + undoCount + " " : "")
-                        + "）";
+                        + ")";
             }
             labelInfo.setText(info);
         }
