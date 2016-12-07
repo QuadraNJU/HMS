@@ -55,15 +55,15 @@ public class HotelBLTest {
     	 ArrayList<HotelVO> voarr = hotelBL.getAll();
          assertEquals(3, voarr.size());
          assertEquals("南京抵抗军会议大酒店", voarr.get(0).name);
-         assertEquals(1, voarr.get(0).areaId);
+         assertEquals(123456, voarr.get(0).areaId);
     }
 
     @Test
     public void test4_Search() {
     	ArrayList<HotelVO> voarr = hotelBL.getByArea(123456);
     	assertEquals("南京抵抗军会议大酒店", voarr.get(0).name);
-        assertEquals(1, voarr.get(0).areaId);
-        assertEquals("南京金陵大饭店", voarr.get(1).name);
+        assertEquals(123456, voarr.get(0).areaId);
+        assertEquals("布达佩斯大饭店", voarr.get(1).name);
     }
 
     @Test
@@ -71,7 +71,7 @@ public class HotelBLTest {
     	ArrayList<HotelVO> voarr = hotelBL.getAll();
     	HotelVO vo = voarr.get(0);
     	assertEquals("南京抵抗军会议大酒店", vo.name);
-        assertEquals(1, vo.areaId);
+        assertEquals(123456, vo.areaId);
     }
     
     @Test

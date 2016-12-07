@@ -53,7 +53,7 @@ public class CreditDataServiceImpl implements CreditDataService {
             CreditRecordPO po = new CreditRecordPO(
                     rs.getInt("id"),
                     rs.getString("username"),
-                    rs.getTimestamp("timestamp"),
+                    rs.getTimestamp("timestamp").toLocalDateTime(),
                     rs.getInt("orderid"),
                     CreditAction.getById(rs.getInt("action")),
                     rs.getDouble("diff")
