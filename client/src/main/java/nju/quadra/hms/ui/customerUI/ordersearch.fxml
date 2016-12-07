@@ -14,7 +14,7 @@
       <ComboBox fx:id="comboOrderState" layoutX="40.0" layoutY="70.0" prefWidth="150.0" promptText="选择订单状态" />
       <DatePicker fx:id="dateStart" layoutX="200.0" layoutY="70.0" prefWidth="150.0" />
       <DatePicker fx:id="dateEnd" layoutX="360.0" layoutY="70.0" prefWidth="150.0" />
-      <VBox fx:id="vBox" layoutX="40.0" layoutY="110.0" prefHeight="310.0" prefWidth="590.0" />
+      <VBox fx:id="vBox" layoutX="40.0" layoutY="110.0" prefHeight="310.0" prefWidth="590.0" style="-fx-background-color: gray" />
       <Button layoutX="520.0" layoutY="70.0" mnemonicParsing="false" text="搜索" onAction="#onSearchAction" styleClass="btn-blue,btn-r">
          <font>
             <Font size="14.0" />
