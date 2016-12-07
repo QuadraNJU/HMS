@@ -46,7 +46,7 @@ public class HotelSearchVO extends HotelVO {
 
     public int getStar() {
         String[] stars = {"一星级", "二星级", "三星级", "四星级", "五星级"};
-        int star = Arrays.binarySearch(stars, this.star);
+        int star = Arrays.asList(stars).indexOf(this.star);
         if (star >= 0) {
             return star+1;
         } else {

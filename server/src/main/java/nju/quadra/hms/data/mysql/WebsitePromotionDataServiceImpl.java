@@ -8,6 +8,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Types;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class WebsitePromotionDataServiceImpl implements WebsitePromotionDataService {
@@ -46,8 +47,8 @@ public class WebsitePromotionDataServiceImpl implements WebsitePromotionDataServ
             pst.setNull(1, Types.INTEGER);
         pst.setString(2, po.getName());
         pst.setInt(3, po.getType().ordinal());
-        pst.setDate(4, Date.valueOf(po.getStartTime()));
-        pst.setDate(5, Date.valueOf(po.getEndTime()));
+        pst.setString(4, po.getStartTime().format(DateTimeFormatter.ofPattern("uuuu/MM/dd")));
+        pst.setString(5, po.getEndTime().format(DateTimeFormatter.ofPattern("uuuu/MM/dd")));
         pst.setDouble(6, po.getPromotion());
         pst.setInt(7, po.getAreaId());
         pst.setString(8, po.getMemberLevel());
