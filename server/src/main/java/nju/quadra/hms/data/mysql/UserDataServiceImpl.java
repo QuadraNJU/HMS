@@ -9,6 +9,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Types;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 /**
@@ -72,7 +73,7 @@ public class UserDataServiceImpl implements UserDataService {
         pst.setInt(5, po.getType().ordinal());
         pst.setInt(6, po.getMemberType().ordinal());
         if (po.getBirthday() != null) {
-            pst.setDate(7, Date.valueOf(po.getBirthday()));
+            pst.setString(7, po.getBirthday().format(DateTimeFormatter.ofPattern("uuuu/MM/dd")));
         } else {
             pst.setNull(7, Types.DATE);
         }

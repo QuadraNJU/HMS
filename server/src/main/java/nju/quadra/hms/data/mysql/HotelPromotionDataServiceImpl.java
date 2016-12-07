@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Types;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import nju.quadra.hms.dataservice.HotelPromotionDataService;
@@ -49,8 +50,8 @@ public class HotelPromotionDataServiceImpl implements HotelPromotionDataService{
 		  pst.setInt(2,po.getHotelId());
 		  pst.setString(3,po.getName());
 		  pst.setInt(4, po.getType().ordinal());
-		  pst.setDate(5, Date.valueOf(po.getStartTime()));
-		  pst.setDate(6, Date.valueOf(po.getEndTime()));
+		  pst.setString(5, po.getStartTime().format(DateTimeFormatter.ofPattern("uuuu/MM/dd")));
+		  pst.setString(6, po.getEndTime().format(DateTimeFormatter.ofPattern("uuuu/MM/dd")));
 		  pst.setDouble(7,po.getPromotion());
 		  pst.setString(8,po.getCooperation());
 		  pst.executeUpdate();

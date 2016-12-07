@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Types;
 import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 /**
@@ -62,8 +63,8 @@ public class OrderDataServiceImpl implements OrderDataService {
             pst.setNull(1, Types.INTEGER);
         pst.setString(2, po.getUsername());
         pst.setInt(3, po.getHotelId());
-        pst.setDate(4, Date.valueOf(po.getStartDate()));
-        pst.setDate(5, Date.valueOf(po.getEndDate()));
+        pst.setString(4, po.getStartDate().format(DateTimeFormatter.ofPattern("uuuu/MM/dd")));
+        pst.setString(5, po.getEndDate().format(DateTimeFormatter.ofPattern("uuuu/MM/dd")));
         pst.setInt(6, po.getRoomId());
         pst.setInt(7, po.getRoomCount());
         pst.setInt(8, po.getPersonCount());
