@@ -1,81 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.*?>
+<Pane fx:id="pane" prefHeight="470" prefWidth="700" style="-fx-background-color: #ffffff"
+      stylesheets="@../common/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <HBox alignment="BOTTOM_LEFT" layoutX="45" layoutY="25" spacing="10.0">
+        <Label fx:id="labelHotelName" maxWidth="200">
+            <font>
+                <Font size="24.0"/>
+            </font>
+        </Label>
+        <Button onAction="#onOrderAction" prefWidth="80.0" styleClass="btn-r,btn-pink" text="预订"/>
+        <Button onAction="#onCancelAction" prefWidth="80.0" styleClass="btn-r,btn-blue" text="返回"/>
+    </HBox>
 
-<Pane fx:id="pane" prefHeight="470" prefWidth="700" style="-fx-background-color: #ffffff" stylesheets="@../common/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-       <HBox alignment="BOTTOM_LEFT" layoutX="45" layoutY="25" spacing="10.0">
-          <children>
-              <Label fx:id="labelHotelName" maxWidth="200">
-                  <font>
-                      <Font size="24.0" />
-                  </font>
-              </Label>
-              <Button onAction="#onOrderAction" prefWidth="80.0" styleClass="btn-r,btn-pink" text="预订" />
-              <Button onAction="#onCancelAction" prefWidth="80.0" styleClass="btn-r,btn-blue" text="返回" />
-          </children>
-       </HBox>
-   
-       <Label layoutX="45.0" layoutY="74.0" text="地址">
-           <font>
-               <Font size="14.0" />
-           </font>
-       </Label>
-   
-       <Label layoutX="45.0" layoutY="97.0" text="简介">
-           <font>
-               <Font size="14.0" />
-           </font>
-       </Label>
-   
-       <Label layoutX="45.0" layoutY="120.0" text="设施服务">
-           <font>
-               <Font size="14.0" />
-           </font>
-       </Label>
-   
-       <Label layoutX="45.0" layoutY="143.0" text="客房">
-           <font>
-               <Font size="14.0" />
-           </font>
-       </Label>
-   
-       <Label fx:id="labelAddress" layoutX="121.0" layoutY="74.0" text="TEST|address">
-           <font>
-               <Font size="14.0" />
-           </font>
-       </Label>
-       <Label fx:id="labelDescription" layoutX="121.0" layoutY="97.0" text="TEST|description">
-           <font>
-               <Font size="14.0" />
-           </font>
-       </Label>
-       <Label fx:id="labelFacilities" layoutX="121.0" layoutY="120.0" text="TEST|facilities">
-           <font>
-               <Font size="14.0" />
-           </font>
-       </Label>
-       <Label fx:id="labelRooms" layoutX="121.0" layoutY="143.0" text="TEST|rooms">
-           <font>
-               <Font size="14.0" />
-           </font>
-       </Label>
-       <Label fx:id="labelRank" layoutX="45.0" layoutY="180.0" maxWidth="200" text="评价">
-           <font>
-               <Font size="18.0" />
-           </font>
-       </Label>
-       <Label layoutX="370.0" layoutY="180.0" maxWidth="200" text="历史订单">
-           <font>
-               <Font size="18.0" />
-           </font>
-       </Label>
-       <ListView fx:id="listRank" layoutX="45.0" layoutY="210.0" prefHeight="240.0" prefWidth="300.0" />
-       <ListView fx:id="listOrder" layoutX="370.0" layoutY="210.0" prefHeight="240.0" prefWidth="300.0" />
-   </children>
+    <Label layoutX="45.0" layoutY="74.0" text="地址">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </Label>
+
+    <Label layoutX="45.0" layoutY="97.0" text="简介">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </Label>
+
+    <Label layoutX="45.0" layoutY="120.0" text="设施服务">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </Label>
+
+    <Label layoutX="45.0" layoutY="143.0" text="客房">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </Label>
+
+    <Label fx:id="labelAddress" layoutX="121.0" layoutY="74.0" text="TEST|address">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </Label>
+    <Label fx:id="labelDescription" layoutX="121.0" layoutY="97.0" text="TEST|description">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </Label>
+    <Label fx:id="labelFacilities" layoutX="121.0" layoutY="120.0" text="TEST|facilities">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </Label>
+    <Label fx:id="labelRooms" layoutX="121.0" layoutY="143.0" text="TEST|rooms">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </Label>
+    <Label fx:id="labelRank" layoutX="45.0" layoutY="180.0" maxWidth="200" text="评价">
+        <font>
+            <Font size="18.0"/>
+        </font>
+    </Label>
+    <Label layoutX="370.0" layoutY="180.0" maxWidth="200" text="历史订单">
+        <font>
+            <Font size="18.0"/>
+        </font>
+    </Label>
+    <ListView fx:id="listRank" layoutX="45.0" layoutY="210.0" prefHeight="240.0" prefWidth="300.0"/>
+    <ListView fx:id="listOrder" layoutX="370.0" layoutY="210.0" prefHeight="240.0" prefWidth="300.0"/>
 </Pane>

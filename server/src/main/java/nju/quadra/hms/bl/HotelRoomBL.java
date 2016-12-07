@@ -29,6 +29,16 @@ public class HotelRoomBL implements HotelRoomBLService{
 	}
 
 	@Override
+	public HotelRoomVO get(int roomId) {
+		try {
+			return toVO(hotelRoomDataService.getById(roomId));
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	@Override
 	public ResultMessage add(HotelRoomVO vo) {
 		HotelRoomPO po = HotelRoomBL.toPO(vo);
 		try {

@@ -11,6 +11,8 @@ import java.util.ArrayList;
 public interface HotelRoomBLService {
     ArrayList<HotelRoomVO> getAll(int hotelId);
 
+    HotelRoomVO get(int roomId);
+
     ResultMessage add(HotelRoomVO vo);
 
     ResultMessage delete(int roomId);

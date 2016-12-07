@@ -63,6 +63,6 @@ public class HotelSearchItem extends Parent {
 
     @FXML
     public void onOrderAction() throws IOException {
-        parent.loadView(new BookHotelView(vo.id));
+        parent.loadView(new BookHotelView(vo));
     }
 }

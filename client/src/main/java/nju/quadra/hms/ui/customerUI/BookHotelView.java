@@ -5,107 +5,69 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
-import nju.quadra.hms.controller.*;
+import nju.quadra.hms.controller.CustomerController;
 import nju.quadra.hms.model.OrderState;
+import nju.quadra.hms.model.ResultMessage;
 import nju.quadra.hms.net.HttpClient;
 import nju.quadra.hms.ui.common.Dialogs;
-import nju.quadra.hms.vo.*;
+import nju.quadra.hms.vo.HotelRoomVO;
+import nju.quadra.hms.vo.HotelSearchVO;
+import nju.quadra.hms.vo.OrderVO;
+import nju.quadra.hms.vo.PriceVO;
 
 import java.io.IOException;
-import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * Created by admin on 2016/12/5.
  */
 public class BookHotelView extends Parent {
-    private HotelRoomController hotelRoomController;
-    private  HotelController hotelController;
-    private OrderController orderController;
-    private ArrayList<HotelRoomVO> rooms;
-    private PriceVO price;
-    private OrderVO order;
-    private int hotelId;
-    private HotelPromotionVO hotelPromotion;
-    private WebsitePromotionVO websitePromotion;
-    private HotelRoomVO selectedRoom;
-    private int number;
-    @FXML
-    Pane pane;
-    @FXML
-    Label labelHotelName,labelOriginalPrice, labelHotelPromotion, labelWebPromotion, labelFinalPrice;
-    @FXML
-    DatePicker dateStart, dateEnd;
-    @FXML
-    ComboBox<HotelRoomVO> comboRoomType;
-    @FXML
-    TextField textRoomNumber, textPersons;
-    @FXML
-    RadioButton radioHasChildren, radioNoChildren;
-    ToggleGroup toggleGroup;
-    SuccessHandler onSuccess = null;
 
-    public BookHotelView(int hotelId) throws IOException {
-        this.hotelId = hotelId;
+    private CustomerController controller = new CustomerController();
+    private HotelSearchVO hotelSearchVO;
+    private SuccessHandler onSuccess;
+
+    @FXML
+    private Label labelTitle;
+    @FXML
+    private DatePicker dateStart, dateEnd;
+    @FXML
+    private ChoiceBox<HotelRoomVO> choiceRoomType;
+    @FXML
+    private TextField textRoomNumber, textPersons, textName;
+    @FXML
+    private RadioButton radioHasChildren, radioNoChildren;
+    @FXML
+    private Pane panePerson;
+    @FXML
+    private ListView<String> listName;
+
+    public BookHotelView(HotelSearchVO vo) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("bookhotelview.fxml"));
         loader.setController(this);
         this.getChildren().add(loader.load());
 
-        hotelRoomController = new HotelRoomController();
-        hotelController = new HotelController();
-        orderController = new OrderController();
-        rooms = hotelRoomController.getAll(hotelId);
-        labelHotelName.setText(hotelController.getDetail(hotelId).name);
-        comboRoomType.getItems().addAll(rooms);
-        comboRoomType.setValue(rooms.get(0));
-        toggleGroup = new ToggleGroup();
-        radioHasChildren.setToggleGroup(toggleGroup);
-        radioNoChildren.setToggleGroup(toggleGroup);
-        radioHasChildren.setSelected(true);
-        textRoomNumber.setText("0");
+        listName.itemsProperty().addListener((observable, oldValue, newValue) -> {
+            System.out.println(newValue.stream().collect(Collectors.joining(", ")));
+            textPersons.setText(newValue.stream().collect(Collectors.joining(", ")));
+        });
 
-        order = new OrderVO(0, HttpClient.session.username, hotelId, dateStart.getValue(), dateEnd.getValue(), 0, 0, 0, null, false, 0, OrderState.BOOKED, 0, null);
-
-        loadPrice();
-    }
-
-    public BookHotelView(int hotelId, SuccessHandler onSuccess) throws IOException {
-        this(hotelId);
-        this.onSuccess = onSuccess;
+        this.hotelSearchVO = vo;
+        if (vo != null) {
+            labelTitle.setText("预订 " + vo.name);
+            dateStart.setValue(LocalDate.now());
+            dateEnd.setValue(LocalDate.now().plusDays(1));
+            choiceRoomType.getItems().addAll(vo.rooms);
+            textRoomNumber.setText("1");
+            radioNoChildren.setSelected(true);
+        }
     }
 
     private void changePersons(String names) {
         textPersons.setText(names);
-    }
-
-    @FXML
-    private void loadPrice() {
-        selectedRoom = comboRoomType.getValue();
-        try {
-            number = Integer.parseInt(textRoomNumber.getText());
-            if(number < 0) throw new NumberFormatException();
-        } catch (NumberFormatException e) {
-            Dialogs.showError("请输入正整数");
-            return;
-        }
-
-        double originalPrice = number * selectedRoom.price;
-        order.roomId = selectedRoom.id;
-        order.roomCount = number;
-        order.price = originalPrice;
-        price = orderController.getPrice(order);
-        DecimalFormat df = new DecimalFormat("#.00");
-        labelOriginalPrice.setText("¥" + df.format(price.originalPrice));
-        if(price.hotelPromotion != null)
-            labelHotelPromotion.setText("¥" + df.format(price.hotelPromotion.promotion));
-        else
-            labelHotelPromotion.setText("无可用优惠");
-        if(price.websitePromotion != null)
-        labelWebPromotion.setText("¥" + df.format(price.websitePromotion.promotion));
-        else
-            labelWebPromotion.setText("无可用优惠");
-        labelFinalPrice.setText("¥" + df.format(price.finalPrice));
     }
 
     @FXML
@@ -115,68 +77,79 @@ public class BookHotelView extends Parent {
 
     @FXML
     private void onSubmitAction() throws IOException {
-        if(order != null) {
-            if(dateStart.getValue() != null && dateEnd.getValue() != null && Integer.parseInt(textRoomNumber.getText()) > 0 && textPersons.getText() != null) {
-                if(dateStart.getValue().compareTo(dateEnd.getValue()) > -1) {
-                    Dialogs.showError("订单开始的时间应该早于订单结束的时间，请重新输入");
-                    return;
-                }
-                order.startDate = dateStart.getValue();
-                order.endDate = dateEnd.getValue();
-                order.roomId = selectedRoom.id;
-                order.roomCount = number;
-                if(!roomAvailable()) {
-                    Dialogs.showError("选择的房间数量不足，请重新选择房间类型或修改房间数量");
-                    return;
-                }
-                updatePersonsOfOrderVO();
-                order.hasChildren = (radioHasChildren.isSelected() ? true : false);
-                order.price = price.finalPrice;
-                orderController.add(order);
-                Dialogs.showInfo("添加订单成功");
-                if(onSuccess != null) onSuccess.handle();
-                onCancelAction();
-            } else {
-                Dialogs.showError("输入信息不完全，请重新输入");
-                return;
-            }
-        } else {
-            Dialogs.showError("订单创建失败，请检查输入的合法性");
+        int roomCount = 0;
+        try {
+            roomCount = Integer.parseInt(textRoomNumber.getText());
+        } catch (NumberFormatException e) {
+            Dialogs.showError("房间数量请输入正整数");
             return;
         }
-
-    }
-
-    private boolean roomAvailable() {
-        LocalDate thisStart = dateStart.getValue();
-        LocalDate thisEnd = dateEnd.getValue();
-        ArrayList<OrderVO> selectedSameRoomArray = orderController.getByHotel(hotelId);
-        selectedSameRoomArray.removeIf(vo -> vo.roomId != selectedRoom.id);
-        int remainRoom = selectedRoom.total;
-        for(OrderVO vo: selectedSameRoomArray) {
-//            LocalDate tempStart = vo.startDate;
-//            LocalDate tempEnd = vo.endDate;
-//            int selectedSameRoomNumber = vo.roomCount;
-//            if(tempEnd.compareTo(thisStart) > 0 || thisEnd.compareTo(tempStart) > 0) {remainRoom -= selectedSameRoomNumber;}
-            remainRoom -= vo.roomCount;
+        boolean hasChildren = false;
+        if (radioHasChildren.isSelected()) {
+            hasChildren = true;
         }
-        if(remainRoom >= order.roomCount) return true;
-        else return false;
-    }
-
-    private void updatePersonsOfOrderVO() {
-        String[] ss = textPersons.getText().split("、");
-        order.personCount = ss.length;
-        ArrayList<String> arrPersons = new ArrayList<>();
-        for(String s: ss) {
-            arrPersons.add(s);
+        OrderVO order = new OrderVO(0, HttpClient.session.username, hotelSearchVO.id,
+                dateStart.getValue(), dateEnd.getValue(),
+                choiceRoomType.getValue().id, roomCount,
+                listName.getItems().size(), new ArrayList<>(listName.getItems()),
+                hasChildren, 0.0, OrderState.BOOKED, 0, "");
+        PriceVO priceVO = controller.getOrderPrice(order);
+        if (priceVO.result.result != ResultMessage.RESULT_SUCCESS) {
+            Dialogs.showError(priceVO.result.message);
+        } else {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("确认预订");
+            alert.setHeaderText(null);
+            String content = "订单原价：¥" + priceVO.originalPrice + "\n";
+            if (priceVO.hotelPromotion != null) {
+                content += "酒店促销策略：" + priceVO.hotelPromotion.name + " ( -¥" + priceVO.originalPrice * (1.0 - priceVO.hotelPromotion.promotion) + " )\n";
+            }
+            if (priceVO.websitePromotion != null) {
+                content += "网站促销策略：" + priceVO.websitePromotion.name + " ( -¥" + priceVO.originalPrice * (1.0 - priceVO.websitePromotion.promotion) + " )\n";
+            }
+            content += "订单总价：¥" + priceVO.finalPrice + "\n\n是否确认预订？";
+            alert.setContentText(content);
+            alert.getButtonTypes().setAll(ButtonType.YES, ButtonType.NO);
+            Optional<ButtonType> confirm = alert.showAndWait();
+            if (confirm.isPresent() && confirm.get().equals(ButtonType.YES)) {
+                order.price = priceVO.finalPrice;
+                ResultMessage result = controller.addOrder(order);
+                if (result.result == ResultMessage.RESULT_SUCCESS) {
+                    Dialogs.showInfo("预订成功");
+                    if (onSuccess != null) {
+                        onSuccess.handle();
+                    }
+                    onCancelAction();
+                } else {
+                    Dialogs.showError("预订失败: " + result.message);
+                }
+            }
         }
-        order.persons = arrPersons;
     }
 
     @FXML
     private void onChangePersons() throws IOException {
-        this.getChildren().add(new NameListView(textPersons.getText(), this::changePersons));
+        panePerson.setVisible(true);
+    }
+
+    @FXML
+    private void onAddNameAction() {
+        String name = textName.getText();
+        if (name != null && !name.isEmpty()) {
+            listName.getItems().add(name);
+        }
+    }
+
+    @FXML
+    private void onDeleteNameAction() {
+        if (listName.getSelectionModel().getSelectedIndex() >= 0) {
+            listName.getItems().remove(listName.getSelectionModel().getSelectedIndex());
+        }
+    }
+
+    @FXML
+    private void onSubmitNameAction() {
+        panePerson.setVisible(false);
     }
 
     interface SuccessHandler {

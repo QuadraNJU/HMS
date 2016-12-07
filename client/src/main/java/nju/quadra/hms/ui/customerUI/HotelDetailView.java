@@ -66,6 +66,6 @@ public class HotelDetailView extends Parent {
 
     @FXML
     public void onOrderAction() throws IOException {
-        parent.loadView(new BookHotelView(vo.id, this::loadOrderList));
+        parent.loadView(new BookHotelView(vo));
     }
 }
