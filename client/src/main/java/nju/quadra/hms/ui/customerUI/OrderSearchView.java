@@ -73,7 +73,7 @@ public class OrderSearchView extends Parent {
         orders.removeIf(vo -> !(vo.startDate.compareTo(tempStart) > 0 && tempEnd.compareTo(vo.endDate) > 0));
         orders.sort((vo1, vo2) -> vo1.startDate.compareTo(vo2.startDate) > 0? 1: -1);
         for(OrderVO vo: orders) {
-            vBox.getChildren().add(new OrderSearchItem(this, vo));
+            vBox.getChildren().add(new OrderSearchItem(this, orderController, vo));
         }
     }
 }

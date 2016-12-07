@@ -6,9 +6,13 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
+import nju.quadra.hms.controller.CreditRecordController;
 import nju.quadra.hms.controller.HotelController;
 import nju.quadra.hms.controller.HotelRoomController;
+import nju.quadra.hms.controller.OrderController;
 import nju.quadra.hms.model.OrderState;
+import nju.quadra.hms.model.ResultMessage;
+import nju.quadra.hms.ui.common.Dialogs;
 import nju.quadra.hms.vo.HotelRoomVO;
 import nju.quadra.hms.vo.HotelVO;
 import nju.quadra.hms.vo.OrderVO;
@@ -20,6 +24,8 @@ import java.io.IOException;
  */
 public class OrderSearchItem extends Parent {
 
+    private OrderController orderController;
+
     private OrderSearchView parent;
     private OrderVO orderVO;
 
@@ -28,10 +34,12 @@ public class OrderSearchItem extends Parent {
     @FXML
     Button btnDetail, btnUndo, btnComment;
 
-    public OrderSearchItem(OrderSearchView parent, OrderVO vo) throws IOException {
+    public OrderSearchItem(OrderSearchView parent, OrderController orderController, OrderVO vo) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("ordersearchitem.fxml"));
         loader.setController(this);
         this.getChildren().add(loader.load());
+
+        this.orderController = orderController;
 
         this.parent = parent;
         orderVO = vo;
@@ -70,5 +78,9 @@ public class OrderSearchItem extends Parent {
 
     @FXML
     public void onUndoAction() throws IOException {
+        ResultMessage rs = orderController.undoUnfinished(orderVO);
+        if(rs.result != ResultMessage.RESULT_SUCCESS) {
+            Dialogs.showError(rs.message);
+        }
     }
 }

@@ -20,6 +20,7 @@ import nju.quadra.hms.vo.*;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.time.Duration;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -41,7 +42,7 @@ public class OrderBL implements OrderBLService {
         if (vo.startDate.compareTo(LocalDate.now()) < 0) {
             return new PriceVO("入住时间早于当前时间，请重新输入");
         }
-        HotelRoomVO room = new HotelRoomBL().get(vo.roomId);
+        HotelRoomVO room = new HotelRoomBL().getById(vo.roomId);
         if (room == null) {
             return new PriceVO("客房类型不存在，请重新选择");
         } else {
@@ -176,7 +177,7 @@ public class OrderBL implements OrderBLService {
              orderDataService.update(po);
              //增添的信用值为订单的原价或者一半
             double currRate = returnAllCredit? CreditRecordBL.UNDO_DELAYED_RATE[1]: CreditRecordBL.UNDO_DELAYED_RATE[0];
-             CreditRecordPO creditRecordPO = new CreditRecordPO(0, vo.username, new Date(System.currentTimeMillis()), vo.id, CreditAction.ORDER_UNDO, vo.price * currRate);
+             CreditRecordPO creditRecordPO = new CreditRecordPO(0, vo.username, LocalDateTime.now(), vo.id, CreditAction.ORDER_UNDO, vo.price * currRate);
              creditDataService.insert(creditRecordPO);
         } catch (NullPointerException e) {
             e.printStackTrace();
@@ -197,15 +198,13 @@ public class OrderBL implements OrderBLService {
             if(po.getState() != OrderState.BOOKED)
                 return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "该订单无法被撤销（订单状态不为\"未执行\"），请重新选择");
             po.setState(OrderState.UNDO);
-            //todo:这里还要加个记录撤销时间的东西，表打错了orz
             orderDataService.update(po);
             //如果撤销的订单距离最晚订单执行时间不足6个小时，撤销的同时扣除用户的信用值，信用值为订单的(总价值*1/2)
             double currRate = 0;
-            //由于我们的记录时间是按0:00记录，但是实际上的酒店是按12:00为入住时限的，所以要加一个12h的gap
             LocalDate latestAvaliableTime = vo.startDate.plus(Duration.ofHours(CreditRecordBL.LATEST_CHECKIN_TIME_GAP));
             if(LocalDate.now().compareTo(latestAvaliableTime) > 0)
                 currRate = CreditRecordBL.UNDO_UNFINISHED_RATE;
-            CreditRecordPO creditRecordPO = new CreditRecordPO(0, vo.username, new Date(System.currentTimeMillis()), vo.id, CreditAction.ORDER_UNDO, vo.price * currRate);
+            CreditRecordPO creditRecordPO = new CreditRecordPO(0, vo.username, LocalDateTime.now(), vo.id, CreditAction.ORDER_UNDO, vo.price * currRate);
             creditDataService.insert(creditRecordPO);
         } catch (NullPointerException e) {
             e.printStackTrace();
@@ -228,7 +227,7 @@ public class OrderBL implements OrderBLService {
             po.setEndDate(LocalDate.now());
             orderDataService.update(po);
             //信用值为订单原价
-            CreditRecordPO creditRecordPO = new CreditRecordPO(0, vo.username, new Date(System.currentTimeMillis()), vo.id, CreditAction.ORDER_UNDO, vo.price * CreditRecordBL.FINISH_RATE);
+            CreditRecordPO creditRecordPO = new CreditRecordPO(0, vo.username, LocalDateTime.now(), vo.id, CreditAction.ORDER_UNDO, vo.price * CreditRecordBL.FINISH_RATE);
             creditDataService.insert(creditRecordPO);
         } catch (NullPointerException e) {
             e.printStackTrace();
