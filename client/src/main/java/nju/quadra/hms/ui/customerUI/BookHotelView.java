@@ -150,16 +150,18 @@ public class BookHotelView extends Parent {
     private boolean roomAvailable() {
         LocalDate thisStart = dateStart.getValue();
         LocalDate thisEnd = dateEnd.getValue();
-        OrderVO[] selectedSameRoomArray = (OrderVO[]) orderController.getByHotel(hotelId).stream().filter(orderVO -> orderVO.roomId == selectedRoom.id).toArray();
+        ArrayList<OrderVO> selectedSameRoomArray = orderController.getByHotel(hotelId);
+        selectedSameRoomArray.removeIf(vo -> vo.roomId != selectedRoom.id);
         int remainRoom = selectedRoom.total;
-        for(int i = 0; i < selectedSameRoomArray.length; i++) {
-            LocalDate tempStart = selectedSameRoomArray[i].startDate;
-            LocalDate tempEnd = selectedSameRoomArray[i].endDate;
-            int selectedSameRoomNumber = selectedSameRoomArray[i].roomCount;
-            if(tempEnd.compareTo(thisStart) != -1 || thisEnd.compareTo(tempStart) != -1) {remainRoom -= selectedSameRoomNumber;}
-            if(remainRoom >= order.roomCount) return true;
+        for(OrderVO vo: selectedSameRoomArray) {
+//            LocalDate tempStart = vo.startDate;
+//            LocalDate tempEnd = vo.endDate;
+//            int selectedSameRoomNumber = vo.roomCount;
+//            if(tempEnd.compareTo(thisStart) > 0 || thisEnd.compareTo(tempStart) > 0) {remainRoom -= selectedSameRoomNumber;}
+            remainRoom -= vo.roomCount;
         }
-        return false;
+        if(remainRoom >= order.roomCount) return true;
+        else return false;
     }
 
     private void updatePersonsOfOrderVO() {

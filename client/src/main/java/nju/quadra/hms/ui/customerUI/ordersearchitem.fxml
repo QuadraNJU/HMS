@@ -57,9 +57,9 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Button layoutX="441.0" layoutY="36.0" mnemonicParsing="false" onDragDetected="#onUndoAction" text="撤销" styleClass="btn-red"/>
-      <Button layoutX="518.0" layoutY="36.0" mnemonicParsing="false" onDragDetected="#onDetailAction" text="详情" styleClass="btn-blue"/>
-      <Button layoutX="441.0" layoutY="36.0" mnemonicParsing="false" onDragDetected="#onCommentAction" text="评价" styleClass="btn-green"/>
+      <Button layoutX="441.0" layoutY="36.0" mnemonicParsing="false" onDragDetected="#onUndoAction" text="撤销" styleClass="btn-red, btn-r"/>
+      <Button layoutX="518.0" layoutY="36.0" mnemonicParsing="false" onDragDetected="#onDetailAction" text="详情" styleClass="btn-blue, btn-r"/>
+      <Button layoutX="441.0" layoutY="36.0" mnemonicParsing="false" onDragDetected="#onCommentAction" text="评价" styleClass="btn-green, btn-r"/>
    </children>
 
 </Pane>

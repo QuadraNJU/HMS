@@ -51,6 +51,8 @@ public class CustomerNavigation extends Parent {
             case "hotelsearch":
                 mainView.loadView(new HotelSearchView());
                 break;
+            case "order":
+                mainView.loadView(new OrderSearchView());
         }
     }
 

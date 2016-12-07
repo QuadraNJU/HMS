@@ -73,6 +73,7 @@ public class OrderDataServiceImpl implements OrderDataService {
         pst.setInt(12, po.getState().ordinal());
         pst.setInt(13, po.getRank());
         pst.setString(14, po.getComment());
+        System.out.println(pst);
         pst.executeUpdate();
     }
 
