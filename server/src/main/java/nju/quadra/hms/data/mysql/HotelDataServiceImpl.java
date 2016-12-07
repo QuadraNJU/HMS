@@ -29,7 +29,6 @@ public class HotelDataServiceImpl implements HotelDataService {
 
     @Override
     public HotelPO getById(int id) throws Exception {
-        HotelPO po = null;
         PreparedStatement pst = MySQLManager.getConnection()
                 .prepareStatement("SELECT * FROM `hotel` WHERE `id` = ?");
         pst.setInt(1, id);

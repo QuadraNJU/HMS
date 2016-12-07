@@ -12,6 +12,7 @@ import nju.quadra.hms.model.UserType;
 import nju.quadra.hms.po.HotelPO;
 import nju.quadra.hms.po.HotelRoomPO;
 import nju.quadra.hms.po.UserPO;
+import nju.quadra.hms.vo.HotelRoomVO;
 
 public class HotelRoomDataServiceImpl implements HotelRoomDataService {
 

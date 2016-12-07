@@ -91,4 +91,22 @@ public class OrderVO {
                 + endDate.format(DateTimeFormatter.ofPattern("uuuu/MM/dd "))
                 + "\n" + state.toString();
     }
+
+    public String printRank() {
+        String stars = "";
+        for (int i = 0; i < rank; i++) {
+            stars += "★";
+        }
+        for (int i = 0; i < 5-rank; i++) {
+            stars += "☆";
+        }
+        return endDate.format(DateTimeFormatter.ofPattern("uuuu/MM/dd ")) + stars + "\n" + comment;
+    }
+
+    public String printPersons() {
+        StringBuilder sb = new StringBuilder();
+        for(String s: persons) sb.append(s + "、");
+        sb.deleteCharAt(sb.length() - 1);
+        return sb.toString();
+    }
 }

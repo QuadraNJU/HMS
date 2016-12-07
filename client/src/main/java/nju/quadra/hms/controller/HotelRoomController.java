@@ -55,4 +55,13 @@ public class HotelRoomController {
             return null;
         }
     }
+
+    public HotelRoomVO getById(int roomId) {
+        try {
+            return hotelRoomBL.getById(roomId);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

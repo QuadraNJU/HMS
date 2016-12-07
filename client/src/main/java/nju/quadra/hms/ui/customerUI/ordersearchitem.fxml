@@ -4,18 +4,15 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.Font?>
 
-<Pane prefHeight="70.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<Pane fx:id="pane" prefHeight="70.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
        <Label layoutX="35.0" layoutY="15.0" text="时间：">
            <font>
                <Font size="14.0" />
            </font>
        </Label>
-       <Label fx:id="labelTime" layoutX="80.0" layoutY="15.0" prefHeight="18.0" prefWidth="30.0">
+       <Label fx:id="labelTime" layoutX="80.0" layoutY="15.0" prefHeight="18.0" prefWidth="129.0">
            <font>
                <Font size="14.0" />
            </font>
@@ -26,40 +23,40 @@
                <Font size="14.0" />
            </font>
        </Label>
-       <Label fx:id="labelAction" layoutX="105.0" layoutY="40.0" prefHeight="18.0" prefWidth="30.0">
+       <Label fx:id="labelContent" layoutX="105.0" layoutY="40.0" prefHeight="18.0" prefWidth="281.0">
            <font>
                <Font size="14.0" />
            </font>
        </Label>
    
-       <Label layoutX="165.0" layoutY="15.0" text="订单价格：">
+       <Label layoutX="231.0" layoutY="15.0" text="订单价格：">
            <font>
                <Font size="14.0" />
            </font>
        </Label>
-       <Label fx:id="labelPrice" layoutX="235.0" layoutY="15.0" prefHeight="18.0" prefWidth="42.0">
+       <Label fx:id="labelPrice" layoutX="301.0" layoutY="15.0" prefHeight="18.0" prefWidth="70.0">
            <font>
                <Font size="14.0" />
            </font>
        </Label>
-      <Label layoutX="309.0" layoutY="15.0" text="人数：">
+      <Label layoutX="375.0" layoutY="15.0" text="人数：">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label fx:id="labelPersonNumber" layoutX="351.0" layoutY="15.0" prefHeight="18.0" prefWidth="42.0">
+      <Label fx:id="labelPersonNumber" layoutX="417.0" layoutY="15.0" prefHeight="18.0" prefWidth="70.0">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label fx:id="labelOrderState" layoutX="518.0" layoutY="15.0">
+      <Label fx:id="labelOrderState" layoutX="512.0" layoutY="15.0" prefHeight="18.0" prefWidth="64.0">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Button layoutX="441.0" layoutY="36.0" mnemonicParsing="false" onDragDetected="#onUndoAction" text="撤销" styleClass="btn-red, btn-r"/>
-      <Button layoutX="518.0" layoutY="36.0" mnemonicParsing="false" onDragDetected="#onDetailAction" text="详情" styleClass="btn-blue, btn-r"/>
-      <Button layoutX="441.0" layoutY="36.0" mnemonicParsing="false" onDragDetected="#onCommentAction" text="评价" styleClass="btn-green, btn-r"/>
+      <Button fx:id="btnUndo" layoutX="441.0" layoutY="36.0" mnemonicParsing="false" onAction="#onUndoAction" styleClass="btn-red, btn-r" text="撤销" />
+      <Button fx:id="btnDetail" layoutX="518.0" layoutY="36.0" mnemonicParsing="false" onAction="#onDetailAction" styleClass="btn-blue, btn-r" text="详情" />
+      <Button fx:id="btnComment" layoutX="441.0" layoutY="36.0" mnemonicParsing="false" onAction="#onCommentAction" styleClass="btn-green, btn-r" text="评价" />
    </children>
 
 </Pane>

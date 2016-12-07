@@ -2,6 +2,7 @@ package nju.quadra.hms.ui.customerUI;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -51,6 +52,11 @@ public class OrderSearchView extends Parent {
         onSearchAction();
     }
 
+    public void loadView(Node node) {
+        pane.getChildren().add(node);
+    }
+
+
     @FXML
     private void onSearchAction() throws IOException {
         ArrayList<OrderVO> orders = orderController.getByCustomer(HttpClient.session.username);
@@ -63,7 +69,8 @@ public class OrderSearchView extends Parent {
             return;
         }
 
-        orders.removeIf(vo -> vo.startDate.compareTo(tempStart) == -1 || tempEnd.compareTo(vo.endDate) == -1);
+        vBox.getChildren().clear();
+        orders.removeIf(vo -> !(vo.startDate.compareTo(tempStart) > 0 && tempEnd.compareTo(vo.endDate) > 0));
         orders.sort((vo1, vo2) -> vo1.startDate.compareTo(vo2.startDate) > 0? 1: -1);
         for(OrderVO vo: orders) {
             vBox.getChildren().add(new OrderSearchItem(this, vo));
