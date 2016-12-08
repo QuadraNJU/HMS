@@ -42,6 +42,7 @@ public class WebMarketerNavigation extends Parent {
             case "order":
                 break;
             case "promotion":
+                mainView.loadView(new WebsitePromotionView());
                 break;
             case "topup":
                 mainView.loadView(new CreditTopupView());
