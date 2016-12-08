@@ -1,4 +1,4 @@
-package nju.quadra.hms.ui.customerUI;
+package nju.quadra.hms.ui.hotelStaffUI;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -31,7 +31,7 @@ public class OrderSearchItem extends Parent {
     @FXML
     Label labelTime, labelContent, labelPrice, labelPersonNumber, labelOrderState;
     @FXML
-    Button btnDetail, btnUndo, btnComment;
+    Button btnDetail, btnFinish;
 
 
     public OrderSearchItem(OrderSearchView parent, OrderController orderController, OrderVO vo) throws IOException {
@@ -59,15 +59,9 @@ public class OrderSearchItem extends Parent {
         labelContent.setText(v.name + "，" + hrv.name + "，" + orderVO.roomCount + "间");
 
         if(orderVO.state == OrderState.BOOKED) {
-            btnUndo.setVisible(true);
-            btnComment.setVisible(false);
-        } else if(orderVO.state == OrderState.FINISHED) {
-            btnUndo.setVisible(false);
-            btnComment.setVisible(true);
-        } else {
-            btnUndo.setVisible(false);
-            btnComment.setVisible(false);
+            btnFinish.setVisible(true);
         }
+
     }
 
     @FXML
@@ -76,12 +70,7 @@ public class OrderSearchItem extends Parent {
     }
 
     @FXML
-    public void onCommentAction() throws IOException {
-        parent.loadCommentView(orderVO);
-    }
-
-    @FXML
-    public void onUndoAction() throws IOException {
+    public void onFinishAction() throws IOException {
         ResultMessage rs = orderController.undoUnfinished(orderVO);
         if(rs.result != ResultMessage.RESULT_SUCCESS) {
             Dialogs.showError(rs.message);

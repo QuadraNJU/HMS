@@ -48,6 +48,8 @@ public class HotelStaffNavigation extends Parent {
             case "promotion":
                 mainView.loadView(new HotelPromotionView());
                 break;
+            case "order":
+                mainView.loadView(new OrderSearchView());
         }
     }
 

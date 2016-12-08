@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.*?>
+<Pane fx:id="pane" prefHeight="470" prefWidth="700" style="-fx-background-color: #ffffff" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <Label layoutX="45.0" layoutY="45.0" text="订单详情">
+            <font>
+                <Font size="24.0" />
+            </font>
+        </Label>
+        <Label layoutX="45.0" layoutY="85.0" text="订单号">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <Label fx:id="labelOrderNumber" layoutX="125.0" layoutY="85.0">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <Label layoutX="45.0" layoutY="105.0" text="订单状态">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <Label fx:id="labelState" layoutX="125.0" layoutY="105.0">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <Label layoutX="45.0" layoutY="125.0" text="酒店">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <Label fx:id="labelHotel" layoutX="125.0" layoutY="125.0">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <Label layoutX="45.0" layoutY="145.0" text="日期">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <Label fx:id="labelDate" layoutX="125.0" layoutY="145.0">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <Label layoutX="45.0" layoutY="165.0" text="客房">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <Label fx:id="labelRoom" layoutX="125.0" layoutY="165.0">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <Label layoutX="45.0" layoutY="185.0" text="入住人员">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <Label fx:id="labelPersons" layoutX="125.0" layoutY="185.0">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <Label layoutX="45.0" layoutY="205.0" text="儿童">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <Label fx:id="labelChildren" layoutX="125.0" layoutY="205.0">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <Label layoutX="45.0" layoutY="225.0" text="价格">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <Label fx:id="labelPrice" layoutX="125.0" layoutY="225.0">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <Label layoutX="45.0" layoutY="245.0" text="评价">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <Label fx:id="labelStars" layoutX="125.0" layoutY="245.0">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+
+        <Button layoutX="45.0" layoutY="285.0" mnemonicParsing="false" text="返回" onAction="#onBackAction"/>
+    </children>
+</Pane>

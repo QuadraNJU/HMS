@@ -1,4 +1,4 @@
-package nju.quadra.hms.ui.customerUI;
+package nju.quadra.hms.ui.common.ui;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.*?>
+
 <Pane fx:id="pane" prefHeight="90.0" prefWidth="600.0" style="-fx-background-color: lightgray;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
        <Label layoutX="35.0" layoutY="15.0" text="时间：">
@@ -52,9 +55,8 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Button fx:id="btnUndo" layoutX="441.0" layoutY="60.0" mnemonicParsing="false" onAction="#onUndoAction" styleClass="btn-red, btn-r" text="撤销" />
+      <Button fx:id="btnFinish" layoutX="441.0" layoutY="60.0" mnemonicParsing="false" onAction="#onFinishAction" styleClass="btn-green, btn-r" text="执行" visible="false"/>
       <Button fx:id="btnDetail" layoutX="518.0" layoutY="60.0" mnemonicParsing="false" onAction="#onDetailAction" styleClass="btn-blue, btn-r" text="详情" />
-      <Button fx:id="btnComment" layoutX="441.0" layoutY="60.0" mnemonicParsing="false" onAction="#onCommentAction" styleClass="btn-green, btn-r" text="评价" />
    </children>
 
 </Pane>

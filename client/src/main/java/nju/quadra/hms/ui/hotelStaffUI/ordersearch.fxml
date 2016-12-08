@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.*?>
+
+<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+
+      <Label layoutX="41.0" layoutY="18.0" prefHeight="39.0" prefWidth="137.0" text="订单管理">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="comboOrderState" layoutX="40.0" layoutY="70.0" prefWidth="150.0" promptText="选择订单状态" />
+      <DatePicker fx:id="dateStart" layoutX="200.0" layoutY="70.0" prefWidth="150.0" />
+      <DatePicker fx:id="dateEnd" layoutX="360.0" layoutY="70.0" prefWidth="150.0" />
+      <VBox fx:id="vBox" layoutX="40.0" layoutY="110.0" prefHeight="310.0" prefWidth="590.0" style="-fx-background-color: lightgray" />
+      <Button layoutX="520.0" layoutY="70.0" mnemonicParsing="false" onAction="#onSearchAction" styleClass="btn-blue,btn-r" text="搜索">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+   </children>
+</Pane>
