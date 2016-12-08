@@ -28,6 +28,7 @@ public class OrderDetailView extends Parent {
         loader.setController(this);
         this.getChildren().add(loader.load());
 
+
         hotelController = new HotelController();
         hotelRoomController = new HotelRoomController();
 
