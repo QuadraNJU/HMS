@@ -34,6 +34,7 @@ public class OrderSearchItem extends Parent {
     @FXML
     Button btnDetail, btnUndo, btnComment;
 
+
     public OrderSearchItem(OrderSearchView parent, OrderController orderController, OrderVO vo) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("ordersearchitem.fxml"));
         loader.setController(this);
@@ -64,6 +65,9 @@ public class OrderSearchItem extends Parent {
         } else if(orderVO.state == OrderState.FINISHED) {
             btnUndo.setVisible(false);
             btnComment.setVisible(true);
+        } else {
+            btnUndo.setVisible(false);
+            btnComment.setVisible(false);
         }
     }
 
@@ -74,6 +78,7 @@ public class OrderSearchItem extends Parent {
 
     @FXML
     public void onCommentAction() throws IOException {
+        parent.loadCommentView(orderVO);
     }
 
     @FXML
@@ -81,6 +86,8 @@ public class OrderSearchItem extends Parent {
         ResultMessage rs = orderController.undoUnfinished(orderVO);
         if(rs.result != ResultMessage.RESULT_SUCCESS) {
             Dialogs.showError(rs.message);
+        } else {
+            parent.onSearchAction();
         }
     }
 }

@@ -21,6 +21,7 @@ import java.sql.SQLIntegrityConstraintViolationException;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -199,8 +200,8 @@ public class OrderBL implements OrderBLService {
             orderDataService.update(po);
             //如果撤销的订单距离最晚订单执行时间不足6个小时，撤销的同时扣除用户的信用值，信用值为订单的(总价值*1/2)
             double currRate = 0;
-            LocalDate latestAvaliableTime = vo.startDate.plus(Duration.ofHours(CreditRecordBL.LATEST_CHECKIN_TIME_GAP));
-            if(LocalDate.now().compareTo(latestAvaliableTime) > 0)
+            LocalDateTime latestAvaliableTime = LocalDateTime.of(vo.startDate, LocalTime.of(6, 0));
+            if(LocalDateTime.now().compareTo(latestAvaliableTime) > 0)
                 currRate = CreditRecordBL.UNDO_UNFINISHED_RATE;
             CreditRecordPO creditRecordPO = new CreditRecordPO(0, vo.username, LocalDateTime.now(), vo.id, CreditAction.ORDER_UNDO, vo.price * currRate);
             creditDataService.insert(creditRecordPO);
@@ -241,6 +242,7 @@ public class OrderBL implements OrderBLService {
     public ResultMessage addRank(OrderRankVO vo) {
         try {
             OrderPO po = orderDataService.getById(vo.orderId);
+            po.setState(OrderState.RANKED);
             po.setRank(vo.rank);
             po.setComment(vo.comment);
             orderDataService.update(po);
