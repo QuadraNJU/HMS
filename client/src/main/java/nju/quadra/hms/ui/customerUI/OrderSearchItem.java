@@ -64,6 +64,9 @@ public class OrderSearchItem extends Parent {
         } else if(orderVO.state == OrderState.FINISHED) {
             btnUndo.setVisible(false);
             btnComment.setVisible(true);
+        } else {
+            btnUndo.setVisible(false);
+            btnComment.setVisible(false);
         }
     }
 
@@ -81,6 +84,8 @@ public class OrderSearchItem extends Parent {
         ResultMessage rs = orderController.undoUnfinished(orderVO);
         if(rs.result != ResultMessage.RESULT_SUCCESS) {
             Dialogs.showError(rs.message);
+        } else {
+            parent.onSearchAction();
         }
     }
 }

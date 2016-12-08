@@ -58,7 +58,7 @@ public class OrderSearchView extends Parent {
 
 
     @FXML
-    private void onSearchAction() throws IOException {
+    protected void onSearchAction() throws IOException {
         ArrayList<OrderVO> orders = orderController.getByCustomer(HttpClient.session.username);
         orders.removeIf(vo -> vo.state != comboOrderState.getValue());
         LocalDate tempStart = dateStart.getValue();

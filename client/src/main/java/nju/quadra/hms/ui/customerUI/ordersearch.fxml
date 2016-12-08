@@ -1,11 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
 <Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
+      <Pane fx:id="paneComment" layoutX="35.0" layoutY="55.0" opacity="0.0" prefHeight="380.0" prefWidth="620.0" style="-fx-background-color: white;" visible="false">
+         <children>
+            <Label layoutX="20.0" layoutY="20.0" text="订单号">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelOrderNumber" layoutX="50.0" layoutY="20.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="20.0" layoutY="40.0" text="订单状态">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelOrderState">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="20.0" layoutY="60.0" text="酒店">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelHotel" layoutX="50.0" layoutY="60.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="20.0" layoutY="80.0" text="日期">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelDate" layoutX="50.0" layoutY="80.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="20.0" layoutY="100.0" text="价格">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelPrice" layoutX="50.0" layoutY="100.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="20.0" layoutY="130.0" text="评价">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <ChoiceBox fx:id="choiceStar" layoutX="50.0" layoutY="130.0" prefWidth="150.0" />
+            <TextArea fx:id="areaComment" layoutX="50.0" layoutY="160.0" prefHeight="65.0" prefWidth="500.0" />
+            <Button layoutX="20.0" layoutY="245.0" mnemonicParsing="false" text="确认" styleClass="btn-blue,btn-r"/>
+            <Button layoutX="65.0" layoutY="245.0" mnemonicParsing="false" text="取消" styleClass="btn-r,btn-red"/>
+         </children>
+      </Pane>
       <Label layoutX="41.0" layoutY="18.0" prefHeight="39.0" prefWidth="137.0" text="订单管理">
          <font>
             <Font size="24.0" />
@@ -14,8 +78,8 @@
       <ComboBox fx:id="comboOrderState" layoutX="40.0" layoutY="70.0" prefWidth="150.0" promptText="选择订单状态" />
       <DatePicker fx:id="dateStart" layoutX="200.0" layoutY="70.0" prefWidth="150.0" />
       <DatePicker fx:id="dateEnd" layoutX="360.0" layoutY="70.0" prefWidth="150.0" />
-      <VBox fx:id="vBox" layoutX="40.0" layoutY="110.0" prefHeight="310.0" prefWidth="590.0" style="-fx-background-color: gray" />
-      <Button layoutX="520.0" layoutY="70.0" mnemonicParsing="false" text="搜索" onAction="#onSearchAction" styleClass="btn-blue,btn-r">
+      <VBox fx:id="vBox" layoutX="40.0" layoutY="110.0" prefHeight="310.0" prefWidth="590.0" style="-fx-background-color: lightgray" />
+      <Button layoutX="520.0" layoutY="70.0" mnemonicParsing="false" onAction="#onSearchAction" styleClass="btn-blue,btn-r" text="搜索">
          <font>
             <Font size="14.0" />
          </font>
