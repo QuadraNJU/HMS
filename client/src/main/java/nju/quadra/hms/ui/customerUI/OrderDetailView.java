@@ -19,7 +19,7 @@ import java.time.format.DateTimeFormatter;
  */
 public class OrderDetailView extends Parent {
     @FXML
-    private Label labelOrderNumber, labelState, labelHotel, labelDate, labelRoom, labelPersons, labelChildren, labelPrice, labelStars, labelComment;
+    private Label labelOrderNumber, labelState, labelHotel, labelDate, labelRoom, labelPersons, labelChildren, labelPrice, labelStars;
     private HotelController hotelController;
     private HotelRoomController hotelRoomController;
 
@@ -44,10 +44,8 @@ public class OrderDetailView extends Parent {
         labelPrice.setText("¥ " + vo.price);
         if(vo.state.equals(OrderState.RANKED)) {
             labelStars.setText(vo.printRank());
-            labelComment.setText(vo.comment);
         } else {
             labelStars.setText("暂无评分");
-            labelComment.setText("暂无评价");
         }
     }
 

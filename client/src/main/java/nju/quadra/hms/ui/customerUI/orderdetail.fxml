@@ -101,11 +101,7 @@
                 <Font size="14.0" />
             </font>
         </Label>
-        <Label fx:id="labelComment" layoutX="125.0" layoutY="265.0">
-            <font>
-                <Font size="14.0" />
-            </font>
-        </Label>
+
         <Button layoutX="45.0" layoutY="285.0" mnemonicParsing="false" text="返回" onAction="#onBackAction"/>
     </children>
 </Pane>

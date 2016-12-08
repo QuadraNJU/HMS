@@ -242,6 +242,7 @@ public class OrderBL implements OrderBLService {
     public ResultMessage addRank(OrderRankVO vo) {
         try {
             OrderPO po = orderDataService.getById(vo.orderId);
+            po.setState(OrderState.RANKED);
             po.setRank(vo.rank);
             po.setComment(vo.comment);
             orderDataService.update(po);

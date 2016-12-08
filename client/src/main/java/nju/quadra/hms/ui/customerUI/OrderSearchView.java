@@ -4,14 +4,16 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
+import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import nju.quadra.hms.controller.HotelController;
 import nju.quadra.hms.controller.OrderController;
 import nju.quadra.hms.model.OrderState;
+import nju.quadra.hms.model.ResultMessage;
 import nju.quadra.hms.net.HttpClient;
 import nju.quadra.hms.ui.common.Dialogs;
+import nju.quadra.hms.vo.OrderRankVO;
 import nju.quadra.hms.vo.OrderVO;
 
 import java.io.IOException;
@@ -23,22 +25,40 @@ import java.util.ArrayList;
  */
 public class OrderSearchView extends Parent {
     @FXML
-    Pane pane;
+    private Pane pane;
     @FXML
-    ComboBox<OrderState> comboOrderState;
+    private ComboBox<OrderState> comboOrderState;
     @FXML
-    DatePicker dateStart, dateEnd;
+    private DatePicker dateStart, dateEnd;
     @FXML
-    VBox vBox;
-    OrderController orderController;
+    private VBox vBox;
+
+    /*Comment View Components*/
+    @FXML
+    private Pane paneComment;
+    @FXML
+    private Label labelOrderNumber, labelOrderState, labelHotel, labelDate, labelPrice;
+    @FXML
+    private ChoiceBox<String> choiceStar;
+    @FXML
+    private TextArea areaComment;
+    /*End Comment View Components*/
+
+
+    private int selectedOrderId;
+    private OrderController orderController;
+    private HotelController hotelController;
 
     public OrderSearchView() throws IOException{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("ordersearch.fxml"));
         loader.setController(this);
         this.getChildren().add(loader.load());
 
+        selectedOrderId = -1;
         orderController = new OrderController();
-        comboOrderState.getItems().addAll(OrderState.BOOKED,
+        hotelController = new HotelController();
+        comboOrderState.getItems().addAll(
+                OrderState.BOOKED,
                 OrderState.UNFINISHED,
                 OrderState.FINISHED,
                 OrderState.RANKED,
@@ -52,8 +72,63 @@ public class OrderSearchView extends Parent {
         onSearchAction();
     }
 
-    public void loadView(Node node) {
+    protected void loadView(Node node) {
         pane.getChildren().add(node);
+    }
+
+    protected void loadCommentView(OrderVO vo) {
+        selectedOrderId = vo.id;
+        paneComment.setVisible(true);
+
+        labelOrderNumber.setText("" + vo.id);
+        labelOrderState.setText(vo.state.toString());
+        labelHotel.setText(hotelController.getDetail(vo.hotelId).name);
+        labelDate.setText(vo.startDate.toString());
+        labelPrice.setText("" + vo.price);
+
+        choiceStar.getItems().addAll(
+                "★",
+                "★★",
+                "★★★",
+                "★★★★",
+                "★★★★★");
+        choiceStar.setValue("★");
+        areaComment.setPromptText("请输入评价");
+
+        return;
+    }
+
+    @FXML
+    private void onCancelCommentAction() throws Exception {
+        paneComment.setVisible(false);
+
+        labelOrderNumber.setText(null);
+        labelOrderState.setText(null);
+        labelHotel.setText(null);
+        labelDate.setText(null);
+        labelPrice.setText(null);
+        choiceStar.getItems().clear();
+
+        onSearchAction();
+
+        return;
+    }
+
+    @FXML
+    private void onSubmitCommentAction() throws Exception {
+        if(areaComment.getText() == null) {
+            Dialogs.showError("评价栏为空，请输入您的评价");
+            return;
+        }
+        int star = choiceStar.getValue().length();
+        String comment = areaComment.getText();
+
+        ResultMessage rs = orderController.addRank(new OrderRankVO(selectedOrderId, LocalDate.now(), star, comment));
+        if(rs.result == ResultMessage.RESULT_SUCCESS) {
+            onCancelCommentAction();
+        } else {
+            Dialogs.showError(rs.message);
+        }
     }
 
 

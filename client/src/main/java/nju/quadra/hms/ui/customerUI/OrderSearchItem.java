@@ -34,6 +34,7 @@ public class OrderSearchItem extends Parent {
     @FXML
     Button btnDetail, btnUndo, btnComment;
 
+
     public OrderSearchItem(OrderSearchView parent, OrderController orderController, OrderVO vo) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("ordersearchitem.fxml"));
         loader.setController(this);
@@ -77,6 +78,7 @@ public class OrderSearchItem extends Parent {
 
     @FXML
     public void onCommentAction() throws IOException {
+        parent.loadCommentView(orderVO);
     }
 
     @FXML
