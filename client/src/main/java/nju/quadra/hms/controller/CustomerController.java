@@ -98,4 +98,31 @@ public class CustomerController {
         }
     }
 
+    public ArrayList<OrderDetailVO> getOrders(String username) {
+        try {
+            return orderBL.getByCustomer(username);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public ResultMessage undoUnfinishedOrder(int orderId) {
+        try {
+            return orderBL.undoUnfinished(orderId);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResultMessage(ResultMessage.RESULT_NET_ERROR);
+        }
+    }
+
+    public ResultMessage rankOrder(OrderRankVO vo) {
+        try {
+            return orderBL.addRank(vo);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResultMessage(ResultMessage.RESULT_NET_ERROR);
+        }
+    }
+
 }

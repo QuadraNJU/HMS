@@ -48,7 +48,7 @@ public class OrderBL implements OrderBLService {
             return new PriceVO("客房类型不存在，请重新选择");
         } else {
             int roomCount = room.total;
-            ArrayList<OrderVO> orders = getByHotel(vo.hotelId);
+            ArrayList<OrderDetailVO> orders = getByHotel(vo.hotelId);
             roomCount -= orders.stream()
                     .filter(order -> !order.state.equals(OrderState.FINISHED)
                             && !order.state.equals(OrderState.RANKED)
@@ -122,12 +122,12 @@ public class OrderBL implements OrderBLService {
     }
 
     @Override
-    public ArrayList<OrderVO> getByCustomer(String username) {
-        ArrayList<OrderVO> voarr = new ArrayList<>();
+    public ArrayList<OrderDetailVO> getByCustomer(String username) {
+        ArrayList<OrderDetailVO> voarr = new ArrayList<>();
         try {
             ArrayList<OrderPO> poarr = orderDataService.getByCustomer(username);
             for(OrderPO po: poarr) {
-                voarr.add(OrderBL.toVO(po));
+                voarr.add(toDetailVO(po));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -136,12 +136,12 @@ public class OrderBL implements OrderBLService {
     }
 
     @Override
-    public ArrayList<OrderVO> getByHotel(int hotelId) {
-        ArrayList<OrderVO> voarr = new ArrayList<>();
+    public ArrayList<OrderDetailVO> getByHotel(int hotelId) {
+        ArrayList<OrderDetailVO> voarr = new ArrayList<>();
         try {
             ArrayList<OrderPO> poarr = orderDataService.getByHotel(hotelId);
             for(OrderPO po: poarr) {
-                voarr.add(OrderBL.toVO(po));
+                voarr.add(toDetailVO(po));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -189,10 +189,10 @@ public class OrderBL implements OrderBLService {
     }
 
     @Override
-    public ResultMessage undoUnfinished(OrderVO vo) {
+    public ResultMessage undoUnfinished(int orderId) {
         try {
             CreditDataService creditDataService = new CreditDataServiceImpl();
-            OrderPO po = orderDataService.getById(vo.id);
+            OrderPO po = orderDataService.getById(orderId);
             //订单状态必须为"未执行"才可调用此方法
             if(po.getState() != OrderState.BOOKED)
                 return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "该订单无法被撤销（订单状态不为\"未执行\"），请重新选择");
@@ -200,10 +200,10 @@ public class OrderBL implements OrderBLService {
             orderDataService.update(po);
             //如果撤销的订单距离最晚订单执行时间不足6个小时，撤销的同时扣除用户的信用值，信用值为订单的(总价值*1/2)
             double currRate = 0;
-            LocalDateTime latestAvaliableTime = LocalDateTime.of(vo.startDate, LocalTime.of(6, 0));
+            LocalDateTime latestAvaliableTime = LocalDateTime.of(po.getStartDate(), LocalTime.of(6, 0));
             if(LocalDateTime.now().compareTo(latestAvaliableTime) > 0)
                 currRate = CreditRecordBL.UNDO_UNFINISHED_RATE;
-            CreditRecordPO creditRecordPO = new CreditRecordPO(0, vo.username, LocalDateTime.now(), vo.id, CreditAction.ORDER_UNDO, vo.price * currRate);
+            CreditRecordPO creditRecordPO = new CreditRecordPO(0, po.getUsername(), LocalDateTime.now(), orderId, CreditAction.ORDER_UNDO, po.getPrice() * currRate);
             creditDataService.insert(creditRecordPO);
         } catch (NullPointerException e) {
             e.printStackTrace();
@@ -258,6 +258,12 @@ public class OrderBL implements OrderBLService {
 
     public static OrderVO toVO(OrderPO po) {
         return new OrderVO(po.getId(), po.getUsername(), po.getHotelId(), po.getStartDate(), po.getEndDate(), po.getRoomId(), po.getRoomCount(), po.getPersonCount(), new Gson().fromJson(po.getPersons(), new TypeToken<ArrayList<String>>(){}.getType()), po.isHasChildren(), po.getPrice(), po.getState(), po.getRank(), po.getComment());
+    }
+
+    public static OrderDetailVO toDetailVO(OrderPO po) {
+        HotelVO hotel = new HotelBL().getDetail(po.getHotelId());
+        HotelRoomVO room = new HotelRoomBL().getById(po.getRoomId());
+        return new OrderDetailVO(po.getId(), po.getUsername(), hotel, po.getStartDate(), po.getEndDate(), room, po.getRoomCount(), new Gson().fromJson(po.getPersons(), new TypeToken<ArrayList<String>>(){}.getType()), po.isHasChildren(), po.getPrice(), po.getState(), po.getRank(), po.getComment());
     }
 
     public static OrderPO toPO(OrderVO vo) {

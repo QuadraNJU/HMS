@@ -35,24 +35,6 @@ public class OrderController {
         }
     }
 
-    public ArrayList<OrderVO> getByCustomer(String username) {
-        try {
-            return orderBL.getByCustomer(username);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
-    public ArrayList<OrderVO> getByHotel(int hotelId) {
-        try {
-            return orderBL.getByHotel(hotelId);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
     public ArrayList<OrderVO> getByState(OrderState state) {
         try {
             return orderBL.getByState(state);
@@ -65,15 +47,6 @@ public class OrderController {
     public ResultMessage undoDelayed(OrderVO vo, boolean returnAllCredit) {
         try {
             return orderBL.undoDelayed(vo, returnAllCredit);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
-    public ResultMessage undoUnfinished(OrderVO vo) {
-        try {
-            return orderBL.undoUnfinished(vo);
         } catch (Exception e) {
             e.printStackTrace();
             return null;

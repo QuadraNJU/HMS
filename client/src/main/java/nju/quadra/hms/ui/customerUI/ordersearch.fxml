@@ -4,85 +4,43 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.*?>
-<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
+<Pane fx:id="pane" prefHeight="470.0" prefWidth="700.0" stylesheets="@../common/style.css"
+      xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <Label layoutX="45.0" layoutY="25.0" text="订单管理">
+        <font>
+            <Font size="24.0"/>
+        </font>
+    </Label>
+    <ChoiceBox fx:id="choiceOrderState" layoutX="40.0" layoutY="70.0" prefWidth="150.0"/>
+    <DatePicker fx:id="dateStart" layoutX="200.0" layoutY="70.0" prefWidth="150.0"/>
+    <DatePicker fx:id="dateEnd" layoutX="360.0" layoutY="70.0" prefWidth="150.0"/>
+    <VBox fx:id="vBox" layoutX="40.0" layoutY="110.0" prefHeight="320.0" prefWidth="620.0"/>
 
-      <Label layoutX="41.0" layoutY="18.0" prefHeight="39.0" prefWidth="137.0" text="订单管理">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Label>
-      <ComboBox fx:id="comboOrderState" layoutX="40.0" layoutY="70.0" prefWidth="150.0" promptText="选择订单状态" />
-      <DatePicker fx:id="dateStart" layoutX="200.0" layoutY="70.0" prefWidth="150.0" />
-      <DatePicker fx:id="dateEnd" layoutX="360.0" layoutY="70.0" prefWidth="150.0" />
-      <VBox fx:id="vBox" layoutX="40.0" layoutY="110.0" prefHeight="310.0" prefWidth="590.0" style="-fx-background-color: lightgray" />
-      <Button layoutX="520.0" layoutY="70.0" mnemonicParsing="false" onAction="#onSearchAction" styleClass="btn-blue,btn-r" text="搜索">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Button>
-      <Pane fx:id="paneComment" visible="false" layoutX="35.0" layoutY="55.0" prefHeight="380.0" prefWidth="620.0" style="-fx-background-color: white;">
-         <children>
-            <Label layoutX="20.0" layoutY="20.0" text="订单号">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <Label fx:id="labelOrderNumber" layoutX="125.0" layoutY="20.0">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <Label layoutX="20.0" layoutY="40.0" text="订单状态">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <Label fx:id="labelOrderState" layoutX="125.0" layoutY="40.0">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <Label layoutX="20.0" layoutY="60.0" text="酒店">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <Label fx:id="labelHotel" layoutX="125.0" layoutY="60.0">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <Label layoutX="20.0" layoutY="80.0" text="订单初始日期">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <Label fx:id="labelDate" layoutX="125.0" layoutY="80.0">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <Label layoutX="20.0" layoutY="100.0" text="价格">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <Label fx:id="labelPrice" layoutX="125.0" layoutY="100.0">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <Label layoutX="20.0" layoutY="130.0" text="评价">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <ChoiceBox fx:id="choiceStar" layoutX="50.0" layoutY="130.0" prefWidth="150.0" />
-            <TextArea fx:id="areaComment" layoutX="50.0" layoutY="160.0" prefHeight="65.0" prefWidth="500.0" />
-            <Button layoutX="20.0" layoutY="245.0" mnemonicParsing="false" onAction="#onSubmitCommentAction" styleClass="btn-blue,btn-r" text="确认" />
-            <Button layoutX="85.0" layoutY="245.0" mnemonicParsing="false" onAction="#onCancelCommentAction" styleClass="btn-r,btn-red" text="取消" />
-         </children>
-      </Pane>
-   </children>
+    <Pane fx:id="paneComment" layoutX="35.0" layoutY="55.0" prefHeight="380.0" prefWidth="620.0"
+          style="-fx-background-color: white;" visible="false">
+        <Label layoutX="24.0" layoutY="31.0" text="选择评分">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Label>
+        <ChoiceBox fx:id="choiceStar" layoutX="89.0" layoutY="24.0"/>
+        <TextArea fx:id="areaComment" layoutX="14.0" layoutY="62.0" prefHeight="100.0" prefWidth="500.0"
+                  promptText="评价内容">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </TextArea>
+        <Button layoutX="14.0" layoutY="172.0" mnemonicParsing="false" onAction="#onSubmitCommentAction"
+                prefWidth="80.0" styleClass="btn-blue,btn-r" text="确认">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Button>
+        <Button layoutX="104.0" layoutY="172.0" mnemonicParsing="false" onAction="#onCancelCommentAction"
+                prefWidth="80.0" styleClass="btn-r,btn-red" text="取消">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Button>
+    </Pane>
 </Pane>

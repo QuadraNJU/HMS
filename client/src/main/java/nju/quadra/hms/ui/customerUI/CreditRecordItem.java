@@ -8,6 +8,7 @@ import nju.quadra.hms.vo.CreditRecordVO;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Created by adn55 on 2016/11/30.
@@ -23,7 +24,7 @@ public class CreditRecordItem extends Parent {
         this.getChildren().add(loader.load());
 
         if (vo.timestamp != null) {
-            labelTime.setText(new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(vo.timestamp));
+            labelTime.setText(vo.timestamp.format(DateTimeFormatter.ofPattern("uuuu/MM/dd HH:mm:ss")));
         }
         switch (vo.action) {
             case ORDER_CANCELLED:

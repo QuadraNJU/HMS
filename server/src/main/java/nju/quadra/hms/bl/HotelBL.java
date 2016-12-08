@@ -28,7 +28,7 @@ public class HotelBL implements HotelBLService {
             ArrayList<OrderVO> orders = new ArrayList<>();
             ArrayList<OrderRankVO> ranks = new ArrayList<>();
 
-            ArrayList<OrderVO> hotelOrders = orderBL.getByHotel(hotelVO.id);
+            ArrayList<OrderDetailVO> hotelOrders = orderBL.getByHotel(hotelVO.id);
             for (OrderVO orderVO : hotelOrders) {
                 if (orderVO.state.equals(OrderState.RANKED)) {
                     ranks.add(new OrderRankVO(orderVO.id, orderVO.endDate, orderVO.rank, orderVO.comment));
