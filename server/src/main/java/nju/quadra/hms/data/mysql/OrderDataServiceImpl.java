@@ -19,7 +19,7 @@ public class OrderDataServiceImpl implements OrderDataService {
     @Override
     public ArrayList<OrderPO> getByCustomer(String username) throws Exception {
         PreparedStatement pst = MySQLManager.getConnection()
-                .prepareStatement("SELECT * FROM `orders` WHERE `username` = ? ORDER BY `startdate` DESC");
+                .prepareStatement("SELECT * FROM `orders` WHERE `username` = ? ORDER BY `startdate` DESC, `id` DESC");
         pst.setString(1, username);
         ResultSet rs = pst.executeQuery();
         return convertToArrayList(rs);
@@ -28,7 +28,7 @@ public class OrderDataServiceImpl implements OrderDataService {
     @Override
     public ArrayList<OrderPO> getByHotel(int hotelId) throws Exception {
         PreparedStatement pst = MySQLManager.getConnection()
-                .prepareStatement("SELECT * FROM `orders` WHERE `hotelid` = ? ORDER BY `startdate` DESC");
+                .prepareStatement("SELECT * FROM `orders` WHERE `hotelid` = ? ORDER BY `startdate` DESC, `id` DESC");
         pst.setInt(1, hotelId);
         ResultSet rs = pst.executeQuery();
         return convertToArrayList(rs);
@@ -37,7 +37,7 @@ public class OrderDataServiceImpl implements OrderDataService {
     @Override
     public ArrayList<OrderPO> getByState(OrderState state) throws Exception {
         PreparedStatement pst = MySQLManager.getConnection()
-                .prepareStatement("SELECT * FROM `orders` WHERE `state` = ? ORDER BY `startdate` DESC");
+                .prepareStatement("SELECT * FROM `orders` WHERE `state` = ? ORDER BY `startdate` DESC, `id` DESC");
         pst.setInt(1, state.ordinal());
         ResultSet rs = pst.executeQuery();
         return convertToArrayList(rs);
@@ -74,7 +74,6 @@ public class OrderDataServiceImpl implements OrderDataService {
         pst.setInt(12, po.getState().ordinal());
         pst.setInt(13, po.getRank());
         pst.setString(14, po.getComment());
-        System.out.println(pst);
         pst.executeUpdate();
     }
 

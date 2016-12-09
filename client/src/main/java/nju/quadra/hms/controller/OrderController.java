@@ -1,11 +1,9 @@
 package nju.quadra.hms.controller;
 
-import com.google.gson.reflect.TypeToken;
 import nju.quadra.hms.blservice.OrderBLService;
 import nju.quadra.hms.model.OrderState;
 import nju.quadra.hms.model.ResultMessage;
 import nju.quadra.hms.net.BLServiceFactory;
-import nju.quadra.hms.net.HttpRemote;
 import nju.quadra.hms.vo.*;
 
 import java.util.ArrayList;
@@ -47,15 +45,6 @@ public class OrderController {
     public ResultMessage undoDelayed(OrderVO vo, boolean returnAllCredit) {
         try {
             return orderBL.undoDelayed(vo, returnAllCredit);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
-    public ResultMessage finish(OrderVO vo) {
-        try {
-            return orderBL.finish(vo);
         } catch (Exception e) {
             e.printStackTrace();
             return null;

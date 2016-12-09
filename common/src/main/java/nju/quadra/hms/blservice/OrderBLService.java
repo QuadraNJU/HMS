@@ -27,7 +27,9 @@ public interface OrderBLService {
 
     ResultMessage undoUnfinished(int orderId);
 
-    ResultMessage finish(OrderVO vo);
+    ResultMessage checkin(int orderId);
+
+    ResultMessage checkout(int orderId);
 
     ResultMessage addRank(OrderRankVO vo);
 }

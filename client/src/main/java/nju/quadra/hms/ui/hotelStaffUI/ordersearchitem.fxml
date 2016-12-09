@@ -16,12 +16,12 @@
             <Font size="14.0"/>
         </font>
     </Label>
-    <Label fx:id="labelPrice" layoutX="290.0" layoutY="10.0" prefHeight="18.0" prefWidth="100.0" text="¥ 999.99">
+    <Label fx:id="labelPrice" layoutX="315.0" layoutY="10.0" prefHeight="18.0" prefWidth="100.0" text="¥ 999.99">
         <font>
             <Font size="14.0"/>
         </font>
     </Label>
-    <Label fx:id="labelPersonNumber" layoutX="386.0" layoutY="10.0" prefHeight="18.0" prefWidth="70.0" text="共 4 人">
+    <Label fx:id="labelPersonNumber" layoutX="315.0" layoutY="40.0" prefHeight="18.0" prefWidth="70.0" text="共 4 人">
         <font>
             <Font size="14.0"/>
         </font>
@@ -32,20 +32,20 @@
             <Font size="14.0"/>
         </font>
     </Label>
-    <Button fx:id="btnUndo" layoutX="456.0" layoutY="32.0" onAction="#onUndoAction" prefWidth="60.0"
-            styleClass="btn-red, btn-r" text="撤销" visible="false">
-        <font>
-            <Font size="14.0"/>
-        </font>
-    </Button>
     <Button fx:id="btnDetail" layoutX="526.0" layoutY="32.0" onAction="#onDetailAction" prefWidth="60.0"
             styleClass="btn-blue, btn-r" text="详情">
         <font>
             <Font size="14.0"/>
         </font>
     </Button>
-    <Button fx:id="btnComment" layoutX="456.0" layoutY="32.0" onAction="#onCommentAction" prefWidth="60.0"
-            styleClass="btn-green, btn-r" text="评价" visible="false">
+    <Button fx:id="btnCheckin" layoutX="456.0" layoutY="32.0" onAction="#onCheckinAction" prefWidth="60.0"
+            styleClass="btn-green, btn-r" text="入住" visible="false">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </Button>
+    <Button fx:id="btnCheckout" layoutX="456.0" layoutY="32.0" onAction="#onCheckoutAction" prefWidth="60.0"
+            styleClass="btn-red, btn-r" text="退房" visible="false">
         <font>
             <Font size="14.0"/>
         </font>

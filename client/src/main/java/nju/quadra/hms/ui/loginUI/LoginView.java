@@ -106,4 +106,9 @@ public class LoginView extends Stage {
             onLoginAction();
     }
 
+    @FXML
+    protected void onExitAction() {
+        System.exit(0);
+    }
+
 }

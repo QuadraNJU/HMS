@@ -1,15 +1,9 @@
 package nju.quadra.hms.controller;
 
-import nju.quadra.hms.blservice.CustomerBLService;
-import nju.quadra.hms.blservice.HotelBLService;
-import nju.quadra.hms.blservice.HotelPromotionBLService;
-import nju.quadra.hms.blservice.HotelRoomBLService;
+import nju.quadra.hms.blservice.*;
 import nju.quadra.hms.model.ResultMessage;
 import nju.quadra.hms.net.BLServiceFactory;
-import nju.quadra.hms.vo.AreaVO;
-import nju.quadra.hms.vo.HotelPromotionVO;
-import nju.quadra.hms.vo.HotelRoomVO;
-import nju.quadra.hms.vo.HotelVO;
+import nju.quadra.hms.vo.*;
 
 import java.util.ArrayList;
 
@@ -22,6 +16,7 @@ public class HotelStaffController {
     private HotelRoomBLService hotelRoomBL = BLServiceFactory.getHotelRoomBLService();
     private HotelPromotionBLService hotelPromotionBL = BLServiceFactory.getHotelPromotionBLService();
     private CustomerBLService customerBL = BLServiceFactory.getCustomerBLService();
+    private OrderBLService orderBL = BLServiceFactory.getOrderBLService();
 
     private HotelVO hotelVO;
 
@@ -136,6 +131,33 @@ public class HotelStaffController {
         } catch (Exception e) {
             e.printStackTrace();
             return null;
+        }
+    }
+
+    public ArrayList<OrderDetailVO> getOrders() {
+        try {
+            return orderBL.getByHotel(hotelVO.id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public ResultMessage checkinOrder(int orderId) {
+        try {
+            return orderBL.checkin(orderId);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResultMessage(ResultMessage.RESULT_NET_ERROR);
+        }
+    }
+
+    public ResultMessage checkoutOrder(int orderId) {
+        try {
+            return orderBL.checkout(orderId);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResultMessage(ResultMessage.RESULT_NET_ERROR);
         }
     }
 

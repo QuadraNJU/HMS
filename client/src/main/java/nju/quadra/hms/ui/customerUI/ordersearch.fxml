@@ -14,7 +14,9 @@
     <ChoiceBox fx:id="choiceOrderState" layoutX="40.0" layoutY="70.0" prefWidth="150.0"/>
     <DatePicker fx:id="dateStart" layoutX="200.0" layoutY="70.0" prefWidth="150.0"/>
     <DatePicker fx:id="dateEnd" layoutX="360.0" layoutY="70.0" prefWidth="150.0"/>
-    <VBox fx:id="vBox" layoutX="40.0" layoutY="110.0" prefHeight="320.0" prefWidth="620.0"/>
+    <ScrollPane layoutX="40.0" layoutY="110.0" prefHeight="320.0" prefWidth="620.0">
+        <VBox fx:id="vBox"/>
+    </ScrollPane>
 
     <Pane fx:id="paneComment" layoutX="35.0" layoutY="55.0" prefHeight="380.0" prefWidth="620.0"
           style="-fx-background-color: white;" visible="false">

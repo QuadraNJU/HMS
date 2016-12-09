@@ -5,7 +5,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -20,6 +22,7 @@ import nju.quadra.hms.ui.webMarketerUI.WebMarketerNavigation;
 import nju.quadra.hms.ui.webmasterUI.WebmasterNavigation;
 
 import java.io.IOException;
+import java.util.Optional;
 
 /**
  * Created by adn55 on 2016/11/25.
@@ -100,6 +103,19 @@ public class MainView extends Stage {
         loginView.show();
         HttpClient.session = null;
         this.close();
+    }
+
+    @FXML
+    protected void onExitAction() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("确认");
+        alert.setHeaderText(null);
+        alert.setContentText("确认退出酒店管理系统?");
+        alert.getButtonTypes().setAll(ButtonType.YES, ButtonType.NO);
+        Optional<ButtonType> confirm = alert.showAndWait();
+        if (confirm.isPresent() && confirm.get().equals(ButtonType.YES)) {
+            System.exit(0);
+        }
     }
 
 }

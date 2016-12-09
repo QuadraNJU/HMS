@@ -29,7 +29,7 @@
         </font>
     </PasswordField>
 
-    <CheckBox fx:id="checkRemember" layoutX="245.0" layoutY="408.0" text="记住我的登录信息" textFill="WHITE">
+    <CheckBox fx:id="checkRemember" visible="false" layoutX="245.0" layoutY="408.0" text="记住我的登录信息" textFill="WHITE">
         <font>
             <Font size="14.0"/>
         </font>
@@ -52,4 +52,11 @@
             <Font size="20.0"/>
         </font>
     </Button>
+
+    <Label layoutX="868.0" layoutY="5.0" onMouseClicked="#onExitAction" style="-fx-cursor: hand;" text="×"
+           textFill="WHITE">
+        <font>
+            <Font size="24.0"/>
+        </font>
+    </Label>
 </Pane>

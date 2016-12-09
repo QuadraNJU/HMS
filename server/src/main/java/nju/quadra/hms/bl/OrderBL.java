@@ -2,6 +2,7 @@ package nju.quadra.hms.bl;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import nju.quadra.hms.blservice.CreditRecordBLService;
 import nju.quadra.hms.blservice.OrderBLService;
 import nju.quadra.hms.data.mysql.CreditDataServiceImpl;
 import nju.quadra.hms.data.mysql.OrderDataServiceImpl;
@@ -214,18 +215,42 @@ public class OrderBL implements OrderBLService {
     }
 
     @Override
-    public ResultMessage finish(OrderVO vo) {
+    public ResultMessage checkin(int orderId) {
         try {
-            CreditDataService creditDataService = new CreditDataServiceImpl();
-            OrderPO po = orderDataService.getById(vo.id);
-            if(po.getState() == OrderState.FINISHED)
-                return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "该订单已经完成，请重新选择");
-            po.setState(OrderState.FINISHED);
-            po.setEndDate(LocalDate.now());
+            OrderPO po = orderDataService.getById(orderId);
+            if (po.getState() != OrderState.BOOKED && po.getState() != OrderState.DELAYED) {
+                return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "该订单无法办理入住");
+            }
+            po.setStartDate(LocalDate.now());
+            po.setState(OrderState.UNFINISHED);
             orderDataService.update(po);
-            //信用值为订单原价
-            CreditRecordPO creditRecordPO = new CreditRecordPO(0, vo.username, null, vo.id, CreditAction.ORDER_UNDO, vo.price * CreditRecordBL.FINISH_RATE);
-            creditDataService.insert(creditRecordPO);
+            // 返还信用值
+            CreditRecordBLService creditBL = new CreditRecordBL();
+            if (po.getState().equals(OrderState.DELAYED)) {
+                creditBL.add(new CreditRecordVO(0, po.getUsername(), null, orderId, CreditAction.ORDER_UNDO, po.getPrice() * CreditRecordBL.FINISH_RATE, 0));
+            }
+            // 增加信用值
+            creditBL.add(new CreditRecordVO(0, po.getUsername(), null, orderId, CreditAction.ORDER_FINISHED, po.getPrice() * CreditRecordBL.FINISH_RATE, 0));
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+            return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "订单不存在，请确认订单信息");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "服务器访问异常，请重新尝试");
+        }
+        return new ResultMessage(ResultMessage.RESULT_SUCCESS);
+    }
+
+    @Override
+    public ResultMessage checkout(int orderId) {
+        try {
+            OrderPO po = orderDataService.getById(orderId);
+            if (po.getState() != OrderState.UNFINISHED) {
+                return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "该订单未入住，无法退房");
+            }
+            po.setEndDate(LocalDate.now());
+            po.setState(OrderState.FINISHED);
+            orderDataService.update(po);
         } catch (NullPointerException e) {
             e.printStackTrace();
             return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "订单不存在，请确认订单信息");
