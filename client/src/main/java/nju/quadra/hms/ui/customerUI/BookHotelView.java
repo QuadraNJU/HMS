@@ -129,7 +129,7 @@ class BookHotelView extends Parent {
     }
 
     @FXML
-    private void onChangePersons() throws IOException {
+    private void onChangePersons() {
         panePerson.setVisible(true);
     }
 
@@ -157,6 +157,6 @@ class BookHotelView extends Parent {
     }
 
     interface SuccessHandler {
-        void handle() throws IOException;
+        void handle();
     }
 }

@@ -46,7 +46,7 @@ class HotelRoomEditView extends Parent {
             price = Double.parseDouble(editPrice.getText());
             total = Integer.parseInt(editTotal.getText());
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             Dialogs.showError("数值格式不正确，请重新填写");
             return;
         }

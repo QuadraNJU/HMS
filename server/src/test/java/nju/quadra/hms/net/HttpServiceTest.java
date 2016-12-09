@@ -24,7 +24,7 @@ public class HttpServiceTest {
                 httpService.start();
                 break;
             } catch (IOException e) {
-                e.printStackTrace();
+                // e.printStackTrace();
                 failedCount++;
                 if (failedCount > 10) {
                     fail();

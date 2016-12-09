@@ -21,7 +21,7 @@ class HotelRoomController {
         try {
             return hotelRoomBL.getAll(hotelId);
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return null;
         }
     }
@@ -30,7 +30,7 @@ class HotelRoomController {
         try {
             return hotelRoomBL.add(vo);
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return null;
         }
     }
@@ -39,7 +39,7 @@ class HotelRoomController {
         try {
             return hotelRoomBL.delete(roomId);
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return null;
         }
     }
@@ -48,7 +48,7 @@ class HotelRoomController {
         try {
             return hotelRoomBL.modify(vo);
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return null;
         }
     }
@@ -57,7 +57,7 @@ class HotelRoomController {
         try {
             return hotelRoomBL.getById(roomId);
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return null;
         }
     }

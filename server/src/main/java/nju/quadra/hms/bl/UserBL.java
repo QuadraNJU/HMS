@@ -30,7 +30,7 @@ public class UserBL implements UserBLService {
                 return new ResultMessage(ResultMessage.RESULT_SUCCESS);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return new ResultMessage(ResultMessage.RESULT_DB_ERROR);
         }
         return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "用户名或密码错误，请重新输入");
@@ -46,7 +46,7 @@ public class UserBL implements UserBLService {
                 voarr.add(UserBL.toVO(po));
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
         }
         return voarr;
     }
@@ -58,7 +58,7 @@ public class UserBL implements UserBLService {
             po = userDataService.get(username);
             return UserBL.toVO(po);
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
         }
         return null;
     }
@@ -76,7 +76,7 @@ public class UserBL implements UserBLService {
             userDataService.insert(po);
             return new ResultMessage(ResultMessage.RESULT_SUCCESS);
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return new ResultMessage(ResultMessage.RESULT_DB_ERROR);
         }
     }
@@ -88,7 +88,7 @@ public class UserBL implements UserBLService {
             userDataService.delete(po);
             return new ResultMessage(ResultMessage.RESULT_SUCCESS);
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return new ResultMessage(ResultMessage.RESULT_DB_ERROR);
         }
     }
@@ -101,7 +101,7 @@ public class UserBL implements UserBLService {
             userDataService.update(user);
             return new ResultMessage(ResultMessage.RESULT_SUCCESS);
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return new ResultMessage(ResultMessage.RESULT_DB_ERROR);
         }
     }
@@ -113,7 +113,7 @@ public class UserBL implements UserBLService {
             userDataService.update(newContent);
             return new ResultMessage(ResultMessage.RESULT_SUCCESS);
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return new ResultMessage(ResultMessage.RESULT_DB_ERROR);
         }
     }

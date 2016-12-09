@@ -16,7 +16,7 @@ class OrderController {
         try {
             return orderBL.getPrice(vo);
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return null;
         }
     }
@@ -25,7 +25,7 @@ class OrderController {
         try {
             return orderBL.add(vo);
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return null;
         }
     }
@@ -34,7 +34,7 @@ class OrderController {
         try {
             return orderBL.addRank(vo);
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return null;
         }
     }

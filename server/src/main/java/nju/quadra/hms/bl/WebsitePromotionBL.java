@@ -29,7 +29,7 @@ public class WebsitePromotionBL implements WebsitePromotionBLService {
             ArrayList<WebsitePromotionPO> poarr = websitePromotionDataService.getAll();
             for(WebsitePromotionPO po: poarr) voarr.add(WebsitePromotionBL.toVO(po));
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
         }
 
         return voarr;
@@ -42,7 +42,7 @@ public class WebsitePromotionBL implements WebsitePromotionBLService {
             websitePromotionDataService.insert(po);
             return new ResultMessage(ResultMessage.RESULT_SUCCESS);
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return new ResultMessage(ResultMessage.RESULT_DB_ERROR);
         }
     }
@@ -54,7 +54,7 @@ public class WebsitePromotionBL implements WebsitePromotionBLService {
             websitePromotionDataService.delete(po);
             return new ResultMessage(ResultMessage.RESULT_SUCCESS);
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return new ResultMessage(ResultMessage.RESULT_DB_ERROR);
         }
     }
@@ -66,7 +66,7 @@ public class WebsitePromotionBL implements WebsitePromotionBLService {
             websitePromotionDataService.update(po);
             return new ResultMessage(ResultMessage.RESULT_SUCCESS);
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return new ResultMessage(ResultMessage.RESULT_DB_ERROR);
         }
     }

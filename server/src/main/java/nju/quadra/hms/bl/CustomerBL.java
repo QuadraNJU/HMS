@@ -40,7 +40,7 @@ public class CustomerBL implements CustomerBLService {
                 return new MemberVO(po.getUsername(), po.getMemberType(), po.getBirthday(), po.getCompanyName());
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
         }
         return null;
     }
@@ -55,7 +55,7 @@ public class CustomerBL implements CustomerBLService {
             userDataService.update(user);
             return new ResultMessage(ResultMessage.RESULT_SUCCESS);
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return new ResultMessage(ResultMessage.RESULT_DB_ERROR);
         }
     }
@@ -78,7 +78,7 @@ public class CustomerBL implements CustomerBLService {
             }
             return companyList;
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return null;
         }
     }

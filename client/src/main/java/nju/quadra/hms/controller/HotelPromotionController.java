@@ -15,7 +15,7 @@ class HotelPromotionController {
         try {
             return hotelPromotionController.get(hotelId);
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return null;
         }
     }
@@ -24,7 +24,7 @@ class HotelPromotionController {
         try {
             return hotelPromotionController.add(vo);
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return null;
         }
     }
@@ -33,7 +33,7 @@ class HotelPromotionController {
         try {
             return hotelPromotionController.delete(promotionId);
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return null;
         }
     }
@@ -42,7 +42,7 @@ class HotelPromotionController {
         try {
             return hotelPromotionController.modify(vo);
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return null;
         }
     }

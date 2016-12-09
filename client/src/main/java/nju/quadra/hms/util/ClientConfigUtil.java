@@ -29,7 +29,7 @@ public class ClientConfigUtil {
             is.close();
             config = new Gson().fromJson(new String(buffer), ClientConfig.class);
         } catch (IOException e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             System.out.println("Read config file failed, using default config.");
             saveToFile();
         }
@@ -45,7 +45,7 @@ public class ClientConfigUtil {
             os.write(json.getBytes("UTF-8"));
             os.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             System.out.println("Save config file failed!");
         }
     }

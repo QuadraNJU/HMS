@@ -15,7 +15,7 @@ class WebsitePromotionController {
         try {
             return websitePromotionController.get(hotelId);
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return null;
         }
     }
@@ -24,7 +24,7 @@ class WebsitePromotionController {
         try {
             return websitePromotionController.add(vo);
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return null;
         }
     }
@@ -33,7 +33,7 @@ class WebsitePromotionController {
         try {
             return websitePromotionController.delete(promotionId);
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return null;
         }
     }
@@ -42,7 +42,7 @@ class WebsitePromotionController {
         try {
             return websitePromotionController.modify(vo);
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return null;
         }
     }

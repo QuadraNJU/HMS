@@ -23,7 +23,7 @@ public class HotelRoomBL implements HotelRoomBLService{
 			ArrayList<HotelRoomPO> poarr = hotelRoomDataService.get(hotelId);
 			for(HotelRoomPO po : poarr) voarr.add(HotelRoomBL.toVO(po));
 		} catch (Exception e) {
-			e.printStackTrace();
+			// e.printStackTrace();
 		}
 		return voarr;
 	}
@@ -34,7 +34,7 @@ public class HotelRoomBL implements HotelRoomBLService{
 			HotelRoomPO po = hotelRoomDataService.getById(roomId);
 			return HotelRoomBL.toVO(po);
 		} catch (Exception e) {
-			e.printStackTrace();
+			// e.printStackTrace();
 		}
 		return null;
 	}
@@ -46,7 +46,7 @@ public class HotelRoomBL implements HotelRoomBLService{
 			hotelRoomDataService.insert(po);
 			return new ResultMessage(ResultMessage.RESULT_SUCCESS);
 		} catch (Exception e) {
-			e.printStackTrace();
+			// e.printStackTrace();
 			return new ResultMessage(ResultMessage.RESULT_DB_ERROR);
 		}
 	}
@@ -58,7 +58,7 @@ public class HotelRoomBL implements HotelRoomBLService{
 			hotelRoomDataService.delete(po);
 			return new ResultMessage(ResultMessage.RESULT_SUCCESS);
 		} catch (Exception e) {
-			e.printStackTrace();
+			// e.printStackTrace();
 			return new ResultMessage(ResultMessage.RESULT_DB_ERROR);
 		}
 	}
@@ -70,7 +70,7 @@ public class HotelRoomBL implements HotelRoomBLService{
 			hotelRoomDataService.update(po);
 			return new ResultMessage(ResultMessage.RESULT_SUCCESS);
 		} catch (Exception e) {
-			e.printStackTrace();
+			// e.printStackTrace();
 			return new ResultMessage(ResultMessage.RESULT_DB_ERROR);
 		}
 	}

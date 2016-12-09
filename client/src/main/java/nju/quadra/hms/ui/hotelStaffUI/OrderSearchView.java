@@ -80,7 +80,7 @@ class OrderSearchView extends Parent {
             try {
                 vBox.getChildren().add(new OrderSearchItem(this, controller, (OrderDetailVO) vo));
             } catch (IOException e) {
-                e.printStackTrace();
+                // e.printStackTrace();
             }
         }
     }

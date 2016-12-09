@@ -138,7 +138,7 @@ public class OrderBL implements OrderBLService {
             OrderPO po = OrderBL.toPO(vo);
             orderDataService.insert(po);
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return new ResultMessage(ResultMessage.RESULT_DB_ERROR);
         }
         return new ResultMessage(ResultMessage.RESULT_SUCCESS);
@@ -153,7 +153,7 @@ public class OrderBL implements OrderBLService {
                 voarr.add(toDetailVO(po));
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
         }
         return voarr;
     }
@@ -167,7 +167,7 @@ public class OrderBL implements OrderBLService {
                 voarr.add(toDetailVO(po));
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
         }
         return voarr;
     }
@@ -181,7 +181,7 @@ public class OrderBL implements OrderBLService {
                 voarr.add(toDetailVO(po));
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
         }
         return voarr;
     }
@@ -200,10 +200,10 @@ public class OrderBL implements OrderBLService {
             double currRate = returnAllCredit ? CreditRecordBL.UNDO_DELAYED_RATE[1] : CreditRecordBL.UNDO_DELAYED_RATE[0];
             new CreditRecordBL().add(new CreditRecordVO(0, po.getUsername(), null, orderId, CreditAction.ORDER_UNDO, po.getPrice() * currRate, 0));
         } catch (NullPointerException e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "订单不存在，请确认订单信息");
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "服务器访问异常，请重新尝试");
         }
         return new ResultMessage(ResultMessage.RESULT_SUCCESS);
@@ -225,10 +225,10 @@ public class OrderBL implements OrderBLService {
                 new CreditRecordBL().add(new CreditRecordVO(0, po.getUsername(), null, orderId, CreditAction.ORDER_CANCELLED, po.getPrice() * CreditRecordBL.UNDO_UNFINISHED_RATE, 0));
             }
         } catch (NullPointerException e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "订单不存在，请确认订单信息");
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "服务器访问异常，请重新尝试");
         }
         return new ResultMessage(ResultMessage.RESULT_SUCCESS);
@@ -252,10 +252,10 @@ public class OrderBL implements OrderBLService {
             // 增加信用值
             creditBL.add(new CreditRecordVO(0, po.getUsername(), null, orderId, CreditAction.ORDER_FINISHED, po.getPrice() * CreditRecordBL.FINISH_RATE, 0));
         } catch (NullPointerException e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "订单不存在，请确认订单信息");
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "服务器访问异常，请重新尝试");
         }
         return new ResultMessage(ResultMessage.RESULT_SUCCESS);
@@ -272,10 +272,10 @@ public class OrderBL implements OrderBLService {
             po.setState(OrderState.FINISHED);
             orderDataService.update(po);
         } catch (NullPointerException e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "订单不存在，请确认订单信息");
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "服务器访问异常，请重新尝试");
         }
         return new ResultMessage(ResultMessage.RESULT_SUCCESS);
@@ -290,10 +290,10 @@ public class OrderBL implements OrderBLService {
             po.setComment(vo.comment);
             orderDataService.update(po);
         } catch (NullPointerException e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "订单不存在，请确认订单信息");
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "服务器访问异常，请重新尝试");
         }
         return new ResultMessage(ResultMessage.RESULT_SUCCESS);
@@ -310,7 +310,7 @@ public class OrderBL implements OrderBLService {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
         }
     }
 

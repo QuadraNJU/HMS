@@ -91,7 +91,7 @@ class OrderBLTest {
 //            ArrayList<HotelPromotionVO> hotelvoarr = hotelPromotionBL.get(123456);
 //            for(HotelPromotionVO vo: hotelvoarr) hotelPromotionBL.delete(vo.id);
 //        } catch (Exception e) {
-//            e.printStackTrace();
+//            // e.printStackTrace();
 //        }
 //    }
 }

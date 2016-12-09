@@ -18,7 +18,7 @@ class HotelController {
         try {
             return hotelBL.getAllArea();
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return null;
         }
     }
@@ -27,7 +27,7 @@ class HotelController {
         try {
             return hotelBL.getByArea(areaId);
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return null;
         }
     }
@@ -36,7 +36,7 @@ class HotelController {
         try {
             return hotelBL.getAll();
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return null;
         }
     }
@@ -45,7 +45,7 @@ class HotelController {
         try {
             return hotelBL.getDetail(id);
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return null;
         }
     }
@@ -54,7 +54,7 @@ class HotelController {
         try {
             return hotelBL.getByStaff(staff);
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return null;
         }
     }
@@ -63,7 +63,7 @@ class HotelController {
         try {
             return hotelBL.add(vo);
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return null;
         }
     }
@@ -72,7 +72,7 @@ class HotelController {
         try {
             return hotelBL.delete(id);
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return null;
         }
     }
@@ -81,7 +81,7 @@ class HotelController {
         try {
             return hotelBL.modify(vo);
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return null;
         }
     }
@@ -90,7 +90,7 @@ class HotelController {
         try {
             return hotelBL.changeStaff(id, username);
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return null;
         }
     }

@@ -28,7 +28,7 @@ public class HotelStaffController {
         try {
             return hotelBL.getAllArea();
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return null;
         }
     }
@@ -37,7 +37,7 @@ public class HotelStaffController {
         try {
             return hotelVO;
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return null;
         }
     }
@@ -46,7 +46,7 @@ public class HotelStaffController {
         try {
             return hotelBL.modify(vo);
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return new ResultMessage(ResultMessage.RESULT_NET_ERROR);
         }
     }
@@ -55,7 +55,7 @@ public class HotelStaffController {
         try {
             return hotelRoomBL.getAll(hotelVO.id);
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return null;
         }
     }
@@ -65,7 +65,7 @@ public class HotelStaffController {
         try {
             return hotelRoomBL.add(vo);
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return new ResultMessage(ResultMessage.RESULT_NET_ERROR);
         }
     }
@@ -74,7 +74,7 @@ public class HotelStaffController {
         try {
             return hotelRoomBL.modify(vo);
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return new ResultMessage(ResultMessage.RESULT_NET_ERROR);
         }
     }
@@ -83,7 +83,7 @@ public class HotelStaffController {
         try {
             return hotelRoomBL.delete(id);
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return new ResultMessage(ResultMessage.RESULT_NET_ERROR);
         }
     }
@@ -92,7 +92,7 @@ public class HotelStaffController {
         try {
             return hotelPromotionBL.get(hotelVO.id);
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return null;
         }
     }
@@ -102,7 +102,7 @@ public class HotelStaffController {
         try {
             return hotelPromotionBL.add(vo);
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return new ResultMessage(ResultMessage.RESULT_NET_ERROR);
         }
     }
@@ -111,7 +111,7 @@ public class HotelStaffController {
         try {
             return hotelPromotionBL.modify(vo);
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return new ResultMessage(ResultMessage.RESULT_NET_ERROR);
         }
     }
@@ -120,7 +120,7 @@ public class HotelStaffController {
         try {
             return hotelPromotionBL.delete(id);
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return new ResultMessage(ResultMessage.RESULT_NET_ERROR);
         }
     }
@@ -129,7 +129,7 @@ public class HotelStaffController {
         try {
             return customerBL.getAllCompany();
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return null;
         }
     }
@@ -138,7 +138,7 @@ public class HotelStaffController {
         try {
             return orderBL.getByHotel(hotelVO.id);
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return null;
         }
     }
@@ -147,7 +147,7 @@ public class HotelStaffController {
         try {
             return orderBL.checkin(orderId);
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return new ResultMessage(ResultMessage.RESULT_NET_ERROR);
         }
     }
@@ -156,7 +156,7 @@ public class HotelStaffController {
         try {
             return orderBL.checkout(orderId);
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return new ResultMessage(ResultMessage.RESULT_NET_ERROR);
         }
     }

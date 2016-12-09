@@ -30,7 +30,7 @@ public class HotelPromotionBL implements HotelPromotionBLService {
             ArrayList<HotelPromotionPO> poarr = hotelPromotionDataService.get(hotelId);
             for(HotelPromotionPO po: poarr) voarr.add(HotelPromotionBL.toVO(po));
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
         }
         return voarr;
     }
@@ -41,7 +41,7 @@ public class HotelPromotionBL implements HotelPromotionBLService {
         try {
             hotelPromotionDataService.insert(po);
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return new ResultMessage(ResultMessage.RESULT_DB_ERROR);
         }
         return new ResultMessage(ResultMessage.RESULT_SUCCESS);
@@ -54,7 +54,7 @@ public class HotelPromotionBL implements HotelPromotionBLService {
             hotelPromotionDataService.delete(po);
             return new ResultMessage(ResultMessage.RESULT_SUCCESS);
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return new ResultMessage(ResultMessage.RESULT_DB_ERROR);
         }
     }
@@ -66,7 +66,7 @@ public class HotelPromotionBL implements HotelPromotionBLService {
             hotelPromotionDataService.update(po);
             return new ResultMessage(ResultMessage.RESULT_SUCCESS);
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return new ResultMessage(ResultMessage.RESULT_DB_ERROR);
         }
     }

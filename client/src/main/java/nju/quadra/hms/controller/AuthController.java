@@ -28,7 +28,7 @@ public class AuthController {
             }
             return loginResult;
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return new ResultMessage(ResultMessage.RESULT_NET_ERROR);
         }
     }
@@ -37,7 +37,7 @@ public class AuthController {
         try {
             return remote.invoke(ResultMessage.class, "register", vo);
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return new ResultMessage(ResultMessage.RESULT_NET_ERROR);
         }
     }

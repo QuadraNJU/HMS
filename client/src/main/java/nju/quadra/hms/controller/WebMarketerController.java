@@ -27,7 +27,7 @@ public class WebMarketerController {
         try {
             return creditBL.topup(username, amount);
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return new ResultMessage(ResultMessage.RESULT_NET_ERROR);
         }
     }
@@ -36,7 +36,7 @@ public class WebMarketerController {
         try {
             return hotelBL.getAllArea();
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return null;
         }
     }
@@ -45,7 +45,7 @@ public class WebMarketerController {
         try {
             return websitePromotionBL.get();
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return null;
         }
     }
@@ -54,7 +54,7 @@ public class WebMarketerController {
         try {
             return websitePromotionBL.add(vo);
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return new ResultMessage(ResultMessage.RESULT_NET_ERROR);
         }
     }
@@ -63,7 +63,7 @@ public class WebMarketerController {
         try {
             return websitePromotionBL.modify(vo);
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return new ResultMessage(ResultMessage.RESULT_NET_ERROR);
         }
     }
@@ -72,7 +72,7 @@ public class WebMarketerController {
         try {
             return websitePromotionBL.delete(id);
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return new ResultMessage(ResultMessage.RESULT_NET_ERROR);
         }
     }
@@ -84,7 +84,7 @@ public class WebMarketerController {
             orders.addAll(orderBL.getByState(OrderState.DELAYED));
             return orders;
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return null;
         }
     }
@@ -93,7 +93,7 @@ public class WebMarketerController {
         try {
             return orderBL.undoDelayed(orderId, returnAllCredit);
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return new ResultMessage(ResultMessage.RESULT_NET_ERROR);
         }
     }

@@ -11,7 +11,7 @@ class ServerRunner {
         try {
             httpService.start();
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
         }
     }
 }

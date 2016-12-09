@@ -81,12 +81,12 @@ class OrderSearchItem extends Parent {
     }
 
     @FXML
-    public void onCommentAction() throws IOException {
+    public void onCommentAction() {
         parent.loadCommentView(order);
     }
 
     @FXML
-    public void onUndoAction() throws IOException {
+    public void onUndoAction() {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("确认预订");
         alert.setHeaderText(null);

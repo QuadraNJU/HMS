@@ -25,7 +25,7 @@ public class WebmasterController {
         try {
             return userBL.getAll();
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return null;
         }
     }
@@ -34,7 +34,7 @@ public class WebmasterController {
         try {
             return userBL.add(vo);
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return new ResultMessage(ResultMessage.RESULT_NET_ERROR);
         }
     }
@@ -43,7 +43,7 @@ public class WebmasterController {
         try {
             return userBL.modify(vo);
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return new ResultMessage(ResultMessage.RESULT_NET_ERROR);
         }
     }
@@ -52,7 +52,7 @@ public class WebmasterController {
         try {
             return userBL.delete(username);
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return new ResultMessage(ResultMessage.RESULT_NET_ERROR);
         }
     }
@@ -61,7 +61,7 @@ public class WebmasterController {
         try {
             return customerBL.getMemberInfo(username);
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return null;
         }
     }
@@ -70,7 +70,7 @@ public class WebmasterController {
         try {
             return customerBL.modifyMemberInfo(vo);
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return new ResultMessage(ResultMessage.RESULT_NET_ERROR);
         }
     }
@@ -79,7 +79,7 @@ public class WebmasterController {
         try {
             return userBL.get(username);
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return null;
         }
     }
@@ -88,7 +88,7 @@ public class WebmasterController {
         try {
             return hotelBL.getAllArea();
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return null;
         }
     }
@@ -97,7 +97,7 @@ public class WebmasterController {
         try {
             return hotelBL.getByArea(areaId);
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return null;
         }
     }
@@ -106,7 +106,7 @@ public class WebmasterController {
         try {
             return hotelBL.getByStaff(username);
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return null;
         }
     }
@@ -115,7 +115,7 @@ public class WebmasterController {
         try {
             return hotelBL.add(vo);
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return new ResultMessage(ResultMessage.RESULT_NET_ERROR);
         }
     }
@@ -124,7 +124,7 @@ public class WebmasterController {
         try {
             return hotelBL.modify(vo);
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return new ResultMessage(ResultMessage.RESULT_NET_ERROR);
         }
     }
@@ -133,7 +133,7 @@ public class WebmasterController {
         try {
             return hotelBL.delete(hotelId);
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return new ResultMessage(ResultMessage.RESULT_NET_ERROR);
         }
     }

@@ -70,7 +70,7 @@ class UserView extends Parent {
     }
 
     @FXML
-    protected void onDeleteAction() throws IOException {
+    protected void onDeleteAction() {
         UserProperty selected = tableUserInfo.getSelectionModel().getSelectedItem();
         if (selected != null) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);

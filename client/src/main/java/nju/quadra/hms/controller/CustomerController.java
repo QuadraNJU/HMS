@@ -22,7 +22,7 @@ public class CustomerController {
         try {
             return userBL.get(username);
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return null;
         }
     }
@@ -31,7 +31,7 @@ public class CustomerController {
         try {
             return userBL.modifyBasicInfo(vo);
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return new ResultMessage(ResultMessage.RESULT_NET_ERROR);
         }
     }
@@ -48,7 +48,7 @@ public class CustomerController {
         try {
             return customerBL.enroll(vo);
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return new ResultMessage(ResultMessage.RESULT_NET_ERROR);
         }
     }
@@ -57,7 +57,7 @@ public class CustomerController {
         try {
             return creditBL.get(username);
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return null;
         }
     }
@@ -66,7 +66,7 @@ public class CustomerController {
         try {
             return hotelBL.getAllArea();
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return null;
         }
     }
@@ -75,7 +75,7 @@ public class CustomerController {
         try {
             return hotelBL.search(areaId, username);
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return null;
         }
     }
@@ -84,7 +84,7 @@ public class CustomerController {
         try {
             return orderBL.getPrice(vo);
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return new PriceVO("发生网络通信错误，请稍后重试");
         }
     }
@@ -93,7 +93,7 @@ public class CustomerController {
         try {
             return orderBL.add(vo);
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return new ResultMessage(ResultMessage.RESULT_NET_ERROR);
         }
     }
@@ -102,7 +102,7 @@ public class CustomerController {
         try {
             return orderBL.getByCustomer(username);
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return null;
         }
     }
@@ -111,7 +111,7 @@ public class CustomerController {
         try {
             return orderBL.undoUnfinished(orderId);
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return new ResultMessage(ResultMessage.RESULT_NET_ERROR);
         }
     }
@@ -120,7 +120,7 @@ public class CustomerController {
         try {
             return orderBL.addRank(vo);
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return new ResultMessage(ResultMessage.RESULT_NET_ERROR);
         }
     }

@@ -37,7 +37,7 @@ class CreditTopupView extends Parent {
             username = editUsername.getText();
             amount = Integer.parseInt(editAmount.getText());
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             Dialogs.showError("数值格式不正确，请重新填写");
             return;
         }

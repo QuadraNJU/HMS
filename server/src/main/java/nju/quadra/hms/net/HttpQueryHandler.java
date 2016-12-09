@@ -56,7 +56,7 @@ class HttpQueryHandler implements HttpHandler {
                 Object returnValue = method.invoke(bl.newInstance(), params);
                 result = new Gson().toJson(returnValue);
             } catch (Exception e) {
-                e.printStackTrace();
+                // e.printStackTrace();
                 result = "Server exception: " + e.getClass().getSimpleName();
             }
         }

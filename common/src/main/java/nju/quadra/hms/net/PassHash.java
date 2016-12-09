@@ -18,7 +18,7 @@ public class PassHash {
         try {
             digest = MessageDigest.getInstance("SHA-256");
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return "";
         }
         // get bytes from original string
@@ -26,7 +26,7 @@ public class PassHash {
         try {
             bytes = digest.digest(original.getBytes("UTF-8"));
         } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return "";
         }
         // convert bytes to hex string

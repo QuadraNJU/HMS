@@ -21,7 +21,7 @@ class CreditRecordController {
         try {
             return creditRecordBL.get(username);
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return null;
         }
     }
@@ -30,7 +30,7 @@ class CreditRecordController {
         try {
             return creditRecordBL.add(vo);
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             return null;
         }
     }

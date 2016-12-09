@@ -27,7 +27,7 @@ public class HttpRemoteTest {
             assertNotNull(result);
             assertEquals(ResultMessage.RESULT_GENERAL_ERROR, result.result);
         } catch (IOException e) {
-            // e.printStackTrace();
+            // // e.printStackTrace();
             System.out.println("Server not running, skipping this test");
         }
     }
