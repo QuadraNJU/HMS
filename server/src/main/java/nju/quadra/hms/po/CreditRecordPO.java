@@ -3,7 +3,6 @@ package nju.quadra.hms.po;
 import nju.quadra.hms.model.CreditAction;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 /**
  * Created by adn55 on 16/10/15.

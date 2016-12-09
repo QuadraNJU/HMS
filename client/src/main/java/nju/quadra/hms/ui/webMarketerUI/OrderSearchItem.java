@@ -7,7 +7,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
-import nju.quadra.hms.controller.HotelStaffController;
 import nju.quadra.hms.controller.WebMarketerController;
 import nju.quadra.hms.model.OrderState;
 import nju.quadra.hms.model.ResultMessage;

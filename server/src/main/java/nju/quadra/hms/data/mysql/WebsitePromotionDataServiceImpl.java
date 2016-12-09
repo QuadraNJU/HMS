@@ -4,7 +4,6 @@ import nju.quadra.hms.dataservice.WebsitePromotionDataService;
 import nju.quadra.hms.model.WebsitePromotionType;
 import nju.quadra.hms.po.WebsitePromotionPO;
 
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Types;

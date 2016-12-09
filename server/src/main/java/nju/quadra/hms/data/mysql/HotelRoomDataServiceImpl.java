@@ -3,16 +3,10 @@ package nju.quadra.hms.data.mysql;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Types;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import nju.quadra.hms.dataservice.HotelRoomDataService;
-import nju.quadra.hms.model.MemberType;
-import nju.quadra.hms.model.UserType;
-import nju.quadra.hms.po.HotelPO;
 import nju.quadra.hms.po.HotelRoomPO;
-import nju.quadra.hms.po.UserPO;
-import nju.quadra.hms.vo.HotelRoomVO;
 
 public class HotelRoomDataServiceImpl implements HotelRoomDataService {
 

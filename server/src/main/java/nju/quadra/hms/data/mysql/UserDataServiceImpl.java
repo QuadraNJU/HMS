@@ -5,7 +5,6 @@ import nju.quadra.hms.model.MemberType;
 import nju.quadra.hms.model.UserType;
 import nju.quadra.hms.po.UserPO;
 
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Types;

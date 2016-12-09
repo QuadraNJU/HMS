@@ -6,11 +6,8 @@ import java.sql.Types;
 import java.util.ArrayList;
 
 import nju.quadra.hms.dataservice.HotelDataService;
-import nju.quadra.hms.model.MemberType;
-import nju.quadra.hms.model.UserType;
 import nju.quadra.hms.po.AreaPO;
 import nju.quadra.hms.po.HotelPO;
-import nju.quadra.hms.po.UserPO;
 
 public class HotelDataServiceImpl implements HotelDataService {
 

@@ -2,13 +2,10 @@ package nju.quadra.hms.data.mysql;
 
 import nju.quadra.hms.dataservice.CreditDataService;
 import nju.quadra.hms.model.CreditAction;
-import nju.quadra.hms.model.ResultMessage;
 import nju.quadra.hms.po.CreditRecordPO;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Timestamp;
-import java.sql.Types;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;

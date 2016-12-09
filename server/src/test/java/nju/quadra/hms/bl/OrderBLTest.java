@@ -1,22 +1,7 @@
 package nju.quadra.hms.bl;
 
-import nju.quadra.hms.blservice.OrderBLService;
-import nju.quadra.hms.blservice.HotelPromotionBLService;
-import nju.quadra.hms.blservice.WebsitePromotionBLService;
-import nju.quadra.hms.data.mysql.OrderDataServiceImpl;
-import nju.quadra.hms.dataservice.OrderDataService;
-import nju.quadra.hms.model.OrderState;
-import nju.quadra.hms.po.OrderPO;
-import nju.quadra.hms.vo.*;
-import org.junit.Before;
 import org.junit.FixMethodOrder;
-import org.junit.Test;
 import org.junit.runners.MethodSorters;
-
-import java.time.LocalDate;
-import java.util.ArrayList;
-
-import static org.junit.Assert.*;
 
 
 /**

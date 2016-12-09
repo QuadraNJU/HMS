@@ -1,9 +1,6 @@
 package nju.quadra.hms.vo;
 
-import nju.quadra.hms.model.MemberType;
 import nju.quadra.hms.model.UserType;
-
-import java.util.Date;
 
 
 /**

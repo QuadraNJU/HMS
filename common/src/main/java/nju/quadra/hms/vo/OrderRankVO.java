@@ -1,6 +1,5 @@
 package nju.quadra.hms.vo;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 

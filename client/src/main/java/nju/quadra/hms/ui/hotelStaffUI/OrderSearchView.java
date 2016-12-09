@@ -6,17 +6,12 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextArea;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import nju.quadra.hms.controller.CustomerController;
 import nju.quadra.hms.controller.HotelStaffController;
 import nju.quadra.hms.model.OrderState;
-import nju.quadra.hms.model.ResultMessage;
 import nju.quadra.hms.net.HttpClient;
-import nju.quadra.hms.ui.common.Dialogs;
 import nju.quadra.hms.vo.OrderDetailVO;
-import nju.quadra.hms.vo.OrderRankVO;
 
 import java.io.IOException;
 import java.time.LocalDate;

@@ -8,14 +8,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import nju.quadra.hms.controller.CustomerController;
-import nju.quadra.hms.controller.HotelController;
-import nju.quadra.hms.controller.HotelRoomController;
 import nju.quadra.hms.model.OrderState;
 import nju.quadra.hms.model.ResultMessage;
 import nju.quadra.hms.ui.common.Dialogs;
 import nju.quadra.hms.ui.common.ui.OrderDetailView;
-import nju.quadra.hms.vo.HotelRoomVO;
-import nju.quadra.hms.vo.HotelVO;
 import nju.quadra.hms.vo.OrderDetailVO;
 
 import java.io.IOException;

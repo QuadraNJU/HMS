@@ -1,7 +1,5 @@
 package nju.quadra.hms.util;
 
-import com.google.gson.Gson;
-
 /**
  * Created by adn55 on 2016/11/25.
  */

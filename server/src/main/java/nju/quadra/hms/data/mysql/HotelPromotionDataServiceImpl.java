@@ -1,6 +1,5 @@
 package nju.quadra.hms.data.mysql;
 
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Types;

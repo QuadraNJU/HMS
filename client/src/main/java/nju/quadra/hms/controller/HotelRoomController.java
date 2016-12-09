@@ -1,12 +1,9 @@
 package nju.quadra.hms.controller;
 
-import com.google.gson.reflect.TypeToken;
 import nju.quadra.hms.blservice.HotelRoomBLService;
 import nju.quadra.hms.model.ResultMessage;
 import nju.quadra.hms.net.BLServiceFactory;
-import nju.quadra.hms.net.HttpRemote;
 import nju.quadra.hms.vo.HotelRoomVO;
-import nju.quadra.hms.vo.HotelVO;
 
 import java.util.ArrayList;
 

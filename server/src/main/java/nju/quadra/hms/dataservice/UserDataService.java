@@ -1,6 +1,5 @@
 package nju.quadra.hms.dataservice;
 
-import nju.quadra.hms.model.ResultMessage;
 import nju.quadra.hms.po.UserPO;
 
 import java.util.ArrayList;

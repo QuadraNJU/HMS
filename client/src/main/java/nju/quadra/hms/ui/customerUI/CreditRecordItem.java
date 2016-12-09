@@ -7,7 +7,6 @@ import javafx.scene.control.Label;
 import nju.quadra.hms.vo.CreditRecordVO;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 
 /**

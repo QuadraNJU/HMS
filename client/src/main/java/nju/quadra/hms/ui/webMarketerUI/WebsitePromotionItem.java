@@ -6,13 +6,9 @@ import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
-import nju.quadra.hms.controller.HotelStaffController;
 import nju.quadra.hms.controller.WebMarketerController;
 import nju.quadra.hms.model.ResultMessage;
 import nju.quadra.hms.ui.common.Dialogs;
-import nju.quadra.hms.ui.hotelStaffUI.HotelPromotionEditView;
-import nju.quadra.hms.ui.hotelStaffUI.HotelPromotionView;
-import nju.quadra.hms.vo.HotelPromotionVO;
 import nju.quadra.hms.vo.WebsitePromotionVO;
 
 import java.io.IOException;

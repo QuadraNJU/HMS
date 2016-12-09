@@ -5,7 +5,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.input.MouseEvent;
-import nju.quadra.hms.ui.customerUI.MemberEnrollView;
 import nju.quadra.hms.ui.mainUI.MainView;
 
 import java.io.IOException;

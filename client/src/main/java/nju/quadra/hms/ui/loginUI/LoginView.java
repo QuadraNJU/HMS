@@ -1,6 +1,5 @@
 package nju.quadra.hms.ui.loginUI;
 
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -12,7 +11,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import nju.quadra.hms.controller.AuthController;
-import nju.quadra.hms.controller.UserController;
 import nju.quadra.hms.model.ResultMessage;
 import nju.quadra.hms.ui.common.Dialogs;
 import nju.quadra.hms.ui.mainUI.MainView;

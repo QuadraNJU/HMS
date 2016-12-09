@@ -1,8 +1,5 @@
 package nju.quadra.hms.model;
 
-import java.util.Arrays;
-import java.util.List;
-
 /**
  * Created by adn55 on 16/10/14.
  */

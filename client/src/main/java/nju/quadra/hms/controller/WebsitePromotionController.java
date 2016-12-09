@@ -1,9 +1,6 @@
 package nju.quadra.hms.controller;
 
-import com.google.gson.reflect.TypeToken;
 import nju.quadra.hms.model.ResultMessage;
-import nju.quadra.hms.net.HttpRemote;
-import nju.quadra.hms.vo.HotelPromotionVO;
 import nju.quadra.hms.vo.WebsitePromotionVO;
 
 import java.util.ArrayList;

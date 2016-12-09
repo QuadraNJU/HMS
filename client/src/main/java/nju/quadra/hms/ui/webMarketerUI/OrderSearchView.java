@@ -8,10 +8,8 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import nju.quadra.hms.controller.HotelStaffController;
 import nju.quadra.hms.controller.WebMarketerController;
 import nju.quadra.hms.model.OrderState;
-import nju.quadra.hms.net.HttpClient;
 import nju.quadra.hms.vo.OrderDetailVO;
 
 import java.io.IOException;
