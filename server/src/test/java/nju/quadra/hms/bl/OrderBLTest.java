@@ -8,7 +8,7 @@ import org.junit.runners.MethodSorters;
  * Created by admin on 2016/11/6.
  */
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class OrderBLTest {
+class OrderBLTest {
 //    OrderBLService orderBL;
 //    OrderDataService orderDataService;
 //    HotelPromotionBLService hotelPromotionBL;

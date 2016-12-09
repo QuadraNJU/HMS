@@ -20,7 +20,7 @@ import static org.junit.Assert.*;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class HotelPromotionBLTest {
-    HotelPromotionBLService hotelPromotionBL;
+    private HotelPromotionBLService hotelPromotionBL;
     @Before
     public void init() {
         hotelPromotionBL = new HotelPromotionBL();

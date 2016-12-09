@@ -14,7 +14,7 @@ import nju.quadra.hms.po.HotelPO;
 import nju.quadra.hms.vo.*;
 
 public class HotelBL implements HotelBLService {
-    HotelDataService hotelDataService = new HotelDataServiceImpl();
+    private HotelDataService hotelDataService = new HotelDataServiceImpl();
 
     @Override
     public ArrayList<HotelSearchVO> search(int areaId, String username) {
@@ -154,12 +154,12 @@ public class HotelBL implements HotelBLService {
         }
     }
 
-    public static HotelVO toVO(HotelPO po) {
+    private static HotelVO toVO(HotelPO po) {
         return new HotelVO(po.getId(), po.getName(), po.getAreaId(),
                 po.getAddress(), po.getDescription(), po.getFacilities(), po.getStar(), po.getStaff());
     }
 
-    public static HotelPO toPO(HotelVO vo) {
+    private static HotelPO toPO(HotelVO vo) {
         return new HotelPO(vo.id, vo.name, vo.areaId, vo.address, vo.description, vo.facilities, vo.star, vo.staff);
     }
 

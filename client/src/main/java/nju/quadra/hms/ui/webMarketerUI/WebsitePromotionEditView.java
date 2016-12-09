@@ -22,7 +22,7 @@ import java.util.HashMap;
 /**
  * Created by Rebecca on 2016/12/5.
  */
-public class WebsitePromotionEditView extends Parent {
+class WebsitePromotionEditView extends Parent {
 
     private WebMarketerController controller;
     private WebsitePromotionVO websitePromotionVO;
@@ -30,24 +30,50 @@ public class WebsitePromotionEditView extends Parent {
     private ArrayList<AreaVO> areas;
 
     @FXML
-    TextField editName, editPromotion, editLevelCredit, editLevelPromo;
+    private
+    TextField editName;
     @FXML
+    private
+    TextField editPromotion;
+    @FXML
+    private
+    TextField editLevelCredit;
+    @FXML
+    private TextField editLevelPromo;
+    @FXML
+    private
     ChoiceBox<WebsitePromotionType> choiceType;
     @FXML
-    DatePicker dateStart, dateEnd;
+    private
+    DatePicker dateStart;
     @FXML
+    private DatePicker dateEnd;
+    @FXML
+    private
     Button btnSave;
     @FXML
-    Pane paneAreaLevel, paneLevel;
+    private
+    Pane paneAreaLevel;
     @FXML
-    RadioButton radioAllArea, radioSelectArea;
+    private Pane paneLevel;
     @FXML
+    private
+    RadioButton radioAllArea;
+    @FXML
+    private RadioButton radioSelectArea;
+    @FXML
+    private
     HBox hBox;
     @FXML
-    ChoiceBox choiceCity, choiceArea;
+    private
+    ChoiceBox choiceCity;
     @FXML
+    private ChoiceBox choiceArea;
+    @FXML
+    private
     Label labelLevelNum;
     @FXML
+    private
     TableView<UserLevel> tableLevel;
 
     public WebsitePromotionEditView(WebsitePromotionVO vo, WebMarketerController controller, boolean readOnly, SuccessHandler successHandler) throws IOException {
@@ -239,7 +265,7 @@ public class WebsitePromotionEditView extends Parent {
     }
 
     @FXML
-    protected void onCancelAction() {
+    private void onCancelAction() {
         getChildren().clear();
     }
 

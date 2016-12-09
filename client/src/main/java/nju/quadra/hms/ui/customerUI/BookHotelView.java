@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
 /**
  * Created by admin on 2016/12/5.
  */
-public class BookHotelView extends Parent {
+class BookHotelView extends Parent {
 
     private CustomerController controller = new CustomerController();
     private HotelSearchVO hotelSearchVO;

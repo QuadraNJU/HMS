@@ -14,7 +14,7 @@ import java.util.ArrayList;
 /**
  * Created by adn55 on 2016/11/30.
  */
-public class CreditRecordView extends Parent {
+class CreditRecordView extends Parent {
 
     private CustomerController controller = new CustomerController();
 

@@ -10,7 +10,7 @@ import java.util.ArrayList;
 /**
  * Created by RaUkonn on 2016/11/30.
  */
-public class HotelRoomController {
+class HotelRoomController {
     private HotelRoomBLService hotelRoomBL;
 
     public HotelRoomController() {

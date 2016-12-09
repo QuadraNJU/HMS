@@ -13,7 +13,7 @@ import nju.quadra.hms.util.ClientConfigUtil;
 /**
  * Created by adn55 on 2016/11/25.
  */
-public class NetworkSettingsView extends Stage {
+class NetworkSettingsView extends Stage {
 
     private Scene scene;
 
@@ -32,6 +32,7 @@ public class NetworkSettingsView extends Stage {
     }
 
     @FXML
+    private
     TextField textServer;
 
     /**

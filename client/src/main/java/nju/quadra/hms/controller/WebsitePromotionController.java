@@ -8,10 +8,10 @@ import java.util.ArrayList;
 /**
  * Created by RaUkonn on 2016/11/30.
  */
-public class WebsitePromotionController {
+class WebsitePromotionController {
     private WebsitePromotionController websitePromotionController;
 
-    public ArrayList<WebsitePromotionVO> get(int hotelId) {
+    private ArrayList<WebsitePromotionVO> get(int hotelId) {
         try {
             return websitePromotionController.get(hotelId);
         } catch (Exception e) {
@@ -20,7 +20,7 @@ public class WebsitePromotionController {
         }
     }
 
-    public ResultMessage add(WebsitePromotionVO vo) {
+    private ResultMessage add(WebsitePromotionVO vo) {
         try {
             return websitePromotionController.add(vo);
         } catch (Exception e) {
@@ -29,7 +29,7 @@ public class WebsitePromotionController {
         }
     }
 
-    public ResultMessage delete(int promotionId) {
+    private ResultMessage delete(int promotionId) {
         try {
             return websitePromotionController.delete(promotionId);
         } catch (Exception e) {
@@ -38,7 +38,7 @@ public class WebsitePromotionController {
         }
     }
 
-    public ResultMessage modify(WebsitePromotionVO vo) {
+    private ResultMessage modify(WebsitePromotionVO vo) {
         try {
             return websitePromotionController.modify(vo);
         } catch (Exception e) {

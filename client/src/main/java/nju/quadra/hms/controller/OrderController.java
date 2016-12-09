@@ -8,7 +8,7 @@ import nju.quadra.hms.vo.*;
 /**
  * Created by adn55 on 2016/11/23.
  */
-public class OrderController {
+class OrderController {
 
     private OrderBLService orderBL = BLServiceFactory.getOrderBLService();
 

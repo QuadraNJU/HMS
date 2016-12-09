@@ -18,7 +18,7 @@ import java.io.IOException;
 /**
  * Created by adn55 on 2016/12/1.
  */
-public class UserEditView extends Parent {
+class UserEditView extends Parent {
 
     private WebmasterController controller = new WebmasterController();
     private UserVO userVO;
@@ -133,7 +133,7 @@ public class UserEditView extends Parent {
     }
 
     @FXML
-    protected void onCancelAction() {
+    private void onCancelAction() {
         this.getChildren().clear();
     }
 

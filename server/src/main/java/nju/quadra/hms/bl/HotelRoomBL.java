@@ -10,7 +10,7 @@ import nju.quadra.hms.po.HotelRoomPO;
 import nju.quadra.hms.vo.HotelRoomVO;
 
 public class HotelRoomBL implements HotelRoomBLService{
-    HotelRoomDataService hotelRoomDataService;
+    private HotelRoomDataService hotelRoomDataService;
     
     public HotelRoomBL() {
 		hotelRoomDataService = new HotelRoomDataServiceImpl();
@@ -75,11 +75,11 @@ public class HotelRoomBL implements HotelRoomBLService{
 		}
 	}
 
-	public static HotelRoomVO toVO(HotelRoomPO po) {
+	private static HotelRoomVO toVO(HotelRoomPO po) {
 		return new HotelRoomVO(po.getId(), po.getHotelId(), po.getName(), po.getTotal(), po.getPrice());
 	}
 	
-	public static HotelRoomPO toPO(HotelRoomVO vo) {
+	private static HotelRoomPO toPO(HotelRoomVO vo) {
 		return new HotelRoomPO(vo.id, vo.hotelId, vo.name, vo.total, vo.price);
 	}
 }

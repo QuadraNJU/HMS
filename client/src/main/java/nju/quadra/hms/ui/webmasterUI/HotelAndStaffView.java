@@ -17,7 +17,7 @@ import java.util.ArrayList;
 /**
  * Created by adn55 on 2016/11/30.
  */
-public class HotelAndStaffView extends Parent {
+class HotelAndStaffView extends Parent {
 
     private WebmasterController controller = new WebmasterController();
     private ArrayList<AreaVO> areas;
@@ -58,7 +58,7 @@ public class HotelAndStaffView extends Parent {
     }
 
     @FXML
-    protected void onSearchAction() throws IOException {
+    void onSearchAction() throws IOException {
         for (AreaVO areaVO : areas) {
             if (areaVO.areaName.equals(choiceArea.getValue()) && areaVO.cityName.equals(choiceCity.getValue())) {
                 ArrayList<HotelVO> hotelList = controller.getHotelsByArea(areaVO.id);

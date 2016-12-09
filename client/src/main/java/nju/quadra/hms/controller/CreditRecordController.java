@@ -10,7 +10,7 @@ import java.util.ArrayList;
 /**
  * Created by RaUkonn on 2016/11/30.
  */
-public class CreditRecordController {
+class CreditRecordController {
     private CreditRecordBLService creditRecordBL;
 
     public CreditRecordController() {

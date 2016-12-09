@@ -17,7 +17,7 @@ import java.util.ArrayList;
  */
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class HotelRoomBLTest {
-    HotelRoomBLService hotelRoomBLService;
+    private HotelRoomBLService hotelRoomBLService;
 
     @Before
     public void init() {

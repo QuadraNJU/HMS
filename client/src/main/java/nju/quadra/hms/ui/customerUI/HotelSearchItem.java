@@ -13,13 +13,16 @@ import java.io.IOException;
 /**
  * Created by adn55 on 2016/11/30.
  */
-public class HotelSearchItem extends Parent {
+class HotelSearchItem extends Parent {
 
     private HotelSearchView parent;
     private HotelSearchVO vo;
 
     @FXML
-    Label labelName, labelInfo;
+    private
+    Label labelName;
+    @FXML
+    private Label labelInfo;
     @FXML
     Button btnDetail, btnOrder;
 

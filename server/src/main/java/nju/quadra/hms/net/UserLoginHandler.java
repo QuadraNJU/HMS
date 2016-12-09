@@ -19,7 +19,7 @@ import java.io.OutputStream;
 /**
  * Created by adn55 on 2016/11/29.
  */
-public class UserLoginHandler implements HttpHandler {
+class UserLoginHandler implements HttpHandler {
 
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {

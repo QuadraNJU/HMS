@@ -26,7 +26,7 @@ import java.util.stream.Stream;
 /**
  * Created by RaUkonn on 2016/12/7.
  */
-public class OrderSearchView extends Parent {
+class OrderSearchView extends Parent {
 
     @FXML
     private Pane pane;
@@ -104,7 +104,7 @@ public class OrderSearchView extends Parent {
         pane.getChildren().add(node);
     }
 
-    protected void loadCommentView(OrderDetailVO vo) {
+    void loadCommentView(OrderDetailVO vo) {
         selectedOrder = vo;
         choiceStar.getSelectionModel().select(4);
         areaComment.clear();

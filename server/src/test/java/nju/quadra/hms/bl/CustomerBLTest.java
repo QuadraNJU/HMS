@@ -23,8 +23,8 @@ import static org.junit.Assert.*;
  */
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class CustomerBLTest {
-    CustomerBLService customerBLService;
-    UserBLService userBLService;
+    private CustomerBLService customerBLService;
+    private UserBLService userBLService;
 
     @Before
     public void init() {

@@ -20,7 +20,7 @@ import java.util.ArrayList;
 /**
  * Created by adn55 on 2016/11/29.
  */
-public class HotelInfoView extends Parent {
+class HotelInfoView extends Parent {
 
     private HotelStaffController controller = new HotelStaffController(HttpClient.session.username);
 
@@ -118,7 +118,7 @@ public class HotelInfoView extends Parent {
     }
 
     @FXML
-    protected void onCancelAction() {
+    private void onCancelAction() {
         editName.setEditable(false);
         editAddress.setEditable(false);
         editFacilities.setEditable(false);

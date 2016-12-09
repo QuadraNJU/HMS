@@ -318,13 +318,13 @@ public class OrderBL implements OrderBLService {
         return new OrderVO(po.getId(), po.getUsername(), po.getHotelId(), po.getStartDate(), po.getEndDate(), po.getRoomId(), po.getRoomCount(), po.getPersonCount(), new Gson().fromJson(po.getPersons(), new TypeToken<ArrayList<String>>(){}.getType()), po.isHasChildren(), po.getPrice(), po.getState(), po.getRank(), po.getComment());
     }
 
-    public static OrderDetailVO toDetailVO(OrderPO po) {
+    private static OrderDetailVO toDetailVO(OrderPO po) {
         HotelVO hotel = new HotelBL().getDetail(po.getHotelId());
         HotelRoomVO room = new HotelRoomBL().getById(po.getRoomId());
         return new OrderDetailVO(po.getId(), po.getUsername(), hotel, po.getStartDate(), po.getEndDate(), room, po.getRoomCount(), new Gson().fromJson(po.getPersons(), new TypeToken<ArrayList<String>>(){}.getType()), po.isHasChildren(), po.getPrice(), po.getState(), po.getRank(), po.getComment());
     }
 
-    public static OrderPO toPO(OrderVO vo) {
+    private static OrderPO toPO(OrderVO vo) {
         return new OrderPO(vo.id, vo.username, vo.hotelId, vo.startDate, vo.endDate, vo.roomId, vo.roomCount, vo.personCount, new Gson().toJson(vo.persons), vo.hasChildren, vo.price, vo.state, vo.rank, vo.comment);
     }
 

@@ -13,7 +13,7 @@ import java.io.IOException;
 /**
  * Created by adn55 on 2016/12/4.
  */
-public class CreditTopupView extends Parent {
+class CreditTopupView extends Parent {
 
     private WebMarketerController controller = new WebMarketerController();
 
@@ -24,7 +24,10 @@ public class CreditTopupView extends Parent {
     }
 
     @FXML
-    TextField editUsername, editAmount;
+    private
+    TextField editUsername;
+    @FXML
+    private TextField editAmount;
 
     @FXML
     protected void onSubmitAction() {

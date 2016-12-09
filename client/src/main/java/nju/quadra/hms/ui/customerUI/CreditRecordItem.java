@@ -12,10 +12,19 @@ import java.time.format.DateTimeFormatter;
 /**
  * Created by adn55 on 2016/11/30.
  */
-public class CreditRecordItem extends Parent {
+class CreditRecordItem extends Parent {
 
     @FXML
-    Label labelTime, labelAction, labelDiff, labelResult;
+    private
+    Label labelTime;
+    @FXML
+    private
+    Label labelAction;
+    @FXML
+    private
+    Label labelDiff;
+    @FXML
+    private Label labelResult;
 
     public CreditRecordItem(CreditRecordVO vo) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("credititem.fxml"));

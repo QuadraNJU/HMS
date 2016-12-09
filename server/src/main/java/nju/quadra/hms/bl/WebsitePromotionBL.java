@@ -16,7 +16,7 @@ import java.util.HashMap;
  * Created by RaUkonn on 2016/11/21.
  */
 public class WebsitePromotionBL implements WebsitePromotionBLService {
-    WebsitePromotionDataService websitePromotionDataService;
+    private WebsitePromotionDataService websitePromotionDataService;
 
     public WebsitePromotionBL() {
         websitePromotionDataService = new WebsitePromotionDataServiceImpl();
@@ -71,11 +71,11 @@ public class WebsitePromotionBL implements WebsitePromotionBLService {
         }
     }
 
-    public static WebsitePromotionVO toVO(WebsitePromotionPO po) {
+    private static WebsitePromotionVO toVO(WebsitePromotionPO po) {
         return new WebsitePromotionVO(po.getId(), po.getName(), po.getType(), po.getStartTime(), po.getEndTime(), po.getPromotion(), po.getAreaId(), new Gson().fromJson(po.getMemberLevel(), new TypeToken<HashMap<Double, Double>>(){}.getType()));
     }
 
-    public static WebsitePromotionPO toPO(WebsitePromotionVO vo) {
+    private static WebsitePromotionPO toPO(WebsitePromotionVO vo) {
         return new WebsitePromotionPO(vo.id, vo.name, vo.type, vo.startTime, vo.endTime, vo.promotion, vo.areaId, new Gson().toJson(vo.memberLevel));
     }
 }

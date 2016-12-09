@@ -118,11 +118,11 @@ public class UserBL implements UserBLService {
         }
     }
 
-    public static UserVO toVO(UserPO po) {
+    private static UserVO toVO(UserPO po) {
         return new UserVO(po.getUsername(), po.getPassword(), po.getName(), po.getContact(), po.getType());
     }
 
-    public static UserPO toPO(UserVO vo) {
+    private static UserPO toPO(UserVO vo) {
         if (vo.type == UserType.CUSTOMER) {
             MemberVO memberVO = new CustomerBL().getMemberInfo(vo.username);
             if (memberVO != null) {

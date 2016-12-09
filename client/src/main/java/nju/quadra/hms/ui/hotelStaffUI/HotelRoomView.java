@@ -21,7 +21,7 @@ import java.util.Optional;
 /**
  * Created by adn55 on 2016/12/1.
  */
-public class HotelRoomView extends Parent {
+class HotelRoomView extends Parent {
 
     private HotelStaffController controller = new HotelStaffController(HttpClient.session.username);
     private ArrayList<HotelRoomVO> rooms;
@@ -39,6 +39,7 @@ public class HotelRoomView extends Parent {
     }
 
     @FXML
+    private
     Pane pane;
     @FXML
     private TableView<HotelRoomProperty> tableView;

@@ -20,7 +20,7 @@ import java.util.Optional;
 /**
  * Created by adn55 on 2016/11/30.
  */
-public class UserView extends Parent {
+class UserView extends Parent {
 
     private WebmasterController controller = new WebmasterController();
     private ArrayList<UserVO> userList;

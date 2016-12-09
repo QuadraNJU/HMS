@@ -21,7 +21,7 @@ import java.util.ArrayList;
 /**
  * Created by adn55 on 2016/11/29.
  */
-public class HotelAndStaffEditView extends Parent {
+class HotelAndStaffEditView extends Parent {
 
     private WebmasterController controller;
     private ArrayList<AreaVO> areas;
@@ -157,7 +157,7 @@ public class HotelAndStaffEditView extends Parent {
     }
 
     @FXML
-    protected void onCancelAction() {
+    private void onCancelAction() {
         getChildren().clear();
     }
 

@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class UserBLTest {
-    UserBLService userBL;
+    private UserBLService userBL;
 
     @Before
     public void init() {

@@ -14,7 +14,7 @@ import java.io.IOException;
 /**
  * Created by adn55 on 2016/12/1.
  */
-public class HotelRoomEditView extends Parent {
+class HotelRoomEditView extends Parent {
 
     private HotelStaffController controller;
     private HotelRoomVO hotelRoomVO;
@@ -83,7 +83,7 @@ public class HotelRoomEditView extends Parent {
     }
 
     @FXML
-    protected void onCancelAction() {
+    private void onCancelAction() {
         this.getChildren().clear();
     }
 

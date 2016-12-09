@@ -62,7 +62,7 @@ public class LoginView extends Stage {
      * 处理登录按钮事件
      */
     @FXML
-    protected void onLoginAction() throws IOException {
+    private void onLoginAction() throws IOException {
         String username = textUsername.getText().trim();
         String password = textPassword.getText();
         if (username.isEmpty() || password.isEmpty()) {

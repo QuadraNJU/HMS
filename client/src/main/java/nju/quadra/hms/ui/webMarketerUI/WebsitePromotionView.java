@@ -15,7 +15,7 @@ import java.util.ArrayList;
 /**
  * Created by Rebecca on 2016/12/5.
  */
-public class WebsitePromotionView extends Parent {
+class WebsitePromotionView extends Parent {
 
     private WebMarketerController controller = new WebMarketerController();
     private ArrayList<WebsitePromotionVO> promotions;

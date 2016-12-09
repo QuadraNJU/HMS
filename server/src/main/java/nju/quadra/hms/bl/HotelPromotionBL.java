@@ -17,7 +17,7 @@ import java.util.ArrayList;
  */
 
 public class HotelPromotionBL implements HotelPromotionBLService {
-    HotelPromotionDataService hotelPromotionDataService;
+    private HotelPromotionDataService hotelPromotionDataService;
 
     public HotelPromotionBL() {
         hotelPromotionDataService = new HotelPromotionDataServiceImpl();

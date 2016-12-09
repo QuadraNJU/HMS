@@ -7,7 +7,7 @@ import java.util.HashMap;
 /**
  * Created by adn55 on 2016/11/29.
  */
-public class SessionManager {
+class SessionManager {
 
     private static HashMap<String, LoginSession> sessions = new HashMap<>();
 

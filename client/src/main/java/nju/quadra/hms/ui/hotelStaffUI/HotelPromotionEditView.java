@@ -23,7 +23,7 @@ import java.util.Map;
 /**
  * Created by adn55 on 2016/12/2.
  */
-public class HotelPromotionEditView extends Parent {
+class HotelPromotionEditView extends Parent {
 
     private HotelStaffController controller;
     private HotelPromotionVO hotelPromotionVO;
@@ -32,18 +32,31 @@ public class HotelPromotionEditView extends Parent {
     private HashMap<String, ObservableValue<Boolean>> companySelection = new HashMap<>();
 
     @FXML
-    TextField editName, editPromotion;
+    private
+    TextField editName;
     @FXML
+    private TextField editPromotion;
+    @FXML
+    private
     ChoiceBox<HotelPromotionType> choiceType;
     @FXML
-    DatePicker dateStart, dateEnd;
+    private
+    DatePicker dateStart;
     @FXML
+    private DatePicker dateEnd;
+    @FXML
+    private
     Button btnSave;
     @FXML
-    Pane paneCompany, paneSelectCompany;
+    private
+    Pane paneCompany;
     @FXML
+    private Pane paneSelectCompany;
+    @FXML
+    private
     Label labelCompany;
     @FXML
+    private
     ListView<String> listCompany;
 
     public HotelPromotionEditView(HotelPromotionVO vo, HotelStaffController controller, boolean readOnly, SuccessHandler successHandler) throws IOException {
@@ -164,7 +177,7 @@ public class HotelPromotionEditView extends Parent {
     }
 
     @FXML
-    protected void onCancelAction() {
+    private void onCancelAction() {
         getChildren().clear();
     }
 

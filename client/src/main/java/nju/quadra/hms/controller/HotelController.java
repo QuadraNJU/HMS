@@ -11,7 +11,7 @@ import java.util.ArrayList;
 /**
  * Created by RaUkonn on 2016/11/30.
  */
-public class HotelController {
+class HotelController {
     private HotelBLService hotelBL = BLServiceFactory.getHotelBLService();
 
     public ArrayList<AreaVO> getAllArea() {

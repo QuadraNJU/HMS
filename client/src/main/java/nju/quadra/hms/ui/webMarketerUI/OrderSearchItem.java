@@ -20,16 +20,30 @@ import java.util.Optional;
 /**
  * Created by adn55 on 2016/11/30.
  */
-public class OrderSearchItem extends Parent {
+class OrderSearchItem extends Parent {
 
     private WebMarketerController controller;
     private OrderSearchView parent;
     private OrderDetailVO order;
 
     @FXML
-    Label labelTime, labelContent, labelPrice, labelPersonNumber, labelOrderState;
+    private
+    Label labelTime;
     @FXML
-    Button btnDetail, btnUndo;
+    private
+    Label labelContent;
+    @FXML
+    private
+    Label labelPrice;
+    @FXML
+    private
+    Label labelPersonNumber;
+    @FXML
+    private Label labelOrderState;
+    @FXML
+    Button btnDetail;
+    @FXML
+    private Button btnUndo;
 
 
     public OrderSearchItem(OrderSearchView parent, WebMarketerController controller, OrderDetailVO vo) throws IOException {

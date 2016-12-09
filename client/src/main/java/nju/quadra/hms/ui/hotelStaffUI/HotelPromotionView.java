@@ -16,7 +16,7 @@ import java.util.ArrayList;
 /**
  * Created by adn55 on 2016/12/1.
  */
-public class HotelPromotionView extends Parent {
+class HotelPromotionView extends Parent {
 
     private HotelStaffController controller = new HotelStaffController(HttpClient.session.username);
     private ArrayList<HotelPromotionVO> promotions;

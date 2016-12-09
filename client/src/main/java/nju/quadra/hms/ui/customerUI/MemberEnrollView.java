@@ -17,7 +17,7 @@ import java.io.IOException;
 /**
  * Created by adn55 on 2016/11/29.
  */
-public class MemberEnrollView extends Parent {
+class MemberEnrollView extends Parent {
 
     private CustomerController controller = new CustomerController();
 

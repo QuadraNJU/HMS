@@ -13,7 +13,7 @@ import java.lang.reflect.Parameter;
 /**
  * Created by adn55 on 2016/11/22.
  */
-public class HttpQueryHandler implements HttpHandler {
+class HttpQueryHandler implements HttpHandler {
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
         String[] paths = httpExchange.getRequestURI().getPath().split("/");

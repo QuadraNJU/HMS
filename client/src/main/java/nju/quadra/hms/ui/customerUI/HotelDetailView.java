@@ -16,7 +16,7 @@ import java.io.IOException;
 /**
  * Created by RaUkonn on 2016/12/5.
  */
-public class HotelDetailView extends Parent {
+class HotelDetailView extends Parent {
 
     private HotelSearchView parent;
     private CustomerController controller = new CustomerController();

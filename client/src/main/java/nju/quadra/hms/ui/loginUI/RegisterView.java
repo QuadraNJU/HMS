@@ -17,7 +17,7 @@ import nju.quadra.hms.vo.UserVO;
 /**
  * Created by adn55 on 2016/11/24.
  */
-public class RegisterView extends Stage {
+class RegisterView extends Stage {
 
     private Scene scene;
     private AuthController controller = new AuthController();
@@ -34,7 +34,19 @@ public class RegisterView extends Stage {
     }
 
     @FXML
-    TextField textUsername, textPassword, textPassword2, textContact, textName;
+    private
+    TextField textUsername;
+    @FXML
+    private
+    TextField textPassword;
+    @FXML
+    private
+    TextField textPassword2;
+    @FXML
+    private
+    TextField textContact;
+    @FXML
+    private TextField textName;
 
     /**
      * 处理注册按钮事件

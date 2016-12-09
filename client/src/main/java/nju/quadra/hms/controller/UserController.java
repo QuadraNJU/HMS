@@ -10,7 +10,7 @@ import java.util.ArrayList;
 /**
  * Created by adn55 on 2016/11/23.
  */
-public class UserController {
+class UserController {
 
     private UserBLService userBL;
 

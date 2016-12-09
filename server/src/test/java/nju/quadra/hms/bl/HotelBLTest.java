@@ -20,8 +20,8 @@ import java.util.ArrayList;
  */
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class HotelBLTest {
-    HotelBLService hotelBL;
-    HotelDataService hotelDataService;
+    private HotelBLService hotelBL;
+    private HotelDataService hotelDataService;
     
     @Before
     public void init() {

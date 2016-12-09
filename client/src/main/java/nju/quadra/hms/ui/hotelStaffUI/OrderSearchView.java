@@ -22,7 +22,7 @@ import java.util.stream.Stream;
 /**
  * Created by RaUkonn on 2016/12/7.
  */
-public class OrderSearchView extends Parent {
+class OrderSearchView extends Parent {
 
     @FXML
     private Pane pane;

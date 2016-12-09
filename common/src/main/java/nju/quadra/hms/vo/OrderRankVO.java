@@ -14,7 +14,7 @@ public class OrderRankVO {
     /**
      * 评价时间
      */
-    public LocalDate date;
+    private LocalDate date;
     /**
      * 评分
      */

@@ -18,7 +18,7 @@ import java.util.Optional;
 /**
  * Created by adn55 on 2016/11/30.
  */
-public class HotelPromotionItem extends Parent {
+class HotelPromotionItem extends Parent {
 
     private HotelStaffController controller;
     private HotelPromotionVO vo;

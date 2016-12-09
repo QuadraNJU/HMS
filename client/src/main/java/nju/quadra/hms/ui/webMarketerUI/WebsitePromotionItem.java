@@ -18,7 +18,7 @@ import java.util.Optional;
 /**
  * Created by Rebecca on 2016/12/5.
  */
-public class WebsitePromotionItem extends Parent {
+class WebsitePromotionItem extends Parent {
 
     private WebMarketerController controller;
     private WebsitePromotionVO vo;
