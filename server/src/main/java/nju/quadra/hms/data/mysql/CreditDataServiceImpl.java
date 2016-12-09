@@ -9,6 +9,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.sql.Types;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 /**
@@ -53,7 +55,7 @@ public class CreditDataServiceImpl implements CreditDataService {
             CreditRecordPO po = new CreditRecordPO(
                     rs.getInt("id"),
                     rs.getString("username"),
-                    rs.getTimestamp("timestamp").toLocalDateTime(),
+                    LocalDateTime.parse(rs.getString("timestamp"), DateTimeFormatter.ofPattern("uuuu-MM-dd HH:mm:ss")),
                     rs.getInt("orderid"),
                     CreditAction.getById(rs.getInt("action")),
                     rs.getDouble("diff")

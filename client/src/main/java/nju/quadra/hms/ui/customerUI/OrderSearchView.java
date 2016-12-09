@@ -129,6 +129,7 @@ public class OrderSearchView extends Parent {
         ResultMessage rs = controller.rankOrder(new OrderRankVO(selectedOrder.id, LocalDate.now(), star, comment));
         if (rs.result == ResultMessage.RESULT_SUCCESS) {
             Dialogs.showInfo("评价订单成功");
+            loadOrders();
             onCancelCommentAction();
         } else {
             Dialogs.showError("评价订单失败: " + rs.message);
