@@ -7,11 +7,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxListCell;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import nju.quadra.hms.controller.WebMarketerController;
 import nju.quadra.hms.model.WebsitePromotionType;
 import nju.quadra.hms.model.ResultMessage;
 import nju.quadra.hms.ui.common.Dialogs;
+import nju.quadra.hms.vo.AreaVO;
 import nju.quadra.hms.vo.WebsitePromotionVO;
 
 import java.io.IOException;
@@ -29,51 +33,83 @@ public class WebsitePromotionEditView extends Parent {
     private WebMarketerController controller;
     private WebsitePromotionVO websitePromotionVO;
     private SuccessHandler onSuccess;
-    //private ArrayList<String> selectedCompany = new ArrayList<>();
-    //private HashMap<String, ObservableValue<Boolean>> companySelection = new HashMap<>();
+    private ArrayList<AreaVO> areas;
 
     @FXML
-    TextField editName, editPromotion;
+    TextField editName, editPromotion, editLevelCredit, editLevelPromo;
     @FXML
     ChoiceBox<WebsitePromotionType> choiceType;
     @FXML
     DatePicker dateStart, dateEnd;
     @FXML
     Button btnSave;
-    //@FXML
-    //Pane paneCompany, paneSelectCompany;
-    //@FXML
-    //Label labelCompany;
-    //@FXML
-    //ListView<String> listCompany;
+    @FXML
+    Pane paneAreaLevel, paneLevel;
+    @FXML
+    RadioButton radioAllArea, radioSelectArea;
+    @FXML
+    HBox hBox;
+    @FXML
+    ChoiceBox choiceCity, choiceArea;
+    @FXML
+    Label labelLevelNum;
+    @FXML
+    TableView<UserLevel> tableLevel;
 
     public WebsitePromotionEditView(WebsitePromotionVO vo, WebMarketerController controller, boolean readOnly, SuccessHandler successHandler) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("promotionedit.fxml"));
         loader.setController(this);
         this.getChildren().add(loader.load());
 
-        choiceType.getItems().addAll(WebsitePromotionType.values());
-        choiceType.getSelectionModel().select(0);
-        /*
-        choiceType.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue.equals(WebsitePromotionType.COMPANY_PROMOTION)) {
-                paneCompany.setVisible(true);
-            } else {
-                paneCompany.setVisible(false);
-            }
-        });
-        listCompany.setCellFactory(CheckBoxListCell.forListView(item -> companySelection.get(item)));
-        */
         this.websitePromotionVO = vo;
         this.controller = controller;
         this.onSuccess = successHandler;
+
+        choiceType.getItems().addAll(WebsitePromotionType.values());
+        choiceType.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.equals(WebsitePromotionType.LEVEL_PROMOTION)) {
+                paneAreaLevel.setVisible(true);
+            } else {
+                paneAreaLevel.setVisible(false);
+                paneLevel.setVisible(false);
+            }
+        });
+        choiceType.getSelectionModel().select(0);
+
+        radioAllArea.fire();
+        choiceCity.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            choiceArea.getItems().clear();
+            choiceArea.getItems().addAll(areas.stream().filter(area -> area.cityName.equals(newValue)).map(area -> area.areaName).toArray());
+        });
+        loadAreas();
+
+        tableLevel.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("credit"));
+        tableLevel.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("promotion"));
+
         if (vo != null) {
             editName.setText(vo.name);
             choiceType.setValue(vo.type);
             dateStart.setValue(vo.startTime);
             dateEnd.setValue(vo.endTime);
             editPromotion.setText(vo.promotion + "");
-            // TODO
+            if (vo.type.equals(WebsitePromotionType.LEVEL_PROMOTION)) {
+                if (vo.areaId <= 0) {
+                    radioAllArea.fire();
+                } else {
+                    for (AreaVO area : areas) {
+                        if (area.id == vo.areaId) {
+                            choiceCity.setValue(area.cityName);
+                            choiceArea.setValue(area.areaName);
+                            break;
+                        }
+                    }
+                    radioSelectArea.fire();
+                }
+                for (double credit : vo.memberLevel.keySet()) {
+                    tableLevel.getItems().add(new UserLevel(credit, vo.memberLevel.get(credit)));
+                }
+                labelLevelNum.setText("共有 " + tableLevel.getItems().size() + " 个等级");
+            }
         }
         if (readOnly) {
             editName.setEditable(false);
@@ -82,31 +118,62 @@ public class WebsitePromotionEditView extends Parent {
             dateEnd.setDisable(true);
             editPromotion.setEditable(false);
             btnSave.setVisible(false);
+            radioSelectArea.setDisable(true);
+            radioAllArea.setDisable(true);
+            choiceCity.setDisable(true);
+            choiceArea.setDisable(true);
+            tableLevel.setDisable(true);
+            editLevelCredit.setDisable(true);
+            editLevelPromo.setDisable(true);
+        }
+    }
+
+    private void loadAreas() {
+        areas = controller.getAllArea();
+        if (areas != null) {
+            for (AreaVO vo : areas) {
+                if (choiceCity.getItems().indexOf(vo.cityName) < 0) {
+                    choiceCity.getItems().add(vo.cityName);
+                }
+            }
         }
     }
 
     @FXML
     protected void onSaveAction() throws IOException {
-        String name;
-        WebsitePromotionType type;
-        LocalDate startTime;
-        LocalDate endTime;
+        String name = editName.getText();
+        WebsitePromotionType type = choiceType.getValue();
+        LocalDate startTime = dateStart.getValue();
+        LocalDate endTime = dateEnd.getValue();
         double promotion;
+        int areaId = -1;
+        HashMap<Double, Double> level = null;
+
         try {
-            name = editName.getText();
-            type = choiceType.getValue();
-            startTime = dateStart.getValue();
-            endTime = dateEnd.getValue();
             promotion = Double.parseDouble(editPromotion.getText());
         } catch (Exception e) {
             Dialogs.showError("数值格式不正确，请重新填写");
             return;
         }
 
+        if (type.equals(WebsitePromotionType.LEVEL_PROMOTION)) {
+            if (radioSelectArea.isSelected()) {
+                for (AreaVO area : areas) {
+                    if (area.cityName.equals(choiceCity.getValue()) && area.areaName.equals(choiceArea.getValue())) {
+                        areaId = area.id;
+                        break;
+                    }
+                }
+            }
+            level = new HashMap<>();
+            for (UserLevel lv : tableLevel.getItems()) {
+                level.put(lv.credit, lv.promotion);
+            }
+        }
+
         if (websitePromotionVO == null) {
             // add
-            //HashMap<Double, Double> memberLevel = new HashMap<0.0 , 0.0>();
-            ResultMessage result = controller.addWebsitePromotion(new WebsitePromotionVO(0, name, type, startTime, endTime, promotion, 0, null));
+            ResultMessage result = controller.addWebsitePromotion(new WebsitePromotionVO(0, name, type, startTime, endTime, promotion, areaId, level));
             if (result.result == ResultMessage.RESULT_SUCCESS) {
                 Dialogs.showInfo("增加促销策略成功");
                 onSuccess.handle();
@@ -121,12 +188,10 @@ public class WebsitePromotionEditView extends Parent {
             websitePromotionVO.startTime = startTime;
             websitePromotionVO.endTime = endTime;
             websitePromotionVO.promotion = promotion;
-            /*
             if (type.equals(WebsitePromotionType.LEVEL_PROMOTION)) {
-                websitePromotionVO.memberLevel = ;
-                websitePromotionVO.level = selectedCompany;
+                websitePromotionVO.areaId = areaId;
+                websitePromotionVO.memberLevel = level;
             }
-            */
             ResultMessage result = controller.modifyWebsitePromotion(websitePromotionVO);
             if (result.result == ResultMessage.RESULT_SUCCESS) {
                 Dialogs.showInfo("修改促销策略成功");
@@ -139,13 +204,44 @@ public class WebsitePromotionEditView extends Parent {
     }
 
     @FXML
-    protected void onOpenSelectorAction() {
-
+    protected void onRadioAction() {
+        if (radioSelectArea.isSelected()) {
+            hBox.setVisible(true);
+        } else {
+            hBox.setDisable(false);
+        }
     }
 
     @FXML
-    protected void onCloseSelectorAction() {
+    protected void onEditLevelAction() {
+        paneLevel.setVisible(true);
+    }
 
+    @FXML
+    protected void onAddLevelAction() {
+        try {
+            double credit = Double.parseDouble(editLevelCredit.getText());
+            double promo = Double.parseDouble(editLevelPromo.getText());
+            if (credit < 0 || promo < 0 || promo > 1) {
+                Dialogs.showError("数值范围不正确，请重新填写");
+                return;
+            }
+            tableLevel.getItems().add(new UserLevel(credit, promo));
+        } catch (Exception e) {
+            Dialogs.showError("数值格式不正确，请重新填写");
+        }
+        labelLevelNum.setText("共有 " + tableLevel.getItems().size() + " 个等级");
+    }
+
+    @FXML
+    protected void onDeleteLevelAction() {
+        tableLevel.getItems().remove(tableLevel.getSelectionModel().getSelectedIndex());
+        labelLevelNum.setText("共有 " + tableLevel.getItems().size() + " 个等级");
+    }
+
+    @FXML
+    protected void onCloseLevelAction() {
+        paneLevel.setVisible(false);
     }
 
     @FXML
@@ -155,6 +251,24 @@ public class WebsitePromotionEditView extends Parent {
 
     interface SuccessHandler {
         void handle() throws IOException;
+    }
+
+    public class UserLevel {
+        private double credit;
+        private double promotion;
+
+        public UserLevel(double credit, double promotion) {
+            this.credit = credit;
+            this.promotion = promotion;
+        }
+
+        public double getCredit() {
+            return credit;
+        }
+
+        public double getPromotion() {
+            return promotion;
+        }
     }
 
 }

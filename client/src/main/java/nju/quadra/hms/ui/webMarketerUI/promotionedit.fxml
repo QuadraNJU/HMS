@@ -2,10 +2,10 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.*?>
-
-<Pane prefHeight="370" prefWidth="620" style="-fx-background-color: #ffffff" stylesheets="@../common/style.css"
+<Pane prefHeight="470.0" prefWidth="700.0" style="-fx-background-color: #ffffff" stylesheets="@../common/style.css"
       xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <Label layoutY="5.0" text="名称">
         <font>
@@ -44,46 +44,101 @@
         </font>
     </TextField>
 
-    <Button fx:id="btnSave" layoutY="221.0" onAction="#onSaveAction" prefHeight="30.0" prefWidth="90.0"
+    <Button fx:id="btnSave" layoutY="271.0" onAction="#onSaveAction" prefHeight="30.0" prefWidth="90.0"
             styleClass="btn-r,btn-blue" text="保存">
         <font>
             <Font size="14.0"/>
         </font>
     </Button>
-    <Button layoutX="110.0" layoutY="221.0" onAction="#onCancelAction" prefHeight="30.0" prefWidth="90.0"
+    <Button layoutX="110.0" layoutY="271.0" onAction="#onCancelAction" prefHeight="30.0" prefWidth="90.0"
             styleClass="btn-r,btn-red" text="返回">
         <font>
             <Font size="14.0"/>
         </font>
     </Button>
+    <Pane fx:id="paneAreaLevel" layoutY="171.0">
+        <Label layoutY="7.0" text="优惠商圈">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Label>
+        <RadioButton fx:id="radioAllArea" layoutX="75.0" layoutY="7.0" onAction="#onRadioAction" text="全部商圈">
+            <font>
+                <Font size="14.0"/>
+            </font>
+            <toggleGroup>
+                <ToggleGroup fx:id="a"/>
+            </toggleGroup>
+        </RadioButton>
+        <RadioButton fx:id="radioSelectArea" layoutX="175.0" layoutY="7.0" onAction="#onRadioAction" text="特定商圈"
+                     toggleGroup="$a">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </RadioButton>
+        <HBox fx:id="hBox" visible="false" alignment="CENTER_LEFT" layoutX="270.0" spacing="10.0">
+            <ChoiceBox fx:id="choiceCity"/>
+            <ChoiceBox fx:id="choiceArea"/>
+        </HBox>
 
-    <Pane fx:id="paneCompany" layoutY="172.0" visible="false">
-        <Label layoutY="5.0" text="合作企业">
+        <Label layoutY="44.0" text="会员等级">
             <font>
                 <Font size="14.0"/>
             </font>
         </Label>
-        <Label fx:id="labelCompany" layoutX="80.0" layoutY="5.0" text="已选择 0 个企业">
+        <Label fx:id="labelLevelNum" layoutX="75.0" layoutY="44.0" text="共有 0 个等级">
             <font>
                 <Font size="14.0"/>
             </font>
         </Label>
-        <Button layoutX="235.0" prefWidth="90.0" styleClass="btn-r,btn-green" text="选择企业" onAction="#onOpenSelectorAction">
+        <Button layoutX="180.0" layoutY="39.0" onAction="#onEditLevelAction" prefWidth="60.0"
+                styleClass="btn-r,btn-blue" text="修改">
             <font>
                 <Font size="14.0"/>
             </font>
         </Button>
     </Pane>
-    <Pane fx:id="paneSelectCompany" layoutX="165.0" layoutY="30.0" visible="false"
+
+    <Pane fx:id="paneLevel" layoutX="165.0" visible="false"
           style="-fx-background-color: white; -fx-border-color: #333333; -fx-border-style: solid; -fx-border-width: 2px;">
         <padding>
             <Insets bottom="10.0" right="10.0"/>
         </padding>
-        <ListView fx:id="listCompany" layoutX="10.0" layoutY="10.0" prefHeight="250.0" prefWidth="300.0"/>
-        <Button layoutX="250.0" layoutY="266.0" prefWidth="60.0" styleClass="btn-r,btn-green" text="确认" onAction="#onCloseSelectorAction">
+
+        <TableView fx:id="tableLevel" layoutX="10.0" layoutY="10.0" prefHeight="300.0" prefWidth="300.0">
+            <columns>
+                <TableColumn prefWidth="145.0" text="信用值"/>
+                <TableColumn prefWidth="145.0" text="折扣幅度"/>
+            </columns>
+        </TableView>
+
+        <Button layoutX="110.0" layoutY="353.0" onAction="#onAddLevelAction" prefWidth="60.0"
+                styleClass="btn-r,btn-blue" text="添加">
             <font>
                 <Font size="14.0"/>
             </font>
         </Button>
+        <Button layoutX="180.0" layoutY="353.0" onAction="#onDeleteLevelAction" prefWidth="60.0"
+                styleClass="btn-r,btn-red" text="删除">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Button>
+        <Button layoutX="250.0" layoutY="353.0" onAction="#onCloseLevelAction" prefWidth="60.0"
+                styleClass="btn-r,btn-green" text="关闭">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Button>
+        <TextField fx:id="editLevelCredit" layoutX="10.0" layoutY="315.0" prefWidth="145.0" promptText="信用值">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </TextField>
+        <TextField fx:id="editLevelPromo" layoutX="165.0" layoutY="315.0" prefWidth="145.0" promptText="折扣幅度">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </TextField>
     </Pane>
 </Pane>

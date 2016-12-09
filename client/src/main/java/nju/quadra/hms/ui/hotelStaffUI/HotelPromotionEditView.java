@@ -52,7 +52,6 @@ public class HotelPromotionEditView extends Parent {
         this.getChildren().add(loader.load());
 
         choiceType.getItems().addAll(HotelPromotionType.values());
-        choiceType.getSelectionModel().select(0);
         choiceType.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue.equals(HotelPromotionType.COMPANY_PROMOTION)) {
                 paneCompany.setVisible(true);
@@ -60,6 +59,7 @@ public class HotelPromotionEditView extends Parent {
                 paneCompany.setVisible(false);
             }
         });
+        choiceType.getSelectionModel().select(0);
 
         listCompany.setCellFactory(CheckBoxListCell.forListView(item -> companySelection.get(item)));
 
@@ -84,6 +84,7 @@ public class HotelPromotionEditView extends Parent {
             dateEnd.setDisable(true);
             editPromotion.setEditable(false);
             btnSave.setVisible(false);
+            listCompany.setDisable(true);
         }
     }
 

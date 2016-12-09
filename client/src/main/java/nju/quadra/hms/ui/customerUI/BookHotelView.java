@@ -95,12 +95,14 @@ public class BookHotelView extends Parent {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("确认预订");
             alert.setHeaderText(null);
-            String content = "订单原价：¥" + priceVO.originalPrice + "\n";
+            double price = priceVO.originalPrice;
+            String content = "订单原价：¥" + price + "\n";
             if (priceVO.hotelPromotion != null) {
-                content += "酒店促销策略：" + priceVO.hotelPromotion.name + " ( -¥" + priceVO.originalPrice * (1.0 - priceVO.hotelPromotion.promotion) + " )\n";
+                content += "酒店促销策略：" + priceVO.hotelPromotion.name + " ( -¥" + price * (1.0 - priceVO.hotelPromotion.promotion) + " )\n";
+                price *= priceVO.hotelPromotion.promotion;
             }
             if (priceVO.websitePromotion != null) {
-                content += "网站促销策略：" + priceVO.websitePromotion.name + " ( -¥" + priceVO.originalPrice * (1.0 - priceVO.websitePromotion.promotion) + " )\n";
+                content += "网站促销策略：" + priceVO.websitePromotion.name + " ( -¥" + price * (1.0 - priceVO.websitePromotion.promotion) + " )\n";
             }
             content += "订单总价：¥" + priceVO.finalPrice + "\n\n是否确认预订？";
             alert.setContentText(content);

@@ -10,6 +10,7 @@ import nju.quadra.hms.po.WebsitePromotionPO;
 import nju.quadra.hms.vo.WebsitePromotionVO;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by RaUkonn on 2016/11/21.
@@ -71,7 +72,7 @@ public class WebsitePromotionBL implements WebsitePromotionBLService {
     }
 
     public static WebsitePromotionVO toVO(WebsitePromotionPO po) {
-        return new WebsitePromotionVO(po.getId(), po.getName(), po.getType(), po.getStartTime(), po.getEndTime(), po.getPromotion(), po.getAreaId(), new Gson().fromJson(po.getMemberLevel(), new TypeToken<ArrayList<int[]>>() {}.getType()));
+        return new WebsitePromotionVO(po.getId(), po.getName(), po.getType(), po.getStartTime(), po.getEndTime(), po.getPromotion(), po.getAreaId(), new Gson().fromJson(po.getMemberLevel(), new TypeToken<HashMap<Double, Double>>(){}.getType()));
     }
 
     public static WebsitePromotionPO toPO(WebsitePromotionVO vo) {

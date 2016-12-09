@@ -8,10 +8,7 @@ import nju.quadra.hms.data.mysql.CreditDataServiceImpl;
 import nju.quadra.hms.data.mysql.OrderDataServiceImpl;
 import nju.quadra.hms.dataservice.CreditDataService;
 import nju.quadra.hms.dataservice.OrderDataService;
-import nju.quadra.hms.model.CreditAction;
-import nju.quadra.hms.model.MemberType;
-import nju.quadra.hms.model.OrderState;
-import nju.quadra.hms.model.ResultMessage;
+import nju.quadra.hms.model.*;
 import nju.quadra.hms.po.CreditRecordPO;
 import nju.quadra.hms.po.HotelPromotionPO;
 import nju.quadra.hms.po.OrderPO;
@@ -41,6 +38,7 @@ public class OrderBL implements OrderBLService {
 
     @Override
     public PriceVO getPrice(OrderVO vo) {
+        // check credit and date
         ArrayList<CreditRecordVO> credits = new CreditRecordBL().get(vo.username);
         if (credits.size() > 0 && credits.get(0).creditResult < CreditRecordBL.MIN_CREDIT) {
             return new PriceVO("用户信用值不足，不能预订酒店");
@@ -51,6 +49,8 @@ public class OrderBL implements OrderBLService {
         if (vo.startDate.compareTo(LocalDate.now()) < 0) {
             return new PriceVO("入住时间早于当前时间，请重新输入");
         }
+
+        // check room count
         HotelRoomVO room = new HotelRoomBL().getById(vo.roomId);
         if (room == null) {
             return new PriceVO("客房类型不存在，请重新选择");
@@ -68,6 +68,7 @@ public class OrderBL implements OrderBLService {
                 return new PriceVO("房间数量不足");
             }
         }
+
         double originalPrice = vo.roomCount * room.price * vo.endDate.compareTo(vo.startDate);
         // check hotel promotion
         HotelPromotionVO hotelPromotion = null;
@@ -102,9 +103,31 @@ public class OrderBL implements OrderBLService {
                 hotelPromotion = promo;
             }
         }
-        // TODO check website promotion
-        WebsitePromotionVO websitePromotion = null;
 
+        // check website promotion
+        WebsitePromotionVO websitePromotion = null;
+        ArrayList<WebsitePromotionVO> wpvos = new WebsitePromotionBL().get();
+        for (WebsitePromotionVO promo : wpvos) {
+            if (promo.type.equals(WebsitePromotionType.LEVEL_PROMOTION)) {
+                HotelVO hotel = new HotelBL().getDetail(vo.hotelId);
+                if (promo.areaId > 0 && hotel.areaId != promo.areaId) {
+                    continue;
+                }
+                for (double credit : promo.memberLevel.keySet()) {
+                    if (credits.get(0).creditResult >= credit && promo.memberLevel.get(credit) < promo.promotion) {
+                        promo.promotion = promo.memberLevel.get(credit);
+                    }
+                }
+            }
+            if (promo.startTime.compareTo(LocalDate.now()) > 0 || promo.endTime.compareTo(LocalDate.now()) < 0) {
+                continue;
+            }
+            if (websitePromotion == null || promo.promotion < websitePromotion.promotion) {
+                websitePromotion = promo;
+            }
+        }
+
+        // calculate final price
         double finalPrice = originalPrice * (hotelPromotion != null ? hotelPromotion.promotion : 1.0)
                 * (websitePromotion != null ? websitePromotion.promotion : 1.0);
         return new PriceVO(originalPrice, finalPrice, hotelPromotion, websitePromotion);

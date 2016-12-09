@@ -1,11 +1,13 @@
 package nju.quadra.hms.controller;
 
 import nju.quadra.hms.blservice.CreditRecordBLService;
+import nju.quadra.hms.blservice.HotelBLService;
 import nju.quadra.hms.blservice.OrderBLService;
 import nju.quadra.hms.blservice.WebsitePromotionBLService;
 import nju.quadra.hms.model.OrderState;
 import nju.quadra.hms.model.ResultMessage;
 import nju.quadra.hms.net.BLServiceFactory;
+import nju.quadra.hms.vo.AreaVO;
 import nju.quadra.hms.vo.OrderDetailVO;
 import nju.quadra.hms.vo.WebsitePromotionVO;
 
@@ -18,6 +20,7 @@ public class WebMarketerController {
 
     private CreditRecordBLService creditBL = BLServiceFactory.getCreditRecordBLService();
     private WebsitePromotionBLService websitePromotionBL = BLServiceFactory.getWebsitePromotionBLService();
+    private HotelBLService hotelBL = BLServiceFactory.getHotelBLService();
     private OrderBLService orderBL = BLServiceFactory.getOrderBLService();
 
     public ResultMessage creditTopup(String username, int amount) {
@@ -26,6 +29,15 @@ public class WebMarketerController {
         } catch (Exception e) {
             e.printStackTrace();
             return new ResultMessage(ResultMessage.RESULT_NET_ERROR);
+        }
+    }
+
+    public ArrayList<AreaVO> getAllArea() {
+        try {
+            return hotelBL.getAllArea();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
     }
 

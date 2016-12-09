@@ -18,7 +18,7 @@
         <VBox fx:id="vBox"/>
     </ScrollPane>
 
-    <Pane fx:id="paneComment" layoutX="35.0" layoutY="55.0" prefHeight="380.0" prefWidth="620.0"
+    <Pane fx:id="paneComment" layoutX="35.0" layoutY="55.0" prefHeight="380.0" prefWidth="630.0"
           style="-fx-background-color: white;" visible="false">
         <Label layoutX="24.0" layoutY="31.0" text="选择评分">
             <font>
