@@ -22,7 +22,6 @@ class UserEditView extends Parent {
 
     private final WebmasterController controller = new WebmasterController();
     private UserVO userVO;
-    private MemberVO memberVO;
     private SuccessHandler onSuccess;
 
     public UserEditView(UserVO vo, SuccessHandler onSuccess) throws IOException {
@@ -120,6 +119,7 @@ class UserEditView extends Parent {
         }
 
         if (userVO.type.equals(UserType.CUSTOMER)) {
+            MemberVO memberVO;
             if (choiceMemberType.getValue().equals(MemberType.PERSONAL)) {
                 memberVO = new MemberVO(userVO.username, choiceMemberType.getValue(), dateBirthday.getValue(), null);
             } else {

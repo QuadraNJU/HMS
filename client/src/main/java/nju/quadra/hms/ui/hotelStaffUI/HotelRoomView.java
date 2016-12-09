@@ -24,7 +24,6 @@ import java.util.Optional;
 class HotelRoomView extends Parent {
 
     private final HotelStaffController controller = new HotelStaffController(HttpClient.session.username);
-    private ArrayList<HotelRoomVO> rooms;
 
     public HotelRoomView() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("room.fxml"));
@@ -45,7 +44,7 @@ class HotelRoomView extends Parent {
     private TableView<HotelRoomProperty> tableView;
 
     private void loadRooms() {
-        rooms = controller.getHotelRooms();
+        ArrayList<HotelRoomVO> rooms = controller.getHotelRooms();
         if (rooms != null) {
             tableView.getItems().clear();
             for (HotelRoomVO vo : rooms) {

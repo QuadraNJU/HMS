@@ -20,8 +20,7 @@ public class CreditDataServiceImpl implements CreditDataService {
                 .prepareStatement("SELECT * FROM `creditrecord` WHERE username = ? ORDER BY `timestamp` DESC");
         pst.setString(1, username);
         ResultSet rs = pst.executeQuery();
-        ArrayList<CreditRecordPO> result = convertToArrayList(rs);
-        return result;
+        return convertToArrayList(rs);
     }
 
     @Override

@@ -16,13 +16,13 @@
     </ImageView>
 
     <Label fx:id="labelUsername" alignment="CENTER_RIGHT" layoutX="409.0" layoutY="46.0" onMouseDragged="#onDrag"
-           onMousePressed="#onDragStart" prefWidth="400.0" text="" textFill="WHITE">
+           onMousePressed="#onDragStart" prefWidth="400.0" textFill="WHITE">
         <font>
             <Font size="14.0"/>
         </font>
     </Label>
     <Label fx:id="labelUserType" alignment="CENTER_RIGHT" layoutX="409.0" layoutY="66.0" onMouseDragged="#onDrag"
-           onMousePressed="#onDragStart" prefWidth="400.0" text="" textAlignment="RIGHT" textFill="WHITE">
+           onMousePressed="#onDragStart" prefWidth="400.0" textAlignment="RIGHT" textFill="WHITE">
         <font>
             <Font size="14.0"/>
         </font>

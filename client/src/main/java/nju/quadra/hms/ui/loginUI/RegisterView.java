@@ -19,14 +19,13 @@ import nju.quadra.hms.vo.UserVO;
  */
 class RegisterView extends Stage {
 
-    private Scene scene;
     private final AuthController controller = new AuthController();
 
     public RegisterView() throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("register.fxml"));
         loader.setController(this);
         Parent root = loader.load();
-        scene = new Scene(root);
+        Scene scene = new Scene(root);
         this.setScene(scene);
         this.setResizable(false);
         this.initStyle(StageStyle.UNDECORATED);

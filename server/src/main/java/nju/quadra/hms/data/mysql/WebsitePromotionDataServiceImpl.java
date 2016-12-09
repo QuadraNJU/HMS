@@ -31,8 +31,7 @@ public class WebsitePromotionDataServiceImpl implements WebsitePromotionDataServ
         pst.setInt(1, id);
         ResultSet rs = pst.executeQuery();
         rs.next();
-        WebsitePromotionPO po = createPO(rs);
-        return po;
+        return createPO(rs);
     }
 
     @Override

@@ -29,8 +29,6 @@ import java.util.Optional;
  */
 public class MainView extends Stage {
 
-    private Scene scene;
-
     @FXML
     private Label labelUsername, labelUserType;
     @FXML
@@ -42,7 +40,7 @@ public class MainView extends Stage {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("main.fxml"));
         loader.setController(this);
         Parent root = loader.load();
-        scene = new Scene(root);
+        Scene scene = new Scene(root);
         this.setScene(scene);
         this.setResizable(false);
         this.initStyle(StageStyle.UNDECORATED);

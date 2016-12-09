@@ -18,7 +18,6 @@ import java.util.ArrayList;
 class WebsitePromotionView extends Parent {
 
     private final WebMarketerController controller = new WebMarketerController();
-    private ArrayList<WebsitePromotionVO> promotions;
 
     public WebsitePromotionView() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("promotion.fxml"));
@@ -34,7 +33,7 @@ class WebsitePromotionView extends Parent {
     private VBox vBox;
 
     public void loadPromotion() throws IOException {
-        promotions = controller.getWebsitePromotion();
+        ArrayList<WebsitePromotionVO> promotions = controller.getWebsitePromotion();
         if (promotions != null) {
             vBox.getChildren().clear();
             for (WebsitePromotionVO vo : promotions) {

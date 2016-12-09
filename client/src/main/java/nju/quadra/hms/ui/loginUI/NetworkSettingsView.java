@@ -15,13 +15,11 @@ import nju.quadra.hms.util.ClientConfigUtil;
  */
 class NetworkSettingsView extends Stage {
 
-    private Scene scene;
-
     public NetworkSettingsView() throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("networksettings.fxml"));
         loader.setController(this);
         Parent root = loader.load();
-        scene = new Scene(root);
+        Scene scene = new Scene(root);
         this.setScene(scene);
         this.setTitle("网络设置");
         this.setResizable(false);

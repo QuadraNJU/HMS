@@ -1,55 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.*?>
+<Pane prefHeight="370" prefWidth="620" style="-fx-background-color: #ffffff" stylesheets="@../common/style.css"
+      xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <Label layoutY="5.0" text="客房类型">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </Label>
+    <TextField fx:id="editName" layoutX="75.0" prefWidth="250.0" promptText="客房类型">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </TextField>
 
-<Pane prefHeight="370" prefWidth="620" style="-fx-background-color: #ffffff" stylesheets="@../common/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-       <Label layoutY="5.0" text="客房类型">
-           <font>
-               <Font size="14.0" />
-           </font>
-       </Label>
-       <TextField fx:id="editName" layoutX="75.0" prefWidth="250.0" promptText="客房类型">
-           <font>
-               <Font size="14.0" />
-           </font>
-       </TextField>
-   
-       <Label layoutY="50.0" text="价格">
-           <font>
-               <Font size="14.0" />
-           </font>
-       </Label>
-       <TextField fx:id="editPrice" layoutX="75.0" layoutY="45.0" prefWidth="250.0" promptText="价格">
-           <font>
-               <Font size="14.0" />
-           </font>
-       </TextField>
-   
-       <Label layoutY="95.0" text="数量">
-           <font>
-               <Font size="14.0" />
-           </font>
-       </Label>
-       <TextField fx:id="editTotal" layoutX="75.0" layoutY="90.0" prefWidth="250.0" promptText="数量">
-           <font>
-               <Font size="14.0" />
-           </font>
-       </TextField>
-   
-       <Button layoutX="1.0" layoutY="140.0" onAction="#onSaveAction" prefHeight="30.0" prefWidth="90.0" styleClass="btn-r,btn-blue" text="保存">
-           <font>
-               <Font size="14.0" />
-           </font>
-       </Button>
-       <Button layoutX="111.0" layoutY="140.0" onAction="#onCancelAction" prefHeight="30.0" prefWidth="90.0" styleClass="btn-r,btn-red" text="取消">
-           <font>
-               <Font size="14.0" />
-           </font>
-       </Button>
-   </children>
+    <Label layoutY="50.0" text="价格">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </Label>
+    <TextField fx:id="editPrice" layoutX="75.0" layoutY="45.0" prefWidth="250.0" promptText="价格">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </TextField>
+
+    <Label layoutY="95.0" text="数量">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </Label>
+    <TextField fx:id="editTotal" layoutX="75.0" layoutY="90.0" prefWidth="250.0" promptText="数量">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </TextField>
+
+    <Button layoutX="1.0" layoutY="140.0" onAction="#onSaveAction" prefHeight="30.0" prefWidth="90.0"
+            styleClass="btn-r,btn-blue" text="保存">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </Button>
+    <Button layoutX="111.0" layoutY="140.0" onAction="#onCancelAction" prefHeight="30.0" prefWidth="90.0"
+            styleClass="btn-r,btn-red" text="取消">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </Button>
 </Pane>

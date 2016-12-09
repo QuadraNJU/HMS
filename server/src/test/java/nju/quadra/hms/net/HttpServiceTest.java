@@ -12,11 +12,10 @@ import static org.junit.Assert.*;
  */
 public class HttpServiceTest {
 
-    private HttpService httpService;
-
     @Test
     public void test() {
         int failedCount = 0;
+        HttpService httpService;
         while (true) {
             int port = new Random().nextInt(55536) + 10000;
             httpService = new HttpService(port);

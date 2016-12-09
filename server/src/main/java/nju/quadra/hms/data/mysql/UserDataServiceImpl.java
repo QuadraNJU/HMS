@@ -45,7 +45,7 @@ public class UserDataServiceImpl implements UserDataService {
         pst.setString(1, username);
         ResultSet rs = pst.executeQuery();
         if (rs.next()) {
-            UserPO po = new UserPO(
+            return new UserPO(
                     rs.getString("username"),
                     rs.getString("password"),
                     rs.getString("name"),
@@ -55,7 +55,6 @@ public class UserDataServiceImpl implements UserDataService {
                     (rs.getDate("birthday") == null) ? null : rs.getDate("birthday").toLocalDate(),
                     rs.getString("companyname")
             );
-            return po;
         } else {
             return null;
         }
