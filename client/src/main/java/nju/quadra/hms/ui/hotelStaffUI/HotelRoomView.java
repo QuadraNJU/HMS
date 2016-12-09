@@ -23,7 +23,7 @@ import java.util.Optional;
  */
 class HotelRoomView extends Parent {
 
-    private HotelStaffController controller = new HotelStaffController(HttpClient.session.username);
+    private final HotelStaffController controller = new HotelStaffController(HttpClient.session.username);
     private ArrayList<HotelRoomVO> rooms;
 
     public HotelRoomView() throws IOException {
@@ -90,7 +90,7 @@ class HotelRoomView extends Parent {
     }
 
     public class HotelRoomProperty {
-        public HotelRoomVO vo;
+        public final HotelRoomVO vo;
 
         public HotelRoomProperty(HotelRoomVO vo) {
             this.vo = vo;

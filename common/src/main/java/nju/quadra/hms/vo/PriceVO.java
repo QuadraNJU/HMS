@@ -9,7 +9,7 @@ public class PriceVO {
     /**
      * 能否预定
      */
-    public ResultMessage result;
+    public final ResultMessage result;
     /**
      * 订单原价
      */

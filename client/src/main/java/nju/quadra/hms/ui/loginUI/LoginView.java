@@ -23,7 +23,7 @@ import java.io.IOException;
 public class LoginView extends Stage {
 
     private Scene scene;
-    private AuthController controller = new AuthController();
+    private final AuthController controller = new AuthController();
     @FXML
     private TextField textUsername, textPassword;
 

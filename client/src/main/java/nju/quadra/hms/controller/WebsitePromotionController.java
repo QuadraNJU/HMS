@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * Created by RaUkonn on 2016/11/30.
  */
 class WebsitePromotionController {
-    private WebsitePromotionController websitePromotionController;
+    private final WebsitePromotionController websitePromotionController;
 
     private ArrayList<WebsitePromotionVO> get(int hotelId) {
         try {

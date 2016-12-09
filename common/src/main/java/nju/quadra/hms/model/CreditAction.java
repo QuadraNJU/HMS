@@ -11,7 +11,7 @@ public enum CreditAction {
     ORDER_UNDO("撤销异常订单返还"),
     CREDIT_TOPUP("信用充值");
 
-    String showname;
+    final String showname;
 
     CreditAction(String showname) {
         this.showname = showname;

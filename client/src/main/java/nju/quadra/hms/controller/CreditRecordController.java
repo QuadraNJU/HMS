@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * Created by RaUkonn on 2016/11/30.
  */
 class CreditRecordController {
-    private CreditRecordBLService creditRecordBL;
+    private final CreditRecordBLService creditRecordBL;
 
     public CreditRecordController() {
         this.creditRecordBL = BLServiceFactory.getCreditRecordBLService();

@@ -32,7 +32,7 @@ class OrderSearchView extends Parent {
     @FXML
     private VBox vBox;
 
-    private WebMarketerController controller = new WebMarketerController();
+    private final WebMarketerController controller = new WebMarketerController();
     private ArrayList<OrderDetailVO> orders;
 
     public OrderSearchView() throws IOException {

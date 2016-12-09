@@ -17,9 +17,9 @@ import java.util.ArrayList;
  */
 public class WebmasterController {
 
-    private UserBLService userBL = BLServiceFactory.getUserBLService();
-    private HotelBLService hotelBL = BLServiceFactory.getHotelBLService();
-    private CustomerBLService customerBL = BLServiceFactory.getCustomerBLService();
+    private final UserBLService userBL = BLServiceFactory.getUserBLService();
+    private final HotelBLService hotelBL = BLServiceFactory.getHotelBLService();
+    private final CustomerBLService customerBL = BLServiceFactory.getCustomerBLService();
 
     public ArrayList<UserVO> getAllUsers() {
         try {

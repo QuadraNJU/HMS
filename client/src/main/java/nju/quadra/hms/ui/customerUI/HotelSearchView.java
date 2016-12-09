@@ -23,7 +23,7 @@ import java.util.Comparator;
  */
 public class HotelSearchView extends Parent {
 
-    private CustomerController controller = new CustomerController();
+    private final CustomerController controller = new CustomerController();
     private ArrayList<AreaVO> areas;
     private ArrayList<HotelSearchVO> hotelList = new ArrayList<>();
 
@@ -159,7 +159,7 @@ public class HotelSearchView extends Parent {
         STAR_DESC("星级由高到低"),
         RANK_DESC("评分由高到低");
 
-        private String displayName;
+        private final String displayName;
 
         HotelSort(String displayName) {
             this.displayName = displayName;

@@ -12,7 +12,7 @@ import nju.quadra.hms.vo.UserVO;
  */
 public class AuthController {
 
-    private HttpRemote remote;
+    private final HttpRemote remote;
 
     public AuthController() {
         this.remote = new HttpRemote("AuthService");

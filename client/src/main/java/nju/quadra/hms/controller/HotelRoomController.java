@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * Created by RaUkonn on 2016/11/30.
  */
 class HotelRoomController {
-    private HotelRoomBLService hotelRoomBL;
+    private final HotelRoomBLService hotelRoomBL;
 
     public HotelRoomController() {
         this.hotelRoomBL = BLServiceFactory.getHotelRoomBLService();

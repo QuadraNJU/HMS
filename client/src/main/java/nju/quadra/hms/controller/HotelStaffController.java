@@ -12,13 +12,13 @@ import java.util.ArrayList;
  */
 public class HotelStaffController {
 
-    private HotelBLService hotelBL = BLServiceFactory.getHotelBLService();
-    private HotelRoomBLService hotelRoomBL = BLServiceFactory.getHotelRoomBLService();
-    private HotelPromotionBLService hotelPromotionBL = BLServiceFactory.getHotelPromotionBLService();
-    private CustomerBLService customerBL = BLServiceFactory.getCustomerBLService();
-    private OrderBLService orderBL = BLServiceFactory.getOrderBLService();
+    private final HotelBLService hotelBL = BLServiceFactory.getHotelBLService();
+    private final HotelRoomBLService hotelRoomBL = BLServiceFactory.getHotelRoomBLService();
+    private final HotelPromotionBLService hotelPromotionBL = BLServiceFactory.getHotelPromotionBLService();
+    private final CustomerBLService customerBL = BLServiceFactory.getCustomerBLService();
+    private final OrderBLService orderBL = BLServiceFactory.getOrderBLService();
 
-    private HotelVO hotelVO;
+    private final HotelVO hotelVO;
 
     public HotelStaffController(String username) {
         hotelVO = hotelBL.getByStaff(username);

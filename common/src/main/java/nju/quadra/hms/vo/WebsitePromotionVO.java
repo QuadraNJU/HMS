@@ -12,7 +12,7 @@ public class WebsitePromotionVO {
     /**
      * 网站促销策略ID
      */
-    public int id;
+    public final int id;
     /**
      * 名称
      */

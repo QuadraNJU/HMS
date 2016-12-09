@@ -29,13 +29,13 @@ public class HotelBLTest {
         hotelDataService = new HotelDataServiceImpl();
     }
 
-    @Test
-    public void test1_Delete() {
-    	ArrayList<HotelVO> voarr = hotelBL.getAll();
-    	for(HotelVO vo: voarr){
-    		 assertEquals(ResultMessage.RESULT_SUCCESS, hotelBL.delete(vo.id).result);
-    	}
-    }
+//    @Test
+//    public void test1_Delete() {
+//    	ArrayList<HotelVO> voarr = hotelBL.getAll();
+//    	for(HotelVO vo: voarr){
+//    		 assertEquals(ResultMessage.RESULT_SUCCESS, hotelBL.delete(vo.id).result);
+//    	}
+//    }
     
     @Test
     public void test2_Add() {

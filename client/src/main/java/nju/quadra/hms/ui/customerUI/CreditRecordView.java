@@ -16,7 +16,7 @@ import java.util.ArrayList;
  */
 class CreditRecordView extends Parent {
 
-    private CustomerController controller = new CustomerController();
+    private final CustomerController controller = new CustomerController();
 
     public CreditRecordView() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("credit.fxml"));

@@ -12,11 +12,11 @@ import java.util.ArrayList;
  */
 public class CustomerController {
 
-    private CustomerBLService customerBL = BLServiceFactory.getCustomerBLService();
-    private CreditRecordBLService creditBL = BLServiceFactory.getCreditRecordBLService();
-    private UserBLService userBL = BLServiceFactory.getUserBLService();
-    private HotelBLService hotelBL = BLServiceFactory.getHotelBLService();
-    private OrderBLService orderBL = BLServiceFactory.getOrderBLService();
+    private final CustomerBLService customerBL = BLServiceFactory.getCustomerBLService();
+    private final CreditRecordBLService creditBL = BLServiceFactory.getCreditRecordBLService();
+    private final UserBLService userBL = BLServiceFactory.getUserBLService();
+    private final HotelBLService hotelBL = BLServiceFactory.getHotelBLService();
+    private final OrderBLService orderBL = BLServiceFactory.getOrderBLService();
 
     public UserVO getUserInfo(String username) {
         try {

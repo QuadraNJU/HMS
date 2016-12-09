@@ -7,7 +7,7 @@ public enum WebsitePromotionType {
     TIME_PROMOTION("特定期间住宿折扣"),
     LEVEL_PROMOTION("会员等级折扣");
 
-    String showname;
+    final String showname;
 
     WebsitePromotionType(String showname) {
         this.showname = showname;

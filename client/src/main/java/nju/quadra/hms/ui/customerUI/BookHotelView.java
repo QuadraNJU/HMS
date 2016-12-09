@@ -26,7 +26,7 @@ import java.util.stream.Collectors;
  */
 class BookHotelView extends Parent {
 
-    private CustomerController controller = new CustomerController();
+    private final CustomerController controller = new CustomerController();
     private HotelSearchVO hotelSearchVO;
     private SuccessHandler onSuccess;
 

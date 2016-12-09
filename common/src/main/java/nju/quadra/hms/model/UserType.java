@@ -9,7 +9,7 @@ public enum UserType {
     WEBSITE_MARKETER("网站营销人员"),
     WEBSITE_MASTER("网站管理人员");
 
-    String showname;
+    final String showname;
 
     UserType(String showname) {
         this.showname = showname;

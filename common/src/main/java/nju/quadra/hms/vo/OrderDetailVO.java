@@ -12,11 +12,11 @@ public class OrderDetailVO extends OrderVO {
     /**
      * 酒店
      */
-    public HotelVO hotel;
+    public final HotelVO hotel;
     /**
      * 客房
      */
-    public HotelRoomVO room;
+    public final HotelRoomVO room;
 
     public OrderDetailVO(int id, String username, HotelVO hotel, LocalDate startDate, LocalDate endDate, HotelRoomVO room, int roomCount, ArrayList<String> persons, boolean hasChildren, double price, OrderState state, int rank, String comment) {
         super(id, username, hotel.id, startDate, endDate, room.id, roomCount, persons.size(), persons, hasChildren, price, state, rank, comment);

@@ -33,7 +33,7 @@ class OrderSearchView extends Parent {
     @FXML
     private VBox vBox;
 
-    private HotelStaffController controller = new HotelStaffController(HttpClient.session.username);
+    private final HotelStaffController controller = new HotelStaffController(HttpClient.session.username);
     private ArrayList<OrderDetailVO> orders;
 
     public OrderSearchView() throws IOException {

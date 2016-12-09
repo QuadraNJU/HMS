@@ -22,7 +22,7 @@ import java.util.Optional;
  */
 class UserView extends Parent {
 
-    private WebmasterController controller = new WebmasterController();
+    private final WebmasterController controller = new WebmasterController();
     private ArrayList<UserVO> userList;
 
     @FXML
@@ -92,7 +92,7 @@ class UserView extends Parent {
     }
 
     public class UserProperty {
-        private UserVO vo;
+        private final UserVO vo;
 
         public UserProperty(UserVO vo) {
             this.vo = vo;

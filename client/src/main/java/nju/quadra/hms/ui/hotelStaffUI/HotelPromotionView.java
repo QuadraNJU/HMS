@@ -18,7 +18,7 @@ import java.util.ArrayList;
  */
 class HotelPromotionView extends Parent {
 
-    private HotelStaffController controller = new HotelStaffController(HttpClient.session.username);
+    private final HotelStaffController controller = new HotelStaffController(HttpClient.session.username);
     private ArrayList<HotelPromotionVO> promotions;
 
     public HotelPromotionView() throws IOException {

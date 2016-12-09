@@ -5,11 +5,11 @@ package nju.quadra.hms.vo;
  */
 public class AreaVO {
 
-    public int id;
+    public final int id;
 
-    public String cityName;
+    public final String cityName;
 
-    public String areaName;
+    public final String areaName;
 
     public AreaVO(int id, String cityName, String areaName) {
         this.id = id;

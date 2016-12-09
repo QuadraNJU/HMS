@@ -19,7 +19,7 @@ import java.io.IOException;
  */
 class MemberEnrollView extends Parent {
 
-    private CustomerController controller = new CustomerController();
+    private final CustomerController controller = new CustomerController();
 
     public MemberEnrollView() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("member.fxml"));

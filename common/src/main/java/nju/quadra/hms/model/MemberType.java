@@ -8,7 +8,7 @@ public enum MemberType {
     PERSONAL("个人会员"),
     COMPANY("企业会员");
 
-    private String showname;
+    private final String showname;
 
     MemberType(String showname) {
         this.showname = showname;

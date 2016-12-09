@@ -10,7 +10,7 @@ import nju.quadra.hms.vo.*;
  */
 class OrderController {
 
-    private OrderBLService orderBL = BLServiceFactory.getOrderBLService();
+    private final OrderBLService orderBL = BLServiceFactory.getOrderBLService();
 
     public PriceVO getPrice(OrderVO vo) {
         try {

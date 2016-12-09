@@ -27,8 +27,8 @@ public class CreditRecordBL implements CreditRecordBLService {
     private static final double RECHARGE_RATE = 100.0;
     public static final int LATEST_CHECKIN_TIME_GAP = 6;
 
-    private CreditDataService creditDataService;
-    private UserBLService userBL;
+    private final CreditDataService creditDataService;
+    private final UserBLService userBL;
 
     public CreditRecordBL(){
         creditDataService = new CreditDataServiceImpl();

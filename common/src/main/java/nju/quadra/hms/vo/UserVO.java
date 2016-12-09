@@ -10,7 +10,7 @@ public class UserVO {
     /**
      * 用户名
      */
-    public String username;
+    public final String username;
     /**
      * 密码
      */

@@ -19,7 +19,7 @@ import java.util.ArrayList;
  */
 class HotelAndStaffView extends Parent {
 
-    private WebmasterController controller = new WebmasterController();
+    private final WebmasterController controller = new WebmasterController();
     private ArrayList<AreaVO> areas;
 
     public HotelAndStaffView() throws IOException {

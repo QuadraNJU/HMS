@@ -19,7 +19,7 @@ import java.util.ArrayList;
  */
 class CustomerInfoView extends Parent {
 
-    private CustomerController controller = new CustomerController();
+    private final CustomerController controller = new CustomerController();
 
     public CustomerInfoView() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("info.fxml"));

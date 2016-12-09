@@ -16,7 +16,7 @@ import java.util.HashMap;
  * Created by RaUkonn on 2016/11/21.
  */
 public class WebsitePromotionBL implements WebsitePromotionBLService {
-    private WebsitePromotionDataService websitePromotionDataService;
+    private final WebsitePromotionDataService websitePromotionDataService;
 
     public WebsitePromotionBL() {
         websitePromotionDataService = new WebsitePromotionDataServiceImpl();

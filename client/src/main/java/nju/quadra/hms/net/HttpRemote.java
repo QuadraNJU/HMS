@@ -10,7 +10,7 @@ import java.lang.reflect.Type;
  */
 public class HttpRemote {
 
-    private String className;
+    private final String className;
 
     public HttpRemote(String className) {
         this.className = className;

@@ -16,9 +16,9 @@ import java.util.ArrayList;
 
 public class CustomerBL implements CustomerBLService {
 
-    private UserBLService userBL;
-    private CreditRecordBLService creditRecordBL;
-    private UserDataService userDataService;
+    private final UserBLService userBL;
+    private final CreditRecordBLService creditRecordBL;
+    private final UserDataService userDataService;
 
     public CustomerBL() {
         userBL = new UserBL();

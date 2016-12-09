@@ -14,7 +14,7 @@ import nju.quadra.hms.po.HotelPO;
 import nju.quadra.hms.vo.*;
 
 public class HotelBL implements HotelBLService {
-    private HotelDataService hotelDataService = new HotelDataServiceImpl();
+    private final HotelDataService hotelDataService = new HotelDataServiceImpl();
 
     @Override
     public ArrayList<HotelSearchVO> search(int areaId, String username) {

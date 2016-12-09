@@ -22,7 +22,7 @@ import java.util.ArrayList;
  */
 class HotelInfoView extends Parent {
 
-    private HotelStaffController controller = new HotelStaffController(HttpClient.session.username);
+    private final HotelStaffController controller = new HotelStaffController(HttpClient.session.username);
 
     public HotelInfoView() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("hotelinfo.fxml"));

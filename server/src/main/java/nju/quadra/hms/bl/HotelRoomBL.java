@@ -10,7 +10,7 @@ import nju.quadra.hms.po.HotelRoomPO;
 import nju.quadra.hms.vo.HotelRoomVO;
 
 public class HotelRoomBL implements HotelRoomBLService{
-    private HotelRoomDataService hotelRoomDataService;
+    private final HotelRoomDataService hotelRoomDataService;
     
     public HotelRoomBL() {
 		hotelRoomDataService = new HotelRoomDataServiceImpl();

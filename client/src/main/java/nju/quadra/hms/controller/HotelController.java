@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * Created by RaUkonn on 2016/11/30.
  */
 class HotelController {
-    private HotelBLService hotelBL = BLServiceFactory.getHotelBLService();
+    private final HotelBLService hotelBL = BLServiceFactory.getHotelBLService();
 
     public ArrayList<AreaVO> getAllArea() {
         try {

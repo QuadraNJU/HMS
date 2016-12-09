@@ -11,31 +11,31 @@ public class CreditRecordVO {
     /**
      * 信用记录ID
      */
-    private int id;
+    private final int id;
     /**
      * 用户名
      */
-    public String username;
+    public final String username;
     /**
      * 发生时间
      */
-    public LocalDateTime timestamp;
+    public final LocalDateTime timestamp;
     /**
      * 相关订单ID
      */
-    public int orderId;
+    public final int orderId;
     /**
      * 动作
      */
-    public CreditAction action;
+    public final CreditAction action;
     /**
      * 信用度变化
      */
-    public double diff;
+    public final double diff;
     /**
      * 信用度结果
      */
-    public double creditResult;
+    public final double creditResult;
 
     public CreditRecordVO(int id, String username, LocalDateTime timestamp, int orderId, CreditAction action, double diff, double creditResult) {
         this.id = id;

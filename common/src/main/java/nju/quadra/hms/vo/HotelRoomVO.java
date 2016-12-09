@@ -7,7 +7,7 @@ public class HotelRoomVO {
     /**
      * 客房ID
      */
-    public int id;
+    public final int id;
     /**
      * 酒店ID
      */

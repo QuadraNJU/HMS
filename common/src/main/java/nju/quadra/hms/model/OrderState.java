@@ -11,7 +11,7 @@ public enum OrderState {
     DELAYED("异常(逾期)"),
     UNDO("已撤销");
 
-    String showname;
+    final String showname;
 
     OrderState(String showname) {
         this.showname = showname;

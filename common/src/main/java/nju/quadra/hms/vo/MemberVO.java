@@ -12,19 +12,19 @@ public class MemberVO {
 	/**
      * 会员名
      */
-    public String username;
+    public final String username;
     /**
      * 会员类型
      */
-    public MemberType memberType;
+    public final MemberType memberType;
     /**
      * 生日
      */
-    public LocalDate birthday;
+    public final LocalDate birthday;
     /**
      * 企业名称
      */
-    public String companyName;
+    public final String companyName;
 
     public MemberVO(String username, MemberType memberType, LocalDate birthday, String companyName) {
         this.username = username;

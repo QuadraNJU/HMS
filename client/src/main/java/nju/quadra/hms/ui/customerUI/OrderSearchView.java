@@ -46,7 +46,7 @@ class OrderSearchView extends Parent {
     private TextArea areaComment;
     /*End Comment View Components*/
 
-    private CustomerController controller = new CustomerController();
+    private final CustomerController controller = new CustomerController();
     private ArrayList<OrderDetailVO> orders;
     private OrderDetailVO selectedOrder;
 

@@ -18,10 +18,10 @@ import java.util.ArrayList;
  */
 public class WebMarketerController {
 
-    private CreditRecordBLService creditBL = BLServiceFactory.getCreditRecordBLService();
-    private WebsitePromotionBLService websitePromotionBL = BLServiceFactory.getWebsitePromotionBLService();
-    private HotelBLService hotelBL = BLServiceFactory.getHotelBLService();
-    private OrderBLService orderBL = BLServiceFactory.getOrderBLService();
+    private final CreditRecordBLService creditBL = BLServiceFactory.getCreditRecordBLService();
+    private final WebsitePromotionBLService websitePromotionBL = BLServiceFactory.getWebsitePromotionBLService();
+    private final HotelBLService hotelBL = BLServiceFactory.getHotelBLService();
+    private final OrderBLService orderBL = BLServiceFactory.getOrderBLService();
 
     public ResultMessage creditTopup(String username, int amount) {
         try {

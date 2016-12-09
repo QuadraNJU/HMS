@@ -12,7 +12,7 @@ import java.util.ArrayList;
  */
 class UserController {
 
-    private UserBLService userBL;
+    private final UserBLService userBL;
 
     public UserController() {
         userBL = BLServiceFactory.getUserBLService();

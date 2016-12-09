@@ -15,7 +15,7 @@ import java.io.IOException;
  */
 class CreditTopupView extends Parent {
 
-    private WebMarketerController controller = new WebMarketerController();
+    private final WebMarketerController controller = new WebMarketerController();
 
     public CreditTopupView() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("credittopup.fxml"));

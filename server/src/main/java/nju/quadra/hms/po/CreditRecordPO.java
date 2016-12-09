@@ -19,7 +19,7 @@ public class CreditRecordPO {
     /**
      * 发生时间
      */
-    private LocalDateTime timestamp;
+    private final LocalDateTime timestamp;
     /**
      * 相关订单ID
      */

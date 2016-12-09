@@ -9,7 +9,7 @@ import java.util.HashMap;
  */
 class SessionManager {
 
-    private static HashMap<String, LoginSession> sessions = new HashMap<>();
+    private static final HashMap<String, LoginSession> sessions = new HashMap<>();
 
     public static void add(LoginSession session) {
         sessions.put(session.id, session);

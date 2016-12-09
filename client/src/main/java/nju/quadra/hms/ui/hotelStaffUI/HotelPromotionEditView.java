@@ -29,7 +29,7 @@ class HotelPromotionEditView extends Parent {
     private HotelPromotionVO hotelPromotionVO;
     private SuccessHandler onSuccess;
     private ArrayList<String> selectedCompany = new ArrayList<>();
-    private HashMap<String, ObservableValue<Boolean>> companySelection = new HashMap<>();
+    private final HashMap<String, ObservableValue<Boolean>> companySelection = new HashMap<>();
 
     @FXML
     private

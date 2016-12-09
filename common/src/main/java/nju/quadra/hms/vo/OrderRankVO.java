@@ -10,19 +10,19 @@ public class OrderRankVO {
     /**
      * 订单ID
      */
-    public int orderId;
+    public final int orderId;
     /**
      * 评价时间
      */
-    private LocalDate date;
+    private final LocalDate date;
     /**
      * 评分
      */
-    public int rank;
+    public final int rank;
     /**
      * 评价内容
      */
-    public String comment;
+    public final String comment;
 
     public OrderRankVO(int orderId, LocalDate date, int rank, String comment) {
         this.orderId = orderId;

@@ -274,8 +274,8 @@ class WebsitePromotionEditView extends Parent {
     }
 
     public class UserLevel {
-        private double credit;
-        private double promotion;
+        private final double credit;
+        private final double promotion;
 
         public UserLevel(double credit, double promotion) {
             this.credit = credit;

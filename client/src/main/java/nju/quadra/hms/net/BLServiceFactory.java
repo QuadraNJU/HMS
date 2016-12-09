@@ -11,7 +11,7 @@ import java.lang.reflect.Proxy;
  */
 public class BLServiceFactory {
 
-    private static InvocationHandler invocationHandler = (proxy, method, args) -> {
+    private static final InvocationHandler invocationHandler = (proxy, method, args) -> {
         String className = method.getDeclaringClass().getSimpleName().replace("Service", "");
         String methodName = method.getName();
         String payload = new Gson().toJson(args);

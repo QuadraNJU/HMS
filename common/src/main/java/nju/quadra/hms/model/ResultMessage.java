@@ -10,8 +10,8 @@ public class ResultMessage {
     public static final int RESULT_DB_ERROR = 2;
     public static final int RESULT_NET_ERROR = 3;
 
-    public int result;
-    public String message;
+    public final int result;
+    public final String message;
 
     public ResultMessage(int result) {
         this.result = result;

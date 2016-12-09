@@ -12,7 +12,7 @@ public class HotelPromotionVO {
     /**
      * 酒店促销策略ID
      */
-    public int id;
+    public final int id;
     /**
      * 酒店ID
      */

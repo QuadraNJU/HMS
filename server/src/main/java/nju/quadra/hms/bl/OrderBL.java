@@ -21,7 +21,7 @@ import static nju.quadra.hms.bl.CreditRecordBL.LATEST_CHECKIN_TIME_GAP;
  * Created by RaUkonn on 2016/11/20.
  */
 public class OrderBL implements OrderBLService {
-    private OrderDataService orderDataService = new OrderDataServiceImpl();
+    private final OrderDataService orderDataService = new OrderDataServiceImpl();
 
     public OrderBL() {
         // 自动检查异常订单

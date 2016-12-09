@@ -20,7 +20,7 @@ import java.io.IOException;
  */
 class UserEditView extends Parent {
 
-    private WebmasterController controller = new WebmasterController();
+    private final WebmasterController controller = new WebmasterController();
     private UserVO userVO;
     private MemberVO memberVO;
     private SuccessHandler onSuccess;

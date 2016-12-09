@@ -16,7 +16,7 @@ import java.util.ArrayList;
  * Created by RaUkonn on 2016/11/18.
  */
 public class UserBL implements UserBLService {
-    private UserDataService userDataService;
+    private final UserDataService userDataService;
 
     public UserBL() {
         userDataService = new UserDataServiceImpl();

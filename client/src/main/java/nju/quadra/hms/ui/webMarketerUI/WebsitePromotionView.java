@@ -17,7 +17,7 @@ import java.util.ArrayList;
  */
 class WebsitePromotionView extends Parent {
 
-    private WebMarketerController controller = new WebMarketerController();
+    private final WebMarketerController controller = new WebMarketerController();
     private ArrayList<WebsitePromotionVO> promotions;
 
     public WebsitePromotionView() throws IOException {
