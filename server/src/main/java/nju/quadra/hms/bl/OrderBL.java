@@ -191,20 +191,18 @@ public class OrderBL implements OrderBLService {
     @Override
     public ResultMessage undoUnfinished(int orderId) {
         try {
-            CreditDataService creditDataService = new CreditDataServiceImpl();
             OrderPO po = orderDataService.getById(orderId);
-            //订单状态必须为"未执行"才可调用此方法
-            if(po.getState() != OrderState.BOOKED)
-                return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "该订单无法被撤销（订单状态不为\"未执行\"），请重新选择");
+            // 订单状态必须为"未执行"才可调用此方法
+            if (po.getState() != OrderState.BOOKED) {
+                return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "该订单无法被撤销（订单状态不为\"未执行\"）");
+            }
             po.setState(OrderState.UNDO);
             orderDataService.update(po);
-            //如果撤销的订单距离最晚订单执行时间不足6个小时，撤销的同时扣除用户的信用值，信用值为订单的(总价值*1/2)
-            double currRate = 0;
-            LocalDateTime latestAvaliableTime = LocalDateTime.of(po.getStartDate(), LocalTime.of(6, 0));
-            if(LocalDateTime.now().compareTo(latestAvaliableTime) > 0)
-                currRate = CreditRecordBL.UNDO_UNFINISHED_RATE;
-            CreditRecordPO creditRecordPO = new CreditRecordPO(0, po.getUsername(), LocalDateTime.now(), orderId, CreditAction.ORDER_UNDO, po.getPrice() * currRate);
-            creditDataService.insert(creditRecordPO);
+            // 如果撤销的订单距离最晚订单执行时间不足6个小时，撤销的同时扣除用户的信用值
+            LocalDateTime latestAvaliableTime = LocalDateTime.of(po.getStartDate(), LocalTime.of(18, 0));
+            if (LocalDateTime.now().compareTo(latestAvaliableTime) > 0) {
+                new CreditRecordBL().add(new CreditRecordVO(0, po.getUsername(), null, orderId, CreditAction.ORDER_CANCELLED, po.getPrice() * CreditRecordBL.UNDO_UNFINISHED_RATE, 0));
+            }
         } catch (NullPointerException e) {
             e.printStackTrace();
             return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "订单不存在，请确认订单信息");

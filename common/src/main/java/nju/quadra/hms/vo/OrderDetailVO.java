@@ -19,8 +19,6 @@ public class OrderDetailVO extends OrderVO {
      */
     public HotelRoomVO room;
 
-
-
     public OrderDetailVO(int id, String username, HotelVO hotel, LocalDate startDate, LocalDate endDate, HotelRoomVO room, int roomCount, ArrayList<String> persons, boolean hasChildren, double price, OrderState state, int rank, String comment) {
         super(id, username, hotel.id, startDate, endDate, room.id, roomCount, persons.size(), persons, hasChildren, price, state, rank, comment);
         this.hotel = hotel;
@@ -35,7 +33,7 @@ public class OrderDetailVO extends OrderVO {
         for (int i = 0; i < 5-rank; i++) {
             stars += "☆";
         }
-        return endDate.format(DateTimeFormatter.ofPattern("uuuu/MM/dd ")) + stars + "\n" + comment;
+        return stars + "\n" + comment;
     }
 
 }

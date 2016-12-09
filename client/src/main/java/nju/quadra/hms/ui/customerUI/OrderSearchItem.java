@@ -3,7 +3,9 @@ package nju.quadra.hms.ui.customerUI;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import nju.quadra.hms.controller.CustomerController;
 import nju.quadra.hms.controller.HotelController;
@@ -17,6 +19,7 @@ import nju.quadra.hms.vo.HotelVO;
 import nju.quadra.hms.vo.OrderDetailVO;
 
 import java.io.IOException;
+import java.util.Optional;
 
 /**
  * Created by adn55 on 2016/11/30.
@@ -71,12 +74,20 @@ public class OrderSearchItem extends Parent {
 
     @FXML
     public void onUndoAction() throws IOException {
-        ResultMessage rs = controller.undoUnfinishedOrder(order.id);
-        if(rs.result != ResultMessage.RESULT_SUCCESS) {
-            Dialogs.showError("撤销订单失败: " + rs.message);
-        } else {
-            Dialogs.showInfo("撤销订单成功");
-            parent.loadOrders();
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("确认预订");
+        alert.setHeaderText(null);
+        alert.setContentText("若距离最晚订单执行时间不足 6 小时，您的信用值将会被扣除。\n是否确认撤销订单?");
+        alert.getButtonTypes().setAll(ButtonType.YES, ButtonType.NO);
+        Optional<ButtonType> confirm = alert.showAndWait();
+        if (confirm.isPresent() && confirm.get().equals(ButtonType.YES)) {
+            ResultMessage rs = controller.undoUnfinishedOrder(order.id);
+            if (rs.result != ResultMessage.RESULT_SUCCESS) {
+                Dialogs.showError("撤销订单失败: " + rs.message);
+            } else {
+                Dialogs.showInfo("撤销订单成功");
+                parent.loadOrders();
+            }
         }
     }
 }
