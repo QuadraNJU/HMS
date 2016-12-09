@@ -40,6 +40,7 @@ public class WebMarketerNavigation extends Parent {
         // process logic
         switch (source.getId()) {
             case "order":
+                mainView.loadView(new OrderSearchView());
                 break;
             case "promotion":
                 mainView.loadView(new WebsitePromotionView());

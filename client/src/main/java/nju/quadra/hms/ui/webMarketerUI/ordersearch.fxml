@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<Pane fx:id="pane" prefHeight="470.0" prefWidth="700.0" stylesheets="@../common/style.css"
+      xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <Label layoutX="45.0" layoutY="25.0" text="订单管理">
+        <font>
+            <Font size="24.0"/>
+        </font>
+    </Label>
+    <ChoiceBox fx:id="choiceOrderState" layoutX="40.0" layoutY="70.0" prefWidth="170.0"/>
+    <DatePicker fx:id="dateStart" layoutX="220.0" layoutY="70.0" prefWidth="150.0"/>
+    <DatePicker fx:id="dateEnd" layoutX="380.0" layoutY="70.0" prefWidth="150.0"/>
+    <ScrollPane layoutX="40.0" layoutY="110.0" prefHeight="320.0" prefWidth="620.0">
+        <VBox fx:id="vBox"/>
+    </ScrollPane>
+</Pane>

@@ -26,11 +26,18 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 
+import static nju.quadra.hms.bl.CreditRecordBL.LATEST_CHECKIN_TIME_GAP;
+
 /**
  * Created by RaUkonn on 2016/11/20.
  */
 public class OrderBL implements OrderBLService {
     private OrderDataService orderDataService = new OrderDataServiceImpl();
+
+    public OrderBL() {
+        // 自动检查异常订单
+        checkDelayed();
+    }
 
     @Override
     public PriceVO getPrice(OrderVO vo) {
@@ -151,12 +158,12 @@ public class OrderBL implements OrderBLService {
     }
 
     @Override
-    public ArrayList<OrderVO> getByState(OrderState state) {
-        ArrayList<OrderVO> voarr = new ArrayList<>();
+    public ArrayList<OrderDetailVO> getByState(OrderState state) {
+        ArrayList<OrderDetailVO> voarr = new ArrayList<>();
         try {
             ArrayList<OrderPO> poarr = orderDataService.getByState(state);
             for(OrderPO po: poarr) {
-                voarr.add(OrderBL.toVO(po));
+                voarr.add(toDetailVO(po));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -165,20 +172,18 @@ public class OrderBL implements OrderBLService {
     }
 
     @Override
-    public ResultMessage undoDelayed(OrderVO vo, boolean returnAllCredit) {
+    public ResultMessage undoDelayed(int orderId, boolean returnAllCredit) {
         try {
-            CreditDataService creditDataService = new CreditDataServiceImpl();
-            OrderPO po = orderDataService.getById(vo.id);
-             if(po.getState() != OrderState.DELAYED)
-                 //订单状态必须为"异常(逾期)"才可调用此方法
-                 return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "该订单无法被撤销（订单状态不为\"异常(逾期)\"），请重新选择");
-             po.setState(OrderState.UNDO);
-             //todo:这里还要加个记录撤销时间的东西，表打错了orz
-             orderDataService.update(po);
-             //增添的信用值为订单的原价或者一半
-            double currRate = returnAllCredit? CreditRecordBL.UNDO_DELAYED_RATE[1]: CreditRecordBL.UNDO_DELAYED_RATE[0];
-             CreditRecordPO creditRecordPO = new CreditRecordPO(0, vo.username, null, vo.id, CreditAction.ORDER_UNDO, vo.price * currRate);
-             creditDataService.insert(creditRecordPO);
+            OrderPO po = orderDataService.getById(orderId);
+            // 订单状态必须为"异常"才可调用此方法
+            if (po.getState() != OrderState.DELAYED) {
+                return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "该订单无法被撤销（订单状态不为\"异常\"）");
+            }
+            po.setState(OrderState.UNDO);
+            orderDataService.update(po);
+            // 增添的信用值为订单的原价或者一半
+            double currRate = returnAllCredit ? CreditRecordBL.UNDO_DELAYED_RATE[1] : CreditRecordBL.UNDO_DELAYED_RATE[0];
+            new CreditRecordBL().add(new CreditRecordVO(0, po.getUsername(), null, orderId, CreditAction.ORDER_UNDO, po.getPrice() * currRate, 0));
         } catch (NullPointerException e) {
             e.printStackTrace();
             return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "订单不存在，请确认订单信息");
@@ -200,7 +205,7 @@ public class OrderBL implements OrderBLService {
             po.setState(OrderState.UNDO);
             orderDataService.update(po);
             // 如果撤销的订单距离最晚订单执行时间不足6个小时，撤销的同时扣除用户的信用值
-            LocalDateTime latestAvaliableTime = LocalDateTime.of(po.getStartDate(), LocalTime.of(18, 0));
+            LocalDateTime latestAvaliableTime = LocalDateTime.of(po.getStartDate(), LocalTime.of(24 - LATEST_CHECKIN_TIME_GAP, 0));
             if (LocalDateTime.now().compareTo(latestAvaliableTime) > 0) {
                 new CreditRecordBL().add(new CreditRecordVO(0, po.getUsername(), null, orderId, CreditAction.ORDER_CANCELLED, po.getPrice() * CreditRecordBL.UNDO_UNFINISHED_RATE, 0));
             }
@@ -277,6 +282,21 @@ public class OrderBL implements OrderBLService {
             return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "服务器访问异常，请重新尝试");
         }
         return new ResultMessage(ResultMessage.RESULT_SUCCESS);
+    }
+
+    private void checkDelayed() {
+        try {
+            ArrayList<OrderPO> orders = orderDataService.getByState(OrderState.BOOKED);
+            for (OrderPO order : orders) {
+                if (LocalDate.now().compareTo(order.getStartDate()) > 0) {
+                    order.setState(OrderState.DELAYED);
+                    orderDataService.update(order);
+                    new CreditRecordBL().add(new CreditRecordVO(0, order.getUsername(), null, order.getId(), CreditAction.ORDER_DELAYED, order.getPrice() * CreditRecordBL.DELAYED_RATE, 0));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public static OrderVO toVO(OrderPO po) {

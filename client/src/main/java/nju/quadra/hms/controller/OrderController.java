@@ -33,24 +33,6 @@ public class OrderController {
         }
     }
 
-    public ArrayList<OrderVO> getByState(OrderState state) {
-        try {
-            return orderBL.getByState(state);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
-    public ResultMessage undoDelayed(OrderVO vo, boolean returnAllCredit) {
-        try {
-            return orderBL.undoDelayed(vo, returnAllCredit);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
     public ResultMessage addRank(OrderRankVO vo) {
         try {
             return orderBL.addRank(vo);

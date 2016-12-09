@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.*?>
+<Pane fx:id="pane" prefHeight="70.0" prefWidth="600.0" stylesheets="@../common/style.css"
+      xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <Label fx:id="labelTime" layoutX="14.0" layoutY="10.0" prefHeight="18.0" prefWidth="200.0"
+           text="2016/12/12 - 2016/12/13">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </Label>
+    <Label fx:id="labelContent" layoutX="14.0" layoutY="40.0" prefHeight="18.0" prefWidth="281.0">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </Label>
+    <Label fx:id="labelPrice" layoutX="315.0" layoutY="10.0" prefHeight="18.0" prefWidth="100.0" text="¥ 999.99">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </Label>
+    <Label fx:id="labelPersonNumber" layoutX="315.0" layoutY="40.0" prefHeight="18.0" prefWidth="70.0" text="共 4 人">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </Label>
+    <Label fx:id="labelOrderState" alignment="CENTER_RIGHT" layoutX="476.0" layoutY="10.0" prefHeight="19.0"
+           prefWidth="100.0" text="未完成">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </Label>
+    <Button fx:id="btnDetail" layoutX="526.0" layoutY="32.0" onAction="#onDetailAction" prefWidth="60.0"
+            styleClass="btn-blue, btn-r" text="详情">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </Button>
+    <Button fx:id="btnUndo" layoutX="456.0" layoutY="32.0" onAction="#onUndoAction" prefWidth="60.0"
+            styleClass="btn-red, btn-r" text="撤销" visible="false">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </Button>
+</Pane>

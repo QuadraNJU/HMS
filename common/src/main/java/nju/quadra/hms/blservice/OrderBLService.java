@@ -21,9 +21,9 @@ public interface OrderBLService {
 
     ArrayList<OrderDetailVO> getByHotel(int hotelId);
 
-    ArrayList<OrderVO> getByState(OrderState state);
+    ArrayList<OrderDetailVO> getByState(OrderState state);
 
-    ResultMessage undoDelayed(OrderVO vo, boolean returnAllCredit);
+    ResultMessage undoDelayed(int orderId, boolean returnAllCredit);
 
     ResultMessage undoUnfinished(int orderId);
 
