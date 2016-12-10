@@ -24,7 +24,7 @@ public class CreditRecordBL implements CreditRecordBLService {
     public static final double[] UNDO_DELAYED_RATE = {0.5, 1.0};
     public static final double UNDO_UNFINISHED_RATE = -0.5;
     public static final double FINISH_RATE = 1.0;
-    private static final double RECHARGE_RATE = 100.0;
+    public static final double RECHARGE_RATE = 100.0;
     public static final int LATEST_CHECKIN_TIME_GAP = 6;
 
     private final CreditDataService creditDataService;

@@ -1,97 +1,126 @@
 package nju.quadra.hms.bl;
 
+import nju.quadra.hms.blservice.*;
+import nju.quadra.hms.data.mysql.OrderDataServiceImpl;
+import nju.quadra.hms.dataservice.OrderDataService;
+import nju.quadra.hms.model.*;
+import nju.quadra.hms.net.PassHash;
+import nju.quadra.hms.po.OrderPO;
+import nju.quadra.hms.vo.*;
 import org.junit.FixMethodOrder;
+import org.junit.Test;
 import org.junit.runners.MethodSorters;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import static org.junit.Assert.*;
 
 
 /**
  * Created by admin on 2016/11/6.
  */
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-class OrderBLTest {
-//    OrderBLService orderBL;
-//    OrderDataService orderDataService;
-//    HotelPromotionBLService hotelPromotionBL;
-//    WebsitePromotionBLService websitePromotionBL;
-//
-//    @Before
-//    public void init() {
-//        orderBL = new OrderBL();
-//        orderDataService = new OrderDataServiceImpl();
-//        hotelPromotionBL = new HotelPromotionBL();
-//        websitePromotionBL = new WebsitePromotionBL();
-//    }
-//
-//    @Test
-//    public void test1_Add() {
-//        try {
-//            ArrayList<String> persons1 = new ArrayList<>();
-//            persons1.add("TEST|person11");
-//            persons1.add("TEST|person12");
-//
-//            ArrayList<String> persons2 = new ArrayList<>();
-//            persons2.add("TEST|person21");
-//            persons2.add("TEST|person22");
-//            persons2.add("TEST|person23");
-//            OrderVO vo1 = new OrderVO(0, "TEST|username1", 123456, LocalDate.parse("2222-11-21"), LocalDate.parse("2222-11-23"), 111, 1, 2, persons1, false, 299.0, OrderState.BOOKED, 0, null);
-//            OrderVO vo2 = new OrderVO(0, "TEST|username2", 123456, LocalDate.parse("2016-11-22"), LocalDate.parse("2016-11-23"), 222, 1, 3, persons2, true, 599.0, OrderState.BOOKED, 0, null);
-//            orderBL.add(vo1);
-//            orderBL.add(vo2);
-//
-//            //HotelPromotionVO hotelvo1 = new HotelPromotionVO(0, 123456, "TEST|hotelPromotion1", HotelPromotionType.TIME_PROMOTION, new Date(2000 - 1900, 1 - 1, 1 + 1), new Date(2300 - 1900, 1 - 1, 1 + 1), 0.8, null);
-//            //HotelPromotionVO hotelvo2 = new HotelPromotionVO(0, 123456, "TEST|hotelPromotion2", HotelPromotionType.TIME_PROMOTION, new Date(2000 - 1900, 1 - 1, 1 + 1), new Date(2300 - 1900, 1 - 1, 1 + 1), 0.7, null);
-//            //hotelPromotionBL.add(hotelvo1);
-//            //hotelPromotionBL.add(hotelvo2);
-//
-//            //WebsitePromotionVO webvo1 = new WebsitePromotionVO(0, "TEST|websitePromotion1", WebsitePromotionType.TIME_PROMOTION, new Date(2000 - 1900, 1 - 1, 1 + 1), new Date(2300 - 1900, 1 - 1, 1 + 1), 0.8, -1, null);
-//            //WebsitePromotionVO webvo2 = new WebsitePromotionVO(0, "TEST|websitePromotion2", WebsitePromotionType.TIME_PROMOTION, new Date(2000 - 1900, 1 - 1, 1 + 1), new Date(2300 - 1900, 1 - 1, 1 + 1), 0.7, -1, null);
-//            //websitePromotionBL.add(webvo1);
-//            //websitePromotionBL.add(webvo2);
-//        } catch (Exception e) {
-//            fail();
-//        }
-//    }
-//    @Test
-//    public void test2_GetByCustomer() {
-//        ArrayList<OrderVO> voarr1 = orderBL.getByCustomer("TEST|username1");
-//        ArrayList<OrderVO> voarr2 = orderBL.getByCustomer("TEST|username2");
-//
-//        //assertEquals(123456, voarr1.get(0).hotelId);
-//        //assertEquals(1, voarr2.size());
-//    }
-//
-//    @Test
-//    public void test3_GetByState() {
-//        ArrayList<OrderVO> voarr = orderBL.getByState(OrderState.BOOKED);
-//        //assertNotNull(voarr);
-//    }
-//
-//    @Test
-//    public void test4_GetByHotel() {
-//        ArrayList<OrderVO> voarr = orderBL.getByHotel(123456);
-//        //assertEquals(2, voarr.size());
-//    }
-//
-//    @Test
-//    public void test5_GetPrice() {
-//        ArrayList<OrderVO> voarr = orderBL.getByState(OrderState.BOOKED);
-//        PriceVO pricevo1 = orderBL.getPrice(voarr.get(0));
-//        //assertEquals(299.0 * 0.7 * 0.7, pricevo1.finalPrice, 1.0);
-//        PriceVO pricevo2 = orderBL.getPrice(voarr.get(1));
-//        //assertEquals(599.0 * 0.7 * 0.7, pricevo2.finalPrice, 1.0);
-//    }
-//
-//    @Test
-//    public void test6_DeleteAll() {
-//        try {
-//            ArrayList<OrderPO> poarr = orderDataService.getByHotel(123456);
-//            for(OrderPO po: poarr) orderDataService.delete(po);
-//            ArrayList<WebsitePromotionVO> webvoarr = websitePromotionBL.get();
-//            for(WebsitePromotionVO vo: webvoarr) websitePromotionBL.delete(vo.id);
-//            ArrayList<HotelPromotionVO> hotelvoarr = hotelPromotionBL.get(123456);
-//            for(HotelPromotionVO vo: hotelvoarr) hotelPromotionBL.delete(vo.id);
-//        } catch (Exception e) {
-//            // e.printStackTrace();
-//        }
-//    }
+public class OrderBLTest {
+    private OrderBLService orderBL = new OrderBL();
+    private HotelPromotionBLService hotelPromotionBL = new HotelPromotionBL();
+    private WebsitePromotionBLService websitePromotionBL = new WebsitePromotionBL();
+    private UserBLService userBL = new UserBL();
+    private HotelBLService hotelBL = new HotelBL();
+    private HotelRoomBLService hotelRoomBL = new HotelRoomBL();
+
+    private OrderDataService orderData = new OrderDataServiceImpl();
+
+    @Test
+    public void test1_makeOrder() {
+        clean();
+        // add a user
+        ResultMessage result = userBL.add(new UserVO("TEST_customer", PassHash.hash("test"), "测试客户", "test", UserType.CUSTOMER));
+        assertEquals(ResultMessage.RESULT_SUCCESS, result.result);
+        // add a hotel
+        result = hotelBL.add(new HotelVO(0, "TEST_Hotel", 9999, "test", "test", "test", "一星级", "TEST_staff"));
+        assertEquals(ResultMessage.RESULT_SUCCESS, result.result);
+        HotelVO hotelVO = hotelBL.getByStaff("TEST_staff");
+        assertNotNull(hotelVO);
+        // add a hotel room
+        result = hotelRoomBL.add(new HotelRoomVO(0, hotelVO.id, "TEST_room", 5, 120.0));
+        HotelRoomVO roomVO = hotelRoomBL.getAll(hotelVO.id).get(0);
+        assertEquals(ResultMessage.RESULT_SUCCESS, result.result);
+        assertNotNull(roomVO);
+        // add a hotel promotion
+        result = hotelPromotionBL.add(new HotelPromotionVO(0, hotelVO.id, "TEST_promotion", HotelPromotionType.MULTI_PROMOTION, LocalDate.now(), LocalDate.now(), 0.78, null));
+        assertEquals(ResultMessage.RESULT_SUCCESS, result.result);
+        // add a website promotion
+        result = websitePromotionBL.add(new WebsitePromotionVO(0, "TEST_promotion", WebsitePromotionType.LEVEL_PROMOTION, LocalDate.now(), LocalDate.now(), 0.77, 9999, new HashMap<>()));
+        assertEquals(ResultMessage.RESULT_SUCCESS, result.result);
+        // get price
+        OrderVO order1 = new OrderVO(0, "TEST_customer", hotelVO.id, LocalDate.now(), LocalDate.now().plusDays(2), roomVO.id, 2, 1, new ArrayList<>(), false, 0, OrderState.BOOKED, 0, "");
+        OrderVO order2 = new OrderVO(0, "TEST_customer", hotelVO.id, LocalDate.now(), LocalDate.now().plusDays(3), roomVO.id, 4, 1, new ArrayList<>(), false, 0, OrderState.BOOKED, 0, "");
+        assertEquals(roomVO.price * 2 * 2 * 0.77, orderBL.getPrice(order1).finalPrice, 0.01);
+        assertEquals(roomVO.price * 4 * 3 * 0.78 * 0.77, orderBL.getPrice(order2).finalPrice, 0.01);
+        // add order
+        order2.price = roomVO.price * 4 * 3 * 0.78 * 0.77;
+        result = orderBL.add(order2);
+        assertEquals(ResultMessage.RESULT_SUCCESS, result.result);
+        // add an abnormal order directly to db
+        try {
+            orderData.insert(new OrderPO(0, "TEST_customer", hotelVO.id, LocalDate.now().minusDays(1), LocalDate.now(), roomVO.id, 1, 1, "[]", false, 12.34, OrderState.BOOKED, 0, ""));
+        } catch (Exception e) {
+            e.printStackTrace();
+            fail();
+        }
+        // get orders (abnormal order should be auto updated)
+        ArrayList<OrderDetailVO> orders = orderBL.getByCustomer("TEST_customer");
+        assertEquals(2, orders.size());
+        assertEquals(OrderState.DELAYED, orders.get(1).state);
+        // checkin & checkout
+        result = orderBL.checkin(orders.get(0).id);
+        assertEquals(ResultMessage.RESULT_SUCCESS, result.result);
+        result = orderBL.checkout(orders.get(0).id);
+        assertEquals(ResultMessage.RESULT_SUCCESS, result.result);
+        // undo
+        result = orderBL.undoDelayed(orders.get(1).id, false);
+        assertEquals(ResultMessage.RESULT_SUCCESS, result.result);
+        // rank
+        result = orderBL.addRank(new OrderRankVO(orders.get(0).id, LocalDate.now(), 3, "TEST_comment"));
+        assertEquals(ResultMessage.RESULT_SUCCESS, result.result);
+        // finish
+        clean();
+    }
+
+    private void clean() {
+        HotelVO hotelVO = hotelBL.getByStaff("TEST_staff");;
+        // delete orders
+        try {
+            for (OrderPO po : orderData.getByCustomer("TEST_customer")) {
+                orderData.delete(po);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        ArrayList<WebsitePromotionVO> wps = websitePromotionBL.get();
+        for (WebsitePromotionVO wp : wps) {
+            if (wp.name.equals("TEST_promotion")) {
+                websitePromotionBL.delete(wp.id);
+            }
+        }
+        // delete hotel
+        while (hotelVO != null) {
+            // delete hotel room
+            for (HotelRoomVO room : hotelRoomBL.getAll(hotelVO.id)) {
+                hotelRoomBL.delete(room.id);
+            }
+            // delete promotions
+            ArrayList<HotelPromotionVO> hps = hotelPromotionBL.get(hotelVO.id);
+            for (HotelPromotionVO hp : hps) {
+                hotelPromotionBL.delete(hp.id);
+            }
+            hotelBL.delete(hotelVO.id);
+            hotelVO = hotelBL.getByStaff("TEST_staff");
+        }
+        // delete customer
+        userBL.delete("TEST_customer");
+    }
+
 }

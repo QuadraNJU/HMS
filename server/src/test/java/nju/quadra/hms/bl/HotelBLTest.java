@@ -81,13 +81,6 @@ public class HotelBLTest {
         vo.name = "金陵会议大酒店";
         assertEquals(ResultMessage.RESULT_SUCCESS, hotelBL.modify(vo).result);
     }
-
-    @Test
-    public void test7_ChangeStaff() {
-    	ArrayList<HotelVO> voarr = hotelBL.getAll();
-    	HotelVO vo = voarr.get(0);
-        assertEquals(ResultMessage.RESULT_SUCCESS, hotelBL.changeStaff(vo.id, "hotelstaff").result);
-    }
     
     @Test
     public void test8_Delete1() {

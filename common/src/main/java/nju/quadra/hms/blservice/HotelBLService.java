@@ -28,6 +28,4 @@ public interface HotelBLService {
     ResultMessage delete(int id);
 
     ResultMessage modify(HotelVO vo);
-
-    ResultMessage changeStaff(int id, String username);
 }

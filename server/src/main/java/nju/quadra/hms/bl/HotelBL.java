@@ -140,20 +140,6 @@ public class HotelBL implements HotelBLService {
         }
     }
 
-    @Override
-    public ResultMessage changeStaff(int id, String username) {
-        HotelPO po = null;
-        try {
-            po = hotelDataService.getById(id);
-            po.setStaff(username);
-            hotelDataService.update(po);
-            return new ResultMessage(ResultMessage.RESULT_SUCCESS);
-        } catch (Exception e) {
-            // e.printStackTrace();
-            return new ResultMessage(ResultMessage.RESULT_DB_ERROR);
-        }
-    }
-
     private static HotelVO toVO(HotelPO po) {
         return new HotelVO(po.getId(), po.getName(), po.getAreaId(),
                 po.getAddress(), po.getDescription(), po.getFacilities(), po.getStar(), po.getStaff());

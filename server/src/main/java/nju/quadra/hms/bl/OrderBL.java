@@ -30,6 +30,7 @@ public class OrderBL implements OrderBLService {
 
     @Override
     public PriceVO getPrice(OrderVO vo) {
+        checkDelayed();
         // check credit and date
         ArrayList<CreditRecordVO> credits = new CreditRecordBL().get(vo.username);
         if (credits.size() > 0 && credits.get(0).creditResult < CreditRecordBL.MIN_CREDIT) {
@@ -127,6 +128,7 @@ public class OrderBL implements OrderBLService {
 
     @Override
     public ResultMessage add(OrderVO vo) {
+        checkDelayed();
         try {
             PriceVO priceVO = getPrice(vo);
             if (priceVO.result.result != ResultMessage.RESULT_SUCCESS) {
@@ -146,6 +148,7 @@ public class OrderBL implements OrderBLService {
 
     @Override
     public ArrayList<OrderDetailVO> getByCustomer(String username) {
+        checkDelayed();
         ArrayList<OrderDetailVO> voarr = new ArrayList<>();
         try {
             ArrayList<OrderPO> poarr = orderDataService.getByCustomer(username);
@@ -160,6 +163,7 @@ public class OrderBL implements OrderBLService {
 
     @Override
     public ArrayList<OrderDetailVO> getByHotel(int hotelId) {
+        checkDelayed();
         ArrayList<OrderDetailVO> voarr = new ArrayList<>();
         try {
             ArrayList<OrderPO> poarr = orderDataService.getByHotel(hotelId);
@@ -174,6 +178,7 @@ public class OrderBL implements OrderBLService {
 
     @Override
     public ArrayList<OrderDetailVO> getByState(OrderState state) {
+        checkDelayed();
         ArrayList<OrderDetailVO> voarr = new ArrayList<>();
         try {
             ArrayList<OrderPO> poarr = orderDataService.getByState(state);
@@ -188,6 +193,7 @@ public class OrderBL implements OrderBLService {
 
     @Override
     public ResultMessage undoDelayed(int orderId, boolean returnAllCredit) {
+        checkDelayed();
         try {
             OrderPO po = orderDataService.getById(orderId);
             // 订单状态必须为"异常"才可调用此方法
@@ -211,6 +217,7 @@ public class OrderBL implements OrderBLService {
 
     @Override
     public ResultMessage undoUnfinished(int orderId) {
+        checkDelayed();
         try {
             OrderPO po = orderDataService.getById(orderId);
             // 订单状态必须为"未执行"才可调用此方法
@@ -236,6 +243,7 @@ public class OrderBL implements OrderBLService {
 
     @Override
     public ResultMessage checkin(int orderId) {
+        checkDelayed();
         try {
             OrderPO po = orderDataService.getById(orderId);
             if (po.getState() != OrderState.BOOKED && po.getState() != OrderState.DELAYED) {
@@ -263,6 +271,7 @@ public class OrderBL implements OrderBLService {
 
     @Override
     public ResultMessage checkout(int orderId) {
+        checkDelayed();
         try {
             OrderPO po = orderDataService.getById(orderId);
             if (po.getState() != OrderState.UNFINISHED) {
