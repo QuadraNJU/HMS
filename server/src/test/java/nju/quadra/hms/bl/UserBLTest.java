@@ -34,6 +34,10 @@ public class UserBLTest {
 
     @Test
     public void test2_Add() {
+        // clean first
+        userBL.delete("TEST|username1");
+        userBL.delete("TEST|username2");
+
         UserVO vo1 = new UserVO("TEST|username1", "TEST|passwordEncrypted1", "TEST|name1", "TEST|contact1", UserType.CUSTOMER);
         UserVO vo2 = new UserVO("TEST|username2", "TEST|passwordEncrypted2", "TEST|name2", "TEST|contact2", UserType.HOTEL_STAFF);
         assertEquals(ResultMessage.RESULT_SUCCESS, userBL.add(vo1).result);
