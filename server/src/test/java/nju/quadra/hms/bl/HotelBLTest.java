@@ -26,11 +26,11 @@ public class HotelBLTest {
     }
 
     @Test
-    public void test1_Delete() {
-    	ArrayList<HotelVO> voarr = hotelBL.getAll();
-    	for(HotelVO vo: voarr){
-    		 assertEquals(ResultMessage.RESULT_SUCCESS, hotelBL.delete(vo.id).result);
-    	}
+    public void test1_clean() {
+        ArrayList<HotelVO> voarr = hotelBL.getByArea(123456);
+        for (HotelVO vo: voarr) {
+            hotelBL.delete(vo.id);
+        }
     }
     
     @Test
@@ -48,7 +48,7 @@ public class HotelBLTest {
 
     @Test
     public void test3_GetAll() {
-    	 ArrayList<HotelVO> voarr = hotelBL.getAll();
+    	 ArrayList<HotelVO> voarr = hotelBL.getByArea(123456);
          assertEquals(3, voarr.size());
          assertEquals("南京抵抗军会议大酒店", voarr.get(0).name);
          assertEquals(123456, voarr.get(0).areaId);
@@ -64,7 +64,7 @@ public class HotelBLTest {
 
     @Test
     public void test5_GetDetail() {
-    	ArrayList<HotelVO> voarr = hotelBL.getAll();
+    	ArrayList<HotelVO> voarr = hotelBL.getByArea(123456);
     	HotelVO vo = voarr.get(0);
     	assertEquals("南京抵抗军会议大酒店", vo.name);
         assertEquals(123456, vo.areaId);
@@ -72,7 +72,7 @@ public class HotelBLTest {
     
     @Test
     public void test6_Modify() {
-    	ArrayList<HotelVO> voarr = hotelBL.getAll();
+    	ArrayList<HotelVO> voarr = hotelBL.getByArea(123456);
     	HotelVO vo = voarr.get(0);
         vo.name = "金陵会议大酒店";
         assertEquals(ResultMessage.RESULT_SUCCESS, hotelBL.modify(vo).result);
@@ -81,7 +81,9 @@ public class HotelBLTest {
     @Test
     public void test8_Delete1() {
     	ArrayList<HotelVO> voarr = hotelBL.getByArea(123456);
-    	for(HotelVO vo: voarr) assertEquals(ResultMessage.RESULT_SUCCESS, hotelBL.delete(vo.id).result);
+    	for (HotelVO vo: voarr) {
+    	    assertEquals(ResultMessage.RESULT_SUCCESS, hotelBL.delete(vo.id).result);
+        }
     }
 
 
