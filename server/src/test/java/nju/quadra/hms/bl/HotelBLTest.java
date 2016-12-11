@@ -1,8 +1,6 @@
 package nju.quadra.hms.bl;
 
 import nju.quadra.hms.blservice.HotelBLService;
-import nju.quadra.hms.data.mysql.HotelDataServiceImpl;
-import nju.quadra.hms.dataservice.HotelDataService;
 import nju.quadra.hms.model.ResultMessage;
 import nju.quadra.hms.vo.HotelVO;
 

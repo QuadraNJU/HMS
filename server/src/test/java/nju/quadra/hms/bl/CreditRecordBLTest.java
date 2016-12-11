@@ -8,7 +8,6 @@ import nju.quadra.hms.net.PassHash;
 import nju.quadra.hms.vo.CreditRecordVO;
 import nju.quadra.hms.vo.UserVO;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;

@@ -69,9 +69,8 @@ public class HotelBL implements HotelBLService {
 
     @Override
     public HotelVO getByStaff(String staff) {
-        HotelPO po = null;
         try {
-            po = hotelDataService.getByStaff(staff);
+            HotelPO po = hotelDataService.getByStaff(staff);
             return HotelBL.toVO(po);
         } catch (Exception e) {
             // e.printStackTrace();
@@ -81,9 +80,8 @@ public class HotelBL implements HotelBLService {
 
     @Override
     public HotelVO getDetail(int id) {
-        HotelPO po = null;
         try {
-            po = hotelDataService.getById(id);
+            HotelPO po = hotelDataService.getById(id);
             return HotelBL.toVO(po);
         } catch (Exception e) {
             // e.printStackTrace();

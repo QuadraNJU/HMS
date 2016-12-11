@@ -53,9 +53,8 @@ public class UserBL implements UserBLService {
 
     @Override
     public UserVO get(String username) {
-        UserPO po = null;
         try {
-            po = userDataService.get(username);
+            UserPO po = userDataService.get(username);
             return UserBL.toVO(po);
         } catch (Exception e) {
             // e.printStackTrace();

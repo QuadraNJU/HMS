@@ -71,8 +71,8 @@ class BookHotelView extends Parent {
     }
 
     @FXML
-    private void onSubmitAction() throws IOException {
-        int roomCount = 0;
+    private void onSubmitAction() {
+        int roomCount;
         try {
             roomCount = Integer.parseInt(textRoomNumber.getText());
         } catch (NumberFormatException e) {

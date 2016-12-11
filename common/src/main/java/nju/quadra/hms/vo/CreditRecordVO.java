@@ -11,7 +11,7 @@ public class CreditRecordVO {
     /**
      * 信用记录ID
      */
-    private final int id;
+    public final int id;
     /**
      * 用户名
      */

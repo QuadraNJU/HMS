@@ -74,7 +74,7 @@ class HotelPromotionEditView extends Parent {
         });
         choiceType.getSelectionModel().select(0);
 
-        listCompany.setCellFactory(CheckBoxListCell.forListView(item -> companySelection.get(item)));
+        listCompany.setCellFactory(CheckBoxListCell.forListView(companySelection::get));
 
         this.hotelPromotionVO = vo;
         this.controller = controller;

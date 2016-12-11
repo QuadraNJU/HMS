@@ -23,14 +23,14 @@ import static org.junit.Assert.*;
  */
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class OrderBLTest {
-    private OrderBLService orderBL = new OrderBL();
-    private HotelPromotionBLService hotelPromotionBL = new HotelPromotionBL();
-    private WebsitePromotionBLService websitePromotionBL = new WebsitePromotionBL();
-    private UserBLService userBL = new UserBL();
-    private HotelBLService hotelBL = new HotelBL();
-    private HotelRoomBLService hotelRoomBL = new HotelRoomBL();
+    private final OrderBLService orderBL = new OrderBL();
+    private final HotelPromotionBLService hotelPromotionBL = new HotelPromotionBL();
+    private final WebsitePromotionBLService websitePromotionBL = new WebsitePromotionBL();
+    private final UserBLService userBL = new UserBL();
+    private final HotelBLService hotelBL = new HotelBL();
+    private final HotelRoomBLService hotelRoomBL = new HotelRoomBL();
 
-    private OrderDataService orderData = new OrderDataServiceImpl();
+    private final OrderDataService orderData = new OrderDataServiceImpl();
 
     @Test
     public void test1_makeOrder() {
@@ -90,7 +90,7 @@ public class OrderBLTest {
     }
 
     private void clean() {
-        HotelVO hotelVO = hotelBL.getByStaff("TEST_staff");;
+        HotelVO hotelVO = hotelBL.getByStaff("TEST_staff");
         // delete orders
         try {
             for (OrderPO po : orderData.getByCustomer("TEST_customer")) {
