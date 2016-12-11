@@ -21,12 +21,10 @@ import java.util.ArrayList;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class HotelBLTest {
     private HotelBLService hotelBL;
-    private HotelDataService hotelDataService;
-    
+
     @Before
     public void init() {
         hotelBL = new HotelBL();
-        hotelDataService = new HotelDataServiceImpl();
     }
 
     @Test
@@ -85,8 +83,7 @@ public class HotelBLTest {
     @Test
     public void test8_Delete1() {
     	ArrayList<HotelVO> voarr = hotelBL.getByArea(123456);
-    	HotelVO vo = voarr.get(0);
-    	assertEquals(ResultMessage.RESULT_SUCCESS, hotelBL.delete(vo.id).result);
+    	for(HotelVO vo: voarr) assertEquals(ResultMessage.RESULT_SUCCESS, hotelBL.delete(vo.id).result);
     }
 
 
