@@ -57,7 +57,7 @@ public class HttpClient {
             os.write(buffer, 0, len);
         }
         is.close();
-        String result = os.toString();
+        String result = os.toString("UTF-8");
         os.close();
         return result;
     }
