@@ -4,6 +4,7 @@ import com.google.gson.*;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -35,9 +36,13 @@ class HttpQueryHandler implements HttpHandler {
 
                 // get HTTP request payload
                 InputStream is = httpExchange.getRequestBody();
+                ByteArrayOutputStream os = new ByteArrayOutputStream();
                 byte[] buf = new byte[is.available()];
                 is.read(buf);
-                String payload = new String(buf);
+                os.write(buf);
+                String payload = os.toString("UTF-8");
+                os.close();
+                is.close();
 
                 // process parameters
                 int paramCount = method.getParameterCount();
