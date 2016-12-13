@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import nju.quadra.hms.controller.AuthController;
 import nju.quadra.hms.model.ResultMessage;
-import nju.quadra.hms.net.PassHash;
+import nju.quadra.hms.util.PassHash;
 import nju.quadra.hms.ui.common.Dialogs;
 import nju.quadra.hms.vo.UserVO;
 

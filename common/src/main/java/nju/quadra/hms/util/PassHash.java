@@ -1,4 +1,4 @@
-package nju.quadra.hms.net;
+package nju.quadra.hms.util;
 
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;

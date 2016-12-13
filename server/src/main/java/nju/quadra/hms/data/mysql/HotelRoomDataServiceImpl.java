@@ -78,16 +78,6 @@ public class HotelRoomDataServiceImpl implements HotelRoomDataService {
 
 	@Override
 	public void update(HotelRoomPO po) throws Exception {
-//		PreparedStatement pst = MySQLManager.getConnection()
-//				.prepareStatement("UPDATE `hotelroom` SET `total` = ?, price = ? WHERE `hotelid` = ? AND `name` = ?");
-//		pst.setInt(1, po.getTotal());
-//		pst.setDouble(2, po.getPrice());
-//		pst.setInt(3, po.getHotelId());
-//		pst.setString(4, po.getName());
-//		int result = pst.executeUpdate();
-//		if (result == 0) {
-//			throw new Exception("HotelRoom not found");
-//		}
 		delete(po);
 		insert(po);
 	}

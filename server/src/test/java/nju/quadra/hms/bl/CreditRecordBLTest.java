@@ -4,7 +4,7 @@ import nju.quadra.hms.blservice.CreditRecordBLService;
 import nju.quadra.hms.blservice.UserBLService;
 import nju.quadra.hms.model.ResultMessage;
 import nju.quadra.hms.model.UserType;
-import nju.quadra.hms.net.PassHash;
+import nju.quadra.hms.util.PassHash;
 import nju.quadra.hms.vo.CreditRecordVO;
 import nju.quadra.hms.vo.UserVO;
 import org.junit.Before;

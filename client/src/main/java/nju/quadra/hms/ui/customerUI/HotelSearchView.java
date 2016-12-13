@@ -35,6 +35,7 @@ public class HotelSearchView extends Parent {
         choiceCity.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             choiceArea.getItems().clear();
             choiceArea.getItems().addAll(areas.stream().filter(vo -> vo.cityName.equals(newValue)).map(vo -> vo.areaName).toArray());
+            choiceArea.getSelectionModel().select(0);
         });
 
         choiceRank1.getItems().addAll(0, 1, 2, 3, 4, 5);

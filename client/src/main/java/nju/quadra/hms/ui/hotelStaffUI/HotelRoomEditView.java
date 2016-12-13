@@ -10,6 +10,7 @@ import nju.quadra.hms.ui.common.Dialogs;
 import nju.quadra.hms.vo.HotelRoomVO;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 
 /**
  * Created by adn55 on 2016/12/1.
@@ -30,7 +31,7 @@ class HotelRoomEditView extends Parent {
         this.hotelRoomVO = vo;
         if (vo != null) {
             editName.setText(vo.name);
-            editPrice.setText(vo.price + "");
+            editPrice.setText(new DecimalFormat("0.00").format(vo.price));
             editTotal.setText(vo.total + "");
         }
     }
@@ -51,10 +52,6 @@ class HotelRoomEditView extends Parent {
             return;
         }
         String name = editName.getText();
-        if (name.isEmpty()) {
-            Dialogs.showError("客房信息不完整，请重新填写");
-            return;
-        }
 
         if (this.hotelRoomVO == null) {
             // add

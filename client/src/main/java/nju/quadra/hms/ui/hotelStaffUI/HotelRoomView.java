@@ -45,11 +45,9 @@ class HotelRoomView extends Parent {
 
     private void loadRooms() {
         ArrayList<HotelRoomVO> rooms = controller.getHotelRooms();
-        if (rooms != null) {
-            tableView.getItems().clear();
-            for (HotelRoomVO vo : rooms) {
-                tableView.getItems().add(new HotelRoomProperty(vo));
-            }
+        tableView.getItems().clear();
+        for (HotelRoomVO vo : rooms) {
+            tableView.getItems().add(new HotelRoomProperty(vo));
         }
     }
 

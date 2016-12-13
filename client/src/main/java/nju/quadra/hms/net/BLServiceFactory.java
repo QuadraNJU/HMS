@@ -16,7 +16,11 @@ public class BLServiceFactory {
         String methodName = method.getName();
         String payload = new Gson().toJson(args);
         String response = HttpClient.post("/" + className + "/" + methodName, payload);
-        return new Gson().fromJson(response, method.getGenericReturnType());
+        try {
+            return new Gson().fromJson(response, method.getGenericReturnType());
+        } catch (Exception e) {
+            return null;
+        }
     };
 
     public static CreditRecordBLService getCreditRecordBLService() {

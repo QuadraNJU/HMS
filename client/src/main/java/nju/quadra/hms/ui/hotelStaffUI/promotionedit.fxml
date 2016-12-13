@@ -38,7 +38,7 @@
             <Font size="14.0"/>
         </font>
     </Label>
-    <TextField fx:id="editPromotion" layoutX="75.0" layoutY="129.0" prefWidth="250.0" promptText="折扣幅度">
+    <TextField fx:id="editPromotion" layoutX="75.0" layoutY="129.0" prefWidth="250.0" promptText="填写 0~1 范围内的小数">
         <font>
             <Font size="14.0"/>
         </font>

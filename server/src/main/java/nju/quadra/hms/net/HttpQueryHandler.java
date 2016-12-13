@@ -63,11 +63,15 @@ class HttpQueryHandler implements HttpHandler {
 
                 // invoke method
                 try {
-                    LoginSession session = SessionManager.get(paths[3]);
-                    result = new Gson().toJson(method.invoke(bl.getConstructor(LoginSession.class).newInstance(session), params));
-                } catch (Exception e) {
+                    result = new Gson().toJson(method.invoke(bl.getConstructor(LoginSession.class).newInstance(SessionManager.get(paths[3])), params));
+                } catch (NoSuchMethodException e) {
                     result = new Gson().toJson(method.invoke(bl.newInstance(), params));
                 }
+
+                // Debug
+                System.out.println("Query: " + httpExchange.getRequestURI());
+                System.out.println("Payload:\n" + payload);
+                System.out.println("Response:\n" + result);
             } catch (Throwable e) {
                 // e.printStackTrace();
                 result = "Server exception: " + e.getClass().getSimpleName();

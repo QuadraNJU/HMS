@@ -33,6 +33,7 @@ class HotelInfoView extends Parent {
         choiceCity.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             choiceArea.getItems().clear();
             choiceArea.getItems().addAll(areas.stream().filter(vo -> vo.cityName.equals(newValue)).map(vo -> vo.areaName).toArray());
+            choiceArea.getSelectionModel().select(0);
         });
 
         loadAreas();
@@ -53,17 +54,19 @@ class HotelInfoView extends Parent {
 
     private void loadAreas() {
         areas = controller.getAllArea();
-        if (areas != null) {
-            for (AreaVO vo : areas) {
-                if (choiceCity.getItems().indexOf(vo.cityName) < 0) {
-                    choiceCity.getItems().add(vo.cityName);
-                }
+        for (AreaVO vo : areas) {
+            if (choiceCity.getItems().indexOf(vo.cityName) < 0) {
+                choiceCity.getItems().add(vo.cityName);
             }
         }
     }
 
     private void loadInfo() {
         hotelVO = controller.getHotelInfo();
+        if (hotelVO == null) {
+            Dialogs.showError(new ResultMessage(ResultMessage.RESULT_NET_ERROR).message);
+            return;
+        }
         editName.setText(hotelVO.name);
         editAddress.setText(hotelVO.address);
         textDescription.setText(hotelVO.description);

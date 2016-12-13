@@ -29,13 +29,13 @@ public class HotelStaffController {
             return hotelBL.getAllArea();
         } catch (Exception e) {
             // e.printStackTrace();
-            return null;
+            return new ArrayList<>();
         }
     }
 
     public HotelVO getHotelInfo() {
         try {
-            return hotelVO;
+            return new HotelVO(hotelVO.id, hotelVO.name, hotelVO.areaId, hotelVO.address, hotelVO.description, hotelVO.facilities, hotelVO.star, hotelVO.staff);
         } catch (Exception e) {
             // e.printStackTrace();
             return null;
@@ -56,7 +56,7 @@ public class HotelStaffController {
             return hotelRoomBL.getAll(hotelVO.id);
         } catch (Exception e) {
             // e.printStackTrace();
-            return null;
+            return new ArrayList<>();
         }
     }
 
@@ -93,7 +93,7 @@ public class HotelStaffController {
             return hotelPromotionBL.get(hotelVO.id);
         } catch (Exception e) {
             // e.printStackTrace();
-            return null;
+            return new ArrayList<>();
         }
     }
 
@@ -130,7 +130,7 @@ public class HotelStaffController {
             return customerBL.getAllCompany();
         } catch (Exception e) {
             // e.printStackTrace();
-            return null;
+            return new ArrayList<>();
         }
     }
 
@@ -139,7 +139,7 @@ public class HotelStaffController {
             return orderBL.getByHotel(hotelVO.id);
         } catch (Exception e) {
             // e.printStackTrace();
-            return null;
+            return new ArrayList<>();
         }
     }
 

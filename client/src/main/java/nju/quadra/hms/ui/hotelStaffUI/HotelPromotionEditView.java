@@ -15,6 +15,7 @@ import nju.quadra.hms.ui.common.Dialogs;
 import nju.quadra.hms.vo.HotelPromotionVO;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -84,7 +85,7 @@ class HotelPromotionEditView extends Parent {
             choiceType.setValue(vo.type);
             dateStart.setValue(vo.startTime);
             dateEnd.setValue(vo.endTime);
-            editPromotion.setText(vo.promotion + "");
+            editPromotion.setText(new DecimalFormat("0.00").format(vo.promotion));
             if (vo.type.equals(HotelPromotionType.COMPANY_PROMOTION) && vo.cooperation != null) {
                 selectedCompany = vo.cooperation;
                 labelCompany.setText("已选择 " + selectedCompany.size() + " 个企业");

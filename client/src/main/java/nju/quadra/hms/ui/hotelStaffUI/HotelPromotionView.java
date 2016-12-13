@@ -35,11 +35,9 @@ class HotelPromotionView extends Parent {
 
     public void loadPromotion() throws IOException {
         ArrayList<HotelPromotionVO> promotions = controller.getHotelPromotion();
-        if (promotions != null) {
-            vBox.getChildren().clear();
-            for (HotelPromotionVO vo : promotions) {
-                vBox.getChildren().add(new HotelPromotionItem(this, vo, controller));
-            }
+        vBox.getChildren().clear();
+        for (HotelPromotionVO vo : promotions) {
+            vBox.getChildren().add(new HotelPromotionItem(this, vo, controller));
         }
     }
 

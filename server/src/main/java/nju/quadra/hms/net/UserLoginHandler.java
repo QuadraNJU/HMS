@@ -10,6 +10,7 @@ import nju.quadra.hms.blservice.UserBLService;
 import nju.quadra.hms.model.LoginResult;
 import nju.quadra.hms.model.LoginSession;
 import nju.quadra.hms.model.ResultMessage;
+import nju.quadra.hms.util.PassHash;
 import nju.quadra.hms.vo.UserVO;
 
 import java.io.IOException;

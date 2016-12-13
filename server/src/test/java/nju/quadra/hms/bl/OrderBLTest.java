@@ -4,7 +4,7 @@ import nju.quadra.hms.blservice.*;
 import nju.quadra.hms.data.mysql.OrderDataServiceImpl;
 import nju.quadra.hms.dataservice.OrderDataService;
 import nju.quadra.hms.model.*;
-import nju.quadra.hms.net.PassHash;
+import nju.quadra.hms.util.PassHash;
 import nju.quadra.hms.po.OrderPO;
 import nju.quadra.hms.vo.*;
 import org.junit.FixMethodOrder;

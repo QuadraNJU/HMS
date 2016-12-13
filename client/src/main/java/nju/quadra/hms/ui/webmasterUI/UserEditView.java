@@ -8,7 +8,7 @@ import nju.quadra.hms.controller.WebmasterController;
 import nju.quadra.hms.model.MemberType;
 import nju.quadra.hms.model.ResultMessage;
 import nju.quadra.hms.model.UserType;
-import nju.quadra.hms.net.PassHash;
+import nju.quadra.hms.util.PassHash;
 import nju.quadra.hms.ui.common.Dialogs;
 import nju.quadra.hms.vo.MemberVO;
 import nju.quadra.hms.vo.UserVO;

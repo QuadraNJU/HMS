@@ -7,17 +7,36 @@ import nju.quadra.hms.blservice.HotelRoomBLService;
 import nju.quadra.hms.blservice.OrderBLService;
 import nju.quadra.hms.data.mysql.HotelDataServiceImpl;
 import nju.quadra.hms.dataservice.HotelDataService;
+import nju.quadra.hms.model.LoginSession;
 import nju.quadra.hms.model.OrderState;
 import nju.quadra.hms.model.ResultMessage;
+import nju.quadra.hms.model.UserType;
 import nju.quadra.hms.po.AreaPO;
 import nju.quadra.hms.po.HotelPO;
 import nju.quadra.hms.vo.*;
 
 public class HotelBL implements HotelBLService {
+    private final LoginSession session;
     private final HotelDataService hotelDataService = new HotelDataServiceImpl();
+
+    public HotelBL() {
+        session = null;
+    }
+
+    public HotelBL(LoginSession session) {
+        this.session = session;
+    }
 
     @Override
     public ArrayList<HotelSearchVO> search(int areaId, String username) {
+        if (session != null) {
+            if (session.userType.equals(UserType.CUSTOMER)) {
+                username = session.username;
+            } else {
+                return new ArrayList<>();
+            }
+        }
+
         ArrayList<HotelSearchVO> result = new ArrayList<>();
         ArrayList<HotelVO> hotels = getByArea(areaId);
         OrderBLService orderBL = new OrderBL();
@@ -69,6 +88,14 @@ public class HotelBL implements HotelBLService {
 
     @Override
     public HotelVO getByStaff(String staff) {
+        if (session != null) {
+            if (session.userType.equals(UserType.HOTEL_STAFF)) {
+                staff = session.username;
+            } else {
+                return null;
+            }
+        }
+
         try {
             HotelPO po = hotelDataService.getByStaff(staff);
             return HotelBL.toVO(po);
@@ -128,6 +155,24 @@ public class HotelBL implements HotelBLService {
 
     @Override
     public ResultMessage modify(HotelVO vo) {
+        if (session != null) {
+            if (session.userType.equals(UserType.HOTEL_STAFF)) {
+                // 酒店工作人员只允许操作对应的酒店
+                HotelVO hotel = getByStaff(session.username);
+                if (hotel == null || hotel.id != vo.id) {
+                    return new ResultMessage(ResultMessage.RESULT_ACCESS_DENIED);
+                }
+                vo.staff = session.username;
+            } else if (!session.userType.equals(UserType.WEBSITE_MASTER)) {
+                return new ResultMessage(ResultMessage.RESULT_ACCESS_DENIED);
+            }
+        }
+
+        if (vo.name.trim().isEmpty() || vo.address.trim().isEmpty() || vo.description.trim().isEmpty()
+                || vo.facilities.trim().isEmpty() || vo.star.trim().isEmpty()) {
+            return new ResultMessage(ResultMessage.RESULT_DATA_INVALID);
+        }
+
         HotelPO po = HotelBL.toPO(vo);
         try {
             hotelDataService.update(po);

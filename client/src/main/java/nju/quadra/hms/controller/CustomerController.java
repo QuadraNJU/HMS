@@ -58,7 +58,7 @@ public class CustomerController {
             return creditBL.get("");
         } catch (Exception e) {
             // e.printStackTrace();
-            return null;
+            return new ArrayList<>();
         }
     }
 
@@ -76,7 +76,7 @@ public class CustomerController {
             return hotelBL.search(areaId, username);
         } catch (Exception e) {
             // e.printStackTrace();
-            return null;
+            return new ArrayList<>();
         }
     }
 
@@ -103,7 +103,7 @@ public class CustomerController {
             return orderBL.getByCustomer(username);
         } catch (Exception e) {
             // e.printStackTrace();
-            return null;
+            return new ArrayList<>();
         }
     }
 

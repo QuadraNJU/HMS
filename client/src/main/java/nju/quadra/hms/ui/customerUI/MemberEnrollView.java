@@ -56,6 +56,10 @@ class MemberEnrollView extends Parent {
 
     private void loadMemberInfo() {
         MemberVO memberVO = controller.getMemberInfo(HttpClient.session.username);
+        if (memberVO == null) {
+            Dialogs.showError(new ResultMessage(ResultMessage.RESULT_NET_ERROR).message);
+            return;
+        }
         if (memberVO.memberType != MemberType.NONE) {
             // disable controls
             radioPersonal.setDisable(true);

@@ -22,16 +22,19 @@ import static nju.quadra.hms.bl.CreditRecordBL.LATEST_CHECKIN_TIME_GAP;
  */
 public class OrderBL implements OrderBLService {
     private final LoginSession session;
+    private final HotelVO hotel;
     private final OrderDataService orderDataService = new OrderDataServiceImpl();
 
     public OrderBL() {
         session = null;
+        hotel = null;
         // 自动检查异常订单
         checkDelayed();
     }
 
     public OrderBL(LoginSession session) {
         this.session = session;
+        hotel = new HotelBL().getByStaff(session.username);
         checkDelayed();
     }
 
@@ -45,6 +48,11 @@ public class OrderBL implements OrderBLService {
             }
         }
         checkDelayed();
+        // check order
+        if (vo.startDate == null || vo.endDate == null || vo.roomCount <= 0
+                || vo.persons == null || vo.persons.size() == 0) {
+            return new PriceVO("订单信息不完整，请重新输入");
+        }
         // check credit and date
         ArrayList<CreditRecordVO> credits = new CreditRecordBL().get(vo.username);
         if (credits.size() > 0 && credits.get(0).creditResult < CreditRecordBL.MIN_CREDIT) {
@@ -170,6 +178,14 @@ public class OrderBL implements OrderBLService {
 
     @Override
     public ArrayList<OrderDetailVO> getByCustomer(String username) {
+        if (session != null) {
+            if (session.userType.equals(UserType.CUSTOMER)) {
+                username = session.username;
+            } else {
+                return new ArrayList<>();
+            }
+        }
+
         checkDelayed();
         ArrayList<OrderDetailVO> voarr = new ArrayList<>();
         try {
@@ -185,6 +201,14 @@ public class OrderBL implements OrderBLService {
 
     @Override
     public ArrayList<OrderDetailVO> getByHotel(int hotelId) {
+        if (session != null) {
+            if (session.userType.equals(UserType.HOTEL_STAFF)) {
+                hotelId = hotel.id;
+            } else {
+                return new ArrayList<>();
+            }
+        }
+
         checkDelayed();
         ArrayList<OrderDetailVO> voarr = new ArrayList<>();
         try {
@@ -200,6 +224,9 @@ public class OrderBL implements OrderBLService {
 
     @Override
     public ArrayList<OrderDetailVO> getByState(OrderState state) {
+        if (session != null && !session.userType.equals(UserType.WEBSITE_MARKETER)) {
+            return new ArrayList<>();
+        }
         checkDelayed();
         ArrayList<OrderDetailVO> voarr = new ArrayList<>();
         try {
@@ -215,6 +242,9 @@ public class OrderBL implements OrderBLService {
 
     @Override
     public ResultMessage undoDelayed(int orderId, boolean returnAllCredit) {
+        if (session != null && !session.userType.equals(UserType.WEBSITE_MARKETER)) {
+            return new ResultMessage(ResultMessage.RESULT_ACCESS_DENIED);
+        }
         checkDelayed();
         try {
             OrderPO po = orderDataService.getById(orderId);
@@ -242,6 +272,10 @@ public class OrderBL implements OrderBLService {
         checkDelayed();
         try {
             OrderPO po = orderDataService.getById(orderId);
+            // 仅允许撤销自己的订单
+            if (session != null && (!session.userType.equals(UserType.CUSTOMER) || !po.getUsername().equals(session.username))) {
+                return new ResultMessage(ResultMessage.RESULT_ACCESS_DENIED);
+            }
             // 订单状态必须为"未执行"才可调用此方法
             if (po.getState() != OrderState.BOOKED) {
                 return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "该订单无法被撤销（订单状态不为\"未执行\"）");
@@ -268,6 +302,10 @@ public class OrderBL implements OrderBLService {
         checkDelayed();
         try {
             OrderPO po = orderDataService.getById(orderId);
+            // 仅允许操作对应酒店的订单
+            if (session != null && (!session.userType.equals(UserType.HOTEL_STAFF) || po.getHotelId() != hotel.id)) {
+                return new ResultMessage(ResultMessage.RESULT_ACCESS_DENIED);
+            }
             if (po.getState() != OrderState.BOOKED && po.getState() != OrderState.DELAYED) {
                 return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "该订单无法办理入住");
             }
@@ -296,6 +334,10 @@ public class OrderBL implements OrderBLService {
         checkDelayed();
         try {
             OrderPO po = orderDataService.getById(orderId);
+            // 仅允许操作对应酒店的订单
+            if (session != null && (!session.userType.equals(UserType.HOTEL_STAFF) || po.getHotelId() != hotel.id)) {
+                return new ResultMessage(ResultMessage.RESULT_ACCESS_DENIED);
+            }
             if (po.getState() != OrderState.UNFINISHED) {
                 return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "该订单未入住，无法退房");
             }
@@ -316,6 +358,13 @@ public class OrderBL implements OrderBLService {
     public ResultMessage addRank(OrderRankVO vo) {
         try {
             OrderPO po = orderDataService.getById(vo.orderId);
+            // 仅允许评价自己的订单
+            if (session != null && (!session.userType.equals(UserType.CUSTOMER) || !po.getUsername().equals(session.username))) {
+                return new ResultMessage(ResultMessage.RESULT_ACCESS_DENIED);
+            }
+            if (!po.getState().equals(OrderState.FINISHED)) {
+                return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "该订单无法评价");
+            }
             po.setState(OrderState.RANKED);
             po.setRank(vo.rank);
             po.setComment(vo.comment);

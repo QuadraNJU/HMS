@@ -1,5 +1,6 @@
 package nju.quadra.hms.net;
 
+import nju.quadra.hms.util.PassHash;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
