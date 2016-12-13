@@ -102,7 +102,7 @@ public class HotelPromotionBL implements HotelPromotionBLService {
             if (session != null && (!session.userType.equals(UserType.HOTEL_STAFF) || po.getHotelId() != hotel.id)) {
                 return new ResultMessage(ResultMessage.RESULT_ACCESS_DENIED);
             }
-            vo.hotelId = hotel.id;
+            vo.hotelId = po.getHotelId();
             po = HotelPromotionBL.toPO(vo);
             hotelPromotionDataService.update(po);
             return new ResultMessage(ResultMessage.RESULT_SUCCESS);
