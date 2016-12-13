@@ -17,7 +17,7 @@ public class OrderVO {
     /**
      * 用户名
      */
-    public final String username;
+    public String username;
     /**
      * 酒店ID
      */

@@ -12,7 +12,7 @@ public class MemberVO {
 	/**
      * 会员名
      */
-    public final String username;
+    public String username;
     /**
      * 会员类型
      */

@@ -40,17 +40,16 @@ public class HotelSearchView extends Parent {
         choiceRank1.getItems().addAll(0, 1, 2, 3, 4, 5);
         choiceRank2.getItems().addAll(0, 1, 2, 3, 4, 5);
         choiceSort.getItems().addAll(HotelSort.values());
+        resetOptions();
 
         loadAreas();
     }
 
     private void loadAreas() {
         areas = controller.getAllArea();
-        if (areas != null) {
-            for (AreaVO vo : areas) {
-                if (choiceCity.getItems().indexOf(vo.cityName) < 0) {
-                    choiceCity.getItems().add(vo.cityName);
-                }
+        for (AreaVO vo : areas) {
+            if (choiceCity.getItems().indexOf(vo.cityName) < 0) {
+                choiceCity.getItems().add(vo.cityName);
             }
         }
     }
@@ -128,16 +127,12 @@ public class HotelSearchView extends Parent {
     private ChoiceBox<HotelSort> choiceSort;
 
     @FXML
-    private void onSearchAction() throws IOException {
-        for (AreaVO areaVO : areas) {
-            if (areaVO.areaName.equals(choiceArea.getValue()) && areaVO.cityName.equals(choiceCity.getValue())) {
-                hotelList = controller.searchHotel(areaVO.id, HttpClient.session.username);
-                vBox.getChildren().clear();
-                resetOptions();
-                filterAndShow();
-                break;
-            }
-        }
+    private void onSearchAction() throws Exception {
+        AreaVO area = areas.stream().filter(vo -> vo.areaName.equals(choiceArea.getValue()) && vo.cityName.equals(choiceCity.getValue())).findFirst().get();
+        hotelList = controller.searchHotel(area.id, HttpClient.session.username);
+        vBox.getChildren().clear();
+        resetOptions();
+        filterAndShow();
     }
 
     @FXML

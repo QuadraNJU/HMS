@@ -53,9 +53,9 @@ public class CustomerController {
         }
     }
 
-    public ArrayList<CreditRecordVO> getCreditRecord(String username) {
+    public ArrayList<CreditRecordVO> getCreditRecord() {
         try {
-            return creditBL.get(username);
+            return creditBL.get("");
         } catch (Exception e) {
             // e.printStackTrace();
             return null;
@@ -67,7 +67,7 @@ public class CustomerController {
             return hotelBL.getAllArea();
         } catch (Exception e) {
             // e.printStackTrace();
-            return null;
+            return new ArrayList<>();
         }
     }
 

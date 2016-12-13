@@ -12,6 +12,7 @@ import nju.quadra.hms.vo.CreditRecordVO;
 import nju.quadra.hms.vo.UserVO;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 /**
@@ -21,7 +22,7 @@ class CustomerInfoView extends Parent {
 
     private final CustomerController controller = new CustomerController();
 
-    public CustomerInfoView() throws IOException {
+    CustomerInfoView() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("info.fxml"));
         loader.setController(this);
         this.getChildren().add(loader.load());
@@ -42,24 +43,20 @@ class CustomerInfoView extends Parent {
         if (userVO != null) {
             editName.setText(userVO.name);
             editContact.setText(userVO.contact);
+        } else {
+            Dialogs.showError(new ResultMessage(ResultMessage.RESULT_NET_ERROR).message);
         }
         // get credit
-        ArrayList<CreditRecordVO> record = controller.getCreditRecord(HttpClient.session.username);
-        editCredit.setText(record.get(0).creditResult + "");
+        ArrayList<CreditRecordVO> record = controller.getCreditRecord();
+        editCredit.setText(new DecimalFormat("0.00").format(record.get(0).creditResult));
     }
 
     @FXML
     protected void onModifyAction() {
         if (editName.isEditable()) {
             // save
-            String name = editName.getText();
-            String contact = editContact.getText();
-            if (name.isEmpty() || contact.isEmpty()) {
-                Dialogs.showError("个人信息不能为空，请重新填写");
-                return;
-            }
-            userVO.name = name;
-            userVO.contact = contact;
+            userVO.name = editName.getText();
+            userVO.contact = editContact.getText();
             ResultMessage result = controller.modifyUserInfo(userVO);
             switch (result.result) {
                 case ResultMessage.RESULT_SUCCESS:

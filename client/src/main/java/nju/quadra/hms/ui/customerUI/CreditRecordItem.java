@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import nju.quadra.hms.vo.CreditRecordVO;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.time.format.DateTimeFormatter;
 
 /**
@@ -44,10 +45,10 @@ class CreditRecordItem extends Parent {
                 labelAction.setText(vo.action.toString());
         }
         if (vo.diff >= 0) {
-            labelDiff.setText("+" + vo.diff);
+            labelDiff.setText("+" + new DecimalFormat("0.00").format(vo.diff));
         } else {
-            labelDiff.setText(vo.diff + "");
+            labelDiff.setText(new DecimalFormat("0.00").format(vo.diff));
         }
-        labelResult.setText(vo.creditResult + "");
+        labelResult.setText(new DecimalFormat("0.00").format(vo.creditResult));
     }
 }

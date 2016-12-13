@@ -21,15 +21,29 @@ import static nju.quadra.hms.bl.CreditRecordBL.LATEST_CHECKIN_TIME_GAP;
  * Created by RaUkonn on 2016/11/20.
  */
 public class OrderBL implements OrderBLService {
+    private final LoginSession session;
     private final OrderDataService orderDataService = new OrderDataServiceImpl();
 
     public OrderBL() {
+        session = null;
         // 自动检查异常订单
+        checkDelayed();
+    }
+
+    public OrderBL(LoginSession session) {
+        this.session = session;
         checkDelayed();
     }
 
     @Override
     public PriceVO getPrice(OrderVO vo) {
+        if (session != null) {
+            if (session.userType.equals(UserType.CUSTOMER)) {
+                vo.username = session.username;
+            } else {
+                return new PriceVO("非法访问");
+            }
+        }
         checkDelayed();
         // check credit and date
         ArrayList<CreditRecordVO> credits = new CreditRecordBL().get(vo.username);
@@ -45,7 +59,7 @@ public class OrderBL implements OrderBLService {
 
         // check room count
         HotelRoomVO room = new HotelRoomBL().getById(vo.roomId);
-        if (room == null) {
+        if (room == null || room.hotelId != vo.hotelId) {
             return new PriceVO("客房类型不存在，请重新选择");
         } else {
             int roomCount = room.total;
@@ -58,7 +72,7 @@ public class OrderBL implements OrderBLService {
                             && order.startDate.compareTo(vo.endDate) < 0)
                     .mapToInt(order -> order.roomCount).sum();
             if (roomCount < vo.roomCount) {
-                return new PriceVO("房间数量不足");
+                return new PriceVO("客房数量不足");
             }
         }
 
@@ -128,7 +142,15 @@ public class OrderBL implements OrderBLService {
 
     @Override
     public ResultMessage add(OrderVO vo) {
+        if (session != null) {
+            if (session.userType.equals(UserType.CUSTOMER)) {
+                vo.username = session.username;
+            } else {
+                return null;
+            }
+        }
         checkDelayed();
+
         try {
             PriceVO priceVO = getPrice(vo);
             if (priceVO.result.result != ResultMessage.RESULT_SUCCESS) {

@@ -3,6 +3,7 @@ package nju.quadra.hms.bl;
 import nju.quadra.hms.blservice.UserBLService;
 import nju.quadra.hms.data.mysql.UserDataServiceImpl;
 import nju.quadra.hms.dataservice.UserDataService;
+import nju.quadra.hms.model.LoginSession;
 import nju.quadra.hms.model.MemberType;
 import nju.quadra.hms.model.ResultMessage;
 import nju.quadra.hms.model.UserType;
@@ -16,10 +17,15 @@ import java.util.ArrayList;
  * Created by RaUkonn on 2016/11/18.
  */
 public class UserBL implements UserBLService {
-    private final UserDataService userDataService;
+    private final LoginSession session;
+    private final UserDataService userDataService = new UserDataServiceImpl();
 
     public UserBL() {
-        userDataService = new UserDataServiceImpl();
+        session = null;
+    }
+
+    public UserBL(LoginSession session) {
+        this.session = session;
     }
 
     @Override
@@ -53,6 +59,14 @@ public class UserBL implements UserBLService {
 
     @Override
     public UserVO get(String username) {
+        if (session != null) {
+            if (session.userType.equals(UserType.CUSTOMER)) {
+                username = session.username;
+            } else {
+                return null;
+            }
+        }
+
         try {
             UserPO po = userDataService.get(username);
             return UserBL.toVO(po);
@@ -93,6 +107,18 @@ public class UserBL implements UserBLService {
     }
 
     public ResultMessage modifyBasicInfo(UserVO vo) {
+        if (session != null) {
+            if (session.userType.equals(UserType.CUSTOMER)) {
+                vo.username = session.username;
+            } else {
+                return null;
+            }
+        }
+
+        if (vo.name.trim().isEmpty() || vo.contact.trim().isEmpty()) {
+            return new ResultMessage(ResultMessage.RESULT_DATA_INVALID);
+        }
+
         try {
             UserPO user = userDataService.get(vo.username);
             user.setName(vo.name);

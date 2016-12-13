@@ -56,6 +56,7 @@ class BookHotelView extends Parent {
             dateStart.setValue(LocalDate.now());
             dateEnd.setValue(LocalDate.now().plusDays(1));
             choiceRoomType.getItems().addAll(vo.rooms);
+            choiceRoomType.getSelectionModel().select(0);
             textRoomNumber.setText("1");
             radioNoChildren.setSelected(true);
         }
