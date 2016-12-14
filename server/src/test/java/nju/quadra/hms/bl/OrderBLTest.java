@@ -55,8 +55,10 @@ public class OrderBLTest {
         result = websitePromotionBL.add(new WebsitePromotionVO(0, "TEST_promotion", WebsitePromotionType.LEVEL_PROMOTION, LocalDate.now(), LocalDate.now(), 0.77, 9999, new HashMap<>()));
         assertEquals(ResultMessage.RESULT_SUCCESS, result.result);
         // get price
-        OrderVO order1 = new OrderVO(0, "TEST_customer", hotelVO.id, LocalDate.now(), LocalDate.now().plusDays(2), roomVO.id, 2, 1, new ArrayList<>(), false, 0, OrderState.BOOKED, 0, "");
-        OrderVO order2 = new OrderVO(0, "TEST_customer", hotelVO.id, LocalDate.now(), LocalDate.now().plusDays(3), roomVO.id, 4, 1, new ArrayList<>(), false, 0, OrderState.BOOKED, 0, "");
+        ArrayList<String> persons = new ArrayList<>();
+        persons.add("TEST_person");
+        OrderVO order1 = new OrderVO(0, "TEST_customer", hotelVO.id, LocalDate.now(), LocalDate.now().plusDays(2), roomVO.id, 2, 1, persons, false, 0, OrderState.BOOKED, 0, "");
+        OrderVO order2 = new OrderVO(0, "TEST_customer", hotelVO.id, LocalDate.now(), LocalDate.now().plusDays(3), roomVO.id, 4, 1, persons, false, 0, OrderState.BOOKED, 0, "");
         assertEquals(roomVO.price * 2 * 2 * 0.77, orderBL.getPrice(order1).finalPrice, 0.01);
         assertEquals(roomVO.price * 4 * 3 * 0.78 * 0.77, orderBL.getPrice(order2).finalPrice, 0.01);
         // add order
@@ -90,7 +92,6 @@ public class OrderBLTest {
     }
 
     private void clean() {
-        HotelVO hotelVO = hotelBL.getByStaff("TEST_staff");
         // delete orders
         try {
             for (OrderPO po : orderData.getByCustomer("TEST_customer")) {
@@ -99,13 +100,13 @@ public class OrderBLTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        ArrayList<WebsitePromotionVO> wps = websitePromotionBL.get();
-        for (WebsitePromotionVO wp : wps) {
+        for (WebsitePromotionVO wp : websitePromotionBL.get()) {
             if (wp.name.equals("TEST_promotion")) {
                 websitePromotionBL.delete(wp.id);
             }
         }
         // delete hotel
+        HotelVO hotelVO = hotelBL.getByStaff("TEST_staff");
         while (hotelVO != null) {
             // delete hotel room
             for (HotelRoomVO room : hotelRoomBL.getAll(hotelVO.id)) {
