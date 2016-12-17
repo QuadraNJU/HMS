@@ -85,12 +85,10 @@ class HotelInfoView extends Parent {
     protected void onModifyAction() {
         if (editName.isEditable()) {
             hotelVO.name = editName.getText();
-            hotelVO.areaId = 0;
-            for (AreaVO areaVO : areas) {
-                if (areaVO.areaName.equals(choiceArea.getValue()) && areaVO.cityName.equals(choiceCity.getValue())) {
-                    hotelVO.areaId = areaVO.id;
-                    break;
-                }
+            try {
+                hotelVO.areaId = areas.stream().filter(area -> area.areaName.equals(choiceArea.getValue()) && area.cityName.equals(choiceCity.getValue())).findFirst().get().id;
+            } catch (Exception e) {
+                hotelVO.areaId = 0;
             }
             hotelVO.address = editAddress.getText();
             hotelVO.description = textDescription.getText();

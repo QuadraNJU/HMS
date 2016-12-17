@@ -26,7 +26,7 @@ public class WebmasterController {
             return userBL.getAll();
         } catch (Exception e) {
             // e.printStackTrace();
-            return null;
+            return new ArrayList<>();
         }
     }
 

@@ -83,11 +83,6 @@ class UserEditView extends Parent {
     protected void onSaveAction() {
         ResultMessage userResult;
 
-        if (textName.getText().isEmpty() || textContact.getText().isEmpty()) {
-            Dialogs.showError("基础信息未填写完全，请重新填写");
-            return;
-        }
-
         if (textUsername.isEditable()) {
             // add
             userVO = new UserVO(textUsername.getText(), PassHash.hash(textPassword.getText()), textName.getText(), textContact.getText(), choiceUserType.getValue());

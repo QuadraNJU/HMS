@@ -82,6 +82,13 @@ public class CreditRecordBL implements CreditRecordBLService {
 
     @Override
     public ResultMessage topup(String username, int amount) {
+        if (session != null && session.userType.equals(UserType.WEBSITE_MARKETER)) {
+            return new ResultMessage(ResultMessage.RESULT_ACCESS_DENIED);
+        }
+
+        if (amount <= 0) {
+            return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "充值额度必须为正整数，请重新输入");
+        }
         try {
             UserVO user = userBL.get(username);
             if (user == null) {

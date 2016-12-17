@@ -38,7 +38,7 @@ class CreditTopupView extends Parent {
             amount = Integer.parseInt(editAmount.getText());
         } catch (Exception e) {
             // e.printStackTrace();
-            Dialogs.showError("数值格式不正确，请重新填写");
+            Dialogs.showError("充值额度数值格式不正确，请重新填写");
             return;
         }
         ResultMessage result = controller.creditTopup(username, amount);

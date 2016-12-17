@@ -45,6 +45,10 @@ public class UserBL implements UserBLService {
 
     @Override
     public ArrayList<UserVO> getAll() {
+        if (session != null && !session.userType.equals(UserType.WEBSITE_MASTER)) {
+            return new ArrayList<>();
+        }
+
         ArrayList<UserVO> voarr = new ArrayList<>();
         try {
             ArrayList<UserPO> poarr = userDataService.getAll();

@@ -131,6 +131,11 @@ public class HotelBL implements HotelBLService {
 
     @Override
     public ResultMessage add(HotelVO vo) {
+        ResultMessage checkResult = checkVO(vo);
+        if (checkResult.result != ResultMessage.RESULT_SUCCESS) {
+            return checkResult;
+        }
+
         HotelPO po = HotelBL.toPO(vo);
         try {
             hotelDataService.insert(po);
@@ -155,6 +160,11 @@ public class HotelBL implements HotelBLService {
 
     @Override
     public ResultMessage modify(HotelVO vo) {
+        ResultMessage checkResult = checkVO(vo);
+        if (checkResult.result != ResultMessage.RESULT_SUCCESS) {
+            return checkResult;
+        }
+
         if (session != null) {
             if (session.userType.equals(UserType.HOTEL_STAFF)) {
                 // 酒店工作人员只允许操作对应的酒店
@@ -181,6 +191,26 @@ public class HotelBL implements HotelBLService {
             // e.printStackTrace();
             return new ResultMessage(ResultMessage.RESULT_DB_ERROR);
         }
+    }
+
+    private ResultMessage checkVO(HotelVO vo) {
+        if (vo.areaId <= 0 || vo.name.trim().isEmpty() || vo.address.trim().isEmpty() || vo.description.trim().isEmpty() || vo.facilities.trim().isEmpty() || vo.star.trim().isEmpty()) {
+            return new ResultMessage("酒店基本信息不完整，请重新输入");
+        }
+        if (!vo.staff.isEmpty()) {
+            UserVO user = new UserBL().get(vo.staff);
+            if (user == null) {
+                return new ResultMessage("该用户名不存在，请重新输入");
+            }
+            if (!user.type.equals(UserType.HOTEL_STAFF)) {
+                return new ResultMessage("该用户名不是酒店工作人员，请重新输入");
+            }
+            HotelVO hotel2 = getByStaff(vo.staff);
+            if (hotel2 != null && hotel2.id != vo.id) {
+                return new ResultMessage("该用户名已经是其它酒店的工作人员，请重新输入");
+            }
+        }
+        return new ResultMessage(ResultMessage.RESULT_SUCCESS);
     }
 
     private static HotelVO toVO(HotelPO po) {

@@ -60,12 +60,7 @@ class UserView extends Parent {
     protected void onModifyAction() throws IOException {
         UserProperty selected = tableUserInfo.getSelectionModel().getSelectedItem();
         if (selected != null) {
-            for (UserVO vo : userList) {
-                if (vo.username.equals(selected.getUsername())) {
-                    pane.getChildren().add(new UserEditView(vo, this::loadUserList));
-                    break;
-                }
-            }
+            pane.getChildren().add(new UserEditView(userList.stream().filter(vo -> vo.username.equals(selected.getUsername())).findFirst().get(), this::loadUserList));
         }
     }
 

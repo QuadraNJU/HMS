@@ -59,17 +59,11 @@ class HotelAndStaffView extends Parent {
 
     @FXML
     void onSearchAction() throws IOException {
-        for (AreaVO areaVO : areas) {
-            if (areaVO.areaName.equals(choiceArea.getValue()) && areaVO.cityName.equals(choiceCity.getValue())) {
-                ArrayList<HotelVO> hotelList = controller.getHotelsByArea(areaVO.id);
-                vBox.getChildren().clear();
-                if (hotelList != null) {
-                    for (HotelVO vo : hotelList) {
-                        vBox.getChildren().add(new HotelAndStaffItem(this, vo, controller));
-                    }
-                }
-                break;
-            }
+        AreaVO area = areas.stream().filter(vo -> vo.areaName.equals(choiceArea.getValue()) && vo.cityName.equals(choiceCity.getValue())).findFirst().get();
+        ArrayList<HotelVO> hotelList = controller.getHotelsByArea(area.id);
+        vBox.getChildren().clear();
+        for (HotelVO vo : hotelList) {
+            vBox.getChildren().add(new HotelAndStaffItem(this, vo, controller));
         }
     }
 

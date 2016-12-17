@@ -40,9 +40,9 @@ public class ResultMessage {
         this.message = message;
     }
 
-    public ResultMessage(Exception e) {
+    public ResultMessage(String message) {
         this.result = RESULT_GENERAL_ERROR;
-        this.message = e.getClass().getSimpleName() + ": " + e.getLocalizedMessage();
+        this.message = message;
     }
 
     @Override

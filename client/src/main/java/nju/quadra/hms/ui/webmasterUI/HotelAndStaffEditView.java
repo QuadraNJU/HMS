@@ -106,26 +106,6 @@ class HotelAndStaffEditView extends Parent {
         String facilities = editFacilities.getText();
         String star = (String) choiceStar.getValue();
         String staff = editStaff.getText();
-        if (areaId <= 0 || name.isEmpty() || address.isEmpty() || description.isEmpty() || facilities.isEmpty() || star.isEmpty()) {
-            Dialogs.showError("酒店基本信息不完整，请重新输入");
-            return;
-        }
-        if (!staff.isEmpty()) {
-            UserVO user = controller.getUserInfo(staff);
-            if (user == null) {
-                Dialogs.showError("该用户名不存在，请重新输入");
-                return;
-            }
-            if (!user.type.equals(UserType.HOTEL_STAFF)) {
-                Dialogs.showError("该用户名不是酒店工作人员，请重新输入");
-                return;
-            }
-            HotelVO hotel2 = controller.getHotelByStaff(staff);
-            if (hotel2 != null && hotelVO != null && hotel2.id != hotelVO.id) {
-                Dialogs.showError("该用户名已经是其它酒店的工作人员，请重新输入");
-                return;
-            }
-        }
 
         if (hotelVO == null) {
             ResultMessage result = controller.addHotel(new HotelVO(0, name, areaId, address, description, facilities, star, staff));

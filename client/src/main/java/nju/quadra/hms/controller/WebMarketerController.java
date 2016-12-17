@@ -37,7 +37,7 @@ public class WebMarketerController {
             return hotelBL.getAllArea();
         } catch (Exception e) {
             // e.printStackTrace();
-            return null;
+            return new ArrayList<>();
         }
     }
 
@@ -46,7 +46,7 @@ public class WebMarketerController {
             return websitePromotionBL.get();
         } catch (Exception e) {
             // e.printStackTrace();
-            return null;
+            return new ArrayList<>();
         }
     }
 
@@ -85,7 +85,7 @@ public class WebMarketerController {
             return orders;
         } catch (Exception e) {
             // e.printStackTrace();
-            return null;
+            return new ArrayList<>();
         }
     }
 
