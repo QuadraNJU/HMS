@@ -51,6 +51,7 @@ class UserEditView extends Parent {
                     dateBirthday.setVisible(true);
                     labelCompanyName.setVisible(false);
                     textCompanyName.setVisible(false);
+                    break;
                 case COMPANY:
                     labelBirthday.setVisible(false);
                     dateBirthday.setVisible(false);
@@ -58,6 +59,8 @@ class UserEditView extends Parent {
                     textCompanyName.setVisible(true);
             }
         });
+        choiceUserType.getSelectionModel().select(0);
+        choiceMemberType.getSelectionModel().select(0);
 
         this.onSuccess = onSuccess;
         this.userVO = vo;

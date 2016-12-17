@@ -29,6 +29,7 @@ public class HotelRoomBL implements HotelRoomBLService {
 
     @Override
     public ArrayList<HotelRoomVO> getAll(int hotelId) {
+        // 安全性: 仅允许酒店工作人员操作自己酒店的客房信息
         if (session != null) {
             if (session.userType.equals(UserType.HOTEL_STAFF)) {
                 hotelId = hotel.id;
@@ -51,6 +52,7 @@ public class HotelRoomBL implements HotelRoomBLService {
     public HotelRoomVO getById(int roomId) {
         try {
             HotelRoomPO po = hotelRoomDataService.getById(roomId);
+            // 安全性: 仅允许酒店工作人员操作自己酒店的客房信息
             if (session != null && (!session.userType.equals(UserType.HOTEL_STAFF) || po.getHotelId() != hotel.id)) {
                 return null;
             }
@@ -63,10 +65,12 @@ public class HotelRoomBL implements HotelRoomBLService {
 
     @Override
     public ResultMessage add(HotelRoomVO vo) {
-        if (!checkVO(vo)) {
-            return new ResultMessage(ResultMessage.RESULT_DATA_INVALID);
+        ResultMessage checkResult = checkVO(vo);
+        if (checkResult.result != ResultMessage.RESULT_SUCCESS) {
+            return checkResult;
         }
 
+        // 安全性: 仅允许酒店工作人员操作自己酒店的客房信息
         if (session != null) {
             if (session.userType.equals(UserType.HOTEL_STAFF)) {
                 vo.hotelId = hotel.id;
@@ -89,6 +93,7 @@ public class HotelRoomBL implements HotelRoomBLService {
     public ResultMessage delete(int roomId) {
         try {
             HotelRoomPO po = hotelRoomDataService.getById(roomId);
+            // 安全性: 仅允许酒店工作人员操作自己酒店的客房信息
             if (session != null && (!session.userType.equals(UserType.HOTEL_STAFF) || po.getHotelId() != hotel.id)) {
                 return new ResultMessage(ResultMessage.RESULT_ACCESS_DENIED);
             }
@@ -102,12 +107,14 @@ public class HotelRoomBL implements HotelRoomBLService {
 
     @Override
     public ResultMessage modify(HotelRoomVO vo) {
-        if (!checkVO(vo)) {
-            return new ResultMessage(ResultMessage.RESULT_DATA_INVALID);
+        ResultMessage checkResult = checkVO(vo);
+        if (checkResult.result != ResultMessage.RESULT_SUCCESS) {
+            return checkResult;
         }
 
         try {
             HotelRoomPO po = hotelRoomDataService.getById(vo.id);
+            // 安全性: 仅允许酒店工作人员操作自己酒店的客房信息
             if (session != null && (!session.userType.equals(UserType.HOTEL_STAFF) || po.getHotelId() != hotel.id)) {
                 return new ResultMessage(ResultMessage.RESULT_ACCESS_DENIED);
             }
@@ -121,8 +128,14 @@ public class HotelRoomBL implements HotelRoomBLService {
         }
     }
 
-    private boolean checkVO(HotelRoomVO vo) {
-        return !(vo.name.trim().isEmpty() || vo.price < 0 || vo.total < 0);
+    private ResultMessage checkVO(HotelRoomVO vo) {
+        if (vo.name.trim().isEmpty()) {
+            return new ResultMessage("客房类型不能为空，请重新输入");
+        }
+        if (vo.price < 0 || vo.total < 0) {
+            return new ResultMessage("客房价格与数量必须为正数，请重新输入");
+        }
+        return new ResultMessage(ResultMessage.RESULT_SUCCESS);
     }
 
     private static HotelRoomVO toVO(HotelRoomPO po) {

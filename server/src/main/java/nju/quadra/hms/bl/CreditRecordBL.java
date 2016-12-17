@@ -42,16 +42,16 @@ public class CreditRecordBL implements CreditRecordBLService {
 
     @Override
     public ArrayList<CreditRecordVO> get(String username) {
-        ArrayList<CreditRecordVO> voarr = new ArrayList<>();
-
+        // 安全性: 只有客户能获取自己的信用记录
         if (session != null) {
             if (session.userType.equals(UserType.CUSTOMER)) {
                 username = session.username;
             } else {
-                return voarr;
+                return new ArrayList<>();
             }
         }
 
+        ArrayList<CreditRecordVO> voarr = new ArrayList<>();
         try {
             ArrayList<CreditRecordPO> poarr = creditDataService.get(username);
             double creditResult = ORIGINAL_CREDIT;
@@ -70,6 +70,11 @@ public class CreditRecordBL implements CreditRecordBLService {
 
     @Override
     public ResultMessage add(CreditRecordVO vo) {
+        // 安全性: 该方法仅限系统内部调用，不允许从外界访问
+        if (session != null) {
+            return new ResultMessage(ResultMessage.RESULT_ACCESS_DENIED);
+        }
+
         CreditRecordPO po = CreditRecordBL.toPO(vo);
         try {
             creditDataService.insert(po);
@@ -82,6 +87,7 @@ public class CreditRecordBL implements CreditRecordBLService {
 
     @Override
     public ResultMessage topup(String username, int amount) {
+        // 安全性: 该方法仅限网站营销人员使用
         if (session != null && session.userType.equals(UserType.WEBSITE_MARKETER)) {
             return new ResultMessage(ResultMessage.RESULT_ACCESS_DENIED);
         }
@@ -89,6 +95,7 @@ public class CreditRecordBL implements CreditRecordBLService {
         if (amount <= 0) {
             return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "充值额度必须为正整数，请重新输入");
         }
+
         try {
             UserVO user = userBL.get(username);
             if (user == null) {
@@ -97,7 +104,7 @@ public class CreditRecordBL implements CreditRecordBLService {
             if (!user.type.equals(UserType.CUSTOMER)) {
                 return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "该用户不是客户类型，无法充值");
             }
-            return add(new CreditRecordVO(0, username, null, 0, CreditAction.CREDIT_TOPUP, amount*RECHARGE_RATE, 0));
+            return new CreditRecordBL().add(new CreditRecordVO(0, username, null, 0, CreditAction.CREDIT_TOPUP, amount*RECHARGE_RATE, 0));
         } catch (Exception e) {
             // e.printStackTrace();
             return new ResultMessage(ResultMessage.RESULT_DB_ERROR);

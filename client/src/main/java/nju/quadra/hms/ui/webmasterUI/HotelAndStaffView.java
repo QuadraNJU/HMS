@@ -30,7 +30,9 @@ class HotelAndStaffView extends Parent {
         choiceCity.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             choiceArea.getItems().clear();
             choiceArea.getItems().addAll(areas.stream().filter(vo -> vo.cityName.equals(newValue)).map(vo -> vo.areaName).toArray());
+            choiceArea.getSelectionModel().select(0);
         });
+        choiceCity.getSelectionModel().select(0);
 
         loadAreas();
     }

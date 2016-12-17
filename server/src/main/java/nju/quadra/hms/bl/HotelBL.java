@@ -29,6 +29,7 @@ public class HotelBL implements HotelBLService {
 
     @Override
     public ArrayList<HotelSearchVO> search(int areaId, String username) {
+        // 安全性: 仅限客户调用，且只能获取自己的订单信息
         if (session != null) {
             if (session.userType.equals(UserType.CUSTOMER)) {
                 username = session.username;
@@ -64,6 +65,11 @@ public class HotelBL implements HotelBLService {
 
     @Override
     public ArrayList<HotelVO> getByArea(int areaId) {
+        // 安全性: 仅限网站管理人员调用
+        if (session != null && session.userType.equals(UserType.WEBSITE_MASTER)) {
+            return new ArrayList<>();
+        }
+
         ArrayList<HotelVO> voarr = new ArrayList<>();
         try {
             ArrayList<HotelPO> poarr = hotelDataService.getByArea(areaId);
@@ -75,19 +81,16 @@ public class HotelBL implements HotelBLService {
     }
 
     @Override
-    public ArrayList<HotelVO> getAll() {
-        ArrayList<HotelVO> voarr = new ArrayList<>();
-        try {
-            ArrayList<HotelPO> poarr = hotelDataService.getAll();
-            for (HotelPO po : poarr) voarr.add(HotelBL.toVO(po));
-        } catch (Exception e) {
-            // e.printStackTrace();
-        }
-        return voarr;
-    }
-
-    @Override
     public HotelVO getByStaff(String staff) {
+        // 安全性: 酒店工作人员只能获得自己的酒店信息，网站管理人员可以获得所有酒店信息
+        if (session != null) {
+            if (session.userType.equals(UserType.HOTEL_STAFF)) {
+                staff = session.username;
+            } else if (!session.userType.equals(UserType.WEBSITE_MASTER)) {
+                return null;
+            }
+        }
+
         if (session != null) {
             if (session.userType.equals(UserType.HOTEL_STAFF)) {
                 staff = session.username;
@@ -107,6 +110,11 @@ public class HotelBL implements HotelBLService {
 
     @Override
     public HotelVO getDetail(int id) {
+        // 安全性: 仅限系统内部调用
+        if (session != null) {
+            return null;
+        }
+
         try {
             HotelPO po = hotelDataService.getById(id);
             return HotelBL.toVO(po);
@@ -118,6 +126,7 @@ public class HotelBL implements HotelBLService {
 
     @Override
     public ArrayList<AreaVO> getAllArea() {
+        // 该方法无安全性需求
         ArrayList<AreaVO> voarr = new ArrayList<>();
         try {
             ArrayList<AreaPO> poarr = hotelDataService.getAllArea();
@@ -136,6 +145,11 @@ public class HotelBL implements HotelBLService {
             return checkResult;
         }
 
+        // 安全性: 仅限网站管理人员调用
+        if (session != null && !session.userType.equals(UserType.WEBSITE_MASTER)) {
+            return new ResultMessage(ResultMessage.RESULT_ACCESS_DENIED);
+        }
+
         HotelPO po = HotelBL.toPO(vo);
         try {
             hotelDataService.insert(po);
@@ -148,6 +162,11 @@ public class HotelBL implements HotelBLService {
 
     @Override
     public ResultMessage delete(int id) {
+        // 安全性: 仅限网站管理人员调用
+        if (session != null && !session.userType.equals(UserType.WEBSITE_MASTER)) {
+            return new ResultMessage(ResultMessage.RESULT_ACCESS_DENIED);
+        }
+
         try {
             HotelPO po = hotelDataService.getById(id);
             hotelDataService.delete(po);
@@ -165,10 +184,10 @@ public class HotelBL implements HotelBLService {
             return checkResult;
         }
 
+        // 安全性: 酒店工作人员只允许修改自己的酒店信息，网站管理人员不限
         if (session != null) {
             if (session.userType.equals(UserType.HOTEL_STAFF)) {
-                // 酒店工作人员只允许操作对应的酒店
-                HotelVO hotel = getByStaff(session.username);
+                HotelVO hotel = new HotelBL().getByStaff(session.username);
                 if (hotel == null || hotel.id != vo.id) {
                     return new ResultMessage(ResultMessage.RESULT_ACCESS_DENIED);
                 }
@@ -205,7 +224,7 @@ public class HotelBL implements HotelBLService {
             if (!user.type.equals(UserType.HOTEL_STAFF)) {
                 return new ResultMessage("该用户名不是酒店工作人员，请重新输入");
             }
-            HotelVO hotel2 = getByStaff(vo.staff);
+            HotelVO hotel2 = new HotelBL().getByStaff(vo.staff);
             if (hotel2 != null && hotel2.id != vo.id) {
                 return new ResultMessage("该用户名已经是其它酒店的工作人员，请重新输入");
             }

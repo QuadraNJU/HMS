@@ -31,6 +31,7 @@ public class WebsitePromotionBL implements WebsitePromotionBLService {
 
     @Override
     public ArrayList<WebsitePromotionVO> get() {
+        // 安全性: 仅限网站营销人员访问
         if (session != null && !session.userType.equals(UserType.WEBSITE_MARKETER)) {
             return new ArrayList<>();
         }
@@ -53,6 +54,7 @@ public class WebsitePromotionBL implements WebsitePromotionBLService {
             return checkResult;
         }
 
+        // 安全性: 仅限网站营销人员访问
         if (session != null && !session.userType.equals(UserType.WEBSITE_MARKETER)) {
             return new ResultMessage(ResultMessage.RESULT_ACCESS_DENIED);
         }
@@ -69,6 +71,7 @@ public class WebsitePromotionBL implements WebsitePromotionBLService {
 
     @Override
     public ResultMessage delete(int promotionId) {
+        // 安全性: 仅限网站营销人员访问
         if (session != null && !session.userType.equals(UserType.WEBSITE_MARKETER)) {
             return new ResultMessage(ResultMessage.RESULT_ACCESS_DENIED);
         }
@@ -90,6 +93,7 @@ public class WebsitePromotionBL implements WebsitePromotionBLService {
             return checkResult;
         }
 
+        // 安全性: 仅限网站营销人员访问
         if (session != null && !session.userType.equals(UserType.WEBSITE_MARKETER)) {
             return new ResultMessage(ResultMessage.RESULT_ACCESS_DENIED);
         }

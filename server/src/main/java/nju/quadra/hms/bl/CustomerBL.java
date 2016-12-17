@@ -35,6 +35,7 @@ public class CustomerBL implements CustomerBLService {
 
     @Override
     public MemberVO getMemberInfo(String username) {
+        // 安全性: 客户只能获取自己的会员信息，网站管理人员能获得所有会员信息
         if (session != null) {
             if (session.userType.equals(UserType.CUSTOMER)) {
                 username = session.username;
@@ -56,27 +57,20 @@ public class CustomerBL implements CustomerBLService {
 
     @Override
     public ResultMessage modifyMemberInfo(MemberVO vo) {
-        if (session != null) {
-            if (session.userType.equals(UserType.CUSTOMER)) {
-                vo.username = session.username;
-                // 防止客户将会员类型修改为"非会员"
-                if (vo.memberType.equals(MemberType.NONE)) {
-                    return new ResultMessage(ResultMessage.RESULT_ACCESS_DENIED);
-                }
-            } else if (!session.userType.equals(UserType.WEBSITE_MASTER)) {
-                return new ResultMessage(ResultMessage.RESULT_ACCESS_DENIED);
-            }
+        // 安全性: 仅限网站管理人员调用或系统内部调用
+        if (session != null && !session.userType.equals(UserType.WEBSITE_MASTER)) {
+            return new ResultMessage(ResultMessage.RESULT_ACCESS_DENIED);
         }
 
         switch (vo.memberType) {
             case PERSONAL:
                 if (vo.birthday == null) {
-                    return new ResultMessage(ResultMessage.RESULT_DATA_INVALID);
+                    return new ResultMessage("请填写生日信息");
                 }
                 break;
             case COMPANY:
                 if (vo.companyName == null || vo.companyName.trim().isEmpty()) {
-                    return new ResultMessage(ResultMessage.RESULT_DATA_INVALID);
+                    return new ResultMessage("请填写企业名称");
                 }
         }
 
@@ -100,20 +94,23 @@ public class CustomerBL implements CustomerBLService {
 
     @Override
     public ResultMessage enroll(MemberVO vo) {
+        // 安全性: 仅限客户调用
+        if (session != null && !session.userType.equals(UserType.CUSTOMER)) {
+            return new ResultMessage(ResultMessage.RESULT_ACCESS_DENIED);
+        }
         // 防止重复登记
         MemberVO member = getMemberInfo(vo.username);
         if (!member.memberType.equals(MemberType.NONE)) {
             return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "您已经是会员，无需重复登记");
         }
-        return modifyMemberInfo(vo);
+        return new CustomerBL().modifyMemberInfo(vo);
     }
 
     @Override
     public ArrayList<String> getAllCompany() {
-        if (session != null) {
-            if (!session.userType.equals(UserType.HOTEL_STAFF)) {
-                return new ArrayList<>();
-            }
+        // 安全性: 仅限酒店工作人员调用
+        if (session != null && !session.userType.equals(UserType.HOTEL_STAFF)) {
+            return new ArrayList<>();
         }
 
         try {

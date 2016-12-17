@@ -37,6 +37,7 @@ public class HotelPromotionBL implements HotelPromotionBLService {
 
     @Override
     public ArrayList<HotelPromotionVO> get(int hotelId) {
+        // 安全性: 仅允许酒店工作人员获取自己酒店的促销策略
         if (session != null) {
             if (session.userType.equals(UserType.HOTEL_STAFF)) {
                 hotelId = hotel.id;
@@ -57,10 +58,12 @@ public class HotelPromotionBL implements HotelPromotionBLService {
 
     @Override
     public ResultMessage add(HotelPromotionVO vo) {
-        if (!checkVO(vo)) {
-            return new ResultMessage(ResultMessage.RESULT_DATA_INVALID);
+        ResultMessage checkResult = checkVO(vo);
+        if (checkResult.result != ResultMessage.RESULT_SUCCESS) {
+            return checkResult;
         }
 
+        // 安全性: 仅允许酒店工作人员操作自己酒店的促销策略
         if (session != null) {
             if (session.userType.equals(UserType.HOTEL_STAFF)) {
                 vo.hotelId = hotel.id;
@@ -83,6 +86,10 @@ public class HotelPromotionBL implements HotelPromotionBLService {
     public ResultMessage delete(int promotionId) {
         try {
             HotelPromotionPO po = hotelPromotionDataService.getById(promotionId);
+            // 安全性: 仅允许酒店工作人员操作自己酒店的促销策略
+            if (session != null && (!session.userType.equals(UserType.HOTEL_STAFF) || po.getHotelId() != hotel.id)) {
+                return new ResultMessage(ResultMessage.RESULT_ACCESS_DENIED);
+            }
             hotelPromotionDataService.delete(po);
             return new ResultMessage(ResultMessage.RESULT_SUCCESS);
         } catch (Exception e) {
@@ -93,12 +100,14 @@ public class HotelPromotionBL implements HotelPromotionBLService {
 
     @Override
     public ResultMessage modify(HotelPromotionVO vo) {
-        if (!checkVO(vo)) {
-            return new ResultMessage(ResultMessage.RESULT_DATA_INVALID);
+        ResultMessage checkResult = checkVO(vo);
+        if (checkResult.result != ResultMessage.RESULT_SUCCESS) {
+            return checkResult;
         }
 
         try {
             HotelPromotionPO po = hotelPromotionDataService.getById(vo.id);
+            // 安全性: 仅允许酒店工作人员操作自己酒店的促销策略
             if (session != null && (!session.userType.equals(UserType.HOTEL_STAFF) || po.getHotelId() != hotel.id)) {
                 return new ResultMessage(ResultMessage.RESULT_ACCESS_DENIED);
             }
@@ -112,9 +121,20 @@ public class HotelPromotionBL implements HotelPromotionBLService {
         }
     }
 
-    private boolean checkVO(HotelPromotionVO vo) {
-        return !(vo.name.trim().isEmpty() || vo.startTime == null || vo.endTime == null || vo.promotion < 0 || vo.promotion > 1)
-                && !(vo.type.equals(HotelPromotionType.COMPANY_PROMOTION) && vo.cooperation == null);
+    private ResultMessage checkVO(HotelPromotionVO vo) {
+        if (vo.name.trim().isEmpty()) {
+            return new ResultMessage("促销策略名称不能为空，请重新输入");
+        }
+        if (vo.promotion < 0 || vo.promotion > 1) {
+            return new ResultMessage("折扣幅度应为 0~1 之间的小数，请重新输入");
+        }
+        if (vo.startTime.compareTo(vo.endTime) > 0) {
+            return new ResultMessage("促销开始时间应不晚于结束时间，请重新输入");
+        }
+        if (vo.type.equals(HotelPromotionType.COMPANY_PROMOTION) && (vo.cooperation == null || vo.cooperation.size() == 0)) {
+            return new ResultMessage("请选择至少一家合作企业");
+        }
+        return new ResultMessage(ResultMessage.RESULT_SUCCESS);
     }
 
     private static HotelPromotionVO toVO(HotelPromotionPO po) {

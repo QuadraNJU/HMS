@@ -21,12 +21,12 @@
         </font>
     </TextField>
 
-    <Label layoutX="55.0" layoutY="130.0" text="充值额度（请输入正整数）">
+    <Label layoutX="55.0" layoutY="130.0" text="充值额度">
         <font>
             <Font size="14.0"/>
         </font>
     </Label>
-    <TextField fx:id="editAmount" layoutX="130.0" layoutY="125.0" prefWidth="250.0" promptText="额度">
+    <TextField fx:id="editAmount" layoutX="130.0" layoutY="125.0" prefWidth="250.0" promptText="请输入正整数">
         <font>
             <Font size="14.0"/>
         </font>

@@ -45,6 +45,7 @@ public class UserBL implements UserBLService {
 
     @Override
     public ArrayList<UserVO> getAll() {
+        // 安全性: 仅限网站管理人员访问
         if (session != null && !session.userType.equals(UserType.WEBSITE_MASTER)) {
             return new ArrayList<>();
         }
@@ -63,6 +64,7 @@ public class UserBL implements UserBLService {
 
     @Override
     public UserVO get(String username) {
+        // 安全性: 仅限客户访问自己的个人信息
         if (session != null) {
             if (session.userType.equals(UserType.CUSTOMER)) {
                 username = session.username;
@@ -82,6 +84,11 @@ public class UserBL implements UserBLService {
 
     @Override
     public ResultMessage add(UserVO vo) {
+        // 安全性: 仅限网站管理人员访问
+        if (session != null && !session.userType.equals(UserType.WEBSITE_MASTER)) {
+            return new ResultMessage(ResultMessage.RESULT_ACCESS_DENIED);
+        }
+
         UserPO po = UserBL.toPO(vo);
         try {
             if (vo.username.isEmpty() || vo.password.isEmpty() || vo.contact.isEmpty() || vo.name.isEmpty()) {
@@ -100,6 +107,11 @@ public class UserBL implements UserBLService {
 
     @Override
     public ResultMessage delete(String username) {
+        // 安全性: 仅限网站管理人员访问
+        if (session != null && !session.userType.equals(UserType.WEBSITE_MASTER)) {
+            return new ResultMessage(ResultMessage.RESULT_ACCESS_DENIED);
+        }
+
         try {
             UserPO po = userDataService.get(username);
             userDataService.delete(po);
@@ -111,6 +123,7 @@ public class UserBL implements UserBLService {
     }
 
     public ResultMessage modifyBasicInfo(UserVO vo) {
+        // 安全性: 仅限客户修改自己的基本信息
         if (session != null) {
             if (session.userType.equals(UserType.CUSTOMER)) {
                 vo.username = session.username;
@@ -137,6 +150,11 @@ public class UserBL implements UserBLService {
 
     @Override
     public ResultMessage modify(UserVO vo) {
+        // 安全性: 仅限网站管理人员访问
+        if (session != null && !session.userType.equals(UserType.WEBSITE_MASTER)) {
+            return new ResultMessage(ResultMessage.RESULT_ACCESS_DENIED);
+        }
+
         try {
             UserPO newContent = UserBL.toPO(vo);
             userDataService.update(newContent);

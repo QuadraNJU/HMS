@@ -28,7 +28,7 @@ public class OrderBL implements OrderBLService {
     public OrderBL() {
         session = null;
         hotel = null;
-        // 自动检查异常订单
+        // "自动"检查异常订单
         checkDelayed();
     }
 
@@ -40,6 +40,7 @@ public class OrderBL implements OrderBLService {
 
     @Override
     public PriceVO getPrice(OrderVO vo) {
+        // 安全性: 仅限客户调用
         if (session != null) {
             if (session.userType.equals(UserType.CUSTOMER)) {
                 vo.username = session.username;
@@ -47,6 +48,7 @@ public class OrderBL implements OrderBLService {
                 return new PriceVO("非法访问");
             }
         }
+        // "自动"检查异常订单
         checkDelayed();
         // check order
         if (vo.startDate == null || vo.endDate == null || vo.roomCount <= 0
@@ -150,6 +152,7 @@ public class OrderBL implements OrderBLService {
 
     @Override
     public ResultMessage add(OrderVO vo) {
+        // 安全性: 仅限客户访问
         if (session != null) {
             if (session.userType.equals(UserType.CUSTOMER)) {
                 vo.username = session.username;
@@ -157,6 +160,7 @@ public class OrderBL implements OrderBLService {
                 return null;
             }
         }
+        // "自动"检查异常订单
         checkDelayed();
 
         try {
@@ -178,6 +182,7 @@ public class OrderBL implements OrderBLService {
 
     @Override
     public ArrayList<OrderDetailVO> getByCustomer(String username) {
+        // 安全性: 仅限客户访问自己的订单
         if (session != null) {
             if (session.userType.equals(UserType.CUSTOMER)) {
                 username = session.username;
@@ -185,7 +190,7 @@ public class OrderBL implements OrderBLService {
                 return new ArrayList<>();
             }
         }
-
+        // "自动"检查异常订单
         checkDelayed();
         ArrayList<OrderDetailVO> voarr = new ArrayList<>();
         try {
@@ -201,6 +206,7 @@ public class OrderBL implements OrderBLService {
 
     @Override
     public ArrayList<OrderDetailVO> getByHotel(int hotelId) {
+        // 安全性: 仅限酒店工作人与访问自己酒店的订单
         if (session != null) {
             if (session.userType.equals(UserType.HOTEL_STAFF)) {
                 hotelId = hotel.id;
@@ -208,7 +214,7 @@ public class OrderBL implements OrderBLService {
                 return new ArrayList<>();
             }
         }
-
+        // "自动"检查异常订单
         checkDelayed();
         ArrayList<OrderDetailVO> voarr = new ArrayList<>();
         try {
@@ -224,9 +230,11 @@ public class OrderBL implements OrderBLService {
 
     @Override
     public ArrayList<OrderDetailVO> getByState(OrderState state) {
+        // 安全性: 仅限网站营销人员访问
         if (session != null && !session.userType.equals(UserType.WEBSITE_MARKETER)) {
             return new ArrayList<>();
         }
+        // "自动"检查异常订单
         checkDelayed();
         ArrayList<OrderDetailVO> voarr = new ArrayList<>();
         try {
@@ -242,9 +250,11 @@ public class OrderBL implements OrderBLService {
 
     @Override
     public ResultMessage undoDelayed(int orderId, boolean returnAllCredit) {
+        // 安全性: 仅限网站营销人员访问
         if (session != null && !session.userType.equals(UserType.WEBSITE_MARKETER)) {
             return new ResultMessage(ResultMessage.RESULT_ACCESS_DENIED);
         }
+        // "自动"检查异常订单
         checkDelayed();
         try {
             OrderPO po = orderDataService.getById(orderId);
@@ -269,10 +279,11 @@ public class OrderBL implements OrderBLService {
 
     @Override
     public ResultMessage undoUnfinished(int orderId) {
+        // "自动"检查异常订单
         checkDelayed();
         try {
             OrderPO po = orderDataService.getById(orderId);
-            // 仅允许撤销自己的订单
+            // 安全性: 仅允许撤销自己的订单
             if (session != null && (!session.userType.equals(UserType.CUSTOMER) || !po.getUsername().equals(session.username))) {
                 return new ResultMessage(ResultMessage.RESULT_ACCESS_DENIED);
             }
@@ -299,10 +310,11 @@ public class OrderBL implements OrderBLService {
 
     @Override
     public ResultMessage checkin(int orderId) {
+        // "自动"检查异常订单
         checkDelayed();
         try {
             OrderPO po = orderDataService.getById(orderId);
-            // 仅允许操作对应酒店的订单
+            // 安全性: 仅允许操作对应酒店的订单
             if (session != null && (!session.userType.equals(UserType.HOTEL_STAFF) || po.getHotelId() != hotel.id)) {
                 return new ResultMessage(ResultMessage.RESULT_ACCESS_DENIED);
             }
@@ -334,7 +346,7 @@ public class OrderBL implements OrderBLService {
         checkDelayed();
         try {
             OrderPO po = orderDataService.getById(orderId);
-            // 仅允许操作对应酒店的订单
+            // 安全性: 仅允许操作对应酒店的订单
             if (session != null && (!session.userType.equals(UserType.HOTEL_STAFF) || po.getHotelId() != hotel.id)) {
                 return new ResultMessage(ResultMessage.RESULT_ACCESS_DENIED);
             }
@@ -358,7 +370,7 @@ public class OrderBL implements OrderBLService {
     public ResultMessage addRank(OrderRankVO vo) {
         try {
             OrderPO po = orderDataService.getById(vo.orderId);
-            // 仅允许评价自己的订单
+            // 安全性: 仅允许评价自己的订单
             if (session != null && (!session.userType.equals(UserType.CUSTOMER) || !po.getUsername().equals(session.username))) {
                 return new ResultMessage(ResultMessage.RESULT_ACCESS_DENIED);
             }
