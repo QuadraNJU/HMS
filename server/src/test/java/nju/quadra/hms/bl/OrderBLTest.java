@@ -38,6 +38,9 @@ public class OrderBLTest {
         // add a user
         ResultMessage result = userBL.add(new UserVO("TEST_customer", PassHash.hash("test"), "测试客户", "test", UserType.CUSTOMER));
         assertEquals(ResultMessage.RESULT_SUCCESS, result.result);
+        // add a hotel staff
+        result = userBL.add(new UserVO("TEST_staff", PassHash.hash("test"), "测试酒店工作人员", "test", UserType.HOTEL_STAFF));
+        assertEquals(ResultMessage.RESULT_SUCCESS, result.result);
         // add a hotel
         result = hotelBL.add(new HotelVO(0, "TEST_Hotel", 9999, "test", "test", "test", "一星级", "TEST_staff"));
         assertEquals(ResultMessage.RESULT_SUCCESS, result.result);
@@ -120,6 +123,8 @@ public class OrderBLTest {
             hotelBL.delete(hotelVO.id);
             hotelVO = hotelBL.getByStaff("TEST_staff");
         }
+        // delete hotel staff
+        userBL.delete("TEST_staff");
         // delete customer
         userBL.delete("TEST_customer");
     }
