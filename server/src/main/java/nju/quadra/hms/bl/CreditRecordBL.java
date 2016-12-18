@@ -88,7 +88,7 @@ public class CreditRecordBL implements CreditRecordBLService {
     @Override
     public ResultMessage topup(String username, int amount) {
         // 安全性: 该方法仅限网站营销人员使用
-        if (session != null && session.userType.equals(UserType.WEBSITE_MARKETER)) {
+        if (session != null && !session.userType.equals(UserType.WEBSITE_MARKETER)) {
             return new ResultMessage(ResultMessage.RESULT_ACCESS_DENIED);
         }
 
