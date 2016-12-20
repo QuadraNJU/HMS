@@ -78,6 +78,9 @@ public class LoginView extends Stage {
                 if (checkRemember.isSelected()) {
                     ClientConfig.getConfig().setUsername(username);
                     ClientConfig.getConfig().setPassword(password);
+                } else {
+                    ClientConfig.getConfig().setUsername("");
+                    ClientConfig.getConfig().setPassword("");
                 }
                 try {
                     MainView main = new MainView();

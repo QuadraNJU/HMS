@@ -1,5 +1,6 @@
 package nju.quadra.hms.bl;
 
+import nju.quadra.hms.util.Logger;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import nju.quadra.hms.blservice.WebsitePromotionBLService;
@@ -41,7 +42,7 @@ public class WebsitePromotionBL implements WebsitePromotionBLService {
             ArrayList<WebsitePromotionPO> poarr = websitePromotionDataService.getAll();
             for(WebsitePromotionPO po: poarr) voarr.add(WebsitePromotionBL.toVO(po));
         } catch (Exception e) {
-            // e.printStackTrace();
+            Logger.log(e);
         }
 
         return voarr;
@@ -64,7 +65,7 @@ public class WebsitePromotionBL implements WebsitePromotionBLService {
             websitePromotionDataService.insert(po);
             return new ResultMessage(ResultMessage.RESULT_SUCCESS);
         } catch (Exception e) {
-            // e.printStackTrace();
+            Logger.log(e);
             return new ResultMessage(ResultMessage.RESULT_DB_ERROR);
         }
     }
@@ -81,7 +82,7 @@ public class WebsitePromotionBL implements WebsitePromotionBLService {
             websitePromotionDataService.delete(po);
             return new ResultMessage(ResultMessage.RESULT_SUCCESS);
         } catch (Exception e) {
-            // e.printStackTrace();
+            Logger.log(e);
             return new ResultMessage(ResultMessage.RESULT_DB_ERROR);
         }
     }
@@ -103,7 +104,7 @@ public class WebsitePromotionBL implements WebsitePromotionBLService {
             websitePromotionDataService.update(po);
             return new ResultMessage(ResultMessage.RESULT_SUCCESS);
         } catch (Exception e) {
-            // e.printStackTrace();
+            Logger.log(e);
             return new ResultMessage(ResultMessage.RESULT_DB_ERROR);
         }
     }

@@ -64,7 +64,7 @@
         <ImageView layoutX="100.0" layoutY="30.0" preserveRatio="true">
             <Image url="@../common/loading.gif"/>
         </ImageView>
-        <Label layoutX="178.0" layoutY="350.0" text="正在登录，请稍后" textAlignment="CENTER">
+        <Label layoutY="350.0" prefWidth="500.0" text="正在登录，请稍后" alignment="CENTER">
             <font>
                 <Font size="18.0"/>
             </font>

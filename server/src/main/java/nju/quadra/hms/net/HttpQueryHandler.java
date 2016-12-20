@@ -7,6 +7,7 @@ import com.google.gson.JsonParser;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import nju.quadra.hms.model.LoginSession;
+import nju.quadra.hms.util.Logger;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -69,11 +70,9 @@ class HttpQueryHandler implements HttpHandler {
                 }
 
                 // Debug
-                System.out.println("Query: " + httpExchange.getRequestURI());
-                System.out.println("Payload:\n" + payload);
-                System.out.println("Response:\n" + result);
+                Logger.log("D", "Received HTTP query: /" + paths[1] + "/" + paths[2]);
             } catch (Throwable e) {
-                // e.printStackTrace();
+                Logger.log(e);
                 result = "Server exception: " + e.getClass().getSimpleName();
             }
         }

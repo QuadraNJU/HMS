@@ -1,5 +1,6 @@
 package nju.quadra.hms.bl;
 
+import nju.quadra.hms.util.Logger;
 import java.util.ArrayList;
 
 import nju.quadra.hms.blservice.HotelBLService;
@@ -75,7 +76,7 @@ public class HotelBL implements HotelBLService {
             ArrayList<HotelPO> poarr = hotelDataService.getByArea(areaId);
             for (HotelPO po : poarr) voarr.add(HotelBL.toVO(po));
         } catch (Exception e) {
-            // e.printStackTrace();
+            Logger.log(e);
         }
         return voarr;
     }
@@ -103,7 +104,7 @@ public class HotelBL implements HotelBLService {
             HotelPO po = hotelDataService.getByStaff(staff);
             return HotelBL.toVO(po);
         } catch (Exception e) {
-            // e.printStackTrace();
+            Logger.log(e);
         }
         return null;
     }
@@ -119,7 +120,7 @@ public class HotelBL implements HotelBLService {
             HotelPO po = hotelDataService.getById(id);
             return HotelBL.toVO(po);
         } catch (Exception e) {
-            // e.printStackTrace();
+            Logger.log(e);
         }
         return null;
     }
@@ -133,7 +134,7 @@ public class HotelBL implements HotelBLService {
             for (AreaPO po : poarr)
                 voarr.add(new AreaVO(po.getId(), po.getCityName(), po.getAreaName()));
         } catch (Exception e) {
-            // e.printStackTrace();
+            Logger.log(e);
         }
         return voarr;
     }
@@ -155,7 +156,7 @@ public class HotelBL implements HotelBLService {
             hotelDataService.insert(po);
             return new ResultMessage(ResultMessage.RESULT_SUCCESS);
         } catch (Exception e) {
-            // e.printStackTrace();
+            Logger.log(e);
             return new ResultMessage(ResultMessage.RESULT_DB_ERROR);
         }
     }
@@ -172,7 +173,7 @@ public class HotelBL implements HotelBLService {
             hotelDataService.delete(po);
             return new ResultMessage(ResultMessage.RESULT_SUCCESS);
         } catch (Exception e) {
-            // e.printStackTrace();
+            Logger.log(e);
             return new ResultMessage(ResultMessage.RESULT_DB_ERROR);
         }
     }
@@ -207,7 +208,7 @@ public class HotelBL implements HotelBLService {
             hotelDataService.update(po);
             return new ResultMessage(ResultMessage.RESULT_SUCCESS);
         } catch (Exception e) {
-            // e.printStackTrace();
+            Logger.log(e);
             return new ResultMessage(ResultMessage.RESULT_DB_ERROR);
         }
     }

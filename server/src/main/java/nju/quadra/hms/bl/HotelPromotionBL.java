@@ -1,5 +1,6 @@
 package nju.quadra.hms.bl;
 
+import nju.quadra.hms.util.Logger;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import nju.quadra.hms.blservice.HotelPromotionBLService;
@@ -51,7 +52,7 @@ public class HotelPromotionBL implements HotelPromotionBLService {
             ArrayList<HotelPromotionPO> poarr = hotelPromotionDataService.get(hotelId);
             for(HotelPromotionPO po: poarr) voarr.add(HotelPromotionBL.toVO(po));
         } catch (Exception e) {
-            // e.printStackTrace();
+            Logger.log(e);
         }
         return voarr;
     }
@@ -76,7 +77,7 @@ public class HotelPromotionBL implements HotelPromotionBLService {
         try {
             hotelPromotionDataService.insert(po);
         } catch (Exception e) {
-            // e.printStackTrace();
+            Logger.log(e);
             return new ResultMessage(ResultMessage.RESULT_DB_ERROR);
         }
         return new ResultMessage(ResultMessage.RESULT_SUCCESS);
@@ -93,7 +94,7 @@ public class HotelPromotionBL implements HotelPromotionBLService {
             hotelPromotionDataService.delete(po);
             return new ResultMessage(ResultMessage.RESULT_SUCCESS);
         } catch (Exception e) {
-            // e.printStackTrace();
+            Logger.log(e);
             return new ResultMessage(ResultMessage.RESULT_DB_ERROR);
         }
     }
@@ -116,7 +117,7 @@ public class HotelPromotionBL implements HotelPromotionBLService {
             hotelPromotionDataService.update(po);
             return new ResultMessage(ResultMessage.RESULT_SUCCESS);
         } catch (Exception e) {
-            // e.printStackTrace();
+            Logger.log(e);
             return new ResultMessage(ResultMessage.RESULT_DB_ERROR);
         }
     }

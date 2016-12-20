@@ -1,5 +1,6 @@
 package nju.quadra.hms.bl;
 
+import nju.quadra.hms.util.Logger;
 import nju.quadra.hms.blservice.CreditRecordBLService;
 import nju.quadra.hms.blservice.UserBLService;
 import nju.quadra.hms.data.mysql.CreditDataServiceImpl;
@@ -63,7 +64,7 @@ public class CreditRecordBL implements CreditRecordBLService {
                 voarr.add(0, new CreditRecordVO(po.getId(), po.getUsername(), po.getTimestamp(), po.getOrderId(), po.getAction(), po.getDiff(), creditResult));
             }
         } catch (Exception e) {
-            // e.printStackTrace();
+            Logger.log(e);
         }
         return voarr;
     }
@@ -79,7 +80,7 @@ public class CreditRecordBL implements CreditRecordBLService {
         try {
             creditDataService.insert(po);
         } catch (Exception e) {
-            // e.printStackTrace();
+            Logger.log(e);
             return new ResultMessage(ResultMessage.RESULT_DB_ERROR);
         }
         return new ResultMessage(ResultMessage.RESULT_SUCCESS);
@@ -106,7 +107,7 @@ public class CreditRecordBL implements CreditRecordBLService {
             }
             return new CreditRecordBL().add(new CreditRecordVO(0, username, null, 0, CreditAction.CREDIT_TOPUP, amount*RECHARGE_RATE, 0));
         } catch (Exception e) {
-            // e.printStackTrace();
+            Logger.log(e);
             return new ResultMessage(ResultMessage.RESULT_DB_ERROR);
         }
     }

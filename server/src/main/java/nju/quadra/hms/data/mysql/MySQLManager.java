@@ -1,5 +1,7 @@
 package nju.quadra.hms.data.mysql;
 
+import nju.quadra.hms.util.ServerConfig;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -7,7 +9,7 @@ import java.sql.SQLException;
 /**
  * Created by adn55 on 2016/11/15.
  */
-class MySQLManager {
+public class MySQLManager {
 
     private static Connection conn;
 
@@ -15,10 +17,11 @@ class MySQLManager {
         if (conn == null || conn.isClosed() || !conn.isValid(5)) {
             // Open a new connection
             Class.forName("com.mysql.cj.jdbc.Driver");
+            ServerConfig config = ServerConfig.getConfig();
             conn = DriverManager.getConnection(
-                    "jdbc:mysql://" + MySQLConfig.MYSQL_HOST + "/" + MySQLConfig.MYSQL_DBNAME
+                    "jdbc:mysql://" + config.getDbHost() + "/" + config.getDbName()
                             + "?useUnicode=true&characterEncoding=UTF8&serverTimezone=UTC",
-                    MySQLConfig.MYSQL_USER, MySQLConfig.MYSQL_PASS
+                    config.getDbUser(), config.getDbPass()
             );
         }
         return conn;

@@ -1,5 +1,6 @@
 package nju.quadra.hms.bl;
 
+import nju.quadra.hms.util.Logger;
 import nju.quadra.hms.blservice.CustomerBLService;
 import nju.quadra.hms.data.mysql.UserDataServiceImpl;
 import nju.quadra.hms.dataservice.UserDataService;
@@ -50,7 +51,7 @@ public class CustomerBL implements CustomerBLService {
                 return new MemberVO(po.getUsername(), po.getMemberType(), po.getBirthday(), po.getCompanyName());
             }
         } catch (Exception e) {
-            // e.printStackTrace();
+            Logger.log(e);
         }
         return null;
     }
@@ -87,7 +88,7 @@ public class CustomerBL implements CustomerBLService {
             userDataService.update(user);
             return new ResultMessage(ResultMessage.RESULT_SUCCESS);
         } catch (Exception e) {
-            // e.printStackTrace();
+            Logger.log(e);
             return new ResultMessage(ResultMessage.RESULT_DB_ERROR);
         }
     }
@@ -124,7 +125,7 @@ public class CustomerBL implements CustomerBLService {
             }
             return companyList;
         } catch (Exception e) {
-            // e.printStackTrace();
+            Logger.log(e);
             return null;
         }
     }

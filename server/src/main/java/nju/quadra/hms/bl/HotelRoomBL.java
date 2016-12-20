@@ -1,5 +1,6 @@
 package nju.quadra.hms.bl;
 
+import nju.quadra.hms.util.Logger;
 import java.util.ArrayList;
 
 import nju.quadra.hms.blservice.HotelRoomBLService;
@@ -43,7 +44,7 @@ public class HotelRoomBL implements HotelRoomBLService {
             ArrayList<HotelRoomPO> poarr = hotelRoomDataService.get(hotelId);
             for (HotelRoomPO po : poarr) voarr.add(HotelRoomBL.toVO(po));
         } catch (Exception e) {
-            // e.printStackTrace();
+            Logger.log(e);
         }
         return voarr;
     }
@@ -58,7 +59,7 @@ public class HotelRoomBL implements HotelRoomBLService {
             }
             return HotelRoomBL.toVO(po);
         } catch (Exception e) {
-            // e.printStackTrace();
+            Logger.log(e);
         }
         return null;
     }
@@ -84,7 +85,7 @@ public class HotelRoomBL implements HotelRoomBLService {
             hotelRoomDataService.insert(po);
             return new ResultMessage(ResultMessage.RESULT_SUCCESS);
         } catch (Exception e) {
-            // e.printStackTrace();
+            Logger.log(e);
             return new ResultMessage(ResultMessage.RESULT_DB_ERROR);
         }
     }
@@ -100,7 +101,7 @@ public class HotelRoomBL implements HotelRoomBLService {
             hotelRoomDataService.delete(po);
             return new ResultMessage(ResultMessage.RESULT_SUCCESS);
         } catch (Exception e) {
-            // e.printStackTrace();
+            Logger.log(e);
             return new ResultMessage(ResultMessage.RESULT_DB_ERROR);
         }
     }
@@ -123,7 +124,7 @@ public class HotelRoomBL implements HotelRoomBLService {
             hotelRoomDataService.update(po);
             return new ResultMessage(ResultMessage.RESULT_SUCCESS);
         } catch (Exception e) {
-            // e.printStackTrace();
+            Logger.log(e);
             return new ResultMessage(ResultMessage.RESULT_DB_ERROR);
         }
     }

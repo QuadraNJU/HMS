@@ -1,0 +1,12 @@
+.text-field, .password-field, .choice-box, .arrow-button {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #6d6d6d;
+    -fx-border-style: solid;
+    -fx-border-width: 2px;
+}
+
+.text-area, .text-area .viewport, .text-area .content {
+    -fx-border-style: none;
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+}

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.*?>
+<Pane xmlns:fx="http://javafx.com/fxml/1" prefHeight="570.0" prefWidth="600.0" stylesheets="@../common/style.css"
+      xmlns="http://javafx.com/javafx/8">
+    <ImageView fitHeight="590.0" layoutX="-90.0" preserveRatio="true">
+        <Image url="@../common/bg.jpg"/>
+    </ImageView>
+    <ImageView layoutX="30.0" layoutY="20.0" preserveRatio="true">
+        <Image url="@../common/title-h.png"/>
+    </ImageView>
+    <Pane layoutX="20.0" layoutY="85.0" prefHeight="115.0" prefWidth="560.0"
+          style="-fx-background-color: rgba(0, 0, 0, 0.2);">
+        <Label layoutX="10.0" layoutY="5.0" text="MySQL 配置" textFill="WHITE">
+            <font>
+                <Font size="16.0"/>
+            </font>
+        </Label>
+        <Label layoutX="20.0" layoutY="42.0" text="主机名" textFill="WHITE">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Label>
+        <TextField fx:id="editHost" layoutX="72.0" layoutY="36.0" prefWidth="200.0" promptText="域名 / IP地址">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </TextField>
+        <Label layoutX="290.0" layoutY="42.0" text="数据库" textFill="WHITE">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Label>
+        <TextField fx:id="editDb" layoutX="342.0" layoutY="36.0" prefWidth="200.0" promptText="数据库名">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </TextField>
+        <Label layoutX="20.0" layoutY="79.0" text="用户名" textFill="WHITE">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Label>
+        <TextField fx:id="editUser" layoutX="72.0" layoutY="73.0" prefWidth="200.0" promptText="用户名">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </TextField>
+        <Label layoutX="290.0" layoutY="79.0" text="密码" textFill="WHITE">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Label>
+        <PasswordField fx:id="editPass" layoutX="342.0" layoutY="73.0" prefWidth="200.0" promptText="密码">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </PasswordField>
+    </Pane>
+    <Pane layoutX="20.0" layoutY="205.0" prefHeight="45.0" prefWidth="560.0"
+          style="-fx-background-color: rgba(0, 0, 0, 0.2);">
+        <Label layoutX="10.0" layoutY="10.0" text="HTTP 配置" textFill="WHITE">
+            <font>
+                <Font size="16.0"/>
+            </font>
+        </Label>
+        <Label layoutX="107.0" layoutY="12.0" text="监听端口" textFill="WHITE">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Label>
+        <TextField fx:id="editPort" layoutX="173.0" layoutY="6.0" prefWidth="200.0" promptText="端口号">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </TextField>
+        <ToggleButton fx:id="btnStartStop" layoutX="383.0" layoutY="7.0" mnemonicParsing="false" text="开启 / 停止">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </ToggleButton>
+    </Pane>
+    <Pane layoutX="20.0" layoutY="255.0" prefHeight="300.0" prefWidth="560.0"
+          style="-fx-background-color: rgba(0, 0, 0, 0.2);">
+        <TextArea fx:id="textLogs" editable="false" prefHeight="305.0" prefWidth="560.0" wrapText="true">
+            <font>
+                <Font name="Consolas" size="14.0"/>
+            </font>
+        </TextArea>
+    </Pane>
+</Pane>
