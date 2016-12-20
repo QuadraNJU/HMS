@@ -16,6 +16,7 @@ import nju.quadra.hms.vo.OrderVO;
 import nju.quadra.hms.vo.PriceVO;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Optional;
@@ -96,13 +97,13 @@ class BookHotelView extends Parent {
             double price = priceVO.originalPrice;
             String content = "订单原价：¥" + price + "\n";
             if (priceVO.hotelPromotion != null) {
-                content += "酒店促销策略：" + priceVO.hotelPromotion.name + " ( -¥" + price * (1.0 - priceVO.hotelPromotion.promotion) + " )\n";
+                content += "酒店促销策略：" + priceVO.hotelPromotion.name + " ( -¥" + new DecimalFormat("0.00").format(price * (1.0 - priceVO.hotelPromotion.promotion)) + " )\n";
                 price *= priceVO.hotelPromotion.promotion;
             }
             if (priceVO.websitePromotion != null) {
-                content += "网站促销策略：" + priceVO.websitePromotion.name + " ( -¥" + price * (1.0 - priceVO.websitePromotion.promotion) + " )\n";
+                content += "网站促销策略：" + priceVO.websitePromotion.name + " ( -¥" + new DecimalFormat("0.00").format(price * (1.0 - priceVO.websitePromotion.promotion)) + " )\n";
             }
-            content += "订单总价：¥" + priceVO.finalPrice + "\n\n是否确认预订？";
+            content += "订单总价：¥" + new DecimalFormat("0.00").format(priceVO.finalPrice) + "\n\n是否确认预订？";
             alert.setContentText(content);
             alert.getButtonTypes().setAll(ButtonType.YES, ButtonType.NO);
             Optional<ButtonType> confirm = alert.showAndWait();

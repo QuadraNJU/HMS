@@ -31,6 +31,9 @@ class HttpQueryHandler implements HttpHandler {
         if (paths.length < 4 || !SessionManager.has(paths[3])) {
             result = "Invalid request";
         } else {
+            // Debug
+            Logger.log("D", "Received HTTP query: /" + paths[1] + "/" + paths[2]);
+
             try {
                 // get class and method
                 Class<?> bl = Class.forName("nju.quadra.hms.bl." + paths[1]);
@@ -65,9 +68,6 @@ class HttpQueryHandler implements HttpHandler {
                 } catch (NoSuchMethodException e) {
                     result = new Gson().toJson(method.invoke(bl.newInstance(), params));
                 }
-
-                // Debug
-                Logger.log("D", "Received HTTP query: /" + paths[1] + "/" + paths[2]);
             } catch (Throwable e) {
                 Logger.log(e);
                 result = "Server exception: " + e.getClass().getSimpleName();

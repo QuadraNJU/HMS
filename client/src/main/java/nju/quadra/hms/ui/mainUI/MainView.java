@@ -94,10 +94,10 @@ public class MainView extends Stage {
     @FXML
     protected void onLogoutAction() throws Exception {
         Dialogs.showInfo("登出成功！");
-        HttpClient.session = null;
         ClientConfig.getConfig().setUsername("");
         ClientConfig.getConfig().setPassword("");
         LoginView loginView = new LoginView(HttpClient.session.username);
+        HttpClient.session = null;
         loginView.show();
         this.close();
     }

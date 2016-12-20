@@ -40,7 +40,7 @@ public class HotelBL implements HotelBLService {
         }
 
         ArrayList<HotelSearchVO> result = new ArrayList<>();
-        ArrayList<HotelVO> hotels = getByArea(areaId);
+        ArrayList<HotelVO> hotels = new HotelBL().getByArea(areaId);
         OrderBLService orderBL = new OrderBL();
         HotelRoomBLService hotelRoomBL = new HotelRoomBL();
 
@@ -67,7 +67,7 @@ public class HotelBL implements HotelBLService {
     @Override
     public ArrayList<HotelVO> getByArea(int areaId) {
         // 安全性: 仅限网站管理人员调用
-        if (session != null && session.userType.equals(UserType.WEBSITE_MASTER)) {
+        if (session != null && !session.userType.equals(UserType.WEBSITE_MASTER)) {
             return new ArrayList<>();
         }
 
@@ -198,11 +198,6 @@ public class HotelBL implements HotelBLService {
             }
         }
 
-        if (vo.name.trim().isEmpty() || vo.address.trim().isEmpty() || vo.description.trim().isEmpty()
-                || vo.facilities.trim().isEmpty() || vo.star.trim().isEmpty()) {
-            return new ResultMessage(ResultMessage.RESULT_DATA_INVALID);
-        }
-
         HotelPO po = HotelBL.toPO(vo);
         try {
             hotelDataService.update(po);
@@ -217,7 +212,7 @@ public class HotelBL implements HotelBLService {
         if (vo.areaId <= 0 || vo.name.trim().isEmpty() || vo.address.trim().isEmpty() || vo.description.trim().isEmpty() || vo.facilities.trim().isEmpty() || vo.star.trim().isEmpty()) {
             return new ResultMessage("酒店基本信息不完整，请重新输入");
         }
-        if (!vo.staff.isEmpty()) {
+        if (vo.staff != null && !vo.staff.isEmpty()) {
             UserVO user = new UserBL().get(vo.staff);
             if (user == null) {
                 return new ResultMessage("该用户名不存在，请重新输入");

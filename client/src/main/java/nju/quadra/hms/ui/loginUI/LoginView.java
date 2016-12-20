@@ -67,6 +67,10 @@ public class LoginView extends Stage {
             @Override
             protected Object call() throws Exception {
                 result[0] = controller.login(username, password);
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException ignored) {
+                }
                 return null;
             }
         };
