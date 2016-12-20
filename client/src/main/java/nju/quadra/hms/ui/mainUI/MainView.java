@@ -20,6 +20,7 @@ import nju.quadra.hms.ui.hotelStaffUI.HotelStaffNavigation;
 import nju.quadra.hms.ui.loginUI.LoginView;
 import nju.quadra.hms.ui.webMarketerUI.WebMarketerNavigation;
 import nju.quadra.hms.ui.webmasterUI.WebmasterNavigation;
+import nju.quadra.hms.util.ClientConfig;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -96,10 +97,11 @@ public class MainView extends Stage {
     @FXML
     protected void onLogoutAction() throws Exception {
         Dialogs.showInfo("登出成功！");
-        String username = HttpClient.session.username;
-        LoginView loginView = new LoginView(username);
-        loginView.show();
         HttpClient.session = null;
+        ClientConfig.getConfig().setUsername("");
+        ClientConfig.getConfig().setPassword("");
+        LoginView loginView = new LoginView(HttpClient.session.username);
+        loginView.show();
         this.close();
     }
 

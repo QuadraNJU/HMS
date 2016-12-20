@@ -1,19 +1,24 @@
 package nju.quadra.hms.ui.loginUI;
 
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import nju.quadra.hms.controller.AuthController;
 import nju.quadra.hms.model.ResultMessage;
 import nju.quadra.hms.ui.common.Dialogs;
 import nju.quadra.hms.ui.mainUI.MainView;
+import nju.quadra.hms.util.ClientConfig;
+import nju.quadra.hms.util.PassHash;
 
 import java.io.IOException;
 
@@ -25,6 +30,10 @@ public class LoginView extends Stage {
     private final AuthController controller = new AuthController();
     @FXML
     private TextField textUsername, textPassword;
+    @FXML
+    private CheckBox checkRemember;
+    @FXML
+    private Pane paneLoading;
 
     public LoginView() throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
@@ -35,10 +44,56 @@ public class LoginView extends Stage {
         this.setResizable(false);
         this.initStyle(StageStyle.UNDECORATED);
     }
+
     public LoginView(String username) throws Exception {
         this();
         textUsername.setText(username);
     }
+
+    public void showAndTryAutoLogin() throws IOException {
+        this.show();
+        tryAutoLogin();
+    }
+
+    private void tryAutoLogin() throws IOException {
+        String username = ClientConfig.getConfig().getUsername();
+        String password = ClientConfig.getConfig().getPassword();
+        if (!username.isEmpty() && !password.isEmpty()) {
+            doLogin(username, password);
+        }
+    }
+
+    private void doLogin(String username, String password) throws IOException {
+        paneLoading.setVisible(true);
+        final ResultMessage[] result = new ResultMessage[1];
+        Task loginTask = new Task() {
+            @Override
+            protected Object call() throws Exception {
+                result[0] = controller.login(username, password);
+                return null;
+            }
+        };
+        loginTask.setOnSucceeded(event -> {
+            if (result[0].result == ResultMessage.RESULT_SUCCESS) {
+                if (checkRemember.isSelected()) {
+                    ClientConfig.getConfig().setUsername(username);
+                    ClientConfig.getConfig().setPassword(password);
+                }
+                try {
+                    MainView main = new MainView();
+                    main.show();
+                    this.close();
+                } catch (IOException e) {
+                    Dialogs.showError("登录失败: 发生系统内部错误");
+                }
+            } else {
+                Dialogs.showError("登录失败: " + result[0].message);
+            }
+            paneLoading.setVisible(false);
+        });
+        new Thread(loginTask).start();
+    }
+
     /**
      * 提供窗口拖放支持
      */
@@ -68,15 +123,7 @@ public class LoginView extends Stage {
             Dialogs.showError("请输入用户名和密码！");
             return;
         }
-
-        ResultMessage result = controller.login(username, password);
-        if (result.result == ResultMessage.RESULT_SUCCESS) {
-            MainView main = new MainView();
-            main.show();
-            this.close();
-        } else {
-            Dialogs.showError("登录失败：" + result.message);
-        }
+        doLogin(username, PassHash.hash(password));
     }
 
     /**

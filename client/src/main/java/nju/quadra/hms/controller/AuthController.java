@@ -19,7 +19,7 @@ public class AuthController {
     }
 
     public ResultMessage login(String username, String password) {
-        String encryptedPassword = PassHash.hash(password);
+        String encryptedPassword = password;
         try {
             LoginResult loginResult = remote.invoke(LoginResult.class, "login", username, encryptedPassword);
             if (loginResult.result == ResultMessage.RESULT_SUCCESS) {

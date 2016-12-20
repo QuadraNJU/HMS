@@ -1,7 +1,7 @@
 package nju.quadra.hms.net;
 
 import nju.quadra.hms.model.LoginSession;
-import nju.quadra.hms.util.ClientConfigUtil;
+import nju.quadra.hms.util.ClientConfig;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -18,7 +18,7 @@ public class HttpClient {
     public static LoginSession session;
 
     public static String get(String path) throws IOException {
-        String url = ClientConfigUtil.getConfig().getServerHost() + path;
+        String url = ClientConfig.getConfig().getServerHost() + path;
         if (session != null) {
             url += "/" + session.id;
         }
@@ -32,7 +32,7 @@ public class HttpClient {
     }
 
     public static String post(String path, String payload) throws IOException {
-        String url = ClientConfigUtil.getConfig().getServerHost() + path;
+        String url = ClientConfig.getConfig().getServerHost() + path;
         if (session != null) {
             url += "/" + session.id;
         }

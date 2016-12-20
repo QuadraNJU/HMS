@@ -8,7 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import nju.quadra.hms.util.ClientConfigUtil;
+import nju.quadra.hms.util.ClientConfig;
 
 /**
  * Created by adn55 on 2016/11/25.
@@ -26,7 +26,7 @@ class NetworkSettingsView extends Stage {
         this.initStyle(StageStyle.UTILITY);
         this.initModality(Modality.APPLICATION_MODAL);
 
-        textServer.setText(ClientConfigUtil.getConfig().getServerHost());
+        textServer.setText(ClientConfig.getConfig().getServerHost());
     }
 
     @FXML
@@ -39,8 +39,7 @@ class NetworkSettingsView extends Stage {
     @FXML
     protected void onSaveAction() {
         String server = textServer.getText().trim();
-        ClientConfigUtil.getConfig().setServerHost(server);
-        ClientConfigUtil.saveToFile();
+        ClientConfig.getConfig().setServerHost(server);
         this.close();
     }
 
