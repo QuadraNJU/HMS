@@ -5,9 +5,6 @@ import javafx.beans.property.StringProperty;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-/**
- * Created by adn55 on 2016/12/20.
- */
 public class Logger {
 
     private static StringProperty target;

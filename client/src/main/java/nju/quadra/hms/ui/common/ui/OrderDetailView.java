@@ -11,9 +11,6 @@ import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 import java.util.stream.Collectors;
 
-/**
- * Created by RaUkonn on 2016/12/7.
- */
 public class OrderDetailView extends Parent {
 
     @FXML

@@ -1,8 +1,5 @@
 package nju.quadra.hms.model;
 
-/**
- * Created by adn55 on 16/10/15.
- */
 public enum OrderState {
     BOOKED("未入住"),
     UNFINISHED("已入住"),

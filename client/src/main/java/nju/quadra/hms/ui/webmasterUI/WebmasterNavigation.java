@@ -9,9 +9,6 @@ import nju.quadra.hms.ui.mainUI.MainView;
 
 import java.io.IOException;
 
-/**
- * Created by adn55 on 2016/11/29.
- */
 public class WebmasterNavigation extends Parent {
 
     private MainView mainView;

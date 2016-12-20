@@ -1,8 +1,5 @@
 package nju.quadra.hms.model;
 
-/**
- * Created by adn55 on 16/10/15.
- */
 public enum CreditAction {
     ORIGINAL("初始信用值"),
     ORDER_FINISHED("完成订单"),

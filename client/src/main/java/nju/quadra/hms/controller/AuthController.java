@@ -7,9 +7,6 @@ import nju.quadra.hms.net.HttpRemote;
 import nju.quadra.hms.util.PassHash;
 import nju.quadra.hms.vo.UserVO;
 
-/**
- * Created by adn55 on 2016/11/29.
- */
 public class AuthController {
 
     private final HttpRemote remote;

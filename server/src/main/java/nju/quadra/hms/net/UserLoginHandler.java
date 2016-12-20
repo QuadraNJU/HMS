@@ -17,9 +17,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-/**
- * Created by adn55 on 2016/11/29.
- */
 class UserLoginHandler implements HttpHandler {
 
     @Override

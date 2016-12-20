@@ -3,9 +3,6 @@ package nju.quadra.hms.vo;
 import nju.quadra.hms.model.UserType;
 
 
-/**
- * Created by adn55 on 16/10/15.
- */
 public class UserVO {
     /**
      * 用户名

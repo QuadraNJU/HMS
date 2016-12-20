@@ -15,9 +15,6 @@ import nju.quadra.hms.vo.WebsitePromotionVO;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-/**
- * Created by RaUkonn on 2016/11/21.
- */
 public class WebsitePromotionBL implements WebsitePromotionBLService {
     private final LoginSession session;
     private final WebsitePromotionDataService websitePromotionDataService = new WebsitePromotionDataServiceImpl();

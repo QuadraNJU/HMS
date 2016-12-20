@@ -1,8 +1,5 @@
 package nju.quadra.hms.vo;
 
-/**
- * Created by adn55 on 2016/11/30.
- */
 public class AreaVO {
 
     public final int id;

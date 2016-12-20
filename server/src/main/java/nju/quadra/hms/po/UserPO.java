@@ -5,9 +5,6 @@ import nju.quadra.hms.model.UserType;
 
 import java.time.LocalDate;
 
-/**
- * Created by adn55 on 16/10/14.
- */
 public class UserPO {
     /**
      * 用户名

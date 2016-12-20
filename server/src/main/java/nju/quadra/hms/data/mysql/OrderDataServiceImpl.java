@@ -10,9 +10,6 @@ import java.sql.Types;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-/**
- * Created by admin on 2016/11/16.
- */
 public class OrderDataServiceImpl implements OrderDataService {
     @Override
     public ArrayList<OrderPO> getByCustomer(String username) throws Exception {

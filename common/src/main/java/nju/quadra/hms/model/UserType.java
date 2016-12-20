@@ -1,8 +1,5 @@
 package nju.quadra.hms.model;
 
-/**
- * Created by adn55 on 16/10/14.
- */
 public enum UserType {
     CUSTOMER("客户"),
     HOTEL_STAFF("酒店工作人员"),

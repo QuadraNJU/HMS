@@ -16,9 +16,6 @@ import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 
-/**
- * Created by adn55 on 2016/12/10.
- */
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class CreditRecordBLTest {
     private CreditRecordBLService creditBL;

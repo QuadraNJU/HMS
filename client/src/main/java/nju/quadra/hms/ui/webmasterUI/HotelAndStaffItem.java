@@ -14,9 +14,6 @@ import nju.quadra.hms.vo.HotelVO;
 import java.io.IOException;
 import java.util.Optional;
 
-/**
- * Created by adn55 on 2016/11/30.
- */
 class HotelAndStaffItem extends Parent {
 
     private WebmasterController controller;

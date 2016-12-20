@@ -3,9 +3,6 @@ package nju.quadra.hms.vo;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-/**
- * Created by adn55 on 2016/12/6.
- */
 public class HotelSearchVO extends HotelVO {
     /**
      * 客房列表

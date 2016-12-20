@@ -2,9 +2,6 @@ package nju.quadra.hms.vo;
 
 import nju.quadra.hms.model.ResultMessage;
 
-/**
- * Created by adn55 on 16/10/15.
- */
 public class PriceVO {
     /**
      * 能否预定

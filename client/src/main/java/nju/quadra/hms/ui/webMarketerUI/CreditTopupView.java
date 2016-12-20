@@ -10,9 +10,6 @@ import nju.quadra.hms.ui.common.Dialogs;
 
 import java.io.IOException;
 
-/**
- * Created by adn55 on 2016/12/4.
- */
 class CreditTopupView extends Parent {
 
     private final WebMarketerController controller = new WebMarketerController();

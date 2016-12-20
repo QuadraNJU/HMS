@@ -6,9 +6,6 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-/**
- * Created by adn55 on 2016/12/20.
- */
 public class ServerConfig {
 
     private int port = 8081;

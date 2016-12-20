@@ -1,8 +1,5 @@
 package nju.quadra.hms.po;
 
-/**
- * Created by adn55 on 16/10/14.
- */
 public class HotelPO {
     /**
      * 酒店ID

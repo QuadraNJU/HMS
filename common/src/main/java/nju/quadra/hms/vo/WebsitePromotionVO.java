@@ -5,9 +5,6 @@ import nju.quadra.hms.model.WebsitePromotionType;
 import java.time.LocalDate;
 import java.util.HashMap;
 
-/**
- * Created by adn55 on 16/10/15.
- */
 public class WebsitePromotionVO {
     /**
      * 网站促销策略ID

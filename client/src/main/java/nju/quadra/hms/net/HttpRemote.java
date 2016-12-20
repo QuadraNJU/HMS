@@ -5,9 +5,6 @@ import com.google.gson.Gson;
 import java.io.IOException;
 import java.lang.reflect.Type;
 
-/**
- * Created by adn55 on 2016/11/23.
- */
 public class HttpRemote {
 
     private final String className;

@@ -17,9 +17,6 @@ import nju.quadra.hms.vo.OrderDetailVO;
 import java.io.IOException;
 import java.util.Optional;
 
-/**
- * Created by adn55 on 2016/11/30.
- */
 class OrderSearchItem extends Parent {
 
     private WebMarketerController controller;

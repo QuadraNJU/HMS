@@ -18,9 +18,6 @@ import nju.quadra.hms.vo.UserVO;
 import java.io.IOException;
 import java.util.ArrayList;
 
-/**
- * Created by adn55 on 2016/11/29.
- */
 class HotelAndStaffEditView extends Parent {
 
     private WebmasterController controller;

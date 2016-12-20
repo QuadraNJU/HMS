@@ -21,9 +21,6 @@ import java.util.ArrayList;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-/**
- * Created by admin on 2016/12/5.
- */
 class BookHotelView extends Parent {
 
     private final CustomerController controller = new CustomerController();

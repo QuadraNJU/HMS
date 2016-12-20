@@ -5,9 +5,6 @@ import nju.quadra.hms.model.MemberType;
 import java.time.LocalDate;
 
 
-/**
- * Created by adn55 on 16/10/15.
- */
 public class MemberVO {
 	/**
      * 会员名

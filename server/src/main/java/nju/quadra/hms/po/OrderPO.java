@@ -4,9 +4,6 @@ import nju.quadra.hms.model.OrderState;
 
 import java.time.LocalDate;
 
-/**
- * Created by adn55 on 16/10/15.
- */
 public class OrderPO {
     /**
      * 订单ID

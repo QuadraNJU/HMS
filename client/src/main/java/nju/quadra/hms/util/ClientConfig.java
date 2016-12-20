@@ -6,9 +6,6 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-/**
- * Created by adn55 on 2016/11/25.
- */
 public class ClientConfig {
 
     private String serverHost = "http://localhost:8081";

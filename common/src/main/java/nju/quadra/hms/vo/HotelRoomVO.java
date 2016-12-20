@@ -1,8 +1,5 @@
 package nju.quadra.hms.vo;
 
-/**
- * Created by adn55 on 16/10/15.
- */
 public class HotelRoomVO {
     /**
      * 客房ID

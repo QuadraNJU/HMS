@@ -3,9 +3,6 @@ package nju.quadra.hms.util;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 
-/**
- * Created by adn55 on 2016/11/25.
- */
 public class PassHash {
 
     public static String hash(String str) {

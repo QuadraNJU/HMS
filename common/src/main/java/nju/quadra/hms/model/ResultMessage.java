@@ -1,8 +1,5 @@
 package nju.quadra.hms.model;
 
-/**
- * Created by adn55 on 16/10/15.
- */
 public class ResultMessage {
 
     public static final int RESULT_ACCESS_DENIED = -1;

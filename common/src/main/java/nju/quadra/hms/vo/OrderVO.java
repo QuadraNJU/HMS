@@ -6,9 +6,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-/**
- * Created by adn55 on 16/10/15.
- */
 public class OrderVO {
     /**
      * 订单ID

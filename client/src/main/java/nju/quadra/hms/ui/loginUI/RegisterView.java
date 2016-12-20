@@ -14,9 +14,6 @@ import nju.quadra.hms.util.PassHash;
 import nju.quadra.hms.ui.common.Dialogs;
 import nju.quadra.hms.vo.UserVO;
 
-/**
- * Created by adn55 on 2016/11/24.
- */
 class RegisterView extends Stage {
 
     private final AuthController controller = new AuthController();

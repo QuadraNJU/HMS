@@ -10,9 +10,6 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import nju.quadra.hms.util.ClientConfig;
 
-/**
- * Created by adn55 on 2016/11/25.
- */
 class NetworkSettingsView extends Stage {
 
     public NetworkSettingsView() throws Exception {

@@ -18,9 +18,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Optional;
 
-/**
- * Created by adn55 on 2016/12/1.
- */
 class HotelRoomView extends Parent {
 
     private final HotelStaffController controller = new HotelStaffController(HttpClient.session.username);

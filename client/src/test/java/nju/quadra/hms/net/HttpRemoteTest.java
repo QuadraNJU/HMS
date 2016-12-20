@@ -8,9 +8,6 @@ import java.io.IOException;
 
 import static org.junit.Assert.*;
 
-/**
- * Created by adn55 on 2016/11/24.
- */
 public class HttpRemoteTest {
 
     private HttpRemote remote;

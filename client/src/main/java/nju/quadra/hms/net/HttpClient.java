@@ -10,9 +10,6 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-/**
- * Created by adn55 on 2016/11/23.
- */
 public class HttpClient {
 
     public static LoginSession session;

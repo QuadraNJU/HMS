@@ -7,9 +7,6 @@ import nju.quadra.hms.vo.*;
 
 import java.util.ArrayList;
 
-/**
- * Created by adn55 on 16/11/25.
- */
 public class CustomerController {
 
     private final CustomerBLService customerBL = BLServiceFactory.getCustomerBLService();

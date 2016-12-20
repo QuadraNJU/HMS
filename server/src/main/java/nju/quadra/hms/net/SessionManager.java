@@ -4,9 +4,6 @@ import nju.quadra.hms.model.LoginSession;
 
 import java.util.HashMap;
 
-/**
- * Created by adn55 on 2016/11/29.
- */
 class SessionManager {
 
     private static final HashMap<String, LoginSession> sessions = new HashMap<>();

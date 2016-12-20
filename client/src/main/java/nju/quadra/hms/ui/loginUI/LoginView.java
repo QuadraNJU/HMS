@@ -22,9 +22,6 @@ import nju.quadra.hms.util.PassHash;
 
 import java.io.IOException;
 
-/**
- * Created by adn55 on 2016/11/24.
- */
 public class LoginView extends Stage {
 
     private final AuthController controller = new AuthController();

@@ -15,9 +15,6 @@ import nju.quadra.hms.vo.UserVO;
 
 import java.util.ArrayList;
 
-/**
- * Created by RaUkonn on 2016/11/21.
- */
 public class CreditRecordBL implements CreditRecordBLService {
     //客户信用值相关信息
     private static final double ORIGINAL_CREDIT = 100.0;

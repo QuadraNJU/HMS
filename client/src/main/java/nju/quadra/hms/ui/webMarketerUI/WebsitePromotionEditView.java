@@ -19,9 +19,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-/**
- * Created by Rebecca on 2016/12/5.
- */
 class WebsitePromotionEditView extends Parent {
 
     private WebMarketerController controller;

@@ -1,8 +1,5 @@
 package nju.quadra.hms.model;
 
-/**
- * Created by adn55 on 16/10/14.
- */
 public enum MemberType {
     NONE("非会员"),
     PERSONAL("个人会员"),

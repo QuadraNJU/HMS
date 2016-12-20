@@ -3,9 +3,6 @@ package nju.quadra.hms.vo;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-/**
- * Created by adn55 on 16/10/15.
- */
 public class OrderRankVO {
     /**
      * 订单ID

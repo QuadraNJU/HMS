@@ -6,9 +6,6 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 
-/**
- * Created by adn55 on 2016/11/25.
- */
 public class PassHashTest {
 
     @Test

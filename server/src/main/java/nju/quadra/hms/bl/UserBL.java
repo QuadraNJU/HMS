@@ -14,9 +14,6 @@ import nju.quadra.hms.vo.UserVO;
 
 import java.util.ArrayList;
 
-/**
- * Created by RaUkonn on 2016/11/18.
- */
 public class UserBL implements UserBLService {
     private final LoginSession session;
     private final UserDataService userDataService = new UserDataServiceImpl();

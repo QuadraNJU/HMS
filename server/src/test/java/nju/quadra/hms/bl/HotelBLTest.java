@@ -13,9 +13,6 @@ import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 
-/**
- * Created by adn55 on 16/11/5.
- */
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class HotelBLTest {
     private HotelBLService hotelBL;

@@ -15,9 +15,6 @@ import nju.quadra.hms.vo.UserVO;
 
 import java.io.IOException;
 
-/**
- * Created by adn55 on 2016/12/1.
- */
 class UserEditView extends Parent {
 
     private final WebmasterController controller = new WebmasterController();

@@ -15,9 +15,6 @@ import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
-/**
- * Created by adn55 on 2016/11/30.
- */
 class HotelPromotionItem extends Parent {
 
     private HotelStaffController controller;

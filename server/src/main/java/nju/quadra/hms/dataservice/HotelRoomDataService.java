@@ -4,9 +4,6 @@ import nju.quadra.hms.po.HotelRoomPO;
 
 import java.util.ArrayList;
 
-/**
- * Created by adn55 on 16/10/15.
- */
 public interface HotelRoomDataService {
     ArrayList<HotelRoomPO> get(int hotelId) throws Exception;
 

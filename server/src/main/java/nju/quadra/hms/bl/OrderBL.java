@@ -18,9 +18,6 @@ import java.util.ArrayList;
 
 import static nju.quadra.hms.bl.CreditRecordBL.LATEST_CHECKIN_TIME_GAP;
 
-/**
- * Created by RaUkonn on 2016/11/20.
- */
 public class OrderBL implements OrderBLService {
     private final LoginSession session;
     private final HotelVO hotel;

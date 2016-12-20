@@ -5,9 +5,6 @@ import nju.quadra.hms.vo.WebsitePromotionVO;
 
 import java.util.ArrayList;
 
-/**
- * Created by adn55 on 16/10/15.
- */
 public interface WebsitePromotionBLService {
     ArrayList<WebsitePromotionVO> get();
 

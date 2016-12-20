@@ -7,9 +7,6 @@ import nju.quadra.hms.vo.*;
 
 import java.util.ArrayList;
 
-/**
- * Created by adn55 on 2016/11/30.
- */
 public class HotelStaffController {
 
     private final HotelBLService hotelBL = BLServiceFactory.getHotelBLService();

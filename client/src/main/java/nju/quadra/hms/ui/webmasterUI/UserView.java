@@ -17,9 +17,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Optional;
 
-/**
- * Created by adn55 on 2016/11/30.
- */
 class UserView extends Parent {
 
     private final WebmasterController controller = new WebmasterController();

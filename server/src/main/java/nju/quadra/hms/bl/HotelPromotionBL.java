@@ -17,9 +17,6 @@ import nju.quadra.hms.vo.HotelVO;
 
 import java.util.ArrayList;
 
-/**
- * Created by RaUkonn on 2016/11/21.
- */
 
 public class HotelPromotionBL implements HotelPromotionBLService {
     private final LoginSession session;

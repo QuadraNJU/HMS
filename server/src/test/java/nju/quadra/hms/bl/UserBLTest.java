@@ -11,9 +11,6 @@ import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 
-/**
- * Created by admin on 2016/11/6.
- */
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class UserBLTest {

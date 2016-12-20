@@ -14,9 +14,6 @@ import nju.quadra.hms.vo.MemberVO;
 
 import java.io.IOException;
 
-/**
- * Created by adn55 on 2016/11/29.
- */
 class MemberEnrollView extends Parent {
 
     private final CustomerController controller = new CustomerController();

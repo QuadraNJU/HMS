@@ -1,8 +1,5 @@
 package nju.quadra.hms.model;
 
-/**
- * Created by adn55 on 2016/11/28.
- */
 public class LoginResult extends ResultMessage {
 
     public final LoginSession session;

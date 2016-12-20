@@ -6,9 +6,6 @@ import nju.quadra.hms.blservice.*;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Proxy;
 
-/**
- * Created by adn55 on 2016/11/30.
- */
 public class BLServiceFactory {
 
     private static final InvocationHandler invocationHandler = (proxy, method, args) -> {

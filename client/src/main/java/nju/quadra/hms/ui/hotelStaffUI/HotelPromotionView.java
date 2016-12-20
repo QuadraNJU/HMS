@@ -13,9 +13,6 @@ import nju.quadra.hms.vo.HotelPromotionVO;
 import java.io.IOException;
 import java.util.ArrayList;
 
-/**
- * Created by adn55 on 2016/12/1.
- */
 class HotelPromotionView extends Parent {
 
     private final HotelStaffController controller = new HotelStaffController(HttpClient.session.username);

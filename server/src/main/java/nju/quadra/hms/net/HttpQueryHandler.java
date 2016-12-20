@@ -17,9 +17,6 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 import java.util.Arrays;
 
-/**
- * HTTP 请求处理类，用于解析 HTTP 请求并调用对应的方法
- */
 class HttpQueryHandler implements HttpHandler {
 
     /**

@@ -1,8 +1,5 @@
 package nju.quadra.hms.po;
 
-/**
- * Created by adn55 on 2016/11/30.
- */
 public class AreaPO {
 
     private int id;

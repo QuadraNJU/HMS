@@ -12,9 +12,6 @@ import nju.quadra.hms.vo.WebsitePromotionVO;
 import java.io.IOException;
 import java.util.ArrayList;
 
-/**
- * Created by Rebecca on 2016/12/5.
- */
 class WebsitePromotionView extends Parent {
 
     private final WebMarketerController controller = new WebMarketerController();

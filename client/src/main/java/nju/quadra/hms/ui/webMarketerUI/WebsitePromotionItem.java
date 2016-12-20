@@ -15,9 +15,6 @@ import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
-/**
- * Created by Rebecca on 2016/12/5.
- */
 class WebsitePromotionItem extends Parent {
 
     private WebMarketerController controller;

@@ -18,9 +18,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 
-/**
- * Created by RaUkonn on 2016/11/30.
- */
 public class HotelSearchView extends Parent {
 
     private final CustomerController controller = new CustomerController();

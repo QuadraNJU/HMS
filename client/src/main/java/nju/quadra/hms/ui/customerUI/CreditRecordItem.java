@@ -10,9 +10,6 @@ import java.io.IOException;
 import java.text.DecimalFormat;
 import java.time.format.DateTimeFormatter;
 
-/**
- * Created by adn55 on 2016/11/30.
- */
 class CreditRecordItem extends Parent {
 
     @FXML

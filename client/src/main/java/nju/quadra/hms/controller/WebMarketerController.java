@@ -13,9 +13,6 @@ import nju.quadra.hms.vo.WebsitePromotionVO;
 
 import java.util.ArrayList;
 
-/**
- * Created by adn55 on 2016/12/4.
- */
 public class WebMarketerController {
 
     private final CreditRecordBLService creditBL = BLServiceFactory.getCreditRecordBLService();

@@ -7,9 +7,6 @@ import java.util.Random;
 
 import static org.junit.Assert.*;
 
-/**
- * Created by adn55 on 2016/11/23.
- */
 public class HttpServiceTest {
 
     @Test

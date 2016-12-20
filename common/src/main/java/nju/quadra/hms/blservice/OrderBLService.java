@@ -9,9 +9,6 @@ import nju.quadra.hms.vo.PriceVO;
 
 import java.util.ArrayList;
 
-/**
- * Created by adn55 on 16/10/15.
- */
 public interface OrderBLService {
     PriceVO getPrice(OrderVO vo);
 

@@ -1,8 +1,5 @@
 package nju.quadra.hms.model;
 
-/**
- * Created by adn55 on 16/10/15.
- */
 public enum WebsitePromotionType {
     TIME_PROMOTION("特定期间住宿折扣"),
     LEVEL_PROMOTION("会员等级折扣");

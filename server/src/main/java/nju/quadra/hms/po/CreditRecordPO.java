@@ -4,9 +4,6 @@ import nju.quadra.hms.model.CreditAction;
 
 import java.time.LocalDateTime;
 
-/**
- * Created by adn55 on 16/10/15.
- */
 public class CreditRecordPO {
     /**
      * 信用记录ID

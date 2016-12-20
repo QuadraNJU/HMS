@@ -7,9 +7,6 @@ import java.net.InetSocketAddress;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-/**
- * Created by adn55 on 2016/11/22.
- */
 public class HttpService {
     private final int port;
     private HttpServer httpServer;

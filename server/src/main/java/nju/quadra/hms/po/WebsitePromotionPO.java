@@ -4,9 +4,6 @@ import nju.quadra.hms.model.WebsitePromotionType;
 
 import java.time.LocalDate;
 
-/**
- * Created by adn55 on 16/10/15.
- */
 public class WebsitePromotionPO implements Comparable<WebsitePromotionPO>{
     /**
      * 网站促销策略ID

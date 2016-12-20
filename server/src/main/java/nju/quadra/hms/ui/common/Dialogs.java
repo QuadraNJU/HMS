@@ -2,9 +2,6 @@ package nju.quadra.hms.ui.common;
 
 import javafx.scene.control.Alert;
 
-/**
- * Created by adn55 on 2016/11/24.
- */
 public class Dialogs {
 
     private static void showDialog(Alert.AlertType type, String title, String header, String message) {

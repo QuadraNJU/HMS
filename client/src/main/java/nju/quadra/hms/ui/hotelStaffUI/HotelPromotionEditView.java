@@ -21,9 +21,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by adn55 on 2016/12/2.
- */
 class HotelPromotionEditView extends Parent {
 
     private HotelStaffController controller;

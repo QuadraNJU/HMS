@@ -15,9 +15,6 @@ import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
-/**
- * Created by adn55 on 2016/11/29.
- */
 class CustomerInfoView extends Parent {
 
     private final CustomerController controller = new CustomerController();

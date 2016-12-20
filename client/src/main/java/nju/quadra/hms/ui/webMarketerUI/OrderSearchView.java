@@ -18,9 +18,6 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.stream.Stream;
 
-/**
- * Created by RaUkonn on 2016/12/7.
- */
 class OrderSearchView extends Parent {
 
     @FXML

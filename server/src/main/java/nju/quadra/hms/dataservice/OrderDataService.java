@@ -5,9 +5,6 @@ import nju.quadra.hms.po.OrderPO;
 
 import java.util.ArrayList;
 
-/**
- * Created by adn55 on 16/10/15.
- */
 public interface OrderDataService {
     ArrayList<OrderPO> getByCustomer(String username) throws Exception;
 

@@ -6,9 +6,6 @@ import nju.quadra.hms.vo.UserVO;
 
 import java.util.ArrayList;
 
-/**
- * Created by adn55 on 16/10/15.
- */
 public interface CustomerBLService {
     ResultMessage register(UserVO vo);
 

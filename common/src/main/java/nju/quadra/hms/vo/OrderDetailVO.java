@@ -5,9 +5,6 @@ import nju.quadra.hms.model.OrderState;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-/**
- * Created by adn55 on 2016/12/9.
- */
 public class OrderDetailVO extends OrderVO {
     /**
      * 酒店

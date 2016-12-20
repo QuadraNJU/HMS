@@ -12,9 +12,6 @@ import nju.quadra.hms.vo.UserVO;
 
 import java.util.ArrayList;
 
-/**
- * Created by adn55 on 2016/12/4.
- */
 public class WebmasterController {
 
     private final UserBLService userBL = BLServiceFactory.getUserBLService();

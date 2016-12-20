@@ -15,9 +15,6 @@ import nju.quadra.hms.util.ServerConfig;
 
 import java.io.IOException;
 
-/**
- * Created by adn55 on 2016/12/20.
- */
 public class ServerMainView extends Stage {
 
     private HttpService httpService;

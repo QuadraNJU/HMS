@@ -5,9 +5,6 @@ import nju.quadra.hms.model.HotelPromotionType;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-/**
- * Created by adn55 on 16/10/15.
- */
 public class HotelPromotionVO {
     /**
      * 酒店促销策略ID

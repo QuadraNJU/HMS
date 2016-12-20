@@ -10,9 +10,6 @@ import nju.quadra.hms.vo.HotelSearchVO;
 
 import java.io.IOException;
 
-/**
- * Created by adn55 on 2016/11/30.
- */
 class HotelSearchItem extends Parent {
 
     private HotelSearchView parent;

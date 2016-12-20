@@ -25,9 +25,6 @@ import nju.quadra.hms.util.ClientConfig;
 import java.io.IOException;
 import java.util.Optional;
 
-/**
- * Created by adn55 on 2016/11/25.
- */
 public class MainView extends Stage {
 
     @FXML

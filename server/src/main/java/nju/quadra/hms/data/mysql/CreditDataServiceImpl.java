@@ -10,9 +10,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-/**
- * Created by RaUkonn on 2016/11/16.
- */
 public class CreditDataServiceImpl implements CreditDataService {
     @Override
     public ArrayList<CreditRecordPO> get(String username) throws Exception {

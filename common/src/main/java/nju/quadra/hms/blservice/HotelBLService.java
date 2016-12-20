@@ -7,9 +7,6 @@ import nju.quadra.hms.vo.HotelVO;
 
 import java.util.ArrayList;
 
-/**
- * Created by adn55 on 16/10/15.
- */
 public interface HotelBLService {
     ArrayList<HotelSearchVO> search(int areaId, String username);
 

@@ -14,9 +14,6 @@ import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 
-/**
- * Created by admin on 2016/11/6.
- */
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class WebsitePromotionBLTest {

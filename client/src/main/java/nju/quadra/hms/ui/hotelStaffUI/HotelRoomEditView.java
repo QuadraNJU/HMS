@@ -12,9 +12,6 @@ import nju.quadra.hms.vo.HotelRoomVO;
 import java.io.IOException;
 import java.text.DecimalFormat;
 
-/**
- * Created by adn55 on 2016/12/1.
- */
 class HotelRoomEditView extends Parent {
 
     private HotelStaffController controller;
