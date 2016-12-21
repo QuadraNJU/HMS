@@ -21,13 +21,13 @@
             <Font size="14.0"/>
         </font>
     </Label>
-    <Label fx:id="labelPersonNumber" layoutX="315.0" layoutY="37.0" prefHeight="18.0" prefWidth="70.0" text="共 4 人">
+    <Label fx:id="labelPersonNumber" layoutX="315.0" layoutY="37.0" prefHeight="18.0" prefWidth="150.0" text="共 4 人">
         <font>
             <Font size="14.0"/>
         </font>
     </Label>
-    <Label fx:id="labelOrderState" alignment="CENTER_RIGHT" layoutX="476.0" layoutY="10.0" prefHeight="19.0"
-           prefWidth="100.0" text="未完成">
+    <Label fx:id="labelOrderState" alignment="CENTER" layoutX="510.0" layoutY="10.0" prefHeight="19.0" prefWidth="90.0"
+           text="未完成">
         <font>
             <Font size="14.0"/>
         </font>

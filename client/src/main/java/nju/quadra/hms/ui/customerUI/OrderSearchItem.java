@@ -7,6 +7,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.paint.Paint;
 import nju.quadra.hms.controller.CustomerController;
 import nju.quadra.hms.model.OrderState;
 import nju.quadra.hms.model.ResultMessage;
@@ -64,6 +65,19 @@ class OrderSearchItem extends Parent {
         labelPersonNumber.setText("共 " + order.persons.size() + " 人");
         labelOrderState.setText(order.state.toString());
         labelContent.setText(order.hotel.name + ", " + order.room.name + " " + order.roomCount + " 间");
+
+        switch (order.state) {
+            case BOOKED:
+            case UNFINISHED:
+                labelOrderState.setTextFill(Paint.valueOf("#0000ff"));
+                break;
+            case DELAYED:
+            case UNDO:
+                labelOrderState.setTextFill(Paint.valueOf("#ff0000"));
+                break;
+            default:
+                labelOrderState.setTextFill(Paint.valueOf("#339900"));
+        }
 
         if (order.state == OrderState.BOOKED) {
             btnUndo.setVisible(true);

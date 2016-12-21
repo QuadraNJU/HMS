@@ -87,7 +87,7 @@ public class HotelSearchView extends Parent {
                     filteredList.sort((vo1, vo2) -> (vo1.getMinPrice() <= vo2.getMinPrice()) ? -1 : 1);
                     break;
                 case PRICE_DESC:
-                    filteredList.sort((vo1, vo2) -> (vo1.getMaxPrice() >= vo2.getMaxPrice()) ? -1 : 1);
+                    filteredList.sort((vo1, vo2) -> (vo1.getMinPrice() >= vo2.getMinPrice()) ? -1 : 1);
                     break;
                 case STAR_ASC:
                     filteredList.sort(Comparator.comparingInt(HotelSearchVO::getStar));

@@ -16,10 +16,7 @@ class HotelSearchItem extends Parent {
     private HotelSearchVO vo;
 
     @FXML
-    private
-    Label labelName;
-    @FXML
-    private Label labelInfo;
+    private Label labelName, labelInfo, labelPrice;
     @FXML
     Button btnDetail, btnOrder;
 
@@ -53,6 +50,7 @@ class HotelSearchItem extends Parent {
                         + ")";
             }
             labelInfo.setText(info);
+            labelPrice.setText("¥" + (int) Math.ceil(vo.getMinPrice()));
         }
     }
 
