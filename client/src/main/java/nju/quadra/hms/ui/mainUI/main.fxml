@@ -14,6 +14,9 @@
                preserveRatio="true">
         <Image url="@../common/title-h.png"/>
     </ImageView>
+    <ImageView layoutX="430.0" layoutY="240.0" preserveRatio="true">
+        <Image url="@../common/title-v-gray.png"/>
+    </ImageView>
 
     <Label fx:id="labelUsername" alignment="CENTER_RIGHT" layoutX="409.0" layoutY="46.0" onMouseDragged="#onDrag"
            onMousePressed="#onDragStart" prefWidth="400.0" textFill="WHITE">
@@ -42,7 +45,12 @@
     </Button>
 
     <Pane fx:id="contentPane" layoutX="200.0" layoutY="100.0" prefHeight="470.0" prefWidth="700.0"
-          style="-fx-background-color: #ffffff;"/>
+          style="-fx-background-color: #ffffff;">
+        <ImageView layoutX="230.0" layoutY="140.0" preserveRatio="true">
+            <Image url="@../common/title-v-gray.png"/>
+        </ImageView>
+    </Pane>
+
 
     <Pane layoutY="570.0" prefHeight="30.0" prefWidth="900.0" style="-fx-background-color: #3c3f41;">
         <Hyperlink layoutX="854.0" layoutY="5.0" text="关于" visible="false"/>
