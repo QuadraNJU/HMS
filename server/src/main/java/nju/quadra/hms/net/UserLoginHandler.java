@@ -49,6 +49,7 @@ class UserLoginHandler implements HttpHandler {
 
         String result = new Gson().toJson(loginResult);
         byte[] response = result.getBytes("UTF-8");
+        httpExchange.getResponseHeaders().set("Access-Control-Allow-Origin", "*");
         httpExchange.sendResponseHeaders(200, response.length);
         OutputStream os = httpExchange.getResponseBody();
         os.write(response);
