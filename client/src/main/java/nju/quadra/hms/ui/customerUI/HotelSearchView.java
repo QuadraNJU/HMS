@@ -41,6 +41,7 @@ public class HotelSearchView extends Parent {
         resetOptions();
 
         loadAreas();
+        choiceCity.getSelectionModel().select(0);
     }
 
     private void loadAreas() {
@@ -112,7 +113,7 @@ public class HotelSearchView extends Parent {
     @FXML
     private VBox vBox;
     @FXML
-    private Pane pane, paneOption;
+    private Pane pane, paneOption, paneSearch;
     @FXML
     private ChoiceBox choiceCity, choiceArea;
     @FXML
@@ -131,6 +132,12 @@ public class HotelSearchView extends Parent {
         vBox.getChildren().clear();
         resetOptions();
         filterAndShow();
+        paneSearch.setVisible(false);
+    }
+
+    @FXML
+    private void onBackAction() {
+        paneSearch.setVisible(true);
     }
 
     @FXML

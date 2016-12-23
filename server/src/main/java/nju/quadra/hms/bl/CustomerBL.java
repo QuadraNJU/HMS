@@ -96,8 +96,12 @@ public class CustomerBL implements CustomerBLService {
     @Override
     public ResultMessage enroll(MemberVO vo) {
         // 安全性: 仅限客户调用
-        if (session != null && !session.userType.equals(UserType.CUSTOMER)) {
-            return new ResultMessage(ResultMessage.RESULT_ACCESS_DENIED);
+        if (session != null) {
+            if (session.userType.equals(UserType.CUSTOMER)) {
+                vo.username = session.username;
+            } else {
+                return new ResultMessage(ResultMessage.RESULT_ACCESS_DENIED);
+            }
         }
         // 防止重复登记
         MemberVO member = getMemberInfo(vo.username);

@@ -42,16 +42,16 @@ class UserEditView extends Parent {
             }
         });
         choiceMemberType.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            labelBirthday.setVisible(false);
+            dateBirthday.setVisible(false);
+            labelCompanyName.setVisible(false);
+            textCompanyName.setVisible(false);
             switch (newValue) {
                 case PERSONAL:
                     labelBirthday.setVisible(true);
                     dateBirthday.setVisible(true);
-                    labelCompanyName.setVisible(false);
-                    textCompanyName.setVisible(false);
                     break;
                 case COMPANY:
-                    labelBirthday.setVisible(false);
-                    dateBirthday.setVisible(false);
                     labelCompanyName.setVisible(true);
                     textCompanyName.setVisible(true);
             }

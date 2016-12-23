@@ -11,6 +11,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import nju.quadra.hms.net.HttpClient;
@@ -39,9 +40,10 @@ public class MainView extends Stage {
         loader.setController(this);
         Parent root = loader.load();
         Scene scene = new Scene(root);
+        scene.setFill(Color.TRANSPARENT);
+        this.initStyle(StageStyle.TRANSPARENT);
         this.setScene(scene);
         this.setResizable(false);
-        this.initStyle(StageStyle.UNDECORATED);
 
         if (HttpClient.session != null) {
             labelUsername.setText(HttpClient.session.username);

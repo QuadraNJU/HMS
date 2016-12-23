@@ -32,7 +32,7 @@ class HttpQueryHandler implements HttpHandler {
             result = "Invalid request";
         } else {
             // Debug
-            Logger.log("D", "Received HTTP query: /" + paths[1] + "/" + paths[2]);
+            // Logger.log("D", "Received HTTP query: /" + paths[1] + "/" + paths[2]);
 
             try {
                 // get class and method

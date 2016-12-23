@@ -59,7 +59,7 @@ public class ServerMainView extends Stage {
                     config.setPort(Integer.parseInt(editPort.getText()));
                     httpService = new HttpService(config.getPort());
                     httpService.start();
-                    Logger.log("I", "HTTP service started on port " + config.getPort());
+                    Logger.log("I", "服务已启动");
                 } catch (Exception e) {
                     Logger.log(e);
                     btnStartStop.setSelected(false);
@@ -67,7 +67,7 @@ public class ServerMainView extends Stage {
             } else {
                 // stop
                 httpService.stop();
-                Logger.log("I", "HTTP service stopped");
+                Logger.log("I", "服务已停止");
             }
         });
     }

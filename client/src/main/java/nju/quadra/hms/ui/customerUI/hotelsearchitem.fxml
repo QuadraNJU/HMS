@@ -21,25 +21,25 @@
         </font>
     </Label>
 
-    <Label fx:id="labelPrice" layoutX="400.0" layoutY="14.0" text="¥9999" textFill="#ff7a00"
+    <Label fx:id="labelPrice" layoutX="420.0" layoutY="14.0" text="¥9999" textFill="#ff7a00"
            prefWidth="70.0" alignment="CENTER_RIGHT">
         <font>
             <Font size="24.0"/>
         </font>
     </Label>
-    <Label layoutX="472.0" layoutY="23.0" text="起">
+    <Label layoutX="492.0" layoutY="23.0" text="起">
         <font>
             <Font size="14.0"/>
         </font>
     </Label>
 
-    <Button layoutX="495.0" layoutY="15.0" onAction="#onDetailAction" prefWidth="50.0" styleClass="btn-r,btn-blue"
+    <Button layoutX="515.0" layoutY="15.0" onAction="#onDetailAction" prefWidth="50.0" styleClass="btn-r,btn-blue"
             text="详情">
         <font>
             <Font size="14.0"/>
         </font>
     </Button>
-    <Button layoutX="550.0" layoutY="15.0" onAction="#onOrderAction" prefWidth="50.0" styleClass="btn-r,btn-pink"
+    <Button layoutX="570.0" layoutY="15.0" onAction="#onOrderAction" prefWidth="50.0" styleClass="btn-r,btn-pink"
             text="预订">
         <font>
             <Font size="14.0"/>

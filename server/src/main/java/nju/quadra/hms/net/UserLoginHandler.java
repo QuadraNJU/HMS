@@ -10,6 +10,7 @@ import nju.quadra.hms.blservice.UserBLService;
 import nju.quadra.hms.model.LoginResult;
 import nju.quadra.hms.model.LoginSession;
 import nju.quadra.hms.model.ResultMessage;
+import nju.quadra.hms.util.Logger;
 import nju.quadra.hms.util.PassHash;
 import nju.quadra.hms.vo.UserVO;
 
@@ -42,6 +43,8 @@ class UserLoginHandler implements HttpHandler {
                 LoginSession session = new LoginSession(sessid, user.username, user.type);
                 SessionManager.add(session);
                 loginResult = new LoginResult(session);
+                // log
+                Logger.log("I", "用户 " + username + "已登录");
             } else {
                 loginResult = new LoginResult(blResult.result, blResult.message);
             }
