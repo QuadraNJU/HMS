@@ -80,6 +80,10 @@ public class HotelRoomBL implements HotelRoomBLService {
             }
         }
 
+        if (getAll(hotel.id).stream().filter(room -> room.name.equals(vo.name)).count() > 0) {
+            return new ResultMessage("该房间类型已存在");
+        }
+
         HotelRoomPO po = HotelRoomBL.toPO(vo);
         try {
             hotelRoomDataService.insert(po);

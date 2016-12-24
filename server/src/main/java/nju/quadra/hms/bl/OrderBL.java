@@ -167,7 +167,7 @@ public class OrderBL implements OrderBLService {
                 return priceVO.result;
             }
             if (Double.compare(priceVO.finalPrice, vo.price) != 0) {
-                return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "订单价格发生变化，请重新预订");
+                return new ResultMessage("订单价格发生变化，请重新预订");
             }
             OrderPO po = OrderBL.toPO(vo);
             orderDataService.insert(po);
@@ -258,7 +258,7 @@ public class OrderBL implements OrderBLService {
             OrderPO po = orderDataService.getById(orderId);
             // 订单状态必须为"异常"才可调用此方法
             if (po.getState() != OrderState.DELAYED) {
-                return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "该订单无法被撤销（订单状态不为\"异常\"）");
+                return new ResultMessage("该订单无法被撤销（订单状态不为\"异常\"）");
             }
             po.setState(OrderState.UNDO);
             orderDataService.update(po);
@@ -267,10 +267,10 @@ public class OrderBL implements OrderBLService {
             new CreditRecordBL().add(new CreditRecordVO(0, po.getUsername(), null, orderId, CreditAction.ORDER_UNDO, po.getPrice() * currRate, 0));
         } catch (NullPointerException e) {
             Logger.log(e);
-            return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "订单不存在，请确认订单信息");
+            return new ResultMessage("订单不存在，请确认订单信息");
         } catch (Exception e) {
             Logger.log(e);
-            return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "服务器访问异常，请重新尝试");
+            return new ResultMessage("服务器访问异常，请重新尝试");
         }
         return new ResultMessage(ResultMessage.RESULT_SUCCESS);
     }
@@ -287,7 +287,7 @@ public class OrderBL implements OrderBLService {
             }
             // 订单状态必须为"未执行"才可调用此方法
             if (po.getState() != OrderState.BOOKED) {
-                return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "该订单无法被撤销（订单状态不为\"未执行\"）");
+                return new ResultMessage("该订单无法被撤销（订单状态不为\"未执行\"）");
             }
             po.setState(OrderState.UNDO);
             orderDataService.update(po);
@@ -298,10 +298,10 @@ public class OrderBL implements OrderBLService {
             }
         } catch (NullPointerException e) {
             Logger.log(e);
-            return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "订单不存在，请确认订单信息");
+            return new ResultMessage("订单不存在，请确认订单信息");
         } catch (Exception e) {
             Logger.log(e);
-            return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "服务器访问异常，请重新尝试");
+            return new ResultMessage("服务器访问异常，请重新尝试");
         }
         return new ResultMessage(ResultMessage.RESULT_SUCCESS);
     }
@@ -317,7 +317,7 @@ public class OrderBL implements OrderBLService {
                 return new ResultMessage(ResultMessage.RESULT_ACCESS_DENIED);
             }
             if (po.getState() != OrderState.BOOKED && po.getState() != OrderState.DELAYED) {
-                return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "该订单无法办理入住");
+                return new ResultMessage("该订单无法办理入住");
             }
             po.setStartDate(LocalDate.now());
             po.setState(OrderState.UNFINISHED);
@@ -331,10 +331,10 @@ public class OrderBL implements OrderBLService {
             creditBL.add(new CreditRecordVO(0, po.getUsername(), null, orderId, CreditAction.ORDER_FINISHED, po.getPrice() * CreditRecordBL.FINISH_RATE, 0));
         } catch (NullPointerException e) {
             Logger.log(e);
-            return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "订单不存在，请确认订单信息");
+            return new ResultMessage("订单不存在，请确认订单信息");
         } catch (Exception e) {
             Logger.log(e);
-            return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "服务器访问异常，请重新尝试");
+            return new ResultMessage("服务器访问异常，请重新尝试");
         }
         return new ResultMessage(ResultMessage.RESULT_SUCCESS);
     }
@@ -349,17 +349,17 @@ public class OrderBL implements OrderBLService {
                 return new ResultMessage(ResultMessage.RESULT_ACCESS_DENIED);
             }
             if (po.getState() != OrderState.UNFINISHED) {
-                return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "该订单未入住，无法退房");
+                return new ResultMessage("该订单未入住，无法退房");
             }
             po.setEndDate(LocalDate.now());
             po.setState(OrderState.FINISHED);
             orderDataService.update(po);
         } catch (NullPointerException e) {
             Logger.log(e);
-            return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "订单不存在，请确认订单信息");
+            return new ResultMessage("订单不存在，请确认订单信息");
         } catch (Exception e) {
             Logger.log(e);
-            return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "服务器访问异常，请重新尝试");
+            return new ResultMessage("服务器访问异常，请重新尝试");
         }
         return new ResultMessage(ResultMessage.RESULT_SUCCESS);
     }
@@ -373,7 +373,7 @@ public class OrderBL implements OrderBLService {
                 return new ResultMessage(ResultMessage.RESULT_ACCESS_DENIED);
             }
             if (!po.getState().equals(OrderState.FINISHED)) {
-                return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "该订单无法评价");
+                return new ResultMessage("该订单无法评价");
             }
             po.setState(OrderState.RANKED);
             po.setRank(vo.rank);
@@ -381,10 +381,10 @@ public class OrderBL implements OrderBLService {
             orderDataService.update(po);
         } catch (NullPointerException e) {
             Logger.log(e);
-            return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "订单不存在，请确认订单信息");
+            return new ResultMessage("订单不存在，请确认订单信息");
         } catch (Exception e) {
             Logger.log(e);
-            return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "服务器访问异常，请重新尝试");
+            return new ResultMessage("服务器访问异常，请重新尝试");
         }
         return new ResultMessage(ResultMessage.RESULT_SUCCESS);
     }

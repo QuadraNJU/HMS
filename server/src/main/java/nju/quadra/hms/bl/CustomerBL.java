@@ -106,7 +106,7 @@ public class CustomerBL implements CustomerBLService {
         // 防止重复登记
         MemberVO member = getMemberInfo(vo.username);
         if (!member.memberType.equals(MemberType.NONE)) {
-            return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "您已经是会员，无需重复登记");
+            return new ResultMessage("您已经是会员，无需重复登记");
         }
         return new CustomerBL().modifyMemberInfo(vo);
     }

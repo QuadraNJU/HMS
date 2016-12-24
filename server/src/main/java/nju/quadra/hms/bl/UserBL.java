@@ -37,7 +37,7 @@ public class UserBL implements UserBLService {
             Logger.log(e);
             return new ResultMessage(ResultMessage.RESULT_DB_ERROR);
         }
-        return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "用户名或密码错误，请重新输入");
+        return new ResultMessage("用户名或密码错误，请重新输入");
     }
 
 
@@ -90,10 +90,10 @@ public class UserBL implements UserBLService {
         UserPO po = UserBL.toPO(vo);
         try {
             if (vo.username.isEmpty() || vo.password.isEmpty() || vo.contact.isEmpty() || vo.name.isEmpty()) {
-                return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "用户信息不完整，请重新输入");
+                return new ResultMessage("用户信息不完整，请重新输入");
             }
             if (userDataService.get(vo.username) != null) {
-                return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "用户名已存在，请重新输入");
+                return new ResultMessage("用户名已存在，请重新输入");
             }
             userDataService.insert(po);
             return new ResultMessage(ResultMessage.RESULT_SUCCESS);

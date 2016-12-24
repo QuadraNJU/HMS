@@ -70,6 +70,10 @@ public class HotelPromotionBL implements HotelPromotionBLService {
             }
         }
 
+        if (get(hotel.id).stream().filter(promo -> promo.name.equals(vo.name)).count() > 0) {
+            return new ResultMessage("存在相同名称的促销策略");
+        }
+
         HotelPromotionPO po = HotelPromotionBL.toPO(vo);
         try {
             hotelPromotionDataService.insert(po);

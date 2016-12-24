@@ -151,6 +151,10 @@ public class HotelBL implements HotelBLService {
             return new ResultMessage(ResultMessage.RESULT_ACCESS_DENIED);
         }
 
+        if (getByArea(vo.areaId).stream().filter(hotel -> hotel.name.equals(vo.name)).count() > 0) {
+            return new ResultMessage("该商圈内存在相同名称的酒店");
+        }
+
         HotelPO po = HotelBL.toPO(vo);
         try {
             hotelDataService.insert(po);

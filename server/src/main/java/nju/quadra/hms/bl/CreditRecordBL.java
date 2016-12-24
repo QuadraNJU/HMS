@@ -91,16 +91,16 @@ public class CreditRecordBL implements CreditRecordBLService {
         }
 
         if (amount <= 0) {
-            return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "充值额度必须为正整数，请重新输入");
+            return new ResultMessage("充值额度必须为正整数，请重新输入");
         }
 
         try {
             UserVO user = userBL.get(username);
             if (user == null) {
-                return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "该用户名不存在，请重新输入");
+                return new ResultMessage("该用户名不存在，请重新输入");
             }
             if (!user.type.equals(UserType.CUSTOMER)) {
-                return new ResultMessage(ResultMessage.RESULT_GENERAL_ERROR, "该用户不是客户类型，无法充值");
+                return new ResultMessage("该用户不是客户类型，无法充值");
             }
             return new CreditRecordBL().add(new CreditRecordVO(0, username, null, 0, CreditAction.CREDIT_TOPUP, amount*RECHARGE_RATE, 0));
         } catch (Exception e) {

@@ -15,7 +15,7 @@ public class Logger {
 
     public static void log(String type, String message) {
         String logText = "[" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("uu/MM/dd HH:mm:ss.SSS")) + "] ";
-        logText += type + "/" + Thread.currentThread().getStackTrace()[2].getClassName() + ": " + message + System.getProperty("line.separator");
+        logText += type + ": " + message + System.getProperty("line.separator");
         if (target != null) {
             target.set(target.get() + logText);
         }

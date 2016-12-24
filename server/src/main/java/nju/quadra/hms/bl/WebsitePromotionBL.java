@@ -57,6 +57,10 @@ public class WebsitePromotionBL implements WebsitePromotionBLService {
             return new ResultMessage(ResultMessage.RESULT_ACCESS_DENIED);
         }
 
+        if (get().stream().filter(promo -> promo.name.equals(vo.name)).count() > 0) {
+            return new ResultMessage("存在相同名称的促销策略");
+        }
+
         WebsitePromotionPO po = WebsitePromotionBL.toPO(vo);
         try {
             websitePromotionDataService.insert(po);
