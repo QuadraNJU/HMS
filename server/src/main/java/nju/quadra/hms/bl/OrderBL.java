@@ -169,6 +169,7 @@ public class OrderBL implements OrderBLService {
             if (Double.compare(priceVO.finalPrice, vo.price) != 0) {
                 return new ResultMessage("订单价格发生变化，请重新预订");
             }
+            vo.state = OrderState.BOOKED;
             OrderPO po = OrderBL.toPO(vo);
             orderDataService.insert(po);
         } catch (Exception e) {
@@ -371,6 +372,9 @@ public class OrderBL implements OrderBLService {
             // 安全性: 仅允许评价自己的订单
             if (session != null && (!session.userType.equals(UserType.CUSTOMER) || !po.getUsername().equals(session.username))) {
                 return new ResultMessage(ResultMessage.RESULT_ACCESS_DENIED);
+            }
+            if (vo.comment == null || vo.comment.isEmpty()) {
+                return new ResultMessage("评价内容不能为空，请重新输入");
             }
             if (!po.getState().equals(OrderState.FINISHED)) {
                 return new ResultMessage("该订单无法评价");

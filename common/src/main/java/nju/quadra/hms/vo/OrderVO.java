@@ -54,7 +54,7 @@ public class OrderVO {
     /**
      * 订单状态
      */
-    public final OrderState state;
+    public OrderState state;
     /**
      * 评分
      */
