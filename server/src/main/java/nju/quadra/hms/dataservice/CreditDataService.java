@@ -24,12 +24,4 @@ public interface CreditDataService {
      * @throws Exception 数据库访问异常
      */
     void insert(CreditRecordPO po) throws Exception;
-
-    /**
-     * 根据用户名查找并获得UserVO对象
-     *
-     * @param po 用户信用信息实例化对象
-     * @throws Exception 数据库访问异常
-     */
-    void delete(CreditRecordPO po) throws Exception;
 }

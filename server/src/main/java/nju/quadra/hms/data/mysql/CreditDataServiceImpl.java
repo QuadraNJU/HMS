@@ -31,17 +31,6 @@ public class CreditDataServiceImpl implements CreditDataService {
         pst.executeUpdate();
     }
 
-    @Override
-    public void delete(CreditRecordPO po) throws Exception {
-        PreparedStatement pst = MySQLManager.getConnection()
-                .prepareStatement("DELETE FROM `creditrecord` WHERE `id` = ?");
-        pst.setInt(1, po.getId());
-        int result = pst.executeUpdate();
-        if (result == 0) {
-            throw new Exception("Credit record not found");
-        }
-    }
-
     private ArrayList<CreditRecordPO> convertToArrayList(ResultSet rs) throws Exception{
         ArrayList<CreditRecordPO> result = new ArrayList<>();
         while (rs.next()) {

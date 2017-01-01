@@ -9,7 +9,7 @@ import java.util.ArrayList;
  */
 public interface WebsitePromotionDataService {
     /**
-     * 在数据库中获得WebsitePromotionPO对象
+     * 在数据库中获得所有的WebsitePromotionPO对象
      *
      * @return 网络促销策略实例化对象集合
      * @throws Exception 数据库访问异常
