@@ -15,9 +15,11 @@ public class HotelStaffController {
     private final CustomerBLService customerBL = BLServiceFactory.getCustomerBLService();
     private final OrderBLService orderBL = BLServiceFactory.getOrderBLService();
 
-    private final HotelVO hotelVO;
+    private final String username;
+    private HotelVO hotelVO;
 
     public HotelStaffController(String username) {
+        this.username = username;
         hotelVO = hotelBL.getByStaff(username);
     }
 
@@ -41,7 +43,9 @@ public class HotelStaffController {
 
     public ResultMessage modifyHotelInfo(HotelVO vo) {
         try {
-            return hotelBL.modify(vo);
+            ResultMessage result =  hotelBL.modify(vo);
+            this.hotelVO = hotelBL.getByStaff(this.username);
+            return result;
         } catch (Exception e) {
             // e.printStackTrace();
             return new ResultMessage(ResultMessage.RESULT_NET_ERROR);
