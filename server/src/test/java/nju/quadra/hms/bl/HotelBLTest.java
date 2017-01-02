@@ -76,7 +76,7 @@ public class HotelBLTest {
     }
     
     @Test
-    public void test8_Delete1() {
+    public void test7_Delete() {
     	ArrayList<HotelVO> voarr = hotelBL.getByArea(123456);
     	for (HotelVO vo: voarr) {
     	    assertEquals(ResultMessage.RESULT_SUCCESS, hotelBL.delete(vo.id).result);
